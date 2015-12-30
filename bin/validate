@@ -2,27 +2,41 @@
 
 import click
 import json
+import jsonschema
+import os
+import sys
 
-from jsonschema import Draft4Validator
+
+SCRIPT_ROOT = os.path.abspath(os.path.join(
+    os.path.dirname(sys.modules[__name__].__file__), ".."))
 
 
-def check_validity(filename):
-    """Checks the validity of the JSON schema found in the given file or
-    file-like object (anything that ``click.open_file()`` can handle."""
+def check_validity(filename, schema, resolver):
+    """Checks the validity of the JSON object found in the given file or
+    file-like object (anything that ``click.open_file()`` can handle, using
+    the given JSON schema."""
     with click.open_file(filename, "rb") as fp:
-        schema = json.load(fp)
-    Draft4Validator.check_schema(schema)
+        obj = json.load(fp)
+    jsonschema.validate(obj, schema, resolver=resolver)
 
 
 @click.command()
+@click.option('-s', '--schema', type=click.File("rb"),
+              default="schema/message_body.json")
 @click.argument('name', nargs=-1, type=click.Path(exists=True))
-def validate(name):
-    """Validates the schema file given in NAME to see if it is conformant to
-    JSON-Schema Draft 4. When omitted, the script will validate all JSON-Schema
-    files in schema/"""
+def validate(name, schema):
+    """Validates the JSON message stored in the file with the given NAME to see
+    if it is a valid Flockwave message. When omitted, the script will validate
+    all ``.json`` files found in ``doc/examples``.
+    """
+    schema_obj = json.load(schema)
+    resolver = jsonschema.RefResolver("file://{0}/".format(
+        os.path.join(SCRIPT_ROOT, "schema")
+    ), None)
+
     for fn in name:
-        check_validity(fn)
-        click.echo("{0} is a valid JSON schema.".format(
+        check_validity(fn, schema_obj, resolver)
+        click.echo("{0} is a valid Flockwave message.".format(
             click.format_filename(fn)))
 
 

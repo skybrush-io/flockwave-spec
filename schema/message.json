@@ -26,14 +26,7 @@
 					"$ref": "definitions.json#/messageId"
 				},
 				"body": {
-					"anyOf": [
-						{
-							"$ref": "response_ACK_ACK.json#/"
-						},
-						{
-							"$ref": "response_ACK_NAK.json#/"
-						}
-					]
+					"$ref": "message_body.json#/"
 				}
 			},
 
