@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+import click
+import json
+
+from jsonschema import Draft4Validator
+
+
+def check_validity(filename):
+    """Checks the validity of the JSON schema found in the given file or
+    file-like object (anything that ``click.open_file()`` can handle."""
+    with click.open_file(filename, "rb") as fp:
+        schema = json.load(fp)
+    Draft4Validator.check_schema(schema)
+
+
+@click.command()
+@click.argument('name', nargs=-1, type=click.Path(exists=True))
+def validate(name):
+    """Validates the schema file given in NAME to see if it is conformant to
+    JSON-Schema Draft 4. When omitted, the script will validate all JSON-Schema
+    files in schema/"""
+    for fn in name:
+        check_validity(fn)
+        click.echo("{0} is a valid JSON schema.".format(
+            click.format_filename(fn)))
+
+
+if __name__ == "__main__":
+    validate()
