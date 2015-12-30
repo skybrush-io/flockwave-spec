@@ -1,0 +1,16 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"pattern": "^ACK-NAK$"
+		},
+		"reason": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}

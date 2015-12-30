@@ -1,0 +1,82 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"id": "http://collmot.com/schemas/flockwave/1.0/message.json",
+
+	"oneOf": [
+		{
+			"$ref": "#/definitions/standardMessage"
+		},
+		{
+			"$ref": "#/definitions/errorMessage"
+		}
+	],
+
+	"definitions": {
+		"standardMessage": {
+			"type": "object",
+
+			"properties": {
+				"$fw.version": {
+					"$ref": "definitions.json#/versionNumber"
+				},
+				"id": {
+					"$ref": "definitions.json#/messageId"
+				},
+				"correlationId": {
+					"$ref": "definitions.json#/messageId"
+				},
+				"body": {
+					"anyOf": [
+						{
+							"$ref": "response_ACK_ACK.json#/"
+						},
+						{
+							"$ref": "response_ACK_NAK.json#/"
+						}
+					]
+				}
+			},
+
+			"required": [
+				"$fwVersion",
+				"id",
+				"body"
+			]
+		},
+
+		"errorMessage": {
+			"type": "object",
+
+			"properties": {
+				"$fw.version": {
+					"$ref": "definitions.json#/versionNumber"
+				},
+				"id": {
+					"$ref": "definitions.json#/messageId"
+				},
+				"correlationId": {
+					"$ref": "definitions.json#/messageId"
+				},
+				"error": {
+					"type": "object",
+					"properties": {
+						"code": {
+							"type": "integer"
+						},
+						"message": {
+							"type": "string"
+						}
+					},
+					"minProperties": 1
+				}
+			},
+
+			"required": [
+				"$fwVersion",
+				"id",
+				"error"
+			]
+		}
+	}
+}
+

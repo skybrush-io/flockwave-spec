@@ -1,0 +1,13 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"pattern": "^ACK-ACK$"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}
