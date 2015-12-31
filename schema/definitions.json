@@ -1,4 +1,58 @@
 {
+	"connectionId": {
+		"type": "string",
+		"minLength": 1,
+		"maxLength": 64
+	},
+
+	"connectionIdList": {
+		"type": "array",
+		"items": {
+			"$ref": "#/connectionId"
+		},
+		"uniqueItems": true
+	},
+
+	"connectionInfo": {
+		"type": "object",
+		"properties": {
+			"id": {
+				"$ref": "definitions.json#/connectionId"
+			},
+			"purpose": {
+				"$ref": "definitions.json#/connectionPurpose"
+			},
+			"description": {
+				"type": "string"
+			},
+			"status": {
+				"$ref": "definitions.json#/connectionStatus"
+			},
+			"timestamp": {
+				"type": "string",
+				"format": "date-time"
+			}
+		},
+		"required": [ "id", "purpose", "status" ]
+	},
+
+	"connectionPurpose": {
+		"type": "string",
+		"enum": ["dgpsStream", "uavRadioLink", "other"]
+	},
+
+	"connectionStatus": {
+		"type": "string",
+		"enum": ["disconnected", "connecting", "connected", "disconnecting"]
+	},
+
+	"failureReasons": {
+		"type": "object",
+		"additionalProperties": {
+			"type": "string"
+		}
+	},
+
 	"messageId": {
 		"type": "string",
 		"minLength": 1,

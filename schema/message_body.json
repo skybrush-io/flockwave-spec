@@ -3,6 +3,9 @@
 	"id": "http://collmot.com/schemas/flockwave/1.0/message_body.json",
 	"anyOf": [
 		{
+			"$ref": "request_CONN-INF.json#/"
+		},
+		{
 			"$ref": "request_SYS-VER.json#/"
 		},
 
@@ -11,6 +14,9 @@
 		},
 		{
 			"$ref": "response_ACK-NAK.json#/"
+		},
+		{
+			"$ref": "response_CONN-INF.json#/"
 		},
 		{
 			"$ref": "response_SYS-VER.json#/"
