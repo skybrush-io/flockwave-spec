@@ -1,18 +1,19 @@
 {
 	"$schema": "http://json-schema.org/schema#",
+	"id": "http://collmot.com/schemas/flockwave/1.0/message_body.json",
 	"anyOf": [
 		{
-			"$ref": "request_SYS_VER.json#/"
+			"$ref": "request_SYS-VER.json#/"
 		},
 
 		{
-			"$ref": "response_ACK_ACK.json#/"
+			"$ref": "response_ACK-ACK.json#/"
 		},
 		{
-			"$ref": "response_ACK_NAK.json#/"
+			"$ref": "response_ACK-NAK.json#/"
 		},
 		{
-			"$ref": "response_SYS_VER.json#/"
+			"$ref": "response_SYS-VER.json#/"
 		}
 	]
 }

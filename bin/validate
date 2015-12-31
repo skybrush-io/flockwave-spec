@@ -30,6 +30,12 @@ def validate(name, schema):
     all ``.json`` files found in ``doc/examples``.
     """
     schema_obj = json.load(schema)
+    if "id" in schema_obj and schema_obj["id"].startswith("http://collmot.com"):
+        # Remove the ID if it is a collmot.com URL -- we should have
+        # everything available locally
+        del schema_obj["id"]
+
+    # Create a resolver that resolves JSON schema references locally
     resolver = jsonschema.RefResolver("file://{0}/".format(
         os.path.join(SCRIPT_ROOT, "schema")
     ), None)

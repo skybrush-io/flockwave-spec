@@ -1,0 +1,22 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"pattern": "^SYS-VER$"
+		},
+		"name": {
+			"type": "string"
+		},
+		"software": {
+			"type": "string"
+		},
+		"version": {
+			"$ref": "definitions.json#/versionNumber"
+		}
+	},
+	"required": [
+		"type", "software", "version"
+	],
+	"additionalProperties": false
+}
