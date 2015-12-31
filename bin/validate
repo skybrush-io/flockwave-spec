@@ -40,6 +40,12 @@ def validate(name, schema):
         os.path.join(SCRIPT_ROOT, "schema")
     ), None)
 
+    if not name:
+        examples_dir = os.path.join(SCRIPT_ROOT, "doc", "examples")
+        name = [os.path.join(examples_dir, fname)
+                for fname in os.listdir(examples_dir)
+                if fname.endswith(".json")]
+
     for fn in name:
         check_validity(fn, schema_obj, resolver)
         click.echo("{0} is a valid Flockwave message.".format(
