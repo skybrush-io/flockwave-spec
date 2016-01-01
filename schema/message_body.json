@@ -12,7 +12,16 @@
 			"$ref": "request_SYS-VER.json#/"
 		},
 		{
+			"$ref": "request_UAV-HALT.json#/"
+		},
+		{
+			"$ref": "request_UAV-LAND.json#/"
+		},
+		{
 			"$ref": "request_UAV-LIST.json#/"
+		},
+		{
+			"$ref": "request_UAV-RTH.json#/"
 		},
 
 		{
