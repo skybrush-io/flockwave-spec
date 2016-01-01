@@ -1,0 +1,16 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"pattern": "^CONN-INF$"
+		},
+		"ids": {
+			"$ref": "definitions.json#/connectionIdList"
+		}
+	},
+	"required": [
+		"type", "ids"
+	],
+	"additionalProperties": false
+}

@@ -1,0 +1,4 @@
+{
+    "type": "CONN-LIST",
+    "ids": ["dgps", "xbee"]
+}

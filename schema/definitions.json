@@ -59,6 +59,20 @@
 		"maxLength": 36
 	},
 
+	"uavId": {
+		"type": "string",
+		"minLength": 1,
+		"maxLength": 64
+	},
+
+	"uavIdList": {
+		"type": "array",
+		"items": {
+			"$ref": "#/uavId"
+		},
+		"uniqueItems": true
+	},
+
 	"versionNumber": {
 		"type": "string",
 		"pattern": "^[0-9]+(\\.[0-9]+){0,2}$"

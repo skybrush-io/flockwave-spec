@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"pattern": "^CONN-INF$"
+		},
+		"status": {
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "definitions.json#/connectionInfo"
+			}
+		},
+		"failure": {
+			"$ref": "definitions.json#/connectionIdList"
+		},
+		"reasons": {
+			"$ref": "definitions.json#/failureReasons"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}

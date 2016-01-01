@@ -6,7 +6,13 @@
 			"$ref": "request_CONN-INF.json#/"
 		},
 		{
+			"$ref": "request_CONN-LIST.json#/"
+		},
+		{
 			"$ref": "request_SYS-VER.json#/"
+		},
+		{
+			"$ref": "request_UAV-LIST.json#/"
 		},
 
 		{
@@ -19,7 +25,13 @@
 			"$ref": "response_CONN-INF.json#/"
 		},
 		{
+			"$ref": "response_CONN-LIST.json#/"
+		},
+		{
 			"$ref": "response_SYS-VER.json#/"
+		},
+		{
+			"$ref": "response_UAV-LIST.json#/"
 		}
 	]
 }

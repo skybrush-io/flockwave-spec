@@ -1,0 +1,22 @@
+{
+    "type": "CONN-INF",
+    "status": {
+        "xbee": {
+            "id": "xbee",
+            "purpose": "uavRadioLink",
+            "description": "Upstream XBee radio link",
+            "status": "connected",
+            "timestamp": "2015-12-14T17:31:18.000Z"
+        },
+        "dgps": {
+            "id": "dgps",
+            "purpose": "dgpsStream",
+            "description": "DGPS data from BUTE0",
+            "status": "connecting"
+        }
+    },
+    "failure": ["beer_can"],
+    "reasons": {
+        "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
+    }
+}
