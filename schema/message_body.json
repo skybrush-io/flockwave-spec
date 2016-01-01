@@ -40,7 +40,16 @@
 			"$ref": "response_SYS-VER.json#/"
 		},
 		{
+			"$ref": "response_UAV-HALT.json#/"
+		},
+		{
+			"$ref": "response_UAV-LAND.json#/"
+		},
+		{
 			"$ref": "response_UAV-LIST.json#/"
+		},
+		{
+			"$ref": "response_UAV-RTH.json#/"
 		}
 	]
 }
