@@ -1,11 +1,15 @@
 {
 	"connectionId": {
+		"title": "Connection ID",
+		"description": "Identifier of a single connection",
 		"type": "string",
 		"minLength": 1,
 		"maxLength": 64
 	},
 
 	"connectionIdList": {
+		"title": "Connection IDs",
+		"description": "IDs of the connections that the message refers to",
 		"type": "array",
 		"items": {
 			"$ref": "#/connectionId"
@@ -14,6 +18,8 @@
 	},
 
 	"connectionInfo": {
+		"title": "Connection info",
+		"description": "Information about a connection",
 		"type": "object",
 		"properties": {
 			"id": {
@@ -37,11 +43,15 @@
 	},
 
 	"connectionPurpose": {
+		"title": "Purpose",
+		"description": "Purpose of the connection",
 		"type": "string",
 		"enum": ["dgpsStream", "uavRadioLink", "other"]
 	},
 
 	"connectionStatus": {
+		"title": "Status",
+		"description": "Status of the connection",
 		"type": "string",
 		"enum": ["disconnected", "connecting", "connected", "disconnecting"]
 	},
@@ -54,18 +64,24 @@
 	},
 
 	"messageId": {
+		"title": "Message ID",
+		"description": "Identifier of the message",
 		"type": "string",
 		"minLength": 1,
 		"maxLength": 36
 	},
 
 	"uavId": {
+		"title": "UAV ID",
+		"description": "Identifier of a single UAV",
 		"type": "string",
 		"minLength": 1,
 		"maxLength": 64
 	},
 
 	"uavIdList": {
+		"title": "UAV IDs",
+		"description": "IDs of the UAVs that the message refers to",
 		"type": "array",
 		"items": {
 			"$ref": "#/uavId"
@@ -78,6 +94,8 @@
 	},
 
 	"versionNumber": {
+		"title": "Version",
+		"description": "Version number in major.minor.patch format; minor and patch versions are optional",
 		"type": "string",
 		"pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
 	}

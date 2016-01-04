@@ -2,8 +2,10 @@
 	"type": "object",
 	"properties": {
 		"type": {
+			"title": "Type",
+			"description": "Type of the message",
 			"type": "string",
-			"pattern": "^UAV-LAND$"
+			"enum": ["UAV-LAND"]
 		},
 		"ids": {
 			"$ref": "definitions.json#/uavIdList"

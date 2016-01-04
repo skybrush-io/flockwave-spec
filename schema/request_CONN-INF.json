@@ -2,8 +2,10 @@
 	"type": "object",
 	"properties": {
 		"type": {
+			"title": "Type",
+			"description": "Type of the message",
 			"type": "string",
-			"pattern": "^CONN-INF$"
+			"enum": ["CONN-INF"]
 		},
 		"ids": {
 			"$ref": "definitions.json#/connectionIdList"
