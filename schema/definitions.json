@@ -73,6 +73,10 @@
 		"uniqueItems": true
 	},
 
+	"uavStatusInfo": {
+		"type": "object"
+	},
+
 	"versionNumber": {
 		"type": "string",
 		"pattern": "^[0-9]+(\\.[0-9]+){0,2}$"

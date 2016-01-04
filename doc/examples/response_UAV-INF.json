@@ -1,0 +1,31 @@
+{
+    "type": "UAV-INF",
+    "status": {
+        "1": {
+			"id": "1",
+			"algorithm": "flocking",
+			"position": {
+				"lat": 51.9976597,
+				"lon": -0.7406863,
+				"altMSL": 93.765
+			},
+			"heading": 90,
+			"attitude": {
+				"roll": 0,
+				"pitch": 0,
+				"yaw": 90
+			},
+			"velocity": {
+				"north": 0,
+				"east": 0,
+				"down": 0
+			},
+			"timestamp": "2015-12-08T08:17:41.000Z",
+			"debug": "0BADCAFE"
+		}
+    },
+    "failure": ["spam"],
+    "reasons": {
+        "spam": "No such UAV."
+    }
+}

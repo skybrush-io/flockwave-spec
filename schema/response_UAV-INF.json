@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"enum": ["UAV-INF"]
+		},
+		"status": {
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "definitions.json#/uavStatusInfo"
+			}
+		},
+		"failure": {
+			"$ref": "definitions.json#/uavIdList"
+		},
+		"reasons": {
+			"$ref": "definitions.json#/failureReasons"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}
