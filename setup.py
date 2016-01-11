@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 requires = [line.strip() for line in open("requirements.txt")]
 
 __version__ = None
-exec(open("flockwave/schema/version.py").read())
+exec(open("flockwave/spec/version.py").read())
 
 setup(
     name="flockwave-spec",
