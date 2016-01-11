@@ -1,4 +1,1 @@
-click>=6.2
-jsonschema>=2.5.1
-memoized>=0.2
-warlock>=1.2.0
+-e .
