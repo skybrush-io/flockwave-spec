@@ -8,7 +8,6 @@ requires = [
     "memoized>=0.2",
     "warlock>=1.2.0"
 ]
-requires = [line.strip() for line in open("requirements.txt") if not line[0] in '-#']
 
 __version__ = None
 exec(open("flockwave/spec/version.py").read())
