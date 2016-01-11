@@ -31,7 +31,7 @@
 			},
 
 			"required": [
-				"$fwVersion",
+				"$fw.version",
 				"id",
 				"body"
 			]
@@ -65,11 +65,10 @@
 			},
 
 			"required": [
-				"$fwVersion",
+				"$fw.version",
 				"id",
 				"error"
 			]
 		}
 	}
 }
-
