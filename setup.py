@@ -15,7 +15,11 @@ exec(open("flockwave/spec/version.py").read())
 setup(
     name="flockwave-spec",
     version=__version__,
-    packages=find_packages(),
+
+    author=u"Tam\u00e1s Nepusz",
+    author_email="tamas@collmot.com",
+
+    packages=find_packages(exclude=["test"]),
     include_package_data=True,
     install_requires=requires,
     test_suite="test"
