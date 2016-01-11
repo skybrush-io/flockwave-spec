@@ -3,6 +3,10 @@
 	"id": "http://collmot.com/schemas/flockwave/1.0/message_body.json",
 	"oneOf": [
 		{
+			"type": "null"
+		},
+
+		{
 			"$ref": "request_CONN-INF.json#/"
 		},
 		{
