@@ -10,16 +10,13 @@ import jsonschema
 import os
 import sys
 
-from pkg_resources import resource_stream
+from flockwave.spec.schema import get_message_body_schema, ref_resolver
 
 __all__ = ("validate", )
 
 
 SCRIPT_ROOT = os.path.abspath(os.path.join(
     os.path.dirname(sys.modules[__name__].__file__), "..", ".."))
-
-SCHEMA_PACKAGE = "flockwave.spec"
-FLOCKWAVE_SPEC_PREFIX = "http://collmot.com/schemas/flockwave/1.0"
 
 
 def check_validity(filename, schema, resolver=None):
@@ -38,25 +35,6 @@ def check_validity(filename, schema, resolver=None):
     jsonschema.validate(obj, schema, resolver=resolver)
 
 
-def ref_resolver(uri):
-    """Resolves the given URI from a JSON schema file.
-
-    When the URI starts with ``http://collmot.com/schemas/flockwave/1.0``,
-    it is assumed that the corresponding JSON file is present in the
-    ``flockwave.schema`` package so it is looked up from there. In all
-    other cases, we raise an exception. This will be caught by
-    ``jsonschema`` and turned into a ``RefResoutionError``.
-    """
-    if uri.startswith(FLOCKWAVE_SPEC_PREFIX):
-        path = uri[len(FLOCKWAVE_SPEC_PREFIX):]
-        if path.startswith("/"):
-            path = path[1:]
-        stream = resource_stream(SCHEMA_PACKAGE, path)
-        return json.load(stream)
-    else:
-        raise NotImplementedError("remote URI lookups are disallowed")
-
-
 @click.command()
 @click.argument('name', nargs=-1, type=click.Path(exists=True))
 def validate(name):
@@ -64,8 +42,7 @@ def validate(name):
     if it is a valid Flockwave message. When omitted, the script will validate
     all ``.json`` files found in ``doc/examples``.
     """
-    schema_stream = resource_stream(SCHEMA_PACKAGE, "message_body.json")
-    schema = json.load(schema_stream)
+    schema = get_message_body_schema()
 
     # Create a resolver that resolves JSON schema references locally
     resolver = jsonschema.RefResolver.from_schema(
