@@ -5,8 +5,7 @@ from setuptools import setup, find_packages
 requires = [
     "click>=6.2",
     "jsonschema>=2.5.1",
-    "memoized>=0.2",
-    "warlock>=1.2.0"
+    "memoized>=0.2"
 ]
 
 __version__ = None
