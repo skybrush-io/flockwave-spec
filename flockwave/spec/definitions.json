@@ -90,7 +90,24 @@
 	},
 
 	"uavStatusInfo": {
-		"type": "object"
+		"$schema": "http://json-schema.org/schema#",
+		"id": "http://collmot.com/schemas/flockwave/1.0/uav_status_info.json",
+
+		"title": "UAV status info",
+		"description": "Status information of a single UAV",
+		"type": "object",
+		"properties": {
+			"id": {
+				"$ref": "definitions.json#/uavId"
+			},
+			"timestamp": {
+				"title": "Last updated at",
+				"description": "Timestamp that denotes when the status of the UAV was updated the last time",
+				"type": "string",
+				"format": "date-time"
+			}
+		},
+		"required": ["id", "timestamp"]
 	},
 
 	"versionNumber": {
