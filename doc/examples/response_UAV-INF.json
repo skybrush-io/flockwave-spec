@@ -16,9 +16,9 @@
 				"yaw": 90
 			},
 			"velocity": {
-				"north": 0,
-				"east": 0,
-				"down": 0
+				"north": 2,
+				"east": 2,
+				"down": -1
 			},
 			"timestamp": "2015-12-08T08:17:41.000Z",
 			"debug": "0BADCAFE"

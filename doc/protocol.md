@@ -218,7 +218,7 @@ All the connection IDs that were specified in the request MUST appear *either* i
 }
 ```
 
-#### `CONN-LIST` --- List of all the connections maintained by the server
+#### `CONN-LIST` --- List of all the connections managed by the server
 
 A client sends this request to the server to obtain the list of all the connections (e.g., radio links, DGPS streams) currently managed by the server. The list of connections will *not* include connections to Flockwave clients.
 
@@ -306,7 +306,7 @@ All the UAV IDs that were specified in the request MUST appear *either* in the `
 ```js
 {
     "type": "UAV-INF",
-    "ids": ["1", "17", "31", "spam"]
+    "ids": ["1", "spam"]
 }
 ```
 
@@ -315,9 +315,7 @@ All the UAV IDs that were specified in the request MUST appear *either* in the `
 {
     "type": "UAV-INF",
     "status": {
-        "1": { TODO },
-        "17": { TODO },
-        "31": { TODO }
+        "1": { TODO }
     },
     "failure": ["spam"],
     "reasons": {
@@ -387,8 +385,8 @@ Name | Required? | Type | Description
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``success`` | yes | list of strings | The list of UAV IDs to which the request was sent
-``failure`` | yes | list of strings | The list of UAV IDs to which the request was *not* sent
+``success`` | no | list of strings | The list of UAV IDs to which the request was sent
+``failure`` | no | list of strings | The list of UAV IDs to which the request was *not* sent
 ``reasons`` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
  
 **Example request**
@@ -458,8 +456,8 @@ Name | Required? | Type | Description
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``success`` | yes | list of strings | The list of UAV IDs to which the request was sent
-``failure`` | yes | list of strings | The list of UAV IDs to which the request was *not* sent
+``success`` | no | list of strings | The list of UAV IDs to which the request was sent
+``failure`` | no | list of strings | The list of UAV IDs to which the request was *not* sent
 ``reasons`` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
  
 **Example request**
@@ -491,7 +489,7 @@ This section describes the complex data types and structures that are used in Fl
 
 ![The preferred date and time format of Flockwave](http://imgs.xkcd.com/comics/iso_8601.png")
 
-Dates, times and durations MUST always be expressed in UTC using an appropriate [ISO 8601][1] format (see also [RFC 3339][2] if you don't like paywalls). Unless stated otherwise, the following formats should be used:
+Dates, times and durations MUST always be expressed in UTC using an appropriate [ISO 8601][1] format (see also [RFC 3339][2], especially section 5.6 if you don't like paywalls). Unless stated otherwise, the following formats should be used:
 
 * Dates should be expressed as *YYYY*-*MM*-*DD* (ISO 8601 extended format).
 * Times should be expressed as *HH*:*mm*:*ss*.*sss* (ISO 8601 extended format). The millisecond part may be omitted if not relevant.
@@ -502,7 +500,31 @@ Dates, times and durations MUST always be expressed in UTC using an appropriate 
 
 ### Angles
 
-Angles are always expressed in degrees because radians are for mathematicians.
+Angles are always expressed in degrees because radians are for mathematicians. Depending on the context, angles may either be expressed in the half-open interval [0, 360)[^2], or in the half-open interval [-180, 180) or [-90, 90). For instance, latitudes, longitudes, roll and pitch are naturally expressed in an interval centered around zero, while heading and yaw information is typically presented as a non-negative number. When in doubt, look at the formal JSON schema specification for the allowed range of an angle.
+
+[^2]: Even though it is common in aviation to indicate 360 degrees instead of zero degree, we always transmit zero degree instead of 360 degrees in messages because it comes naturally from the way computers handle modulo arithmetics. The user interface may still opt to present zero degree as 360 degrees if the user prefers that.
+
+### `Attitude`
+
+An `Attitude` object describes the orientation of a UAV using the standard roll, pitch and yaw angles. See the section about [angles](#angles) for more information about how the angles are expressed.
+
+**Fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+roll | yes | [angle](#angles) | the roll angle in degrees, in the range [-90, 90)
+pitch | yes | [angle](#angles) | the pitch angle in degrees, in the range [-90, 90)
+yaw | yes | [angle](#angles) | the yaw angle in degrees, in the range [0, 360)
+
+**Example**
+
+```js
+{
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 90
+}
+```
 
 ### `ConnectionInfo`
 
@@ -514,9 +536,9 @@ Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
 id | yes | string | the unique identifier of the connection
 purpose | yes | [ConnectionPurpose](#connectionpurpose) | the purpose of the connection (i.e. what sort of data it provides)
- description | no | string | human-readable description of the connection
- status | yes | [ConnectionStatus](#connectionstatus) | the current status of the connection
- timestamp | no | [datetime](#dates-and-times) | time when the last packet was received from the connection, or if it is not available, the time when the connection changed status the last time
+description | no | string | human-readable description of the connection
+status | yes | [ConnectionStatus](#connectionstatus) | the current status of the connection
+timestamp | no | [datetime](#dates-and-times) | time when the last packet was received from the connection, or if it is not available, the time when the connection changed status the last time
 
 **Example**
 ```json
@@ -570,9 +592,10 @@ Latitude and longitude should be specified with at least eight digits' precision
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-lat | yes | float | The latitude, in degrees
-lon | yes | float | The longitude, in degrees
-amsl | no | float | Altitude above mean sea level, if known, in metres. Positive axis points from the ground up.
+lat | yes | float | The latitude, in degrees, in the range [-90,90)
+lon | yes | float | The longitude, in degrees, in the range [-180,180)
+altMSL | no | float | Altitude above mean sea level, if known, in metres. Positive axis points from the ground up.
+altRel | no | float | Altitude relative to the point of takeoff, if known, in metres. Positive axis points from the ground up.
 
 **Example**
 
@@ -580,11 +603,25 @@ amsl | no | float | Altitude above mean sea level, if known, in metres. Positive
 {
     "lat": 51.99765972,
     "lon": -0.74068634,
-    "amsl": 93.765
+    "altMSL": 93.765
 }
 ```
 
 ### `UAVStatusInfo`
+
+TODO
+
+**Fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+id | yes | string | The unique identifier of the UAV
+algorithm | no | string | The name of the algorithm that the UAV is running (if applicable).
+position | yes | [GPSCoordinate](#gpscoordinate) | The position of the UAV
+heading | no | [angle](#angles) | The heading of the UAV, i.e. the direction the UAV is pointing, projected to the local tangent plane, if known. The range of this angle is [0; 360).
+attitude | no | [Attitude](#attitude) | The velocity of the UAV, expressed in the NED (North, East, Down) coordinate system.
+velocity | no | [VelocityNED](#velocityned) | The velocity of the UAV, expressed in the NED (North, East, Down) coordinate system.
+timestamp | yes | [datetime](#dates-and-times) | Time when the last status update was received from the UAV
 
 TODO
 
@@ -597,23 +634,46 @@ TODO
     "position": {
         "lat": 51.9976597,
         "lon": -0.7406863,
-        "amsl": 93.765
+        "altMSL": 93.765
     },
     "heading": 90,
     "attitude": {
         "roll": 0,
         "pitch": 0,
-        "yaw": 0
+        "yaw": 90
     },
     "velocity": {
-        "north": 0,
-        "east": 0,
-        "down": 0
+        "north": 2.0,
+        "east": 2.0,
+        "down": -1.0
     },
     "timestamp": "2015-12-08T08:17:41.000Z",
     "debug": "0BADCAFE"
 }
 ```
+
+### `VelocityNED`
+
+This type represents the velocity of an airborne object (typically a UAV) in the NED coordinate system (also called local tangent plane). The default unit for the components is m/s (metres per second). For instance, a UAV moving northeast with ~2.82 m/s (2.82 = sqrt(8)) while ascending with 1 m/s is expressed by a velocity vector where north=2, east=2 and down=-1.
+
+**Fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+north | yes | number | The "north" component of the velocity vector, in m/s
+east | yes | number | The "east" component of the velocity vector, in m/s
+down | yes | number | The "down" component of the velocity vector, in m/s
+
+**Example**
+
+```js
+{
+    "north": 2.0,
+    "east": 2.0,
+    "down": -1.0
+}
+```
+
 
 ## Transport layer
 
@@ -624,6 +684,3 @@ TODO
 ## Security issues
 
 ## FAQ
-
-
-> Written with [StackEdit](https://stackedit.io/).
