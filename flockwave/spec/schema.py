@@ -7,7 +7,7 @@ from jsonpointer import JsonPointer, resolve_pointer
 from pkg_resources import resource_stream
 
 __all__ = ("SCHEMA_PACKAGE", "get_message_schema",
-           "get_message_body_schema", "get_uav_status_info_schema",
+           "get_message_body_schema", "get_complex_object_schema",
            "ref_resolver")
 
 
@@ -56,6 +56,19 @@ def _get_schema_from_resource(resource_path, json_pointer=None):
     return obj
 
 
+def get_complex_object_schema(name):
+    """Returns the JSON schema of a Flockwave complex object from its name.
+
+    Parameters:
+        name (str): the name of a Flockwave complex object from the
+            specification
+
+    Returns:
+        object: the JSON schema for the given Flockwave complex object
+    """
+    return _get_schema_from_resource("definitions.json", "/" + name)
+
+
 def get_message_schema():
     """Returns the JSON schema of Flockwave messages."""
     return _get_schema_from_resource("message.json")
@@ -64,11 +77,6 @@ def get_message_schema():
 def get_message_body_schema():
     """Returns the JSON schema of Flockwave message bodies."""
     return _get_schema_from_resource("message_body.json")
-
-
-def get_uav_status_info_schema():
-    """Returns the JSON schema of an UAV status information object."""
-    return _get_schema_from_resource("definitions.json", "/uavStatusInfo")
 
 
 def ref_resolver(uri):
