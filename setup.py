@@ -4,6 +4,7 @@ from setuptools import setup, find_packages
 
 requires = [
     "click>=6.2",
+    "enum34>=1.2.2",
     "jsonschema>=2.5.1",
     "memoized>=0.2"
 ]

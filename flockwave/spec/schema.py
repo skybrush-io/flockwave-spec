@@ -2,6 +2,7 @@
 
 import json
 
+from enum import Enum
 from memoized import memoized
 from jsonpointer import JsonPointer, resolve_pointer
 from pkg_resources import resource_stream
@@ -67,6 +68,33 @@ def get_complex_object_schema(name):
         object: the JSON schema for the given Flockwave complex object
     """
     return _get_schema_from_resource("definitions.json", "/" + name)
+
+
+def get_enum_from_schema(name, class_name=None):
+    """Returns a Python enum class from the schema of the given Flockwave
+    complex object, assuming that it describes an enum of strings.
+
+    Parameters:
+        name (str): the name of a Flockwave complex object from the
+            specification
+        class_name (str or None): the name of the Python enum class that the
+            function generates. ``None`` means the name of the Flockwave
+            complex object, capitalized.
+
+    Returns:
+        Enum: a Python enum class that takes its values from the given
+           JSON schema enum
+
+    Throws:
+        TypeError: if the given Flockwave complex object is not an enum
+    """
+    schema = get_complex_object_schema(name)
+    if schema.get("type") == "string" and "enum" in schema:
+        class_name = class_name or name.capitalize()
+        return Enum(class_name, schema["enum"])
+    else:
+        raise TypeError("{0!r} cannot be converted into a Python enum"
+                        .format(name))
 
 
 def get_message_schema():
