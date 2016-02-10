@@ -77,14 +77,17 @@
 		"title": "Purpose",
 		"description": "Purpose of the connection",
 		"type": "string",
-		"enum": ["dgpsStream", "uavRadioLink", "other"]
+		"enum": ["debug", "dgpsStream", "uavRadioLink", "other"]
 	},
 
 	"connectionStatus": {
 		"title": "Status",
 		"description": "Status of the connection",
 		"type": "string",
-		"enum": ["disconnected", "connecting", "connected", "disconnecting"]
+		"enum": [
+			"disconnected", "connecting", "connected", "disconnecting",
+			"unknown"
+		]
 	},
 
 	"failureReasons": {
