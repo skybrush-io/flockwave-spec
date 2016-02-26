@@ -504,6 +504,37 @@ Angles are always expressed in degrees because radians are for mathematicians. D
 
 [^2]: Even though it is common in aviation to indicate 360 degrees instead of zero degree, we always transmit zero degree instead of 360 degrees in messages because it comes naturally from the way computers handle modulo arithmetics. The user interface may still opt to present zero degree as 360 degrees if the user prefers that.
 
+### `Altitude`
+
+An `Altitude` object describes the altitude of a UAV relative to a baseline described by an [AltitudeReference](#altitudereference) value.
+
+**Fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+reference | yes | [AltitudeReference](#altitudereference) | the baseline that defines what "zero altitude" means
+value | yes | float | the value of the altitude, in meters, relative to the baseline. The altitude axis always points from the ground up.
+
+**Example**
+
+```js
+{
+    "reference": "msl",
+    "value": 20
+}
+```
+(meaning 20 meters above mean sea level)
+
+### `AltitudeReference`
+
+Enumeration type that describes the known reference points of an altitude value. Currently the following values are defined:
+
+`home`
+: The altitude value is relative to the home position of the UAV
+
+`msl`
+: The altitude value is relative to the mean sea level
+
 ### `Attitude`
 
 An `Attitude` object describes the orientation of a UAV using the standard roll, pitch and yaw angles. See the section about [angles](#angles) for more information about how the angles are expressed.
@@ -541,7 +572,7 @@ status | yes | [ConnectionStatus](#connectionstatus) | the current status of the
 timestamp | no | [datetime](#dates-and-times) | time when the last packet was received from the connection, or if it is not available, the time when the connection changed status the last time
 
 **Example**
-```json
+```js
 {
     "id": "xbee",
     "purpose": "uavRadioLink",
@@ -555,6 +586,9 @@ timestamp | no | [datetime](#dates-and-times) | time when the last packet was re
 
 Enumeration type that describes the purpose of a connection. Currently the following values are defined:
 
+`debug`
+: A connection that is meant for debugging purposes only.
+
 `dgpsStream`
 : A connection whose purpose is to receive DGPS correction packets from an external DGPS stream (e.g., an NTRIP data source or a serial link to a DGPS device).
 
@@ -566,7 +600,7 @@ Enumeration type that describes the purpose of a connection. Currently the follo
 
 ### `ConnectionStatus`
 
-Enumeration type that describes the possible states of a connection. A connection may be in exactly one of the following four states at any time:
+Enumeration type that describes the possible states of a connection. A connection may be in exactly one of the following five states at any time:
 
 `disconnected`
 : The connection is not alive and no connection attempt is currently in progress.
@@ -580,7 +614,10 @@ Enumeration type that describes the possible states of a connection. A connectio
 `disconnecting`
 : The connection is not alive any more, but it has not been properly shut down yet.
 
-The value of a field of type `ConnectionStatus` is always a string with one of the four values above.
+`unknown`
+: The status of the connection is unknown (typically because we have received no status information from the connection yet).
+
+The value of a field of type `ConnectionStatus` is always a string with one of the five values above.
  
 ### `GPSCoordinate`
 
@@ -594,8 +631,7 @@ Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
 lat | yes | float | The latitude, in degrees, in the range [-90,90)
 lon | yes | float | The longitude, in degrees, in the range [-180,180)
-altMSL | no | float | Altitude above mean sea level, if known, in metres. Positive axis points from the ground up.
-altRel | no | float | Altitude relative to the point of takeoff, if known, in metres. Positive axis points from the ground up.
+alt | no | [`Altitude`](#altitude) | The altitude
 
 **Example**
 
@@ -603,7 +639,10 @@ altRel | no | float | Altitude relative to the point of takeoff, if known, in me
 {
     "lat": 51.99765972,
     "lon": -0.74068634,
-    "altMSL": 93.765
+    "alt": {
+        "reference": "msl",
+        "value": 93.765
+    }
 }
 ```
 
@@ -619,7 +658,7 @@ id | yes | string | The unique identifier of the UAV
 algorithm | no | string | The name of the algorithm that the UAV is running (if applicable).
 position | yes | [GPSCoordinate](#gpscoordinate) | The position of the UAV
 heading | no | [angle](#angles) | The heading of the UAV, i.e. the direction the UAV is pointing, projected to the local tangent plane, if known. The range of this angle is [0; 360).
-attitude | no | [Attitude](#attitude) | The velocity of the UAV, expressed in the NED (North, East, Down) coordinate system.
+attitude | no | [Attitude](#attitude) | The attitude of the UAV.
 velocity | no | [VelocityNED](#velocityned) | The velocity of the UAV, expressed in the NED (North, East, Down) coordinate system.
 timestamp | yes | [datetime](#dates-and-times) | Time when the last status update was received from the UAV
 
@@ -634,7 +673,10 @@ TODO
     "position": {
         "lat": 51.9976597,
         "lon": -0.7406863,
-        "altMSL": 93.765
+        "alt": {
+            "reference": "msl",
+            "value": 93.765
+        }
     },
     "heading": 90,
     "attitude": {
