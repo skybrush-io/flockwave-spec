@@ -13,6 +13,9 @@
 			"$ref": "request_CONN-LIST.json#/"
 		},
 		{
+			"$ref": "request_SYS-PING.json#/"
+		},
+		{
 			"$ref": "request_SYS-VER.json#/"
 		},
 		{
