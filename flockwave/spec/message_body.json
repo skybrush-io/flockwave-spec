@@ -33,6 +33,9 @@
 		{
 			"$ref": "request_UAV-RTH.json#/"
 		},
+		{
+			"$ref": "request_UAV-TAKEOFF.json#/"
+		},
 
 		{
 			"$ref": "response_ACK-ACK.json#/"
@@ -63,6 +66,9 @@
 		},
 		{
 			"$ref": "response_UAV-RTH.json#/"
+		},
+		{
+			"$ref": "response_UAV-TAKEOFF.json#/"
 		}
 	]
 }
