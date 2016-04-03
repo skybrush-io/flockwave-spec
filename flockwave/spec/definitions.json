@@ -59,6 +59,37 @@
 		"additionalProperties": false
 	},
 
+	"commandExecutionStatus": {
+		"title": "Command execution status",
+		"description": "Execution status of a command executed on a UAV",
+		"type": "object",
+		"properties": {
+			"sent": {
+				"type": "string",
+				"format": "date-time"
+			},
+			"acknowledged": {
+				"type": "string",
+				"format": "date-time"
+			},
+			"updated": {
+				"type": "string",
+				"format": "date-time"
+			},
+			"finished": {
+				"type": "string",
+				"format": "date-time"
+			},
+			"progress": {
+				"type": "number",
+				"minimum": 0,
+				"maximum": 1
+			}
+		},
+		"required": [ "sent" ],
+		"additionalProperties": false
+	},
+
 	"connectionId": {
 		"title": "Connection ID",
 		"description": "Identifier of a single connection",
@@ -162,6 +193,24 @@
 		"type": "string",
 		"minLength": 1,
 		"maxLength": 36
+	},
+
+	"receiptId": {
+		"title": "Receipt ID",
+		"description": "Identifier of the receipt",
+		"type": "string",
+		"minLength": 1,
+		"maxLength": 64
+	},
+
+	"receiptIdList": {
+		"title": "Receipt IDs",
+		"description": "IDs of the receipts that the message refers to",
+		"type": "array",
+		"items": {
+			"$ref": "#/receiptId"
+		},
+		"uniqueItems": true
 	},
 
 	"uavId": {

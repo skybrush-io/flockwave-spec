@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"pattern": "^ACK-ACK$"
+			"enum": ["ACK-ACK"]
 		}
 	},
 	"required": [

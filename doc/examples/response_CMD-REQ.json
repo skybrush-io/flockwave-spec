@@ -1,0 +1,12 @@
+{
+    "type": "CMD-REQ",
+	"receipts": {
+	    "1": "0badcafe-deadbeef:1",
+	    "17": "0badcafe-deadbeef:2"
+	},
+	"failure": ["31", "spam"],
+	"reasons": {
+		"31": "Command execution not supported.",
+		"spam": "No such UAV."
+	}
+}

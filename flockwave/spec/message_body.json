@@ -7,6 +7,16 @@
 		},
 
 		{
+			"$ref": "notification_CMD-RESP.json#/"
+		},
+
+		{
+			"$ref": "request_CMD-REQ.json#/"
+		},
+		{
+			"$ref": "request_CMD-STATUS.json#/"
+		},
+		{
 			"$ref": "request_CONN-INF.json#/"
 		},
 		{
@@ -42,6 +52,12 @@
 		},
 		{
 			"$ref": "response_ACK-NAK.json#/"
+		},
+		{
+			"$ref": "response_CMD-REQ.json#/"
+		},
+		{
+			"$ref": "response_CMD-STATUS.json#/"
 		},
 		{
 			"$ref": "response_CONN-INF.json#/"

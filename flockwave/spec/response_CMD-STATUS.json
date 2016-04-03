@@ -3,16 +3,16 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["CONN-INF"]
+            "enum": ["CMD-STATUS"]
 		},
-		"status": {
+        "status": {
 			"type": "object",
 			"additionalProperties": {
-				"$ref": "definitions.json#/connectionInfo"
+				"$ref": "definitions.json#/commandExecutionStatus"
 			}
 		},
 		"failure": {
-			"$ref": "definitions.json#/connectionIdList"
+			"$ref": "definitions.json#/receiptIdList"
 		},
 		"reasons": {
 			"$ref": "definitions.json#/failureReasons"

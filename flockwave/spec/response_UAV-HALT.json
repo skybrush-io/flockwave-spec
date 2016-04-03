@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"pattern": "^UAV-HALT$"
+			"enum": ["UAV-HALT"]
 		},
 		"success": {
 			"$ref": "definitions.json#/uavIdList"

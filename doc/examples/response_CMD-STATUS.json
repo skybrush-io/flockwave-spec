@@ -1,0 +1,15 @@
+{
+    "type": "CMD-STATUS",
+    "status": {
+        "0badcafe-deadbeef:1": {
+            "sent": "2016-04-03T08:07:22.000Z",
+            "acknowledged": "2016-04-03T08:07:22.471Z",
+            "updated": "2016-04-03T08:07:23.811Z",
+            "progress": 0.8
+        }
+    },
+    "failure": ["0badcafe-deadbeef:3"],
+    "reasons": {
+        "0badcafe-deadbeef:3": "invalid receipt"
+    }
+}
