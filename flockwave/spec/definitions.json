@@ -1,305 +1,308 @@
 {
-	"altitude": {
-		"$schema": "http://json-schema.org/schema#",
-		"id": "http://collmot.com/schemas/flockwave/1.0/altitude.json",
+    "altitude": {
+        "$schema": "http://json-schema.org/schema#",
+        "id": "http://collmot.com/schemas/flockwave/1.0/altitude.json",
 
-		"title": "Altitude",
-		"description": "Altitude relative to a reference point",
-		"type": "object",
-		"properties": {
-			"reference": {
-				"$ref": "definitions.json#/altitudeReference"
-			},
-			"value": {
-				"type": "number"
-			}
-		},
-		"required": [ "reference", "value" ],
-		"additionalProperties": false
-	},
+        "title": "Altitude",
+        "description": "Altitude relative to a reference point",
+        "type": "object",
+        "properties": {
+            "reference": {
+                "$ref": "definitions.json#/altitudeReference"
+            },
+            "value": {
+                "type": "number"
+            }
+        },
+        "required": [ "reference", "value" ],
+        "additionalProperties": false
+    },
 
-	"altitudeReference": {
-		"$schema": "http://json-schema.org/schema#",
-		"id": "http://collmot.com/schemas/flockwave/1.0/altitude_reference.json",
+    "altitudeReference": {
+        "$schema": "http://json-schema.org/schema#",
+        "id": "http://collmot.com/schemas/flockwave/1.0/altitude_reference.json",
 
-		"title": "Altitude reference",
-		"description": "Reference point of an altitude value",
-		"type": "string",
-		"enum": ["home", "msl"]
-	},
+        "title": "Altitude reference",
+        "description": "Reference point of an altitude value",
+        "type": "string",
+        "enum": ["home", "msl"]
+    },
 
-	"attitude": {
-		"$schema": "http://json-schema.org/schema#",
-		"id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
+    "attitude": {
+        "$schema": "http://json-schema.org/schema#",
+        "id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
 
-		"title": "Attitude",
-		"description": "Attitude around the principal aircraft axes",
-		"type": "object",
-		"properties": {
-			"roll": {
-				"type": "number",
-				"minimum": -90,
-				"maximum": 90,
-				"exclusiveMaximum": true
-			},
-			"pitch": {
-				"type": "number",
-				"minimum": -90,
-				"maximum": 90,
-				"exclusiveMaximum": true
-			},
-			"yaw": {
-				"type": "number",
-				"minimum": 0,
-				"maximum": 360,
-				"exclusiveMaximum": true
-			}
-		},
-		"required": [ "roll", "pitch", "yaw" ],
-		"additionalProperties": false
-	},
+        "title": "Attitude",
+        "description": "Attitude around the principal aircraft axes",
+        "type": "object",
+        "properties": {
+            "roll": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "exclusiveMaximum": true
+            },
+            "pitch": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "exclusiveMaximum": true
+            },
+            "yaw": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 360,
+                "exclusiveMaximum": true
+            }
+        },
+        "required": [ "roll", "pitch", "yaw" ],
+        "additionalProperties": false
+    },
 
-	"commandExecutionStatus": {
-		"title": "Command execution status",
-		"description": "Execution status of a command executed on a UAV",
-		"type": "object",
-		"properties": {
-			"sent": {
-				"type": "string",
-				"format": "date-time"
-			},
-			"acknowledged": {
-				"type": "string",
-				"format": "date-time"
-			},
-			"updated": {
-				"type": "string",
-				"format": "date-time"
-			},
-			"finished": {
-				"type": "string",
-				"format": "date-time"
-			},
-			"progress": {
-				"type": "number",
-				"minimum": 0,
-				"maximum": 1
-			}
-		},
-		"required": [ "sent" ],
-		"additionalProperties": false
-	},
+    "commandExecutionStatus": {
+        "title": "Command execution status",
+        "description": "Execution status of a command executed on a UAV",
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "definitions.json#/receiptId"
+            },
+            "sent": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "acknowledged": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "updated": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "finished": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "progress": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+            }
+        },
+        "required": [ "sent" ],
+        "additionalProperties": false
+    },
 
-	"connectionId": {
-		"title": "Connection ID",
-		"description": "Identifier of a single connection",
-		"type": "string",
-		"minLength": 1,
-		"maxLength": 64
-	},
+    "connectionId": {
+        "title": "Connection ID",
+        "description": "Identifier of a single connection",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+    },
 
-	"connectionIdList": {
-		"title": "Connection IDs",
-		"description": "IDs of the connections that the message refers to",
-		"type": "array",
-		"items": {
-			"$ref": "#/connectionId"
-		},
-		"uniqueItems": true
-	},
+    "connectionIdList": {
+        "title": "Connection IDs",
+        "description": "IDs of the connections that the message refers to",
+        "type": "array",
+        "items": {
+            "$ref": "#/connectionId"
+        },
+        "uniqueItems": true
+    },
 
-	"connectionInfo": {
-		"title": "Connection info",
-		"description": "Information about a connection",
-		"type": "object",
-		"properties": {
-			"id": {
-				"$ref": "definitions.json#/connectionId"
-			},
-			"purpose": {
-				"$ref": "definitions.json#/connectionPurpose"
-			},
-			"description": {
-				"type": "string"
-			},
-			"status": {
-				"$ref": "definitions.json#/connectionStatus"
-			},
-			"timestamp": {
-				"type": "string",
-				"format": "date-time"
-			}
-		},
-		"required": [ "id", "purpose", "status" ]
-	},
+    "connectionInfo": {
+        "title": "Connection info",
+        "description": "Information about a connection",
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "definitions.json#/connectionId"
+            },
+            "purpose": {
+                "$ref": "definitions.json#/connectionPurpose"
+            },
+            "description": {
+                "type": "string"
+            },
+            "status": {
+                "$ref": "definitions.json#/connectionStatus"
+            },
+            "timestamp": {
+                "type": "string",
+                "format": "date-time"
+            }
+        },
+        "required": [ "id", "purpose", "status" ]
+    },
 
-	"connectionPurpose": {
-		"title": "Purpose",
-		"description": "Purpose of the connection",
-		"type": "string",
-		"enum": ["debug", "dgpsStream", "uavRadioLink", "other"]
-	},
+    "connectionPurpose": {
+        "title": "Purpose",
+        "description": "Purpose of the connection",
+        "type": "string",
+        "enum": ["debug", "dgpsStream", "uavRadioLink", "other"]
+    },
 
-	"connectionStatus": {
-		"title": "Status",
-		"description": "Status of the connection",
-		"type": "string",
-		"enum": [
-			"disconnected", "connecting", "connected", "disconnecting",
-			"unknown"
-		]
-	},
+    "connectionStatus": {
+        "title": "Status",
+        "description": "Status of the connection",
+        "type": "string",
+        "enum": [
+            "disconnected", "connecting", "connected", "disconnecting",
+            "unknown"
+        ]
+    },
 
-	"failureReasons": {
-		"type": "object",
-		"additionalProperties": {
-			"type": "string"
-		}
-	},
+    "failureReasons": {
+        "type": "object",
+        "additionalProperties": {
+            "type": "string"
+        }
+    },
 
-	"gpsCoordinate": {
-		"$schema": "http://json-schema.org/schema#",
-		"id": "http://collmot.com/schemas/flockwave/1.0/gps_coordinate.json",
+    "gpsCoordinate": {
+        "$schema": "http://json-schema.org/schema#",
+        "id": "http://collmot.com/schemas/flockwave/1.0/gps_coordinate.json",
 
-		"title": "GPS coordinate",
-		"description": "GPS coordinate of a UAV",
-		"type": "object",
-		"properties": {
-			"lat": {
-				"title": "Latitude",
-				"description": "Latitude, in degrees",
-				"type": "number",
-				"minimum": -90,
-				"maximum": 90
-			},
-			"lon": {
-				"title": "Longitude",
-				"description": "Longitude, in degrees",
-				"type": "number",
-				"minimum": -180,
-				"maximum": 180
-			},
-			"alt": {
-				"$ref": "definitions.json#/altitude"
-			}
-		},
-		"required": [ "lat", "lon" ],
-		"additionalProperties": false
-	},
+        "title": "GPS coordinate",
+        "description": "GPS coordinate of a UAV",
+        "type": "object",
+        "properties": {
+            "lat": {
+                "title": "Latitude",
+                "description": "Latitude, in degrees",
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+            },
+            "lon": {
+                "title": "Longitude",
+                "description": "Longitude, in degrees",
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+            },
+            "alt": {
+                "$ref": "definitions.json#/altitude"
+            }
+        },
+        "required": [ "lat", "lon" ],
+        "additionalProperties": false
+    },
 
-	"messageId": {
-		"title": "Message ID",
-		"description": "Identifier of the message",
-		"type": "string",
-		"minLength": 1,
-		"maxLength": 36
-	},
+    "messageId": {
+        "title": "Message ID",
+        "description": "Identifier of the message",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 36
+    },
 
-	"receiptId": {
-		"title": "Receipt ID",
-		"description": "Identifier of the receipt",
-		"type": "string",
-		"minLength": 1,
-		"maxLength": 64
-	},
+    "receiptId": {
+        "title": "Receipt ID",
+        "description": "Identifier of the receipt",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+    },
 
-	"receiptIdList": {
-		"title": "Receipt IDs",
-		"description": "IDs of the receipts that the message refers to",
-		"type": "array",
-		"items": {
-			"$ref": "#/receiptId"
-		},
-		"uniqueItems": true
-	},
+    "receiptIdList": {
+        "title": "Receipt IDs",
+        "description": "IDs of the receipts that the message refers to",
+        "type": "array",
+        "items": {
+            "$ref": "#/receiptId"
+        },
+        "uniqueItems": true
+    },
 
-	"uavId": {
-		"title": "UAV ID",
-		"description": "Identifier of a single UAV",
-		"type": "string",
-		"minLength": 1,
-		"maxLength": 64
-	},
+    "uavId": {
+        "title": "UAV ID",
+        "description": "Identifier of a single UAV",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+    },
 
-	"uavIdList": {
-		"title": "UAV IDs",
-		"description": "IDs of the UAVs that the message refers to",
-		"type": "array",
-		"items": {
-			"$ref": "#/uavId"
-		},
-		"uniqueItems": true
-	},
+    "uavIdList": {
+        "title": "UAV IDs",
+        "description": "IDs of the UAVs that the message refers to",
+        "type": "array",
+        "items": {
+            "$ref": "#/uavId"
+        },
+        "uniqueItems": true
+    },
 
-	"uavStatusInfo": {
-		"$schema": "http://json-schema.org/schema#",
-		"id": "http://collmot.com/schemas/flockwave/1.0/uav_status_info.json",
+    "uavStatusInfo": {
+        "$schema": "http://json-schema.org/schema#",
+        "id": "http://collmot.com/schemas/flockwave/1.0/uav_status_info.json",
 
-		"title": "UAV status info",
-		"description": "Status information of a single UAV",
-		"type": "object",
-		"properties": {
-			"id": {
-				"$ref": "definitions.json#/uavId"
-			},
-			"algorithm": {
-				"title": "Algorithm",
-				"description": "The algorithm that the UAV is running (if applicable)",
-				"type": "string"
-			},
-			"position": {
-				"$ref": "definitions.json#/gpsCoordinate"
-			},
-			"heading": {
-				"title": "Heading",
-				"description": "The heading of the UAV in the local tangent plane",
-				"type": "number",
-				"minimum": 0,
-				"maximum": 360,
-				"exclusiveMaximum": true
-			},
-			"attitude": {
-				"$ref": "definitions.json#/attitude"
-			},
-			"velocity": {
-				"$ref": "definitions.json#/velocityNED"
-			},
-			"timestamp": {
-				"title": "Last updated at",
-				"description": "Timestamp that denotes when the status of the UAV was updated the last time",
-				"type": "string",
-				"format": "date-time"
-			}
-		},
-		"required": ["id", "position", "timestamp"]
-	},
+        "title": "UAV status info",
+        "description": "Status information of a single UAV",
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "definitions.json#/uavId"
+            },
+            "algorithm": {
+                "title": "Algorithm",
+                "description": "The algorithm that the UAV is running (if applicable)",
+                "type": "string"
+            },
+            "position": {
+                "$ref": "definitions.json#/gpsCoordinate"
+            },
+            "heading": {
+                "title": "Heading",
+                "description": "The heading of the UAV in the local tangent plane",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 360,
+                "exclusiveMaximum": true
+            },
+            "attitude": {
+                "$ref": "definitions.json#/attitude"
+            },
+            "velocity": {
+                "$ref": "definitions.json#/velocityNED"
+            },
+            "timestamp": {
+                "title": "Last updated at",
+                "description": "Timestamp that denotes when the status of the UAV was updated the last time",
+                "type": "string",
+                "format": "date-time"
+            }
+        },
+        "required": ["id", "position", "timestamp"]
+    },
 
-	"velocityNED": {
-		"$schema": "http://json-schema.org/schema#",
-		"id": "http://collmot.com/schemas/flockwave/1.0/velocity_ned.json",
+    "velocityNED": {
+        "$schema": "http://json-schema.org/schema#",
+        "id": "http://collmot.com/schemas/flockwave/1.0/velocity_ned.json",
 
-		"title": "Velocity (NED)",
-		"description": "Velocity in the NED coordinate system",
-		"type": "object",
-		"properties": {
-			"north": {
-				"type": "number"
-			},
-			"east": {
-				"type": "number"
-			},
-			"down": {
-				"type": "number"
-			}
-		},
-		"required": [ "north", "east", "down" ],
-		"additionalProperties": false
-	},
+        "title": "Velocity (NED)",
+        "description": "Velocity in the NED coordinate system",
+        "type": "object",
+        "properties": {
+            "north": {
+                "type": "number"
+            },
+            "east": {
+                "type": "number"
+            },
+            "down": {
+                "type": "number"
+            }
+        },
+        "required": [ "north", "east", "down" ],
+        "additionalProperties": false
+    },
 
-	"versionNumber": {
-		"title": "Version",
-		"description": "Version number in major.minor.patch format; minor and patch versions are optional",
-		"type": "string",
-		"pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
-	}
+    "versionNumber": {
+        "title": "Version",
+        "description": "Version number in major.minor.patch format; minor and patch versions are optional",
+        "type": "string",
+        "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
+    }
 }

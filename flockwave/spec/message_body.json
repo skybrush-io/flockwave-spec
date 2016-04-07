@@ -1,90 +1,90 @@
 {
-	"$schema": "http://json-schema.org/schema#",
-	"id": "http://collmot.com/schemas/flockwave/1.0/message_body.json",
-	"oneOf": [
-		{
-			"type": "null"
-		},
+    "$schema": "http://json-schema.org/schema#",
+    "id": "http://collmot.com/schemas/flockwave/1.0/message_body.json",
+    "oneOf": [
+        {
+            "type": "null"
+        },
 
-		{
-			"$ref": "notification_CMD-RESP.json#/"
-		},
+        {
+            "$ref": "notification_CMD-RESP.json#/"
+        },
 
-		{
-			"$ref": "request_CMD-REQ.json#/"
-		},
-		{
-			"$ref": "request_CMD-STATUS.json#/"
-		},
-		{
-			"$ref": "request_CONN-INF.json#/"
-		},
-		{
-			"$ref": "request_CONN-LIST.json#/"
-		},
-		{
-			"$ref": "request_SYS-PING.json#/"
-		},
-		{
-			"$ref": "request_SYS-VER.json#/"
-		},
-		{
-			"$ref": "request_UAV-HALT.json#/"
-		},
-		{
-			"$ref": "request_UAV-INF.json#/"
-		},
-		{
-			"$ref": "request_UAV-LAND.json#/"
-		},
-		{
-			"$ref": "request_UAV-LIST.json#/"
-		},
-		{
-			"$ref": "request_UAV-RTH.json#/"
-		},
-		{
-			"$ref": "request_UAV-TAKEOFF.json#/"
-		},
+        {
+            "$ref": "request_CMD-INF.json#/"
+        },
+        {
+            "$ref": "request_CMD-REQ.json#/"
+        },
+        {
+            "$ref": "request_CONN-INF.json#/"
+        },
+        {
+            "$ref": "request_CONN-LIST.json#/"
+        },
+        {
+            "$ref": "request_SYS-PING.json#/"
+        },
+        {
+            "$ref": "request_SYS-VER.json#/"
+        },
+        {
+            "$ref": "request_UAV-HALT.json#/"
+        },
+        {
+            "$ref": "request_UAV-INF.json#/"
+        },
+        {
+            "$ref": "request_UAV-LAND.json#/"
+        },
+        {
+            "$ref": "request_UAV-LIST.json#/"
+        },
+        {
+            "$ref": "request_UAV-RTH.json#/"
+        },
+        {
+            "$ref": "request_UAV-TAKEOFF.json#/"
+        },
 
-		{
-			"$ref": "response_ACK-ACK.json#/"
-		},
-		{
-			"$ref": "response_ACK-NAK.json#/"
-		},
-		{
-			"$ref": "response_CMD-REQ.json#/"
-		},
-		{
-			"$ref": "response_CMD-STATUS.json#/"
-		},
-		{
-			"$ref": "response_CONN-INF.json#/"
-		},
-		{
-			"$ref": "response_CONN-LIST.json#/"
-		},
-		{
-			"$ref": "response_SYS-VER.json#/"
-		},
-		{
-			"$ref": "response_UAV-HALT.json#/"
-		},
-		{
-			"$ref": "response_UAV-INF.json#/"
-		},
-		{
-			"$ref": "response_UAV-LAND.json#/"
-		},
-		{
-			"$ref": "response_UAV-LIST.json#/"
-		},
-		{
-			"$ref": "response_UAV-RTH.json#/"
-		},
-		{
-			"$ref": "response_UAV-TAKEOFF.json#/"
-		}
-	]
+        {
+            "$ref": "response_ACK-ACK.json#/"
+        },
+        {
+            "$ref": "response_ACK-NAK.json#/"
+        },
+        {
+            "$ref": "response_CMD-INF.json#/"
+        },
+        {
+            "$ref": "response_CMD-REQ.json#/"
+        },
+        {
+            "$ref": "response_CONN-INF.json#/"
+        },
+        {
+            "$ref": "response_CONN-LIST.json#/"
+        },
+        {
+            "$ref": "response_SYS-VER.json#/"
+        },
+        {
+            "$ref": "response_UAV-HALT.json#/"
+        },
+        {
+            "$ref": "response_UAV-INF.json#/"
+        },
+        {
+            "$ref": "response_UAV-LAND.json#/"
+        },
+        {
+            "$ref": "response_UAV-LIST.json#/"
+        },
+        {
+            "$ref": "response_UAV-RTH.json#/"
+        },
+        {
+            "$ref": "response_UAV-TAKEOFF.json#/"
+        }
+    ]
 }

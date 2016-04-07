@@ -1,5 +1,5 @@
 {
-    "type": "CMD-STATUS",
+    "type": "CMD-INF",
     "ids": [
         "0badcafe-deadbeef:1",
         "0badcafe-deadbeef:3"
