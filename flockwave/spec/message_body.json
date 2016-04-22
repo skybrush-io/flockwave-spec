@@ -9,6 +9,9 @@
         {
             "$ref": "notification_CMD-RESP.json#/"
         },
+        {
+            "$ref": "notification_CMD-TIMEOUT.json#/"
+        },
 
         {
             "$ref": "request_CMD-INF.json#/"

@@ -219,7 +219,7 @@ All the receipts that were specified in the request MUST appear *either* as keys
     },
     "failure": ["0badcafe-deadbeef:3"],
     "reasons": {
-        "0badcafe-deadbeef:3": "invalid receipt"
+        "0badcafe-deadbeef:3": "No such receipt"
     }
 }
 ```
@@ -293,6 +293,24 @@ Name | Required? | Type | Description
     "type": "CMD-RESP",
     "id": "0badcafe-deadbeef:1",
     "response": "Hello there!"
+}
+```
+
+#### `CMD-TIMEOUT` --- Command request timeout notification
+
+A server sends a notification of this type to a client when an earlier command execution request sent by the client has timed out (i.e. the UAV the command was targeted to failed to return a response in time).
+
+**Notification fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+``ids`` | yes | list of strings | The list of receipts for the command execution requests that have timed out
+
+**Example notification**
+```js
+{
+    "type": "CMD-TIMEOUT",
+    "ids": ["0badcafe-deadbeef:1", "0badcafe-deadbeef:2"]
 }
 ```
 
@@ -700,6 +718,10 @@ Angles are always expressed in degrees because radians are for mathematicians. D
 
 [^2]: Even though it is common in aviation to indicate 360 degrees instead of zero degree, we always transmit zero degree instead of 360 degrees in messages because it comes naturally from the way computers handle modulo arithmetics. The user interface may still opt to present zero degree as 360 degrees if the user prefers that.
 
+### Byte arrays
+
+The JSON format does not support the transmission of raw byte arrays directly since the JSON string type is a sequence of Unicode characters and not a sequence of raw bytes. When a raw byte array has to be transmitted in JSON, the typical solution is to send a base64-encoded representation as a string (see [RFC4648](https://tools.ietf.org/html/rfc4648)). This representation is approximately 33% longer than the corresponding raw byte array, but is still much shorter than the representation of the byte array as a JSON array of integers.
+
 ### `Altitude`
 
 An `Altitude` object describes the altitude of a UAV relative to a baseline described by an [AltitudeReference](#altitudereference) value.
@@ -881,8 +903,7 @@ heading | no | [angle](#angles) | The heading of the UAV, i.e. the direction the
 attitude | no | [Attitude](#attitude) | The attitude of the UAV.
 velocity | no | [VelocityNED](#velocityned) | The velocity of the UAV, expressed in the NED (North, East, Down) coordinate system.
 timestamp | yes | [datetime](#dates-and-times) | Time when the last status update was received from the UAV
-
-TODO
+debug | no | [byte array](#byte-arrays) | Debug information provided by the algorithm running on the UAV (if applicable).
 
 **Example**
 
@@ -910,9 +931,11 @@ TODO
         "down": -1.0
     },
     "timestamp": "2015-12-08T08:17:41.000Z",
-    "debug": "0BADCAFE"
+    "debug": "MEJBRENBRkU="
 }
 ```
+
+The debug information in the above example is then decoded to `0BADCAFE` using base64.
 
 ### `VelocityNED`
 
