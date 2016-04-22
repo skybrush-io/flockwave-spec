@@ -2,6 +2,8 @@
 	"type": "object",
 	"properties": {
 		"type": {
+			"title": "Type",
+			"description": "Type of the notification",
 			"type": "string",
 			"enum": ["CMD-RESP"]
 		},
