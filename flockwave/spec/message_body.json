@@ -14,6 +14,12 @@
         },
 
         {
+            "$ref": "request_CLK-INF.json#/"
+        },
+        {
+            "$ref": "request_CLK-LIST.json#/"
+        },
+        {
             "$ref": "request_CMD-DEL.json#/"
         },
         {
@@ -55,6 +61,12 @@
 
         {
             "$ref": "response_ACK-ACK.json#/"
+        },
+        {
+            "$ref": "response_CLK-INF.json#/"
+        },
+        {
+            "$ref": "response_CLK-LIST.json#/"
         },
         {
             "$ref": "response_ACK-NAK.json#/"

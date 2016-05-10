@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"enum": ["CLK-INF"]
+		},
+		"status": {
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "definitions.json#/clockInfo"
+			}
+		},
+		"failure": {
+			"$ref": "definitions.json#/clockIdList"
+		},
+		"reasons": {
+			"$ref": "definitions.json#/failureReasons"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}

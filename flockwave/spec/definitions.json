@@ -59,6 +59,36 @@
         "additionalProperties": false
     },
 
+    "clockId": {
+        "title": "Clock ID",
+        "description": "Identifier of a single clock",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+    },
+
+    "clockIdList": {
+        "title": "Clock IDs",
+        "description": "IDs of the clocks that the message refers to",
+        "type": "array",
+        "items": {
+            "$ref": "#/clockId"
+        },
+        "uniqueItems": true
+    },
+
+    "clockInfo": {
+        "title": "Clock info",
+        "description": "Information about a clock",
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "definitions.json#/clockId"
+            }
+        },
+        "required": [ "id" ]
+    },
+
     "commandExecutionStatus": {
         "title": "Command execution status",
         "description": "Execution status of a command executed on a UAV",

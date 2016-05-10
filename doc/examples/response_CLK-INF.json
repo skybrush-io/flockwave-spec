@@ -1,0 +1,15 @@
+{
+    "type": "CLK-INF",
+    "status": {
+        "midi": {
+            "id": "midi"
+        },
+        "gps": {
+            "id": "gps"
+        }
+    },
+    "failure": ["beer_can"],
+    "reasons": {
+        "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
+    }
+}

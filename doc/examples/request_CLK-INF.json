@@ -1,0 +1,8 @@
+{
+    "type": "CLK-INF",
+    "ids": [
+        "gps",
+        "midi",
+        "beer_can"
+    ]
+}
