@@ -180,6 +180,8 @@ Any other clock ID not listed explicitly above is free to be used for any purpos
 
 A client sends this request to the server to retrieve the status of one or more clocks or timers managed by the server.
 
+This message may also be broadcast as a notification by the server on its own volition to all connected Flockwave clients to notify them about a status change of one of the clocks. This may happen if a clock is started or stopped or if the value of the clock has drifted or has been adjusted significantly.
+
 **Request fields**
 
 Name | Required? | Type | Description
@@ -890,7 +892,7 @@ Name | Required? | Type | Description
 id | yes | string | the unique identifier of the clock
 epoch | no | [ClockEpoch](#clockepoch) | the epoch from which the current timestamp of the clock is to be measured, if that makes sense for the clock. When the epoch is omitted, the clock is assumed to be ticking since an unspecified instant in the past.
 running | yes | boolean | whether the clock is running at the moment
-ticksPerSecond | no | float | the number of clock ticks per second. When omitted, it is assumed to be equal to 1.
+ticksPerSecond | no | float | the number of clock ticks per second. Must be larger than zero. When omitted, it is assumed to be equal to 1.
 timestamp | yes | float | the current timestamp of the clock, i.e. the number of ticks that have elapsed on the clock
 
 **Example**
