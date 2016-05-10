@@ -2,7 +2,7 @@
     "type": "CLK-INF",
     "ids": [
         "gps",
-        "midi",
+        "mtc",
         "beer_can"
     ]
 }

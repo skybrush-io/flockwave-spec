@@ -1,11 +1,17 @@
 {
     "type": "CLK-INF",
     "status": {
-        "midi": {
-            "id": "midi"
+        "mtc": {
+            "id": "mtc",
+            "timestamp": 4221,
+            "ticksPerSecond": 30,
+            "running": true
         },
         "gps": {
-            "id": "gps"
+            "id": "gps",
+            "timestamp": 1462891061.824093,
+            "epoch": "unix",
+            "running": true
         }
     },
     "failure": ["beer_can"],

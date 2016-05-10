@@ -59,6 +59,19 @@
         "additionalProperties": false
     },
 
+    "clockEpoch": {
+        "anyOf": [
+            {
+                "type": "string",
+                "format": "date-time"
+            },
+            {
+                "type": "string",
+                "enum": [ "unix" ]
+            }
+        ]
+    },
+
     "clockId": {
         "title": "Clock ID",
         "description": "Identifier of a single clock",
@@ -84,9 +97,23 @@
         "properties": {
             "id": {
                 "$ref": "definitions.json#/clockId"
+            },
+            "epoch": {
+                "$ref": "definitions.json#/clockEpoch"
+            },
+            "running": {
+                "type": "boolean"
+            },
+            "ticksPerSecond": {
+                "type": "number",
+                "minimum": 0,
+                "exclusiveMinimum": true
+            },
+            "timestamp": {
+                "type": "number"
             }
         },
-        "required": [ "id" ]
+        "required": [ "id", "running", "timestamp" ]
     },
 
     "commandExecutionStatus": {
