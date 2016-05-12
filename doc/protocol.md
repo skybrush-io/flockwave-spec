@@ -216,12 +216,14 @@ All the clock IDs that were specified in the request MUST appear *either* as key
         "gps": {
             "id": "gps",
             "timestamp": 1462891061.824093,
+            "retrievedAt": "2016-05-10T14:33:21Z",
             "epoch": "unix",
             "running": true
         },
         "mtc": {
             "id": "mtc",
             "timestamp": 4221,
+            "retrievedAt": "2016-05-10T14:33:21Z",
             "ticksPerSecond": 30,
             "running": true
         }
@@ -891,6 +893,7 @@ Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
 id | yes | string | the unique identifier of the clock
 epoch | no | [ClockEpoch](#clockepoch) | the epoch from which the current timestamp of the clock is to be measured, if that makes sense for the clock. When the epoch is omitted, the clock is assumed to be ticking since an unspecified instant in the past.
+retrievedAt | yes | [datetime](#dates-and-times) | the time according to the internal clock server when the state of the clock was retrieved. If the internal clock of the server and the client is synchronized, this can be used by the client to compensate for the time it takes for the server to transmit the clock status message to the client.
 running | yes | boolean | whether the clock is running at the moment
 ticksPerSecond | no | float | the number of clock ticks per second. Must be larger than zero. When omitted, it is assumed to be equal to 1.
 timestamp | yes | float | the current timestamp of the clock, i.e. the number of ticks that have elapsed on the clock
@@ -901,6 +904,7 @@ timestamp | yes | float | the current timestamp of the clock, i.e. the number of
 {
     "id": "mtc",
     "timestamp": 4221,
+    "retrievedAt": "2016-05-10T14:33:21Z",
     "ticksPerSecond": 30,
     "running": true
 }

@@ -4,12 +4,14 @@
         "mtc": {
             "id": "mtc",
             "timestamp": 4221,
+            "retrievedAt": "2016-05-10T14:33:21Z",
             "ticksPerSecond": 30,
             "running": true
         },
         "gps": {
             "id": "gps",
             "timestamp": 1462891061.824093,
+            "retrievedAt": "2016-05-10T14:33:21Z",
             "epoch": "unix",
             "running": true
         }

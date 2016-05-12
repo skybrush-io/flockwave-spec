@@ -101,6 +101,10 @@
             "epoch": {
                 "$ref": "definitions.json#/clockEpoch"
             },
+            "retrievedAt": {
+                "type": "string",
+                "format": "datetime"
+            },
             "running": {
                 "type": "boolean"
             },
@@ -113,7 +117,7 @@
                 "type": "number"
             }
         },
-        "required": [ "id", "running", "timestamp" ]
+        "required": [ "id", "retrievedAt", "running", "timestamp" ]
     },
 
     "commandExecutionStatus": {
