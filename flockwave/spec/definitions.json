@@ -201,7 +201,7 @@
         "title": "Purpose",
         "description": "Purpose of the connection",
         "type": "string",
-        "enum": ["debug", "dgpsStream", "uavRadioLink", "other"]
+        "enum": ["debug", "dgpsStream", "time", "uavRadioLink", "other"]
     },
 
     "connectionStatus": {

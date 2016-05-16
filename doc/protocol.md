@@ -17,9 +17,9 @@ This document describes the key actors in the system and specifies the communica
 
 ## Conventions
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119][1].
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119][5].
 
-[1]: http://www.ietf.org/rfc/rfc2119.txt
+[5]: http://www.ietf.org/rfc/rfc2119.txt
 
 ## Definitions
 
@@ -46,8 +46,6 @@ The **Flockwave** protocol is concerned with the communication between a *Flockw
 * **Responses** are sent from the server to a client in response to an earlier request. Responses MUST have a unique identifier as well. Even though response IDs are not used in further messages, the IDs can be used by clients to filter duplicate messages if the transport layer does not ensure that each message is delivered exactly once. As stated above, the identifier of the original request MUST also be included in the response.
 
 *  **Notifications** are sent from the server to a client to inform the client about a state change in the server that might be of potential interest to the client. Notifications MUST also have a unique identifier to allow clients to filter duplicate notifications. Responses MUST NOT refer to the identifiers of notifications, and in general the server SHOULD NOT expect a response to a notification.
-
-[1]: http://json.org
 
 ## The envelope of a message
 
@@ -88,7 +86,7 @@ error (object, optional)
 
 Message objects MAY contain other top-level keys to convey additional metadata. Top-level keys starting with ``$`` are reserved for future extensions of this protocol.
 
-All messages in the Flockwave protocol MUST use the same envelope format as described above. The only parts of a message that vary for different message types are the `body` and `error` objects. By convention, the `body` object always contains a string property named `type` that describes the type of the message. Message types are similar to the ones used in the [uBlox protocol][1]: they consist of a major and a minor subtype, both of which are short uppercase strings consisting of 2-8 characters. For instance, a message that queries the Flockwave server for its version number (``SYS-VER``) looks like this[^1]:
+All messages in the Flockwave protocol MUST use the same envelope format as described above. The only parts of a message that vary for different message types are the `body` and `error` objects. By convention, the `body` object always contains a string property named `type` that describes the type of the message. Message types are similar to the ones used in the [uBlox protocol][6]: they consist of a major and a minor subtype, both of which are short uppercase strings consisting of 2-8 characters. For instance, a message that queries the Flockwave server for its version number (``SYS-VER``) looks like this[^1]:
 
 ```js
 {
@@ -120,7 +118,7 @@ For sake of clarity, the message envelope will be omitted in most examples throu
 
 [^1]: More complex messages usually contain additional properties besides `type` in the body of the message.
 
-[1]: https://www.u-blox.com/sites/default/files/products/documents/u-blox6_ReceiverDescrProtSpec_%28GPS.G6-SW-10018%29_Public.pdf
+[6]: https://www.u-blox.com/sites/default/files/products/documents/u-blox6_ReceiverDescrProtSpec_%28GPS.G6-SW-10018%29_Public.pdf
 
 ## Known message types
 
@@ -802,16 +800,16 @@ This section describes the complex data types and structures that are used in Fl
 
 ### Dates and times
 
-![The preferred date and time format of Flockwave](http://imgs.xkcd.com/comics/iso_8601.png")
+![The preferred date and time format of Flockwave](http://imgs.xkcd.com/comics/iso_8601.png)
 
-Dates, times and durations MUST always be expressed in UTC using an appropriate [ISO 8601][1] format (see also [RFC 3339][2], especially section 5.6 if you don't like paywalls). Unless stated otherwise, the following formats should be used:
+Dates, times and durations MUST always be expressed in UTC using an appropriate [ISO 8601][7] format (see also [RFC 3339][8], especially section 5.6 if you don't like paywalls). Unless stated otherwise, the following formats should be used:
 
 * Dates should be expressed as *YYYY*-*MM*-*DD* (ISO 8601 extended format).
 * Times should be expressed as *HH*:*mm*:*ss*.*sss* (ISO 8601 extended format). The millisecond part may be omitted if not relevant.
 * Dates and times should be expressed as the date, followed by a literal `T`, followed by the time, followed by `Z`, where the `T` is the standard ISO 8601 separator between dates and times, and `Z` is the ISO 8601 marker for UTC (Zulu time).
 
-[1]: http://www.iso.org/iso/home/standards/iso8601.htm
-[2]: https://tools.ietf.org/html/rfc3339
+[7]: http://www.iso.org/iso/home/standards/iso8601.htm
+[8]: https://tools.ietf.org/html/rfc3339
 
 ### Angles
 
@@ -968,6 +966,9 @@ Enumeration type that describes the purpose of a connection. Currently the follo
 
 `dgpsStream`
 : A connection whose purpose is to receive DGPS correction packets from an external DGPS stream (e.g., an NTRIP data source or a serial link to a DGPS device).
+
+`time`
+: A connection whose purpose is to connect to a service or device that provides time-related information. Examples are connections to an NTP server or a MIDI timecode provider.
 
 `uavRadioLink`
 : A connection whose purpose is to receive status information from UAVs and send commands to them.
