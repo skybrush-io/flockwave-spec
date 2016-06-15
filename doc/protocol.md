@@ -30,10 +30,14 @@ Flockwave server
 :   A headless server application that can accept connections from *Flockwave clients* and maintains one or several additional connections to the UAVs and other data sources (for instance, DGPS data providers).
 
 UAV (abbr.)
-:   Unmanned aerial vehicle; typically a quad-, hexa- or octocopter that is equipped with the necessary onboard computer, software and communication equipment that enables it to participate in an UAV flock. Even though it is called an *aerial* vehicle, not all UAVs are required to be airborne. (See also: *beacon*).
+:   Unmanned aerial vehicle; typically a quad-, hexa- or octocopter that is equipped with the necessary onboard computer, software and communication equipment that enables it to participate in an UAV flock. Even though it is called an *aerial* vehicle, not all UAVs are required to be airborne. (See also: *beacon*). Each UAVs consists of a set of *devices* and *channels* that are organised in a tree-like structure. See [UAV devices and channels](#uav-devices-and-channels) for more information.
 
 Beacon
 :    A subtype of *UAV* that is not capable of moving on its own but can broadcast its position to other UAVs in the flock.
+
+Device
+:    A hardware component, an external peripheral or a virtual software component attached to a UAV that provides real-time measurement data via a set of *channels*. For instance, a UAV may have a device named `battery` that provides the voltage of the battery of the UAV via a single numeric channel named `voltage`. See [UAV devices and channels](#uav-devices-and-channels) for more information.
+
 
 ## General protocol description
 
@@ -47,7 +51,7 @@ The **Flockwave** protocol is concerned with the communication between a *Flockw
 
 *  **Notifications** are sent from the server to a client to inform the client about a state change in the server that might be of potential interest to the client. Notifications MUST also have a unique identifier to allow clients to filter duplicate notifications. Responses MUST NOT refer to the identifiers of notifications, and in general the server SHOULD NOT expect a response to a notification.
 
-## The envelope of a message
+### The envelope of a message
 
 Each message has a fixed structure that contains the version of the protocol, the identifier of the message (if any) and the payload or error condition of the message in a fixed format. The actual message class (request, response or notification) can be deduced from the presence or absence of a message identifier, a reference to the original request, and the direction of the message (server to client or client to server). The standard structure of a message looks like the following JSON object:
 
@@ -78,15 +82,15 @@ correlationId (string, optional)
 :    The identifier of the original request to which this message responds. The presence of this field indicates that the message is a response; otherwise it is a request or a notification.
 
 body (object, optional)
-:    The body of the message. When the body is present, the message MUST NOT contain an ``error`` part.
+:    The body of the message. When the body is present, the message MUST NOT contain an `error` part.
 
 error (object, optional)
-:    The error condition conveyed in the message. When the error is present, the message MUST NOT contain a ``body`` part.
+:    The error condition conveyed in the message. When the error is present, the message MUST NOT contain a `body` part.
 :    Errors consist of an error code and a human-readable error message. At least one of the error code or the error message must be present.
 
-Message objects MAY contain other top-level keys to convey additional metadata. Top-level keys starting with ``$`` are reserved for future extensions of this protocol.
+Message objects MAY contain other top-level keys to convey additional metadata. Top-level keys starting with `$` are reserved for future extensions of this protocol.
 
-All messages in the Flockwave protocol MUST use the same envelope format as described above. The only parts of a message that vary for different message types are the `body` and `error` objects. By convention, the `body` object always contains a string property named `type` that describes the type of the message. Message types are similar to the ones used in the [uBlox protocol][6]: they consist of a major and a minor subtype, both of which are short uppercase strings consisting of 2-8 characters. For instance, a message that queries the Flockwave server for its version number (``SYS-VER``) looks like this[^1]:
+All messages in the Flockwave protocol MUST use the same envelope format as described above. The only parts of a message that vary for different message types are the `body` and `error` objects. By convention, the `body` object always contains a string property named `type` that describes the type of the message. Message types are similar to the ones used in the [uBlox protocol][6]: they consist of a major and a minor subtype, both of which are short uppercase strings consisting of 2-8 characters. For instance, a message that queries the Flockwave server for its version number (`SYS-VER`) looks like this[^1]:
 
 ```js
 {
@@ -120,6 +124,68 @@ For sake of clarity, the message envelope will be omitted in most examples throu
 
 [6]: https://www.u-blox.com/sites/default/files/products/documents/u-blox6_ReceiverDescrProtSpec_%28GPS.G6-SW-10018%29_Public.pdf
 
+## UAV devices and channels
+
+Each UAV in the Flockwave system may consist of an arbitrary number of *devices*. Devices usually correspond to real, tangible hardware components of a UAV (such as a CPU, a battery, a LED or a camera), but they may also represent virtual components implemented purely in software. Each device may contain additional sub-devices (sub-sub-devices and so on), and each device (or sub-device) may also provide a set of *channels* through which information (e.g., measurement data) can be retrieved from and sent to the device. Channels have a *type* that defines what sort of information one can read from the channel, or what sort of information one can write to the channel. The UAV, its devices, sub-devices and channels form a tree-like structure that is rooted at the UAV itself, and each UAV, device, sub-device and channel can be uniquely identified by the path leading from the tree root to the object being considered. These paths are called *device paths* (when they terminate at a device) or *channel paths* (when they terminate at a channel), or, collectively, they may be referred to as *device tree paths*. When a path is represented as a string, a forward slash (`/`) must be used to separate the path components; for example, `/UAV-17/rotors/rotor1/rpm` can represent the channel providing the rotations per minute (rpm) for the first rotor of a quadrocopter.
+
+As an example, consider a quadrocopter that consists of four rotors, a battery, a CPU, a status LED, an on-board RGBW LED strip and a camera. In this setup, we can identify the following devices, sub-devices and channels:
+
+* *Rotors* (device)
+    * *Rotor 1* (sub-device)
+        * Rotations per minute (numeric channel, read only)
+    * *Rotor 2* (sub-device)
+        * Rotations per minute (numeric channel, read only)
+    * *Rotor 3* (sub-device)
+        * Rotations per minute (numeric channel, read only)
+    * *Rotor 4* (sub-device)
+        * Rotations per minute (numeric channel, read only)
+* *Battery* (device)
+    * Voltage (numeric channel, read only)
+    * Charge percentage (numeric channel, read only)
+    * Estimated remaining time (duration channel, read only)
+* *Lighting system* (device)
+    * *Status LED* (sub-device)
+        * Is the LED turned on? (Boolean channel, read/write)
+    * *RGBW LED strip* (sub-device)
+        * Duty cycle of red (R) channel (numeric channel, read/write)
+        * Duty cycle of red (G) channel (numeric channel, read/write)
+        * Duty cycle of red (B) channel (numeric channel, read/write)
+        * Duty cycle of red (W) channel (numeric channel, read/write)
+* *CPU* (device)
+    * *CPU load* (numeric channel, read only)
+    * *Reset switch* (Boolean channel, write only)
+* *Camera* (device)
+    * *Manufacturer ID* (string channel, read only)
+    * *Video stream* (video channel, read only)
+
+The example above contains almost all of the channel types and configurations supported by the Flockwave protocol:
+
+Boolean channels
+: Boolean channels provide a single binary value (zero or one, yes or no, true or false). Typical use-case: turning a certain component on and off, sending a RESET signal etc.
+
+Numeric channels
+: Numeric channels provide a single floating-point value. Due to the usage of JSON as the transport protocol, numeric values provided by the channel must be representable as an IEEE-754 double-precision floating point number. Typical use-case: sending or retrieving measurement data.
+
+String channels
+: String channels provide a character string encoded in UTF-8. Typical use-case: sending version strings, manufacturer IDs, or human-readable debug information.
+
+Byte array channels
+: Byte array channels provide a sequence of raw bytes. Typical use-case: sending machine-readable debug information, raw measurements that are too complex for a single numeric channel, or serialized objects using a non-JSON format.
+
+Time channels
+: Time channels provide a time instant, expressed as the number of seconds elapsed since the UNIX epoch in UTC. Typical use-case: reporting the time of certain important events (e.g., when a UAV was turned on, when a packet of a certain type was received the last time and so on).
+
+Duration channels
+: Duration channels provide the length of a time interval, expressed as the number of seconds elapsed since the beginning of the time interval. Typical use-case: uptime, flight duration, time left until a certain event and so on.
+
+Object channels
+: Object channels provide complex structured or unstructured information in the form of JSON-encoded objects.
+
+Audio and video channels
+: Audio and video channels provide real-time audio or video data. In practice, reading an audio or video channel typically yields a URL; the client wishing to read the actual audio or video data must then connect to this URL separately to obtain the audio or video stream.
+
+Channels may be *read only*, *write only* or *bidirectional* (i.e. readable and writable).
+
 ## Known message types
 
 This section is an exhaustive reference of all the message types supported by the Flockwave protocol. The examples provided in this section contain the message body only; each body object must be wrapped by an appropriate [message envelope](#the-envelope-of-a-message).
@@ -150,7 +216,7 @@ Sent by the server to the client in response to requests that the server has eit
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``reason`` | no | string | Human-readable description of the reason for the negative acknowledgment.
+`reason` | no | string | Human-readable description of the reason for the negative acknowledgment.
 
 **Example response**
 ```js
@@ -184,17 +250,17 @@ This message may also be broadcast as a notification by the server on its own vo
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of clock IDs that the client is interested in
+`ids` | yes | list of strings | The list of clock IDs that the client is interested in
 
 **Response fields**
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``status`` | no | object | Object mapping clock IDs to the corresponding status information. The structure of this object is described by the [`ClockInfo`](#clockinfo) complex type.
-``failure`` | no | list of strings | List containing the clock IDs for which the status information could not have been retrieved.
-``reasons`` | no | object | Object mapping clock IDs to reasons why the corresponding status information could not have been retrieved.
+`status` | no | object | Object mapping clock IDs to the corresponding status information. The structure of this object is described by the [`ClockInfo`](#clockinfo) complex type.
+`failure` | no | list of strings | List containing the clock IDs for which the status information could not have been retrieved.
+`reasons` | no | object | Object mapping clock IDs to reasons why the corresponding status information could not have been retrieved.
 
-All the clock IDs that were specified in the request MUST appear *either* as keys in the ``status`` object or in the ``failure`` list.
+All the clock IDs that were specified in the request MUST appear *either* as keys in the `status` object or in the `failure` list.
 
 **Example request**
 ```js
@@ -244,7 +310,7 @@ This request has no fields.
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of clock IDs for all the clocks that the server manages
+`ids` | yes | list of strings | The list of clock IDs for all the clocks that the server manages
  
 **Example request**
 ```js
@@ -281,17 +347,17 @@ The time when the request is sent to the UAV is stored by the server and returne
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of receipts for the command execution requests that the client is interested in
+`ids` | yes | list of strings | The list of receipts for the command execution requests that the client is interested in
 
 **Response fields**
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``status`` | no | object | Object mapping receipts to the corresponding status information. The structure of this object is described by the [`CommandExecutionStatus`](#commandexecutionstatus) complex type.
-``failure`` | no | list of strings | List containing the connection IDs for which the status information could not have been retrieved.
-``reasons`` | no | object | Object mapping connection IDs to reasons why the corresponding status information could not have been retrieved.
+`status` | no | object | Object mapping receipts to the corresponding status information. The structure of this object is described by the [`CommandExecutionStatus`](#commandexecutionstatus) complex type.
+`failure` | no | list of strings | List containing the connection IDs for which the status information could not have been retrieved.
+`reasons` | no | object | Object mapping connection IDs to reasons why the corresponding status information could not have been retrieved.
 
-All the receipts that were specified in the request MUST appear *either* as keys in the ``status`` object or in the ``failure`` list.
+All the receipts that were specified in the request MUST appear *either* as keys in the `status` object or in the `failure` list.
 
 **Example request**
 ```js
@@ -335,20 +401,20 @@ Sending and executing a command typically takes some time (especially because th
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of UAV IDs that the command should be sent to
-``command`` | yes | string | The command to send to the UAVs
-``args`` | no | array | The positional arguments of the command
-``kwds`` | no | object | The keyword arguments of the command
+`ids` | yes | list of strings | The list of UAV IDs that the command should be sent to
+`command` | yes | string | The command to send to the UAVs
+`args` | no | array | The positional arguments of the command
+`kwds` | no | object | The keyword arguments of the command
 
 **Response fields**
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``receipts`` | no | object  | Object that maps the UAV IDs for which the command was sent successfully to the corresponding receipts that can be used to track the progress of execution of the command until the actual response is received. Each receipt is a string; its format is unspecified and it is the responsibility of the server to ensure its uniqueness.
-``failure`` | no | list of strings | List containing the UAV IDs for which the status information could not have been retrieved.
-``reasons`` | no | object | Object mapping UAV IDs to reasons why the corresponding status information could not have been retrieved.
+`receipts` | no | object  | Object that maps the UAV IDs for which the command was sent successfully to the corresponding receipts that can be used to track the progress of execution of the command until the actual response is received. Each receipt is a string; its format is unspecified and it is the responsibility of the server to ensure its uniqueness.
+`failure` | no | list of strings | List containing the UAV IDs for which the status information could not have been retrieved.
+`reasons` | no | object | Object mapping UAV IDs to reasons why the corresponding status information could not have been retrieved.
 
-All the connection IDs that were specified in the request MUST appear *either* in the ``receipts`` mapping as keys or in the ``failure`` list.
+All the connection IDs that were specified in the request MUST appear *either* in the `receipts` mapping as keys or in the `failure` list.
 
 **Example request**
 ```js
@@ -383,8 +449,8 @@ A server sends a notification of this type to a client when an earlier command e
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``id`` | yes | string | The receipt identifier that tells the client which response sent which UAV is being relayed in this notification.
-``response`` | yes | string | The response sent by the UAV.
+`id` | yes | string | The receipt identifier that tells the client which response sent which UAV is being relayed in this notification.
+`response` | yes | string | The response sent by the UAV.
 
 **Example notification**
 ```js
@@ -403,7 +469,7 @@ A server sends a notification of this type to a client when an earlier command e
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of receipts for the command execution requests that have timed out
+`ids` | yes | list of strings | The list of receipts for the command execution requests that have timed out
 
 **Example notification**
 ```js
@@ -424,16 +490,16 @@ This message may also be broadcast as a notification by the server on its own vo
 **Request fields**
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of connection IDs that the client is interested in
+`ids` | yes | list of strings | The list of connection IDs that the client is interested in
 
 **Response and notification fields**
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``status`` | no | object | Object mapping connection IDs to the corresponding status information. The structure of this object is described by the [`ConnectionInfo`](#connectioninfo) complex type.
-``failure`` | no | list of strings | List containing the connection IDs for which the status information could not have been retrieved.
-``reasons`` | no | object | Object mapping connection IDs to reasons why the corresponding status information could not have been retrieved.
+`status` | no | object | Object mapping connection IDs to the corresponding status information. The structure of this object is described by the [`ConnectionInfo`](#connectioninfo) complex type.
+`failure` | no | list of strings | List containing the connection IDs for which the status information could not have been retrieved.
+`reasons` | no | object | Object mapping connection IDs to reasons why the corresponding status information could not have been retrieved.
 
-All the connection IDs that were specified in the request MUST appear *either* in the ``status`` list or in the ``failure`` list. When this message is sent as a notification, only the ``status`` field SHOULD be present.
+All the connection IDs that were specified in the request MUST appear *either* in the `status` list or in the `failure` list. When this message is sent as a notification, only the `status` field SHOULD be present.
 
 **Example request**
 ```js
@@ -480,7 +546,7 @@ This request has no fields.
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of connection IDs for all the connections that the server manages
+`ids` | yes | list of strings | The list of connection IDs for all the connections that the server manages
  
 **Example request**
 ```js
@@ -496,6 +562,244 @@ Name | Required? | Type | Description
     "ids": ["dgps", "xbee"]
 }
 ```
+
+### `DEV` --- Device and channel related messages
+
+#### `DEV-INF` --- Retrieve the current value of a channel or device path
+
+A client sends this request to the server to retrieve the current value of a channel or the current values of all channels that are in a subtree of a device node in the device tree. The server will respond with an appropriately formatted JSON object that is structured in exactly the same way as the part of the matched device tree that the client is interested in. For instance, if the client requests the current value of a device node that has four channels with names `ch1`, `ch2`, `ch3` and `ch4`, then the response object will also have four keys with names `ch1`, `ch2`, `ch3` and `ch4`.
+
+A server sends notifications of this type to the client whenever a channel in the part of the device tree that the client is subscribed to was updated (see `DEV-SUB`, `DEV-UNSUB` and `DEV-LISTSUB` for managing subscriptions).
+
+**Request fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`paths` | yes | list of strings | The list of device tree paths that the client is interested in
+
+**Response and notification fields**
+
+**Example request**
+```js
+{
+    "type": "DEV-INF",
+    "paths": ["/1/battery/voltage", "/1/led", "/1/cpu/core3"]
+}
+```
+
+**Example response or notification**
+```js
+{
+    "type": "DEV-INF",
+    "values": {
+        "/1/battery/voltage": 13.4,
+        "/1/led": {
+            "on": true
+        }
+    },
+    "failure": ["/1/cpu/core3"],
+    "reasons": {
+        "/1/cpu/core3": "Path does not exist"
+    }
+}
+```
+
+#### `DEV-LIST` --- List of devices and channels
+
+A client sends this request to the server to retrieve the list (well, more precisely, the *tree*) of devices and channels associated to one or more UAVs.
+
+**Request fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`ids` | yes | list of strings | The list of UAV IDs that the client is interested in
+
+**Response fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`devices` | no | object | Object mapping UAV IDs to the corresponding device trees. The structure of this object is described by the [`DeviceTreeNode`](#deviceTreeNode) complex type.
+`failure` | no | list of strings | List containing the UAV IDs for which the device tree could not have been retrieved. Note that UAVs not supporting any devices will *not* appear in this list; they will provide an empty device tree instead.
+`reasons` | no | object | Object mapping UAV IDs to reasons why the corresponding device tree could not have been retrieved.
+
+All the UAV IDs that were specified in the request MUST appear *either* in the `status` list or in the `failure` list.
+
+**Example request**
+```js
+{
+    "type": "DEV-LIST",
+    "ids": ["1", "spam"]
+}
+```
+
+**Example response**
+```js
+{
+    "type": "DEV-LIST",
+    "devices": {
+      "1": {
+        "type": "root",
+        "children": {
+          "battery": {
+            "type": "device",
+            "children": {
+              "voltage": {
+                "type": "channel",
+                "subType": "number",
+                "operations": ["read"]
+              },
+              "manufacturerId": {
+                "type": "channel",
+                "subType": "string",
+                "operations": ["read"]
+              }
+            }
+          },
+          "led": {
+            "type": "device",
+            "children": {
+              "on": {
+                "type": "channel",
+                "subType": "boolean",
+                "operations": ["read", "write"]
+              }
+            }
+          },
+          "reset": {
+            "type": "channel",
+            "subType": "boolean",
+            "operations": ["write"]
+          }
+        }
+      }
+    },
+    "failure": ["spam"],
+    "reasons": {
+        "spam": "No such UAV."
+    }
+}
+```
+
+#### `DEV-LISTSUB` --- List device tree subscriptions
+
+A client sends this request to the server to retrieve the list of device tree paths that the client is subscribed to.
+
+The list of paths returned may optionally be filtered to parts of the device tree. A subscription path will be included in the result if it matches at least one of the specified paths. When no path is supplied in the request, the default path filter is `["/"]`, which will match all subscription paths.
+
+A path MUST be included as many times in the request as the number of subscription requests sent by the client to this path.
+
+**Request fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`paths` | no | list of strings | The list of device or channel paths that the client is interested in. Only subscriptions that refer to these paths or subtrees of these paths will be returned in the response. The default value is `["/"]`.
+
+**Response fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`paths` | yes | list of strings | The list of device or channel paths that the client is subscribed to and that match at least one of the path filters specified in the request. A path will be returned as many times as the number of subscriptions for the path.
+
+**Example request**
+```js
+{
+    "type": "DEV-LISTSUB",
+    "paths": ["/1", "/2"]
+}
+```
+
+**Example response**
+```js
+{
+    "type": "DEV-LISTSUB",
+    "paths": [
+        "/1/battery/voltage",
+        "/1/led"
+    ]
+}
+```
+
+#### `DEV-SUB` --- Subscribe to a part of a device tree
+
+A client sends this request to the server to subscribe to changes in the values of channels in a given part of the device tree of a given UAV.
+
+The channel and/or device paths specified in the request are added to a client-specific list of subscriptions in the server. When a value of a channel is modified on one of the devices, the server will find all the clients that are subscribed to the channel with at least one subscription, and send an appropriate `DEV-INF` notification to them. Note that only one notification will be sent even if there are multiple subscriptions of the client that matches the channel that was modified. However, it is possible to subscribe to the same path multiple times.
+
+**Request fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`paths` | yes | list of strings | The list of device or channel paths that the client is interested in
+
+**Response fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`success` | no | list of strings | The list of paths that the client was successfully subscribed to
+`failure` | no | list of strings | The list of paths that the client failed to subscribe to
+`reasons` | no | object | Object mapping paths to explanations about why the subscription failed for these paths.
+
+**Example request**
+```js
+{
+    "type": "DEV-SUB",
+    "paths": ["/1/battery/voltage", "/1/led", "/1/cpu/core3"]
+}
+```
+
+**Example response**
+```js
+{
+    "type": "DEV-SUB",
+    "success": [
+        "/1/battery/voltage",
+        "/1/led"
+    ],
+    "failure": ["/1/cpu/core3"],
+    "reasons": {
+        "/1/cpu/core3": "Path does not exist"
+    }
+}
+```
+
+#### `DEV-UNSUB` --- Unsubscribe from a part of a device tree
+
+A client sends this request to the server to stop receiving notifications changes in the values of channels in a given part of the device tree of a given UAV.
+
+The channel and/or device paths specified in the request are removed from a client-specific list of subscriptions in the server. Only exact matches are considered, i.e. it is not possible to subscribe to a larger part of the tree and then unsubscribe from a subset of it. Since it is possible to subscribe to the same path multiple times, and the paths a client subscribed to are stored in a list, the same number of unsubscription requests are required to cancel the subscription, unless `"removeAll": true` is specified in the request, in which case all exact matches will be removed.
+
+**Request fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`paths` | yes | list of strings | The list of device or channel paths that the client wants to unsubscribe from
+`removeAll` | no | boolean | Whether to remove all subscriptions that are exact matches to the paths specified in `paths`. The default is `false`, in which case the same number of unsubscription requests are required as the number of currently active subscriptions.
+`includeSubtrees` | no | boolean | Whether to also remove all subscriptions that are in the subtrees of the paths specified in the request. The default is `false`.
+
+**Response fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`success` | no | list of strings | The list of paths that the client was successfully unsubscribed from. This list may include paths that were not in the original `paths` list if `includeSubtrees` was `true`.
+`failure` | no | list of strings | The list of paths that the client failed to subscribe to
+`reasons` | no | object | Object mapping paths to explanations about why the subscription failed for these paths.
+
+**Example request**
+```js
+{
+    "type": "DEV-UNSUB",
+    "paths": ["/1/battery", "/1/led", "/1/cpu/core3", "/2/battery"],
+    "includeSubtrees": true
+}
+```
+
+**Example response**
+```js
+{
+    "type": "DEV-UNSUB",
+    "success": [
+        "/1/battery/voltage",
+        "/1/led"
+    ],
+    "failure": ["/1/cpu/core3", "/2/battery"],
+    "reasons": {
+        "/1/cpu/core3": "Path does not exist",
+        "/2/battery": "Not subscribed to this path"
+    }
+}
+```
+
 
 ### `SYS` --- System information
 
@@ -529,10 +833,10 @@ This request has no fields.
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``name`` | no | string | The name of the server. May be used to distinguish between multiple servers running concurrently so the operators know that they are connecting to the right server from the client.
-``revision`` | no | string | The revision number of the server, if known. This field is optional and can be used to convey more detailed version information than what the `version` field allows; for instance, one could provide the Git hash of the last commit in the server's repository.
-``software`` | yes | string | The name of the server implementation.
-``version`` | yes | string | The version number of the server, in major.minor.patch format. The patch level is optional and may be omitted.
+`name` | no | string | The name of the server. May be used to distinguish between multiple servers running concurrently so the operators know that they are connecting to the right server from the client.
+`revision` | no | string | The revision number of the server, if known. This field is optional and can be used to convey more detailed version information than what the `version` field allows; for instance, one could provide the Git hash of the last commit in the server's repository.
+`software` | yes | string | The name of the server implementation.
+`version` | yes | string | The version number of the server, in major.minor.patch format. The patch level is optional and may be omitted.
 
 **Example request**
 ```js
@@ -563,16 +867,16 @@ This message may also be broadcast as a notification by the server on its own vo
 **Request fields**
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of UAV IDs that the client is interested in
+`ids` | yes | list of strings | The list of UAV IDs that the client is interested in
 
 **Response and notification fields**
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``status`` | no | object | Object mapping UAV IDs to the corresponding status information. The structure of this object is described by the [`UAVStatusInfo`](#uavstatusinfo) complex type.
-``failure`` | no | list of strings | List containing the UAV IDs for which the status information could not have been retrieved.
-``reasons`` | no | object | Object mapping UAV IDs to reasons why the corresponding status information could not have been retrieved.
+`status` | no | object | Object mapping UAV IDs to the corresponding status information. The structure of this object is described by the [`UAVStatusInfo`](#uavstatusinfo) complex type.
+`failure` | no | list of strings | List containing the UAV IDs for which the status information could not have been retrieved.
+`reasons` | no | object | Object mapping UAV IDs to reasons why the corresponding status information could not have been retrieved.
 
-All the UAV IDs that were specified in the request MUST appear *either* in the ``status`` list or in the ``failure`` list. When this message is sent as a notification, only the ``status`` field SHOULD be present.
+All the UAV IDs that were specified in the request MUST appear *either* in the `status` list or in the `failure` list. When this message is sent as a notification, only the `status` field SHOULD be present.
 
 **Example request**
 ```js
@@ -605,20 +909,18 @@ The server responds with two lists: the first list contains the IDs of the UAVs 
 Clients interested in whether the shutdown attempts have succeeded should keep an eye on [`UAV-INF`](#uav-inf-basic-status-information) messages and watch the status flags of the UAVs.
 
 **Request fields**
-
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of UAV IDs to target with this message
+`ids` | yes | list of strings | The list of UAV IDs to target with this message
 
 **Response fields**
-
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``success`` | no | list of strings | The list of UAV IDs to which the request was sent
-``failure`` | no | list of strings | The list of UAV IDs to which the request was *not* sent
-``reasons`` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
+`success` | no | list of strings | The list of UAV IDs to which the request was sent
+`failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
+`reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
 
-All the UAV IDs that were specified in the request MUST appear *either* in the ``success`` list or in the ``failure`` list.
+All the UAV IDs that were specified in the request MUST appear *either* in the `success` list or in the `failure` list.
 
 **Example request**
 ```js
@@ -651,15 +953,15 @@ Clients interested in whether the landing attempts have succeeded should keep an
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of UAV IDs to target with this message
+`ids` | yes | list of strings | The list of UAV IDs to target with this message
 
 **Response fields**
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``success`` | no | list of strings | The list of UAV IDs to which the request was sent
-``failure`` | no | list of strings | The list of UAV IDs to which the request was *not* sent
-``reasons`` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
+`success` | no | list of strings | The list of UAV IDs to which the request was sent
+`failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
+`reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
  
 **Example request**
 ```js
@@ -693,7 +995,7 @@ This request has no fields.
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of UAV IDs that the server knows
+`ids` | yes | list of strings | The list of UAV IDs that the server knows
  
 **Example request**
 ```js
@@ -722,15 +1024,15 @@ Clients interested in whether the targeted UAVs have returned to their home posi
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of UAV IDs to target with this message
+`ids` | yes | list of strings | The list of UAV IDs to target with this message
 
 **Response fields**
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``success`` | no | list of strings | The list of UAV IDs to which the request was sent
-``failure`` | no | list of strings | The list of UAV IDs to which the request was *not* sent
-``reasons`` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
+`success` | no | list of strings | The list of UAV IDs to which the request was sent
+`failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
+`reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
  
 **Example request**
 ```js
@@ -763,15 +1065,15 @@ Clients interested in whether the take-off attempts have succeeded should keep a
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``ids`` | yes | list of strings | The list of UAV IDs to target with this message
+`ids` | yes | list of strings | The list of UAV IDs to target with this message
 
 **Response fields**
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-``success`` | no | list of strings | The list of UAV IDs to which the request was sent
-``failure`` | no | list of strings | The list of UAV IDs to which the request was *not* sent
-``reasons`` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
+`success` | no | list of strings | The list of UAV IDs to which the request was sent
+`failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
+`reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
  
 **Example request**
 ```js
