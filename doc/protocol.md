@@ -172,6 +172,9 @@ String channels
 Byte array channels
 : Byte array channels provide a sequence of raw bytes. Typical use-case: sending machine-readable debug information, raw measurements that are too complex for a single numeric channel, or serialized objects using a non-JSON format.
 
+Color channels
+: Color channels provide an array of three or four bytes, encoding a color in 8-bit RGB, RGBA or RGBW format. Typical use-case: color of a LED strip.
+
 Time channels
 : Time channels provide a time instant, expressed as the number of seconds elapsed since the UNIX epoch in UTC. Typical use-case: reporting the time of certain important events (e.g., when a UAV was turned on, when a packet of a certain type was received the last time and so on).
 
@@ -635,7 +638,7 @@ All the UAV IDs that were specified in the request MUST appear *either* in the `
     "type": "DEV-LIST",
     "devices": {
       "1": {
-        "type": "root",
+        "type": "uav",
         "children": {
           "battery": {
             "type": "device",
@@ -1176,6 +1179,50 @@ yaw | yes | [angle](#angles) | the yaw angle in degrees, in the range [0, 360)
 }
 ```
 
+### `ChannelOperation`
+
+Enumeration type that describes the possible operations that may be performed on a channel of a device (real or virtual) on a UAV. See [UAV devices and channels](#uav-devices-and-channels) for more information. Currently the following values are defined:
+
+`read`
+: Represents the act of reading the current value of the channel.
+
+`write`
+: Represents the act of writing a new value to the channel.
+
+### `ChannelType`
+
+Enumeration type that describes the possible types of channels of a device (real or virtual) on a UAV. See [UAV devices and channels](#uav-devices-and-channels) for more information. Currently the following values are defined:
+
+`audio`
+: A channel that provides a URL to an audio stream.
+
+`boolean`
+: A channel that provides a single Boolean value
+
+`bytearray`
+: A channel that provides an array of raw bytes.
+
+`color`
+: A channel that provides a color in 8-bit RGB, RGBA or RGBW format. The color is typically expressed as an array of three or four bytes, each byte ranging from 0 to 255.
+
+`duration`
+: A channel that provides the duration of a time window, expressed as the number of seconds elapsed since the start of the time window. Fractional seconds are allowed.
+
+`object`
+: A channel that provides a complex JSON object.
+
+`number`
+: A channel that provides a single double-precision floating-point number.
+
+`string`
+: A channel that provides a UTF-8 encoded string.
+
+`time`
+: A channel that provides a time instant, expressed as the number of seconds elapsed since the UNIX epoch in UTC. Fractional seconds are allowed.
+
+`video`
+: A channel that provides a URL to a video stream.
+
 ### `ClockEpoch`
 
 A `ClockEpoch` object describes the epoch of a clock or timer that the Flockwave server manages. It is either a [datetime](#dates-and-times) string or one of the following string values:
@@ -1299,6 +1346,94 @@ Enumeration type that describes the possible states of a connection. A connectio
 
 The value of a field of type `ConnectionStatus` is always a string with one of the five values above.
  
+### `DeviceClass`
+
+Enumeration type that describes the possible classes (i.e. types) of devices ina  device tree. Device classes may be used by user interfaces talking to a Flockwave server to provide some feedback to the user about the type of a device (e.g., it could show batteries with a different icon). Currently the following values are registered:
+
+`accelerometer`
+: The device is an accelerometer.
+
+`altimeter`
+: The device is an altimeter (e.g., pressure sensor, radar altimeter, sonic altimeter).
+
+`battery`
+: The device is a battery.
+
+`camera`
+: The device is a camera (consumer-grade, infrared, security camera or anything else).
+
+`cpu`
+: The device is the CPU of a UAV.
+
+`cpuCore`
+: The device is one particular CPU core of the CPU of a UAV.
+
+`gps`
+: The device is a GPS receiver.
+
+`group`
+: The device represents a logical grouping of other devices. For instance, the rotors of a UAV may be grouped in a `rotor` group.
+
+`gyroscope`
+: The device is a gyroscope.
+
+`led`
+: The device is a single LED or a LED strip.
+
+`magnetometer`
+: The device is a magnetometer.
+
+`microphone`
+: The device is a microphone.
+
+`misc`
+: The device does not fall into any of the predefined device classes.
+
+`radio`
+: The device is a radio receiver or transmitter (e.g., an XBee radio).
+
+`rc`
+: The device is an RC receiver.
+
+`rotor`
+: The device is a rotor.
+
+`sensor`
+: The device is a generic sensor that cannot be categorised more precisely into any of the other classes.
+
+`speaker`
+: The device is a speaker.
+
+### `DeviceTreeNode`
+
+This type represents a single node of the device tree. The node may represent a UAV, an onboard (real or virtual) device of a UAV, or a channel of a device. (See [UAV devices and channels](#uav-devices-and-channels) for more details).
+
+**Fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+type | yes | [`DeviceTreeNodeType`](#devicetreenodetype) | The type of the node
+subType | no | [`ChannelType`](#channeltype) | The type of the channel if the node is a channel node. This field is required for channel nodes and forbidden for other types of nodes.
+deviceClass | no | [`DeviceClass`](#deviceclass) | The type of the device that this node represents. This field is optional for device nodes and forbidden for other types of nodes. Its value may be used by Flockwave clients to represent the device in a different way on the UI or to hide certain types of devices.
+children | no | object of [`DeviceTreeNode`](#devicetreenode) | Object mapping names of child nodes to their descriptions
+operations | no | list of [`ChannelOperation`](#channeloperation) | The list of operations supported by the channel. This field is required for channel nodes and forbidden for other types of nodes.
+
+### `DeviceTreeNodeType`
+
+Enumeration type that describes the type of a device tree node (see [`DeviceTreeNode`](#devicetreenode). Currently the following values are defined:
+
+`root`
+: This is the root node of the device tree. The node has no parent by definition. The children of the root node must be nodes of type `uav`.
+
+`uav`
+: This is a tree node that represents a UAV in the flock. The parent of a `uav` node is always a `root` node. The children of the UAV nodes must be nodes of type `device`.
+
+`device`
+: This is a tree node that represents a device of a UAV, or a sub-device of another device. The parent of a `device` node is either a `uav` node or another `device` node.
+
+`channel`
+: This is a tree node that represents a channel of a device. The parent of a `channel` node is always a `device` node.
+
 ### `GPSCoordinate`
 
 This type represents a coordinate given by a GPS in the usual "latitude, longitude, altitude above mean sea level" format using the WGS 84 reference system.
