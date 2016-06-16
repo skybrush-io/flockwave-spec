@@ -1,0 +1,12 @@
+{
+    "type": "DEV-UNSUB",
+    "success": [
+        "/1/battery/voltage",
+        "/1/led"
+    ],
+    "failure": ["/1/cpu/core3", "/2/battery"],
+    "reasons": {
+        "/1/cpu/core3": "Path does not exist",
+        "/2/battery": "Not subscribed to this path"
+    }
+}

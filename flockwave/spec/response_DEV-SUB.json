@@ -1,0 +1,22 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"enum": ["DEV-SUB"]
+		},
+		"success": {
+            "$ref": "definitions.json#/deviceTreePathList"
+		},
+        "failure": {
+			"$ref": "definitions.json#/deviceTreePathList"
+		},
+		"reasons": {
+			"$ref": "definitions.json#/failureReasons"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}

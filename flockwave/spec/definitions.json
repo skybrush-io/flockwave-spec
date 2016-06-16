@@ -59,6 +59,34 @@
         "additionalProperties": false
     },
 
+    "channelId": {
+        "title": "Channel ID",
+        "description": "Identifier of a single channel of a single device on a UAV",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[^/]+$"
+    },
+
+    "channelOperation": {
+        "title": "Operation",
+        "description": "Operation that can be performed on a channel",
+        "type": "string",
+        "enum": [
+            "read", "write"
+        ]
+    },
+
+    "channelType": {
+        "title": "Type",
+        "description": "Type of a channel",
+        "type": "string",
+        "enum": [
+            "audio", "boolean", "bytes", "color", "duration", "object",
+            "number", "string", "time", "video"
+        ]
+    },
+
     "clockEpoch": {
         "anyOf": [
             {
@@ -214,6 +242,85 @@
         ]
     },
 
+    "deviceClass": {
+        "title": "Class",
+        "description": "Class of a device",
+        "type": "string",
+        "enum": [
+            "accelerometer", "altimeter", "battery", "camera", "cpu",
+            "cpuCore", "gps", "group", "gyroscope", "led", "magnetometer",
+            "microphone", "misc", "radio", "rc", "rotor", "sensor",
+            "speaker"
+        ],
+        "default": "misc"
+    },
+
+    "deviceId": {
+        "title": "Device ID",
+        "description": "Identifier of a single device on a UAV",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[^/]+$"
+    },
+
+    "deviceTreeNode": {
+        "title": "Device tree node",
+        "description": "A single device tree node representing a UAV, a device or a channel",
+        "type": "object",
+        "properties": {
+            "type": {
+                "$ref": "#/deviceTreeNodeType"
+            },
+            "subType": {
+                "$ref": "#/channelType"
+            },
+            "class": {
+                "$ref": "#/deviceClass"
+            },
+            "children": {
+                "type": "object",
+                "additionalProperties": {
+                    "$ref": "#/deviceTreeNode"
+                }
+            },
+            "operations": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/channelOperation"
+                }
+            }
+        },
+        "required": [ "type" ],
+        "additionalProperties": false
+    },
+
+    "deviceTreeNodeType": {
+        "title": "Type",
+        "description": "Type of a device tree node",
+        "type": "string",
+        "enum": [
+            "root", "uav", "device", "channel"
+        ]
+    },
+
+    "deviceTreePath": {
+        "title": "Device tree path",
+        "description": "An absolute device path that uniquely identifies a UAV, a device on a UAV or a channel of a device on a UAV",
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^((/[^/]+)+|/)$"
+    },
+
+    "deviceTreePathList": {
+        "title": "Device tree paths",
+        "description": "Paths of the device tree entries that the message refers to",
+        "type": "array",
+        "items": {
+            "$ref": "#/deviceTreePath"
+        }
+    },
+
     "failureReasons": {
         "type": "object",
         "additionalProperties": {
@@ -282,7 +389,8 @@
         "description": "Identifier of a single UAV",
         "type": "string",
         "minLength": 1,
-        "maxLength": 64
+        "maxLength": 64,
+        "pattern": "^[^/]+$"
     },
 
     "uavIdList": {

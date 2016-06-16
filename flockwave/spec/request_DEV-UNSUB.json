@@ -1,0 +1,30 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["DEV-UNSUB"]
+		},
+        "paths": {
+			"$ref": "definitions.json#/deviceTreePathList"
+		},
+        "removeAll": {
+            "title": "Remove all?",
+            "description": "Whether to remove all instances of a subscription that matches one of the paths (true) or only a single one (false)",
+            "default": false,
+            "type": "boolean"
+        },
+        "includeSubtrees": {
+            "title": "Include subtrees",
+            "description": "Whether to also remove all subscriptions that are in the subtrees of the paths specified in the request.",
+            "default": false,
+            "type": "boolean"
+        }
+	},
+	"required": [
+		"type", "paths"
+	],
+	"additionalProperties": false
+}

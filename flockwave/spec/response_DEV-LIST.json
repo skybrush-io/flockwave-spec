@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"enum": ["DEV-LIST"]
+		},
+		"devices": {
+			"type": "object",
+			"additionalProperties": {
+                "$ref": "definitions.json#/deviceTreeNode"
+            }
+		},
+		"failure": {
+			"$ref": "definitions.json#/uavIdList"
+		},
+		"reasons": {
+			"$ref": "definitions.json#/failureReasons"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}

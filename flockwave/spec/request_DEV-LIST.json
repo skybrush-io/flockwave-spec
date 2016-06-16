@@ -1,0 +1,18 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["DEV-LIST"]
+		},
+        "ids": {
+			"$ref": "definitions.json#/uavIdList"
+		}
+	},
+	"required": [
+		"type", "ids"
+	],
+	"additionalProperties": false
+}

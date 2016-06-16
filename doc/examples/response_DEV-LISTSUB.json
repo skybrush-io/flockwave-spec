@@ -1,0 +1,7 @@
+{
+    "type": "DEV-LISTSUB",
+    "paths": [
+        "/1/battery/voltage",
+        "/1/led"
+    ]
+}

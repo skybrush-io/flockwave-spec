@@ -1,0 +1,11 @@
+{
+    "type": "DEV-SUB",
+    "success": [
+        "/1/battery/voltage",
+        "/1/led"
+    ],
+    "failure": ["/1/cpu/core3"],
+    "reasons": {
+        "/1/cpu/core3": "Path does not exist"
+    }
+}

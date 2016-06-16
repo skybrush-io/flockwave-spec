@@ -1,0 +1,4 @@
+{
+    "type": "DEV-SUB",
+    "paths": ["/1/battery/voltage", "/1/led", "/1/cpu/core3"]
+}

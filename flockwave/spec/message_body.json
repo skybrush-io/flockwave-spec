@@ -35,6 +35,21 @@
             "$ref": "request_CONN-LIST.json#/"
         },
         {
+            "$ref": "request_DEV-INF.json#/"
+        },
+        {
+            "$ref": "request_DEV-LIST.json#/"
+        },
+        {
+            "$ref": "request_DEV-LISTSUB.json#/"
+        },
+        {
+            "$ref": "request_DEV-SUB.json#/"
+        },
+        {
+            "$ref": "request_DEV-UNSUB.json#/"
+        },
+        {
             "$ref": "request_SYS-PING.json#/"
         },
         {
@@ -63,13 +78,13 @@
             "$ref": "response_ACK-ACK.json#/"
         },
         {
+            "$ref": "response_ACK-NAK.json#/"
+        },
+        {
             "$ref": "response_CLK-INF.json#/"
         },
         {
             "$ref": "response_CLK-LIST.json#/"
-        },
-        {
-            "$ref": "response_ACK-NAK.json#/"
         },
         {
             "$ref": "response_CMD-DEL.json#/"
@@ -85,6 +100,21 @@
         },
         {
             "$ref": "response_CONN-LIST.json#/"
+        },
+        {
+            "$ref": "response_DEV-INF.json#/"
+        },
+        {
+            "$ref": "response_DEV-LIST.json#/"
+        },
+        {
+            "$ref": "response_DEV-LISTSUB.json#/"
+        },
+        {
+            "$ref": "response_DEV-SUB.json#/"
+        },
+        {
+            "$ref": "response_DEV-UNSUB.json#/"
         },
         {
             "$ref": "response_SYS-VER.json#/"

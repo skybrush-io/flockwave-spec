@@ -1,0 +1,5 @@
+{
+    "type": "DEV-UNSUB",
+    "paths": ["/1/battery", "/1/led", "/1/cpu/core3", "/2/battery"],
+    "includeSubtrees": true
+}
