@@ -580,6 +580,13 @@ Name | Required? | Type | Description
 `paths` | yes | list of strings | The list of device tree paths that the client is interested in
 
 **Response and notification fields**
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`values` | no | object | Object mapping device tree paths to the corresponding values of the channels.
+`failure` | no | list of strings | List containing the device tree paths for which the channel values could not have been retrieved.
+`reasons` | no | object | Object mapping device tree paths to reasons why the corresponding channel values could not have been retrieved.
+
+All the device tree paths that were specified in the request MUST appear *either* in the `status` list or in the `failure` list. When this message is sent as a notification, only the `status` field SHOULD be present.
 
 **Example request**
 ```js
@@ -618,7 +625,7 @@ Name | Required? | Type | Description
 **Response fields**
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-`devices` | no | object | Object mapping UAV IDs to the corresponding device trees. The structure of this object is described by the [`DeviceTreeNode`](#deviceTreeNode) complex type.
+`devices` | no | object | Object mapping UAV IDs to the corresponding device trees. The structure of this object is described by the [`DeviceTreeNode`](#devicetreenode) complex type.
 `failure` | no | list of strings | List containing the UAV IDs for which the device tree could not have been retrieved. Note that UAVs not supporting any devices will *not* appear in this list; they will provide an empty device tree instead.
 `reasons` | no | object | Object mapping UAV IDs to reasons why the corresponding device tree could not have been retrieved.
 
@@ -691,7 +698,7 @@ A path MUST be included as many times in the request as the number of subscripti
 **Request fields**
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-`paths` | no | list of strings | The list of device or channel paths that the client is interested in. Only subscriptions that refer to these paths or subtrees of these paths will be returned in the response. The default value is `["/"]`.
+`pathFilter` | no | list of strings | The list of device or channel paths that the client is interested in. Only subscriptions that refer to these paths or subtrees of these paths will be returned in the response. The default value is `["/"]`.
 
 **Response fields**
 Name | Required? | Type | Description
@@ -702,7 +709,7 @@ Name | Required? | Type | Description
 ```js
 {
     "type": "DEV-LISTSUB",
-    "paths": ["/1", "/2"]
+    "pathFilter": ["/1", "/2"]
 }
 ```
 
@@ -1199,7 +1206,7 @@ Enumeration type that describes the possible types of channels of a device (real
 `boolean`
 : A channel that provides a single Boolean value
 
-`bytearray`
+`bytes`
 : A channel that provides an array of raw bytes.
 
 `color`
@@ -1208,11 +1215,11 @@ Enumeration type that describes the possible types of channels of a device (real
 `duration`
 : A channel that provides the duration of a time window, expressed as the number of seconds elapsed since the start of the time window. Fractional seconds are allowed.
 
-`object`
-: A channel that provides a complex JSON object.
-
 `number`
 : A channel that provides a single double-precision floating-point number.
+
+`object`
+: A channel that provides a complex JSON object.
 
 `string`
 : A channel that provides a UTF-8 encoded string.
@@ -1414,7 +1421,7 @@ Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
 type | yes | [`DeviceTreeNodeType`](#devicetreenodetype) | The type of the node
 subType | no | [`ChannelType`](#channeltype) | The type of the channel if the node is a channel node. This field is required for channel nodes and forbidden for other types of nodes.
-deviceClass | no | [`DeviceClass`](#deviceclass) | The type of the device that this node represents. This field is optional for device nodes and forbidden for other types of nodes. Its value may be used by Flockwave clients to represent the device in a different way on the UI or to hide certain types of devices.
+class | no | [`DeviceClass`](#deviceclass) | The type of the device that this node represents. This field is optional for device nodes and forbidden for other types of nodes. Its value may be used by Flockwave clients to represent the device in a different way on the UI or to hide certain types of devices.
 children | no | object of [`DeviceTreeNode`](#devicetreenode) | Object mapping names of child nodes to their descriptions
 operations | no | list of [`ChannelOperation`](#channeloperation) | The list of operations supported by the channel. This field is required for channel nodes and forbidden for other types of nodes.
 
