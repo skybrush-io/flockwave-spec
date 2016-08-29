@@ -582,7 +582,7 @@ Name | Required? | Type | Description
 **Response and notification fields**
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-`values` | no | object | Object mapping device tree paths to the corresponding values of the channels.
+`values` | no | object | Object mapping device tree paths to the corresponding values of the channels. A channel value may be replaced with `null` if the value is not known yet.
 `failure` | no | list of strings | List containing the device tree paths for which the channel values could not have been retrieved.
 `reasons` | no | object | Object mapping device tree paths to reasons why the corresponding channel values could not have been retrieved.
 
@@ -625,7 +625,7 @@ Name | Required? | Type | Description
 **Response fields**
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-`devices` | no | object | Object mapping UAV IDs to the corresponding device trees. The structure of this object is described by the [`DeviceTreeNode`](#devicetreenode) complex type.
+`devices` | no | object | Object mapping UAV IDs to the corresponding device trees. The structure of this object is described by the [`DeviceTreeNode`](#deviceTreeNode) complex type.
 `failure` | no | list of strings | List containing the UAV IDs for which the device tree could not have been retrieved. Note that UAVs not supporting any devices will *not* appear in this list; they will provide an empty device tree instead.
 `reasons` | no | object | Object mapping UAV IDs to reasons why the corresponding device tree could not have been retrieved.
 
@@ -653,7 +653,8 @@ All the UAV IDs that were specified in the request MUST appear *either* in the `
               "voltage": {
                 "type": "channel",
                 "subType": "number",
-                "operations": ["read"]
+                "operations": ["read"],
+                "unit": "V"
               },
               "manufacturerId": {
                 "type": "channel",
@@ -703,7 +704,9 @@ Name | Required? | Type | Description
 **Response fields**
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-`paths` | yes | list of strings | The list of device or channel paths that the client is subscribed to and that match at least one of the path filters specified in the request. A path will be returned as many times as the number of subscriptions for the path.
+`paths` | yes | list of strings | The list of device or channel paths that the client is subscribed to and that match at least one of the path filters specified in the request. A path will be returned as many times as the number of subscriptions for the path, multiplied by the number of path filters that match the path[^3].
+
+[^3]: Typically, this is not a problem if you ensure that the path filters match disjoint parts of the tree.
 
 **Example request**
 ```js
@@ -1424,10 +1427,11 @@ subType | no | [`ChannelType`](#channeltype) | The type of the channel if the no
 class | no | [`DeviceClass`](#deviceclass) | The type of the device that this node represents. This field is optional for device nodes and forbidden for other types of nodes. Its value may be used by Flockwave clients to represent the device in a different way on the UI or to hide certain types of devices.
 children | no | object of [`DeviceTreeNode`](#devicetreenode) | Object mapping names of child nodes to their descriptions
 operations | no | list of [`ChannelOperation`](#channeloperation) | The list of operations supported by the channel. This field is required for channel nodes and forbidden for other types of nodes.
+unit | no | string | The unit in which the value of the channel is represented. This field is optional for channel nodes (typically makes sense for numeric channels) and forbidden for other types of nodes.
 
 ### `DeviceTreeNodeType`
 
-Enumeration type that describes the type of a device tree node (see [`DeviceTreeNode`](#devicetreenode). Currently the following values are defined:
+Enumeration type that describes the type of a device tree node (see [`DeviceTreeNode`](#deviceTreeNode). Currently the following values are defined:
 
 `root`
 : This is the root node of the device tree. The node has no parent by definition. The children of the root node must be nodes of type `uav`.

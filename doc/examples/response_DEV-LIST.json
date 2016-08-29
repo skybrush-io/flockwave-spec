@@ -10,7 +10,8 @@
               "voltage": {
                 "type": "channel",
                 "subType": "number",
-                "operations": ["read"]
+                "operations": ["read"],
+                "unit": "V"
               },
               "manufacturerId": {
                 "type": "channel",
