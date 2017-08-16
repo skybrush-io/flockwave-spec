@@ -2,6 +2,7 @@
 *.pyc
 *.pyo
 dist/
+.python-version
 .tags
 .tox/
 
