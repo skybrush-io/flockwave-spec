@@ -1,2 +1,2 @@
--e hg+https://bitbucket.org/gsakkis/memoized/@f5c8e9b#egg=memoized
+http://pypi.collmot.com/memoized-0.2.1.tar.gz
 -e .

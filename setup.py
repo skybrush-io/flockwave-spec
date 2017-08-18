@@ -7,7 +7,7 @@ requires = [
     "enum34>=1.1.2",
     "jsonpointer>=1.10",
     "jsonschema>=2.5.1",
-    "memoized>=0.2"
+    "memoized>=0.2.1"
 ]
 
 __version__ = None
