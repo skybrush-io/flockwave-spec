@@ -1,2 +1,2 @@
--e hg+https://bitbucket.org/gsakkis/memoized/@f5c8e9b#egg=MyProject
+-e hg+https://bitbucket.org/gsakkis/memoized/@f5c8e9b#egg=memoized
 -e .
