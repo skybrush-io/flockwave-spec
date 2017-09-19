@@ -326,6 +326,15 @@
         }
     },
 
+    "errorList": {
+        "title": "List of errors",
+        "description": "List of currently active error codes for a single UAV",
+        "type": "array",
+        "items": {
+            "type": "number"
+        }
+    },
+
     "failureReasons": {
         "type": "object",
         "additionalProperties": {
@@ -446,6 +455,9 @@
                 "description": "Timestamp that denotes when the status of the UAV was updated the last time",
                 "type": "string",
                 "format": "date-time"
+            },
+            "error": {
+                "$ref": "definitions.json#/errorList"
             }
         },
         "required": ["id", "position", "timestamp"]

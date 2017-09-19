@@ -24,7 +24,8 @@
                 "down": -1
             },
             "timestamp": "2015-12-08T08:17:41.000Z",
-            "debug": "0BADCAFE"
+            "debug": "0BADCAFE",
+            "error": [17, 41]
         }
     },
     "failure": ["spam"],
