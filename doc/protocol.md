@@ -314,7 +314,7 @@ This request has no fields.
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
 `ids` | yes | list of strings | The list of clock IDs for all the clocks that the server manages
- 
+
 **Example request**
 ```js
 {
@@ -550,7 +550,7 @@ This request has no fields.
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
 `ids` | yes | list of strings | The list of connection IDs for all the connections that the server manages
- 
+
 **Example request**
 ```js
 {
@@ -975,7 +975,7 @@ Name | Required? | Type | Description
 `success` | no | list of strings | The list of UAV IDs to which the request was sent
 `failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
 `reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
- 
+
 **Example request**
 ```js
 {
@@ -1009,7 +1009,7 @@ This request has no fields.
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
 `ids` | yes | list of strings | The list of UAV IDs that the server knows
- 
+
 **Example request**
 ```js
 {
@@ -1046,7 +1046,7 @@ Name | Required? | Type | Description
 `success` | no | list of strings | The list of UAV IDs to which the request was sent
 `failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
 `reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
- 
+
 **Example request**
 ```js
 {
@@ -1087,7 +1087,7 @@ Name | Required? | Type | Description
 `success` | no | list of strings | The list of UAV IDs to which the request was sent
 `failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
 `reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
- 
+
 **Example request**
 ```js
 {
@@ -1239,7 +1239,7 @@ A `ClockEpoch` object describes the epoch of a clock or timer that the Flockwave
 
 `unix`
 : The UNIX epoch, i.e. midnight on 1 Jan 1970 UTC.
-  
+
 ### `ClockInfo`
 
 A `ClockInfo` object describes the current state of a clock or timer that the Flockwave server manages (e.g., a clock that reports the local time, the GPS time or a MIDI timecode coming from an external MIDI device connected to the server).
@@ -1315,7 +1315,7 @@ timestamp | no | [datetime](#dates-and-times) | time when the last packet was re
     "timestamp": "2015-12-08T08:17:41.000Z"
 }
 ```
- 
+
 ### `ConnectionPurpose`
 
 Enumeration type that describes the purpose of a connection. Currently the following values are defined:
@@ -1355,7 +1355,7 @@ Enumeration type that describes the possible states of a connection. A connectio
 : The status of the connection is unknown (typically because we have received no status information from the connection yet).
 
 The value of a field of type `ConnectionStatus` is always a string with one of the five values above.
- 
+
 ### `DeviceClass`
 
 Enumeration type that describes the possible classes (i.e. types) of devices ina  device tree. Device classes may be used by user interfaces talking to a Flockwave server to provide some feedback to the user about the type of a device (e.g., it could show batteries with a different icon). Currently the following values are registered:
@@ -1546,7 +1546,18 @@ down | yes | number | The "down" component of the velocity vector, in m/s
 
 ## Transport layer
 
-### Standard TCP streams
+### TCP streams
+
+The Flockwave protocol can simply be implemented on top of TCP streams by encoding Flockwave messages in JSON format and separating the messages with newlines. Due to the nature of the JSON encoding, it can be guaranteed that the encoding of a Flockwave message does not contain a newline character (since newlines within JSON strings are escaped as `\n`). Flockwave message receivers can simply read chunks of data from the TCP stream until a newline is encountered, then attempt to parse the chunks up to the last newline character as JSON. Should the parsing fail, the entire chunk can be thrown away and the parsing can resume from the next character after the last newline.
+
+### UDP datagrams
+
+Flockwave messages can also be sent in UDP datagrams; in such cases, we can simply assume that a single UDP datagram conveys a single Flockwave message. Here we neglect the fact that *in theory* a Flockwave message can be larger than the maximum allowed length of a UDP datagram as such messages are unlikely to appear in practice.
+
+Since UDP is a connectionless protocol, handling Flockwave notifications over UDP is a bit problematic: in case of notification broadcasts, the server would not know which UDP host-port combinations should be targeted with a specific message. There are at least two ways to resolve this:
+
+* The server could send Flockwave notifications to a designated UDP broadcast address and port; it is then the responsibility of the Flockwave client to listen to the broadcast address as well as its own address.
+* The server could also send Flockwave notifications to all UDP host-port combinations that it has received a message from in the last X seconds. The advantage is that there is no need to listen for a separate broadcast address and port on the client side, but then it is the responsibility of the client to ensure that a keepalive message (e.g., `SYS-PING`) is sent to the server frequently enough such that the connection is not broken even if some of the keepalive messages are lost. A good rule of thumb is to set the connection timeout to 60 seconds and then request clients to send keepalive messages every 10 seconds - this way the connection is broken only if six consecutive keepalive messages are lost.
 
 ### WebSocket + Socket.io
 
