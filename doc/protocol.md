@@ -1600,7 +1600,7 @@ Code | Description
  128 | Autopilot communication timeout.<br>High-level control algorithms failed to communicate with a lower-level autopilot component. The autopilot will probably attempt RTH or switch to loiter mode.
  129 | Autopilot acknowledgment timeout.<br>A lower-level autopilot component did not acknowledge a command sent to it by a higher-level control algorithm.
  130 | Autopilot communication protocol error.<br>High-level control algorithms failed to parse a message sent by the lower-level autopilot component or vice versa. The autopilot will probably attempt RTH or switch to loitering mode.
- 131 | GPS error or GPS signal lost.<br>Loitering is probably still possible with the remaining sensors.
+ 131 | Prearm check failure.<br>One of the pre-flight checks has failed.
  132 | RC signal lost.<br>Use this error code only if the UAV can not deal with this situation and will RTH or land; otherwise use code 65.
  133 | GPS error or GPS signal lost.<br>Use this error code only if loitering is probably still possible with the remaining sensors; otherwise use code 197.
  134 | Battery low.<br>Use this error code only if the UAV is not safe to continue its current mission with the current battery charge but can safely attempt RTH or loitering; otherwise use code 66 or 199.
@@ -1611,7 +1611,7 @@ Code | Description
  190 | Other, unspecified sensor failure that does not prevent RTH or loitering.
  191 | Other, unspecified error that does not prevent RTH or loitering.
 
-### Fatal errors (codes 192-255)
+### Critical errors (codes 192-255)
 
 
 Code | Description
@@ -1625,11 +1625,11 @@ Code | Description
  198 | Motor malfunction.
  199 | Battery critical.<br>Use this error code only if the UAV is not safe to continue its current mission or to attempt RTH or loitering; otherwise use code 66 or 134.
  200 | No GPS home position.
- 201 | Outside of flying zone.<br>When leaving the designated flying zone, it is generally assumed that the UAV does not (and can not) know how to navigate back to the flying zone so it will attempt to land where it currently is.
+ 201 | Geofence violation (out of flying zone).<br>When leaving the designated flying zone, it is generally assumed that the UAV does not (and can not) know how to navigate back to the flying zone so it will attempt to land where it currently is.
  202 | Internal clock error.<br>This code should be used if one of the internal clocks of the UAV is not set properly. Use code 203 for external clocks.
  203 | External clock error.<br>This code should be used if one of the external clocks required for the operation of the UAV is not set properly. Use code 202 for internal clocks.
  204 | Required hardware component missing.<br>The UAV can not communicate with one of the hardware components that it needs to use during its mission.
- 253 | Simulated fatal error.<br>Use this error code to trigger an emergency landing in the absence of any other fatal error, for testing purposes.
+ 253 | Simulated critical error.<br>Use this error code to trigger an emergency landing in the absence of any other critical error, for testing purposes.
  254 | Other, unspecified sensor failure that triggers an immediate landing attempt.
  255 | Other, unspecified fatal error that triggers an immediate landing attempt.
 
