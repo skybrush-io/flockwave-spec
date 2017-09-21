@@ -7,10 +7,7 @@
             "position": {
                 "lat": 51.9976597,
                 "lon": -0.7406863,
-                "alt": {
-                    "reference": "msl",
-                    "value": 93.765
-                }
+                "amsl": 93.765
             },
             "heading": 90,
             "attitude": {

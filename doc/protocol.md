@@ -1136,37 +1136,6 @@ Angles are always expressed in degrees because radians are for mathematicians. D
 
 The JSON format does not support the transmission of raw byte arrays directly since the JSON string type is a sequence of Unicode characters and not a sequence of raw bytes. When a raw byte array has to be transmitted in JSON, the typical solution is to send a base64-encoded representation as a string (see [RFC4648](https://tools.ietf.org/html/rfc4648)). This representation is approximately 33% longer than the corresponding raw byte array, but is still much shorter than the representation of the byte array as a JSON array of integers.
 
-### `Altitude`
-
-An `Altitude` object describes the altitude of a UAV relative to a baseline described by an [AltitudeReference](#altitudereference) value.
-
-**Fields**
-
-Name | Required? | Type | Description
----- | --------- | ---- | -----------
-reference | yes | [AltitudeReference](#altitudereference) | the baseline that defines what "zero altitude" means
-value | yes | float | the value of the altitude, in meters, relative to the baseline. The altitude axis always points from the ground up.
-
-**Example**
-
-```js
-{
-    "reference": "msl",
-    "value": 20
-}
-```
-(meaning 20 meters above mean sea level)
-
-### `AltitudeReference`
-
-Enumeration type that describes the known reference points of an altitude value. Currently the following values are defined:
-
-`home`
-: The altitude value is relative to the home position of the UAV
-
-`msl`
-: The altitude value is relative to the mean sea level
-
 ### `Attitude`
 
 An `Attitude` object describes the orientation of a UAV using the standard roll, pitch and yaw angles. See the section about [angles](#angles) for more information about how the angles are expressed.
@@ -1451,9 +1420,9 @@ This type is simply an array of numbers, where each number represents a possible
 
 ### `GPSCoordinate`
 
-This type represents a coordinate given by a GPS in the usual "latitude, longitude, altitude above mean sea level" format using the WGS 84 reference system.
+This type represents a coordinate given by a GPS in the usual "latitude, longitude, altitude above mean sea level, altitude above ground level" format using the WGS 84 reference system.
 
-Latitude and longitude should be specified with at least eight digits' precision if possible.
+Latitude and longitude should be specified with at least seven digits' precision if possible. (More than seven digits is usually not necessary because consumer GPS receivers are
 
 **Fields**
 
@@ -1461,7 +1430,8 @@ Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
 lat | yes | float | The latitude, in degrees, in the range [-90,90)
 lon | yes | float | The longitude, in degrees, in the range [-180,180)
-alt | no | [`Altitude`](#altitude) | The altitude
+amsl | no | float | The altitude, in metres, above mean sea level
+agl | no | float | The altitude, in metres, above ground level
 
 **Example**
 
@@ -1469,10 +1439,7 @@ alt | no | [`Altitude`](#altitude) | The altitude
 {
     "lat": 51.99765972,
     "lon": -0.74068634,
-    "alt": {
-        "reference": "msl",
-        "value": 93.765
-    }
+    "amsl": 93.765
 }
 ```
 

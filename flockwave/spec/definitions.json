@@ -1,33 +1,4 @@
 {
-    "altitude": {
-        "$schema": "http://json-schema.org/schema#",
-        "id": "http://collmot.com/schemas/flockwave/1.0/altitude.json",
-
-        "title": "Altitude",
-        "description": "Altitude relative to a reference point",
-        "type": "object",
-        "properties": {
-            "reference": {
-                "$ref": "definitions.json#/altitudeReference"
-            },
-            "value": {
-                "type": "number"
-            }
-        },
-        "required": [ "reference", "value" ],
-        "additionalProperties": false
-    },
-
-    "altitudeReference": {
-        "$schema": "http://json-schema.org/schema#",
-        "id": "http://collmot.com/schemas/flockwave/1.0/altitude_reference.json",
-
-        "title": "Altitude reference",
-        "description": "Reference point of an altitude value",
-        "type": "string",
-        "enum": ["home", "msl"]
-    },
-
     "attitude": {
         "$schema": "http://json-schema.org/schema#",
         "id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
@@ -364,8 +335,15 @@
                 "minimum": -180,
                 "maximum": 180
             },
-            "alt": {
-                "$ref": "definitions.json#/altitude"
+            "amsl": {
+                "title": "AMSL",
+                "description": "Altitude above mean sea level, in meters",
+                "type": "number"
+            },
+            "agl": {
+                "title": "AGL",
+                "description": "Altitude above ground level, in meters",
+                "type": "number"
             }
         },
         "required": [ "lat", "lon" ],
