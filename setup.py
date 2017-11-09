@@ -10,6 +10,12 @@ requires = [
     "memoized>=0.2.1"
 ]
 
+extra_requires = {
+    "dev": {
+        "mkdocs>=0.17.1"
+    }
+]
+
 __version__ = None
 exec(open("flockwave/spec/version.py").read())
 
@@ -22,6 +28,9 @@ setup(
 
     packages=find_packages(exclude=["test"]),
     include_package_data=True,
+
     install_requires=requires,
+    extras_require=extra_requires,
+
     test_suite="test"
 )

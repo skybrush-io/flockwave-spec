@@ -1,0 +1,103 @@
+# `CLK` --- Clock and timer-related messages
+
+Flockwave servers may manage a set of clocks (timers); these timers may be displayed on the user interface in a Flockwave client or may be broadcast to UAVs in the range of the Flockwave server for synchronization purposes.
+
+The clocks are assumed to count the number of *clock ticks* that have elapsed since a specified or an unknown *epoch* in the past. Each clock is able to report how many clock ticks correspond to a second in "wall clock time". When the epoch of a clock is known, the epoch, the number of ticks per second and the number of ticks since the epoch can be used to map the state of the clock into wall clock time. Clocks with unknown epochs can only be mapped into the number of seconds that have elapsed since the epoch by multiplying the tick count with the number of ticks per second.
+
+Clocks are identified by unique string identifiers (just like UAVs or connections). The following reserved clock IDs are defined in the Flockwave protocol:
+
+* `system` corresponds to the internal clock of the server. It MUST be measured in seconds since the Unix epoch (one tick per second) and it must be expressed in UTC even if the operating system of the server is set up to display the internal clock in a different timezone.
+* `gps` corresponds to time as reported by a GPS receiver. It MUST be measured in seconds since the Unix epoch. Note that this is true irrespectively of the fact that GPS time is different from UTC time (because GPS time is not perturbed by leap seconds), so if you have the number of seconds from the GPS epoch as reported by a GPS receiver, you must correct it not only by the difference between the GPS epoch (6 Jan 1980) and the Unix epoch (1 Jan 1970) but also by the number of leap seconds since the GPS epoch. Typically, GPS receivers also report the exact difference between GPS and UTC time so this should not be a problem.
+* `mtc` corresponds to a clock that expresses MIDI time code in a given framerate (typically 24, 25 or 30 frames per second). In most cases it has no known epoch (although it may have one) and it is typically used to synchronize the movement and lighting of drones in a drone show with an external time source.
+
+Any other clock ID not listed explicitly above is free to be used for any purpose.
+
+## `CLK-INF` --- Retrieve status of a timer
+
+A client sends this request to the server to retrieve the status of one or more clocks or timers managed by the server.
+
+This message may also be broadcast as a notification by the server on its own volition to all connected Flockwave clients to notify them about a status change of one of the clocks. This may happen if a clock is started or stopped or if the value of the clock has drifted or has been adjusted significantly.
+
+**Request fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`ids` | yes | list of strings | The list of clock IDs that the client is interested in
+
+**Response fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`status` | no | object | Object mapping clock IDs to the corresponding status information. The structure of this object is described by the [`ClockInfo`](#clockinfo) complex type.
+`failure` | no | list of strings | List containing the clock IDs for which the status information could not have been retrieved.
+`reasons` | no | object | Object mapping clock IDs to reasons why the corresponding status information could not have been retrieved.
+
+All the clock IDs that were specified in the request MUST appear *either* as keys in the `status` object or in the `failure` list.
+
+**Example request**
+```js
+{
+    "type": "CLK-INF",
+    "ids": [
+        "gps", "mtc", "beer_can"
+    ]
+}
+```
+
+**Example response**
+```js
+{
+    "type": "CLK-INF",
+    "status": {
+        "gps": {
+            "id": "gps",
+            "timestamp": 1462891061.824093,
+            "retrievedAt": "2016-05-10T14:33:21Z",
+            "epoch": "unix",
+            "running": true
+        },
+        "mtc": {
+            "id": "mtc",
+            "timestamp": 4221,
+            "retrievedAt": "2016-05-10T14:33:21Z",
+            "ticksPerSecond": 30,
+            "running": true
+        }
+    },
+    "failure": ["beer_can"],
+    "reasons": {
+        "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
+    }
+}
+```
+
+## `CLK-LIST` --- List of all the clocks and timers managed by the server
+
+A client sends this request to the server to obtain the list of all the clocks and timers currently managed by the server.
+
+**Request fields**
+
+This request has no fields.
+
+**Response fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`ids` | yes | list of strings | The list of clock IDs for all the clocks that the server manages
+
+**Example request**
+```js
+{
+    "type": "CLK-LIST"
+}
+```
+
+**Example response**
+```js
+{
+    "type": "CLK-LIST",
+    "ids": ["gps", "system", "mtc"]
+}
+```
+
+
