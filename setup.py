@@ -14,7 +14,7 @@ extra_requires = {
     "dev": {
         "mkdocs>=0.17.1"
     }
-]
+}
 
 __version__ = None
 exec(open("flockwave/spec/version.py").read())
