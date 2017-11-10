@@ -8,6 +8,9 @@ theme: readthedocs
 docs_dir: doc/protocol
 site_dir: build/doc
 
+extra_css:
+  - css/extra.css
+
 pages:
   - Home: 'index.md'
   - Synopsis and conventions: 'synopsis.md'

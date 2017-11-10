@@ -151,6 +151,32 @@ progress | no | float | the progress of the execution of the command, expressed 
 }
 ```
 
+## `CommandResponse`
+
+A `CommandResponse` object stores the response given by a particular UAV to a command
+sent to it using a `CMD-REQ` request, along with a type annotation that tells the
+receiver how the response should be interpreted.
+
+Currently the Flockwave protocol defines the following response types:
+
+`plain`
+:    Plain text response that should be formatted on the receiver side as is.
+
+`markdown`
+:    Markdown-formatted text response that should be interpreted by a Markdown
+:    processor before it is displayed to the user.
+
+Additional response types may be defined by the user as needed.
+
+**Example**
+
+```js
+{
+    "type": "markdown",
+	"data": "# Heading\n\nHello world!"
+}
+```
+
 ## `ConnectionInfo`
 
 A `ConnectionInfo` object describes the purpose and current state of a connection that the Flockwave server manages (e.g., a radio link or a DGPS stream).
@@ -361,10 +387,7 @@ debug | no | [byte array](#byte-arrays) | Debug information provided by the algo
     "position": {
         "lat": 51.9976597,
         "lon": -0.7406863,
-        "alt": {
-            "reference": "msl",
-            "value": 93.765
-        }
+        "amsl": 93.765
     },
     "heading": 90,
     "attitude": {

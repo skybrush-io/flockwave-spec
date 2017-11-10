@@ -11,7 +11,14 @@
             "$ref": "definitions.json#/receiptId"
         },
         "response": {
-            "type": "string"
+			"anyOf": [
+				{
+		            "type": "string"
+				},
+				{
+					"$ref": "definitions.json#/commandResponse"
+				}
+			]
         }
 	},
 	"required": [

@@ -1,5 +1,25 @@
-{
-    "type": "CMD-RESP",
-    "id": "0badcafe-deadbeef:1",
-    "response": "Hello there!"
-}
+[
+    {
+        "type": "CMD-RESP",
+        "id": "0badcafe-deadbeef:1",
+        "response": "Hello there!"
+    },
+    {
+        "type": "CMD-RESP",
+        "id": "0badcafe-deadbeef:1",
+        "response": {
+            "type": "plain",
+            "data": "Hello there!"
+        }
+    },
+    {
+        "type": "CMD-RESP",
+        "id": "0badcafe-deadbeef:1",
+        "response": {
+            "type": "foobar",
+            "data": {
+                "meaningOfLife": 42
+            }
+        }
+    }
+]

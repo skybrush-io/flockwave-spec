@@ -2,17 +2,24 @@
 
 ## `CMD-INF` --- Retrieve execution status of a command
 
-A client sends this request to the server to retrieve the execution status of one or more command requests dispatched earlier.
+A client sends this request to the server to retrieve the execution status of
+one or more command requests dispatched earlier.
 
 The execution of a command has the following stages:
 
 * First, the command is *sent* by the server to the UAV.
 * Next, the receipt of the command MAY be *acknowledged* by the UAV.
-* After an optional acknowledgment, the UAV starts the actual execution of the command.
+* After an optional acknowledgment, the UAV starts the actual execution of the
+  command.
 * During the execution, the UAV MAY post *progress updates* to the server.
-* Finally, the execution of the command is *finished* on the UAV and the response is sent back to the server.
+* Finally, the execution of the command is *finished* on the UAV and the
+  response is sent back to the server.
 
-The time when the request is sent to the UAV is stored by the server and returned in the execution status record. The time when the server receives an acknowledgment is also recorded, as well as the time when the last progress update was received. Finally, when the command finishes execution, the date when the execution was finished is also recorded by the server.
+The time when the request is sent to the UAV is stored by the server and
+returned in the execution status record. The time when the server receives an
+acknowledgment is also recorded, as well as the time when the last progress
+update was received. Finally, when the command finishes execution, the date
+when the execution was finished is also recorded by the server.
 
 **Request fields**
 
@@ -62,11 +69,32 @@ All the receipts that were specified in the request MUST appear *either* as keys
 
 ## `CMD-REQ` --- Send a command execution request to a UAV
 
-A client sends this request to the server to ask the server to forward a command to one or more UAVs. The interpretation of the command string depends entirely on the UAV; for instance, a UAV running our `flockctrl` software will accept `flockctrl` console commands and respond appropriately. The server merely acts as a forwarder between the client and the UAV.
+A client sends this request to the server to ask the server to forward
+a command to one or more UAVs. The interpretation of the command string depends
+entirely on the UAV; for instance, a UAV running our `flockctrl` software will
+accept `flockctrl` console commands and respond appropriately. The server
+merely acts as a forwarder between the client and the UAV.
 
-Depending on the protocol that the targeted UAV speaks, it may accept a raw command string only, or a command string with positional and/or keyword arguments. Positional arguments are passed as a single array. Keyword arguments are passed as a JSON object that maps the names of the arguments to their values. It is the responsibility of the caller to ensure that the command and its arguments use the appropriate syntax.
+Depending on the protocol that the targeted UAV speaks, it may accept a raw
+command string only, or a command string with positional and/or keyword
+arguments. Positional arguments are passed as a single array. Keyword arguments
+are passed as a JSON object that maps the names of the arguments to their
+values. It is the responsibility of the caller to ensure that the command and
+its arguments use the appropriate syntax.
 
-Sending and executing a command typically takes some time (especially because there is usually a slower radio link involved between the ground station and the UAV). To keep things running smoothly, the server will not wait for the responses of the UAVs to arrive - it will respond with a `UAV-CMD` response packet as soon as it has attempted to send the command to all the UAVs. The response packet will list the IDs of the UAVs for which the transmission failed, as well as a mapping that maps the IDs of the UAVs for which the command was sent successfully to unique *receipts* that can be used by the client to retrieve the progress of execution for these commands using a [CMD-INF](#cmd-inf-retrieve-execution-status-of-a-command) command. The actual response of a command request (sent by a targeted UAV) will be relayed back to the client that initiated the command in a [CMD-RESP](#cmd-resp-response-to-a-command-request) notification.
+Sending and executing a command typically takes some time (especially because
+there is usually a slower radio link involved between the ground station and
+the UAV). To keep things running smoothly, the server will not wait for the
+responses of the UAVs to arrive - it will respond with a `CMD-REQ` response
+packet as soon as it has attempted to send the command to all the UAVs. The
+response packet will list the IDs of the UAVs for which the transmission
+failed, as well as a mapping that maps the IDs of the UAVs for which the
+command was sent successfully to unique *receipts* that can be used by the
+client to retrieve the progress of execution for these commands using
+a [CMD-INF](#cmd-inf-retrieve-execution-status-of-a-command) command. The
+actual response of a command request (sent by a targeted UAV) will be relayed
+back to the client that initiated the command in
+a [CMD-RESP](#cmd-resp-response-to-a-command-request) notification.
 
 **Request fields**
 
@@ -114,21 +142,58 @@ All the connection IDs that were specified in the request MUST appear *either* i
 
 ## `CMD-RESP` --- Response to a command request
 
-A server sends a notification of this type to a client when an earlier command execution request sent by the client has been completed by one of the UAVs the request was targeted to.
+A server sends a notification of this type to a client when an earlier command
+execution request sent by the client has been completed by one of the UAVs the
+request was targeted to.
+
+In the simplest case, the server responds to a command request with a string.
+In more complex cases, the server may return an object of type
+[`CommandResponse`](../types.md#commandresponse), which is basically an
+arbitrary object along with a type field that describes how the object should
+be interpreted.
 
 **Notification fields**
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
 `id` | yes | string | The receipt identifier that tells the client which response sent which UAV is being relayed in this notification.
-`response` | yes | string | The response sent by the UAV.
+`response` | yes | string or [`CommandResponse`](../types.md#commandresponse) | The response sent by the UAV.
 
-**Example notification**
+**Example notification: plain text response**
+
 ```js
 {
     "type": "CMD-RESP",
     "id": "0badcafe-deadbeef:1",
     "response": "Hello there!"
+}
+```
+
+**Example notification: Markdown-formatted response**
+
+```js
+{
+    "type": "CMD-RESP",
+    "id": "0badcafe-deadbeef:1",
+    "response": {
+	    "type": "markdown",
+		"data": "# Heading\nHello there!"
+    }
+}
+```
+
+**Example notification: complex object**
+
+```js
+{
+    "type": "CMD-RESP",
+    "id": "0badcafe-deadbeef:1",
+    "response": {
+	    "type": "markdown",
+		"data": {
+		    "meaning_of_life": 42
+		}
+    }
 }
 ```
 

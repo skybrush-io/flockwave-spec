@@ -153,6 +153,20 @@
         "additionalProperties": false
     },
 
+    "commandResponse": {
+        "title": "Command response",
+        "description": "Response given by a UAV to a command request",
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string"
+            },
+            "data": {},
+            "additionalProperties": false,
+            "required": [ "type", "data" ]
+        }
+    },
+
     "connectionId": {
         "title": "Connection ID",
         "description": "Identifier of a single connection",
