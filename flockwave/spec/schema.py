@@ -18,7 +18,7 @@ FLOCKWAVE_SPEC_PREFIX = "http://collmot.com/schemas/flockwave/1.0"
 
 @memoized
 def _get_json_object_from_resource(resource_path):
-    """Loads a parses a JSON object from the given resource path.
+    """Loads and parses a JSON object from the given resource path.
 
     This function is memoized.
 
@@ -30,7 +30,8 @@ def _get_json_object_from_resource(resource_path):
         object: the JSON object from the given resource
     """
     stream = resource_stream(SCHEMA_PACKAGE, resource_path)
-    return json.load(stream)
+    data = stream.read().decode("utf-8")
+    return json.loads(data)
 
 
 @memoized
