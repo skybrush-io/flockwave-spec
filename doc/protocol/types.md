@@ -49,6 +49,26 @@ yaw | yes | [angle](#angles) | the yaw angle in degrees, in the range [0, 360)
 }
 ```
 
+## `BatteryInfo`
+
+A `BatteryInfo` object holds information about the state of an on-board battery on a UAV.
+
+**Fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+voltage | no | float | the battery voltage in volts
+percentage | no | float | the state-of-charge of the battery, expressed as percentages in the range [0, 100]
+
+**Example**
+
+```js
+{
+    "voltage": 12.4,
+    "percentage": 100
+}
+```
+
 ## `ChannelOperation`
 
 Enumeration type that describes the possible operations that may be performed on a channel of a device (real or virtual) on a UAV. See [UAV devices and channels](devices.md) for more information. Currently the following values are defined:
@@ -375,6 +395,7 @@ heading | no | [angle](#angles) | The heading of the UAV, i.e. the direction the
 attitude | no | [Attitude](#attitude) | The attitude of the UAV.
 velocity | no | [VelocityNED](#velocityned) | The velocity of the UAV, expressed in the NED (North, East, Down) coordinate system.
 timestamp | yes | [datetime](#dates-and-times) | Time when the last status update was received from the UAV
+battery | no | [BatteryInfo](#batteryinfo) | Information about the state of the battery on the UAV.
 error | no | [ErrorList](#errorlist) | The list of error codes currently applicable for the UAV. When omitted, it means that there are no errors.
 debug | no | [byte array](#byte-arrays) | Debug information provided by the algorithm running on the UAV (if applicable).
 
@@ -513,6 +534,3 @@ Code | Description
  253 | Simulated critical error.<br>Use this error code to trigger an emergency landing in the absence of any other critical error, for testing purposes.
  254 | Other, unspecified sensor failure that triggers an immediate landing attempt.
  255 | Other, unspecified fatal error that triggers an immediate landing attempt.
-
-
-

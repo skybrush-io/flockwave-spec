@@ -30,6 +30,30 @@
         "additionalProperties": false
     },
 
+    "batteryInfo": {
+        "$schema": "http://json-schema.org/schema#",
+        "id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
+
+        "title": "Battery information",
+        "description": "Information about the on-board battery of the UAV, if applicable",
+        "type": "object",
+        "properties": {
+            "percentage": {
+                "title": "State of charge (%)",
+                "description": "Percentage indicator of the state of charge of the battery (100% = full, 0% = empty)",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+            },
+            "voltage": {
+                "title": "Battery voltage",
+                "description": "The voltage of the battery",
+                "type": "number"
+            }
+        },
+        "additionalProperties": false
+    },
+
     "channelId": {
         "title": "Channel ID",
         "description": "Identifier of a single channel of a single device on a UAV",
@@ -447,6 +471,9 @@
                 "description": "Timestamp that denotes when the status of the UAV was updated the last time",
                 "type": "string",
                 "format": "date-time"
+            },
+            "battery": {
+                "$ref": "definitions.json#/batteryInfo"
             },
             "error": {
                 "$ref": "definitions.json#/errorList"
