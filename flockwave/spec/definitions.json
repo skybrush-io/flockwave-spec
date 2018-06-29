@@ -238,7 +238,7 @@
         "title": "Purpose",
         "description": "Purpose of the connection",
         "type": "string",
-        "enum": ["debug", "dgpsStream", "time", "uavRadioLink", "other"]
+        "enum": ["debug", "dgps", "gps", "time", "uavRadioLink", "other"]
     },
 
     "connectionStatus": {
@@ -256,10 +256,10 @@
         "description": "Class of a device",
         "type": "string",
         "enum": [
-            "accelerometer", "altimeter", "battery", "camera", "cpu",
-            "cpuCore", "gps", "group", "gyroscope", "led", "magnetometer",
-            "microphone", "misc", "radio", "rc", "rotor", "sensor",
-            "speaker"
+            "accelerometer", "actuator", "altimeter", "battery", "camera",
+            "cpu", "cpuCore", "gps", "group", "gyroscope", "led",
+            "magnetometer", "microphone", "misc", "pyro", "radio", "rc",
+            "rotor", "sensor", "speaker"
         ],
         "default": "misc"
     },

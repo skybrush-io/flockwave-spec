@@ -11,6 +11,7 @@ Note that each party may decide whether it wants to send `SYS-PING` messages ove
 This request has no fields.
 
 **Response fields**
+
 Responses should not be sent with this type; use [`ACK-ACK`](#ack-ack-positive-acknowledgment) instead.
 
 **Example request**

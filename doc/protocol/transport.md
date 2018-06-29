@@ -15,4 +15,27 @@ Since UDP is a connectionless protocol, handling Flockwave notifications over UD
 
 ## WebSocket + Socket.io
 
+The Flockwave protocol can also be implemented on top of a WebSocket connection
+augmented with [Socket.io](https://socket.io/). In this scenario, the Flockwave
+server provides a lightweight HTTP web server that supports upgrading an HTTP
+connection targeting a designated URL and all its subpaths to a WebSocket
+connection. The WebSocket connection is then used to send Socket.io frames, and
+the actual Flockwave messages are sent to a designated Socket.io namespace
+(typically named `fw`). The Socket.io protocol takes care of falling back to
+long polling if WebSockets are not supported on the client.
+
+Code example for a Flockwave client implemented in JavaScript:
+
+```js
+const io = require('socket.io')
+const connection = io.connect('http://flockwave.collmot.com')
+
+connection.on('connect', () => {
+  console.log('Connected to server')
+})
+
+connection.on('fw', msg => {
+  console.log('Received message:', msg)
+})
+```
 

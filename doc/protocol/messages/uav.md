@@ -37,7 +37,29 @@ All the UAV IDs that were specified in the request MUST appear *either* in the `
 {
     "type": "UAV-INF",
     "status": {
-        "1": { TODO }
+        "1": {
+            "id": "1",
+            "algorithm": "flocking",
+            "position": {
+                "lat": 51.9976597,
+                "lon": -0.7406863,
+                "amsl": 93.765
+            },
+            "heading": 90,
+            "attitude": {
+                "roll": 0,
+                "pitch": 0,
+                "yaw": 90
+            },
+            "velocity": {
+                "north": 2.0,
+                "east": 2.0,
+                "down": -1.0
+            },
+            "timestamp": "2015-12-08T08:17:41.000Z",
+            "debug": "MEJBRENBRkU=",
+            "error": [42]
+        }
     },
     "failure": ["spam"],
     "reasons": {
@@ -172,7 +194,7 @@ A client send this request to the server to request some of the UAVs to return t
 
 The server responds with two lists: the first list contains the IDs of the UAVs where an unsupervised landing attempt was *started* (in the sense that the UAV has been notified that they should return to their home positions now), and the second list contains the IDs where such an attempt was not started. (Possible reasons for failure could be: invalid UAV ID, UAV does not know the concept of a home position and so on). The server MAY decide to include more detailed information about failed attempts in the response.
 
-Clients interested in whether the targeted UAVs have returned to their home positions should keep an eye on [`UAV-INF`](#uav-inf-basic-status-information) messages and watch the GPS coordiates of the UAVs.
+Clients interested in whether the targeted UAVs have returned to their home positions should keep an eye on [`UAV-INF`](#uav-inf-basic-status-information) messages and watch the GPS coordinates of the UAVs.
 
 **Request fields**
 
