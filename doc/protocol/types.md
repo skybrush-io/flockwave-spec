@@ -73,52 +73,39 @@ percentage | no | float | the state-of-charge of the battery, expressed as perce
 
 Enumeration type that describes the possible operations that may be performed on a channel of a device (real or virtual) on a UAV. See [UAV devices and channels](devices.md) for more information. Currently the following values are defined:
 
-`read`
-: Represents the act of reading the current value of the channel.
+**`read`**: Represents the act of reading the current value of the channel.
 
-`write`
-: Represents the act of writing a new value to the channel.
+**`write`**: Represents the act of writing a new value to the channel.
 
 ## `ChannelType`
 
 Enumeration type that describes the possible types of channels of a device (real or virtual) on a UAV. See [UAV devices and channels](devices.md) for more information. Currently the following values are defined:
 
-`audio`
-: A channel that provides a URL to an audio stream.
+**`audio`**: A channel that provides a URL to an audio stream.
 
-`boolean`
-: A channel that provides a single Boolean value
+**`boolean`**: A channel that provides a single Boolean value
 
-`bytes`
-: A channel that provides an array of raw bytes.
+**`bytes`**: A channel that provides an array of raw bytes.
 
-`color`
-: A channel that provides a color in 8-bit RGB, RGBA or RGBW format. The color is typically expressed as an array of three or four bytes, each byte ranging from 0 to 255.
+**`color`**: A channel that provides a color in 8-bit RGB, RGBA or RGBW format. The color is typically expressed as an array of three or four bytes, each byte ranging from 0 to 255.
 
-`duration`
-: A channel that provides the duration of a time window, expressed as the number of seconds elapsed since the start of the time window. Fractional seconds are allowed.
+**`duration`**: A channel that provides the duration of a time window, expressed as the number of seconds elapsed since the start of the time window. Fractional seconds are allowed.
 
-`number`
-: A channel that provides a single double-precision floating-point number.
+**`number`**: A channel that provides a single double-precision floating-point number.
 
-`object`
-: A channel that provides a complex JSON object.
+**`object`**: A channel that provides a complex JSON object.
 
-`string`
-: A channel that provides a UTF-8 encoded string.
+**`string`**: A channel that provides a UTF-8 encoded string.
 
-`time`
-: A channel that provides a time instant, expressed as the number of seconds elapsed since the UNIX epoch in UTC. Fractional seconds are allowed.
+**`time`**: A channel that provides a time instant, expressed as the number of seconds elapsed since the UNIX epoch in UTC. Fractional seconds are allowed.
 
-`video`
-: A channel that provides a URL to a video stream.
+**`video`**: A channel that provides a URL to a video stream.
 
 ## `ClockEpoch`
 
 A `ClockEpoch` object describes the epoch of a clock or timer that the Flockwave server manages. It is either a [datetime](#dates-and-times) string or one of the following string values:
 
-`unix`
-: The UNIX epoch, i.e. midnight on 1 Jan 1970 UTC.
+**`unix`**: The UNIX epoch, i.e. midnight on 1 Jan 1970 UTC.
 
 ## `ClockInfo`
 
@@ -179,12 +166,9 @@ receiver how the response should be interpreted.
 
 Currently the Flockwave protocol defines the following response types:
 
-`plain`
-:    Plain text response that should be formatted on the receiver side as is.
+**`plain`**: Plain text response that should be formatted on the receiver side as is.
 
-`markdown`
-:    Markdown-formatted text response that should be interpreted by a Markdown
-:    processor before it is displayed to the user.
+****`markdown`**: Markdown-formatted text response that should be interpreted by a Markdown**: processor before it is displayed to the user.
 
 Additional response types may be defined by the user as needed.
 
@@ -226,42 +210,31 @@ timestamp | no | [datetime](#dates-and-times) | time when the last packet was re
 
 Enumeration type that describes the purpose of a connection. Currently the following values are defined:
 
-`debug`
-: A connection that is meant for debugging purposes only.
+**`debug`**: A connection that is meant for debugging purposes only.
 
-`dgps`
-: A connection whose purpose is to receive DGPS correction packets from an external DGPS stream (e.g., an NTRIP data source or a serial link to a DGPS device).
+**`dgps`**: A connection whose purpose is to receive DGPS correction packets from an external DGPS stream (e.g., an NTRIP data source or a serial link to a DGPS device).
 
-`gps`
-: A connection that receives data from a GPS device.
+**`gps`**: A connection that receives data from a GPS device.
 
-`time`
-: A connection whose purpose is to connect to a service or device that provides time-related information. Examples are connections to an NTP server or a MIDI timecode provider.
+**`time`**: A connection whose purpose is to connect to a service or device that provides time-related information. Examples are connections to an NTP server or a MIDI timecode provider.
 
-`uavRadioLink`
-: A connection whose purpose is to receive status information from UAVs and send commands to them.
+**`uavRadioLink`**: A connection whose purpose is to receive status information from UAVs and send commands to them.
 
-`other`
-: A connection whose purpose does not fit into the above categories. It is advised to use a human-readable description for these connections.
+**`other`**: A connection whose purpose does not fit into the above categories. It is advised to use a human-readable description for these connections.
 
 ## `ConnectionStatus`
 
 Enumeration type that describes the possible states of a connection. A connection may be in exactly one of the following five states at any time:
 
-`disconnected`
-: The connection is not alive and no connection attempt is currently in progress.
+**`disconnected`**: The connection is not alive and no connection attempt is currently in progress.
 
-`connecting`
-: The connection is not alive yet, but a connection or reconnection attempt is currently in progress.
+**`connecting`**: The connection is not alive yet, but a connection or reconnection attempt is currently in progress.
 
-`connected`
-: The connection is alive.
+**`connected`**: The connection is alive.
 
-`disconnecting`
-: The connection is not alive any more, but it has not been properly shut down yet.
+**`disconnecting`**: The connection is not alive any more, but it has not been properly shut down yet.
 
-`unknown`
-: The status of the connection is unknown (typically because we have received no status information from the connection yet).
+**`unknown`**: The status of the connection is unknown (typically because we have received no status information from the connection yet).
 
 The value of a field of type `ConnectionStatus` is always a string with one of the five values above.
 
@@ -269,65 +242,45 @@ The value of a field of type `ConnectionStatus` is always a string with one of t
 
 Enumeration type that describes the possible classes (i.e. types) of devices in a device tree. Device classes may be used by user interfaces talking to a Flockwave server to provide some feedback to the user about the type of a device (e.g., it could show batteries with a different icon). Currently the following values are registered:
 
-`accelerometer`
-: The device is an accelerometer.
+**`accelerometer`**: The device is an accelerometer.
 
-`actuator`
-: The device is a generic actuator that cannot be categorised more precisely into any of the other classes.
+**`actuator`**: The device is a generic actuator that cannot be categorised more precisely into any of the other classes.
 
-`altimeter`
-: The device is an altimeter (e.g., pressure sensor, radar altimeter, sonic altimeter).
+**`altimeter`**: The device is an altimeter (e.g., pressure sensor, radar altimeter, sonic altimeter).
 
-`battery`
-: The device is a battery.
+**`battery`**: The device is a battery.
 
-`camera`
-: The device is a camera (consumer-grade, infrared, security camera or anything else).
+**`camera`**: The device is a camera (consumer-grade, infrared, security camera or anything else).
 
-`cpu`
-: The device is the CPU of a UAV.
+**`cpu`**: The device is the CPU of a UAV.
 
-`cpuCore`
-: The device is one particular CPU core of the CPU of a UAV.
+**`cpuCore`**: The device is one particular CPU core of the CPU of a UAV.
 
-`gps`
-: The device is a GPS receiver.
+**`gps`**: The device is a GPS receiver.
 
-`group`
-: The device represents a logical grouping of other devices. For instance, the rotors of a UAV may be grouped in a `rotor` group.
+**`group`**: The device represents a logical grouping of other devices. For instance, the rotors of a UAV may be grouped in a `rotor` group.
 
-`gyroscope`
-: The device is a gyroscope.
+**`gyroscope`**: The device is a gyroscope.
 
-`led`
-: The device is a single LED or a LED strip.
+**`led`**: The device is a single LED or a LED strip.
 
-`magnetometer`
-: The device is a magnetometer.
+**`magnetometer`**: The device is a magnetometer.
 
-`microphone`
-: The device is a microphone.
+**`microphone`**: The device is a microphone.
 
-`misc`
-: The device does not fall into any of the predefined device classes.
+**`misc`**: The device does not fall into any of the predefined device classes.
 
-`pyro`
-: The device is a pyrotechnic device (e.g., firework launcher board).
+**`pyro`**: The device is a pyrotechnic device (e.g., firework launcher board).
 
-`radio`
-: The device is a radio receiver or transmitter (e.g., an XBee radio).
+**`radio`**: The device is a radio receiver or transmitter (e.g., an XBee radio).
 
-`rc`
-: The device is an RC receiver.
+**`rc`**: The device is an RC receiver.
 
-`rotor`
-: The device is a rotor.
+**`rotor`**: The device is a rotor.
 
-`sensor`
-: The device is a generic sensor that cannot be categorised more precisely into any of the other classes.
+**`sensor`**: The device is a generic sensor that cannot be categorised more precisely into any of the other classes.
 
-`speaker`
-: The device is a speaker.
+**`speaker`**: The device is a speaker.
 
 ## `DeviceTreeNode`
 
@@ -348,17 +301,13 @@ unit | no | string | The unit in which the value of the channel is represented. 
 
 Enumeration type that describes the type of a device tree node (see [`DeviceTreeNode`](#devicetreenode). Currently the following values are defined:
 
-`root`
-: This is the root node of the device tree. The node has no parent by definition. The children of the root node must be nodes of type `uav`.
+**`root`**: This is the root node of the device tree. The node has no parent by definition. The children of the root node must be nodes of type `uav`.
 
-`uav`
-: This is a tree node that represents a UAV in the flock. The parent of a `uav` node is always a `root` node. The children of the UAV nodes must be nodes of type `device`.
+**`uav`**: This is a tree node that represents a UAV in the flock. The parent of a `uav` node is always a `root` node. The children of the UAV nodes must be nodes of type `device`.
 
-`device`
-: This is a tree node that represents a device of a UAV, or a sub-device of another device. The parent of a `device` node is either a `uav` node or another `device` node.
+**`device`**: This is a tree node that represents a device of a UAV, or a sub-device of another device. The parent of a `device` node is either a `uav` node or another `device` node.
 
-`channel`
-: This is a tree node that represents a channel of a device. The parent of a `channel` node is always a `device` node.
+**`channel`**: This is a tree node that represents a channel of a device. The parent of a `channel` node is always a `device` node.
 
 ## `ErrorList`
 

@@ -33,21 +33,15 @@ Each message has a fixed structure that contains the version of the protocol, th
 
 This is called the *envelope* of a message. The parts of the envelope are as follows:
 
-$fw.version (string, required)
-:    The major and minor version number of the Flockwave protocol. Flockwave messages can be recognized by the presence of this field.
+**$fw.version (string, required)**: The major and minor version number of the Flockwave protocol. Flockwave messages can be recognized by the presence of this field.
 
-id (string, required)
-:    The identifier of the message. The above example uses a UUID identifier, but the protocol does not prescribe any particular identifier format.
+**id (string, required)**: The identifier of the message. The above example uses a UUID identifier, but the protocol does not prescribe any particular identifier format.
 
-correlationId (string, optional)
-:    The identifier of the original request to which this message responds. The presence of this field indicates that the message is a response; otherwise it is a request or a notification.
+**correlationId (string, optional)**: The identifier of the original request to which this message responds. The presence of this field indicates that the message is a response; otherwise it is a request or a notification.
 
-body (object, optional)
-:    The body of the message. When the body is present, the message MUST NOT contain an `error` part.
+**body (object, optional)**: The body of the message. When the body is present, the message MUST NOT contain an `error` part.
 
-error (object, optional)
-:    The error condition conveyed in the message. When the error is present, the message MUST NOT contain a `body` part.
-:    Errors consist of an error code and a human-readable error message. At least one of the error code or the error message must be present.
+****error (object, optional)**: The error condition conveyed in the message. When the error is present, the message MUST NOT contain a `body` part.**: Errors consist of an error code and a human-readable error message. At least one of the error code or the error message must be present.
 
 Message objects MAY contain other top-level keys to convey additional metadata. Top-level keys starting with `$` are reserved for future extensions of this protocol.
 

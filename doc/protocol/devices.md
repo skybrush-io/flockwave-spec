@@ -55,32 +55,23 @@ can identify the following devices, sub-devices and channels:
 The example above contains almost all of the channel types and configurations
 supported by the Flockwave protocol:
 
-Boolean channels
-: Boolean channels provide a single binary value (zero or one, yes or no, true or false). Typical use-case: turning a certain component on and off, sending a RESET signal etc.
+**Boolean channels**: Boolean channels provide a single binary value (zero or one, yes or no, true or false). Typical use-case: turning a certain component on and off, sending a RESET signal etc.
 
-Numeric channels
-: Numeric channels provide a single floating-point value. Due to the usage of JSON as the transport protocol, numeric values provided by the channel must be representable as an IEEE-754 double-precision floating point number. Typical use-case: sending or retrieving measurement data.
+**Numeric channels**: Numeric channels provide a single floating-point value. Due to the usage of JSON as the transport protocol, numeric values provided by the channel must be representable as an IEEE-754 double-precision floating point number. Typical use-case: sending or retrieving measurement data.
 
-String channels
-: String channels provide a character string encoded in UTF-8. Typical use-case: sending version strings, manufacturer IDs, or human-readable debug information.
+**String channels**: String channels provide a character string encoded in UTF-8. Typical use-case: sending version strings, manufacturer IDs, or human-readable debug information.
 
-Byte array channels
-: Byte array channels provide a sequence of raw bytes. Typical use-case: sending machine-readable debug information, raw measurements that are too complex for a single numeric channel, or serialized objects using a non-JSON format.
+**Byte array channels**: Byte array channels provide a sequence of raw bytes. Typical use-case: sending machine-readable debug information, raw measurements that are too complex for a single numeric channel, or serialized objects using a non-JSON format.
 
-Color channels
-: Color channels provide an array of three or four bytes, encoding a color in 8-bit RGB, RGBA or RGBW format. Typical use-case: color of a LED strip.
+**Color channels**: Color channels provide an array of three or four bytes, encoding a color in 8-bit RGB, RGBA or RGBW format. Typical use-case: color of a LED strip.
 
-Time channels
-: Time channels provide a time instant, expressed as the number of seconds elapsed since the UNIX epoch in UTC. Typical use-case: reporting the time of certain important events (e.g., when a UAV was turned on, when a packet of a certain type was received the last time and so on).
+**Time channels**: Time channels provide a time instant, expressed as the number of seconds elapsed since the UNIX epoch in UTC. Typical use-case: reporting the time of certain important events (e.g., when a UAV was turned on, when a packet of a certain type was received the last time and so on).
 
-Duration channels
-: Duration channels provide the length of a time interval, expressed as the number of seconds elapsed since the beginning of the time interval. Typical use-case: uptime, flight duration, time left until a certain event and so on.
+**Duration channels**: Duration channels provide the length of a time interval, expressed as the number of seconds elapsed since the beginning of the time interval. Typical use-case: uptime, flight duration, time left until a certain event and so on.
 
-Object channels
-: Object channels provide complex structured or unstructured information in the form of JSON-encoded objects.
+**Object channels**: Object channels provide complex structured or unstructured information in the form of JSON-encoded objects.
 
-Audio and video channels
-: Audio and video channels provide real-time audio or video data. In practice, reading an audio or video channel typically yields a URL; the client wishing to read the actual audio or video data must then connect to this URL separately to obtain the audio or video stream.
+**Audio and video channels**: Audio and video channels provide real-time audio or video data. In practice, reading an audio or video channel typically yields a URL; the client wishing to read the actual audio or video data must then connect to this URL separately to obtain the audio or video stream.
 
 Channels may be *read only*, *write only* or *bidirectional* (i.e. readable and writable).
 

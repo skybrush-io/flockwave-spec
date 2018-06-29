@@ -2,26 +2,19 @@
 
 Error codes are typically small non-negative integers, divided into seven groups as follows:
 
-No error (code 0)
-:   Code zero is reserved for the "no error" condition. Since [UAVStatusInfo](#uavstatusinfo) structures contain a *list* of error codes, this error code is typically not used because it is enough to send an empty list to declare that there is no error.
+**No error (code 0)**: Code zero is reserved for the "no error" condition. Since [UAVStatusInfo](#uavstatusinfo) structures contain a *list* of error codes, this error code is typically not used because it is enough to send an empty list to declare that there is no error.
 
-Informational messages (codes 1-63)
-:   These messages contain information that the UAV operators should be aware of, but that do not represent danger to the normal operation of the UAV. For instance, a UAV may use this code range to indicate that coordinate logging has stopped due to low disk space.
+**Informational messages (codes 1-63)**: These messages contain information that the UAV operators should be aware of, but that do not represent danger to the normal operation of the UAV. For instance, a UAV may use this code range to indicate that coordinate logging has stopped due to low disk space.
 
-Warnings (codes 64-127)
-:   These codes should be used for conditions that do not present *immediate* danger to the normal operation of the UAV but that will become a problem in the near future if left unhandled. For instance, low battery warnings belong to this category.
+**Warnings (codes 64-127)**: These codes should be used for conditions that do not present *immediate* danger to the normal operation of the UAV but that will become a problem in the near future if left unhandled. For instance, low battery warnings belong to this category.
 
-Error conditions (codes 128-191)
-:   These codes should be used in cases when the UAV has detected a problem that prevents it from continuing normal operation, but the situation is not severe enough to warrant an immediate landing attempt. UAVs typically switch to an automatic "return to home" or "loitering" mode when they detect such a condition.
+**Error conditions (codes 128-191)**: These codes should be used in cases when the UAV has detected a problem that prevents it from continuing normal operation, but the situation is not severe enough to warrant an immediate landing attempt. UAVs typically switch to an automatic "return to home" or "loitering" mode when they detect such a condition.
 
-Fatal errors (codes 192-255)
-:   These codes should be used when the UAV has detected a severe malfunction that triggers an immediate landing attempt (if such an attempt is feasible) or an uncontrolled shutdown in the worst case.
+**Fatal errors (codes 192-255)**: These codes should be used when the UAV has detected a severe malfunction that triggers an immediate landing attempt (if such an attempt is feasible) or an uncontrolled shutdown in the worst case.
 
-UAV-specific error codes (codes 256-32767)
-:   These codes will be used in the future for custom, UAV-specific error conditions should such error codes become necessary. The range will be divided into blocks of 256 error codes, each of which can be allocated for a specific UAV type that future versions of this protocol will support.
+**UAV-specific error codes (codes 256-32767)**: These codes will be used in the future for custom, UAV-specific error conditions should such error codes become necessary. The range will be divided into blocks of 256 error codes, each of which can be allocated for a specific UAV type that future versions of this protocol will support.
 
-User-defined error codes (codes 32768 and above)
-:   Custom, unofficial extensions of the Flockwave protocol are free to use this range for any purpose.
+**User-defined error codes (codes 32768 and above)**: Custom, unofficial extensions of the Flockwave protocol are free to use this range for any purpose.
 
 Note that for error codes less than 256, `(errorCode & 0xFF) >> 6` will simply return the severity class of the error code (class 0: informational messages, class 1: warnings, class 2: errors, class 3: fatal errors). Ideally, this property should be kept also for codes above 256 whenever possible to make it easier for Flockwave GUI clients to derive the severity of an error message even if the actual semantics of the error message is not known to the GUI client.
 

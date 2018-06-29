@@ -2,6 +2,7 @@
 *.pyc
 *.pyo
 build/doc/
+_book/
 dist/
 .python-version
 .tags

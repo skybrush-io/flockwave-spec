@@ -1,14 +1,11 @@
-# Flockwave protocol description
+# Summary
 
-## Table of contents
-
-- [Synopsis and conventions](synopsis.md)
 - [Definitions](definitions.md)
 - [General protocol description](general.md)
 - [UAV devices and channels](devices.md)
 - [Data types used in messages](types.md)
 - [Error codes](errors.md)
-- Known message types
+- [Known message types](messages/README.md)
     - [ACK -- Acknowledgment messages](messages/ack.md)
     - [CLK -- Clock and timer-related messages](messages/clk.md)
     - [CMD -- Direct command execution on UAVs](messages/cmd.md)
@@ -17,5 +14,3 @@
     - [SYS -- System information](messages/sys.md)
     - [UAV -- UAV-related messages](messages/uav.md)
 - [Transport layer](transport.md)
-- [FAQ](faq.md)
-
