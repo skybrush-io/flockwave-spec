@@ -1,6 +1,6 @@
-# `CMD` --- Direct command execution on UAVs
+# `CMD` — Direct command execution on UAVs
 
-## `CMD-INF` --- Retrieve execution status of a command
+## `CMD-INF` — Retrieve execution status of a command
 
 A client sends this request to the server to retrieve the execution status of
 one or more command requests dispatched earlier.
@@ -67,7 +67,7 @@ All the receipts that were specified in the request MUST appear *either* as keys
 }
 ```
 
-## `CMD-REQ` --- Send a command execution request to a UAV
+## `CMD-REQ` — Send a command execution request to a UAV
 
 A client sends this request to the server to ask the server to forward
 a command to one or more UAVs. The interpretation of the command string depends
@@ -140,7 +140,7 @@ All the connection IDs that were specified in the request MUST appear *either* i
 }
 ```
 
-## `CMD-RESP` --- Response to a command request
+## `CMD-RESP` — Response to a command request
 
 A server sends a notification of this type to a client when an earlier command
 execution request sent by the client has been completed by one of the UAVs the
@@ -197,7 +197,7 @@ Name | Required? | Type | Description
 }
 ```
 
-## `CMD-TIMEOUT` --- Command request timeout notification
+## `CMD-TIMEOUT` — Command request timeout notification
 
 A server sends a notification of this type to a client when an earlier command execution request sent by the client has timed out (i.e. the UAV the command was targeted to failed to return a response in time).
 

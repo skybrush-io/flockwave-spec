@@ -1,6 +1,6 @@
-# `CONN` --- Connection-related messages
+# `CONN` — Connection-related messages
 
-## `CONN-INF` --- Basic status information of one or more connections
+## `CONN-INF` — Basic status information of one or more connections
 
 A client sends this request to the server to obtain basic status information about one or more connections (e.g., radio links, DGPS streams) currently managed by the server.
 
@@ -46,7 +46,7 @@ All the connection IDs that were specified in the request MUST appear *either* i
         },
         "dgps": {
             "id": "dgps",
-            "purpose": "dgpsStream",
+            "purpose": "dgps",
             "description": "DGPS data from BUTE0",
             "status": "connecting"
         }
@@ -58,7 +58,7 @@ All the connection IDs that were specified in the request MUST appear *either* i
 }
 ```
 
-## `CONN-LIST` --- List of all the connections managed by the server
+## `CONN-LIST` — List of all the connections managed by the server
 
 A client sends this request to the server to obtain the list of all the connections (e.g., radio links, DGPS streams) currently managed by the server. The list of connections will *not* include connections to Flockwave clients.
 
@@ -86,5 +86,3 @@ Name | Required? | Type | Description
     "ids": ["dgps", "xbee"]
 }
 ```
-
-

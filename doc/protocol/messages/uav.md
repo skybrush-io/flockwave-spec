@@ -1,6 +1,122 @@
-# `UAV` --- UAV-related messages
+# `UAV` — UAV-related messages
 
-## `UAV-INF` --- Basic status information of one or more UAVs
+## `UAV-FLY` — Fly to a specific GPS coordinate
+
+A client sends this request to the server to ask a UAV to fly to a specific
+GPS coordinate and altitude. Note that it is possible to target multiple UAVs
+with the same command, in which case they will be asked to fly to the same
+coordinate. It is the responsibility of the software running on the UAVs to
+avoid collisions in such cases, so make sure that the UAVs can handle this.
+
+The server responds with two lists: the first list contains the IDs of the UAVs
+where the command was *accepted* (which does not mean that the UAVs have
+reached the destination, only that the UAVs have started processing the command
+and act accordingly), and the second list contains the IDs where such an
+attempt was not started. (Possible reasons for failure could be: invalid UAV
+ID, UAV does not support flying to a specific waypoint, waypoint is outside
+the designated flying zone and so on). The server MAY decide to include more detailed information about failed attempts in the response.
+
+The target is specified as a [GPSCoordinate](../types.md#gpscoordinate) object.
+This object MUST contain a latitude and a longitude, but MAY omit both
+altitudes; in this case, the UAV SHOULD attempt flying to the target at the
+same altitude where it currently is.
+
+Clients interested in whether the UAVs have reached their positions should keep
+an eye on [`UAV-INF`](#uav-inf-basic-status-information) messages.
+
+**Request fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`ids` | yes | list of strings | The list of UAV IDs to target with this message
+`target` | yes | [GPSCoordinate](../types.md#gpscoordinate) | The GPS coordinate to fly to
+
+**Response fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`success` | no | list of strings | The list of UAV IDs to which the request was sent
+`failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
+`reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
+
+All the UAV IDs that were specified in the request MUST appear *either* in the `success` list or in the `failure` list.
+
+**Example request**
+
+```js
+{
+    "type": "UAV-FLY",
+    "ids": ["1", "17", "31", "spam"],
+    "target": {
+      "lat": 51.9976597,
+      "lon": -0.7406863,
+      "amsl": 93.765
+    }
+}
+```
+
+**Example response**
+
+```js
+{
+    "type": "UAV-FLY",
+    "success": ["1", "17"],
+    "failure": ["31", "spam"],
+    "reasons": {
+        "31": "UAV does not support flying to waypoints.",
+        "spam": "No such UAV."
+    }
+}
+```
+
+## `UAV-HALT` — Initiate immediate shutdown
+
+A client sends this request to the server to initiate an immediate shutdown of an UAV in case of an emergency. Note that the UAV will *not* attempt to land - typically it will stop the rotors even in mid-air. Use this message only in emergencies.
+
+The server responds with two lists: the first list contains the IDs of the UAVs where a shutdown attempt was *started* (in the sense that the UAV has been notified that they should land now), and the second list contains the IDs where such an attempt was not started. (Possible reasons for failure could be: invalid UAV ID, UAV does not support forced shutdown and so on). The server MAY decide to include more detailed information about failed attempts in the response.
+
+Clients interested in whether the shutdown attempts have succeeded should keep an eye on [`UAV-INF`](#uav-inf-basic-status-information) messages and watch the status flags of the UAVs.
+
+**Request fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`ids` | yes | list of strings | The list of UAV IDs to target with this message
+
+**Response fields**
+
+Name | Required? | Type | Description
+---- | --------- | ---- | -----------
+`success` | no | list of strings | The list of UAV IDs to which the request was sent
+`failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
+`reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
+
+All the UAV IDs that were specified in the request MUST appear *either* in the `success` list or in the `failure` list.
+
+**Example request**
+
+```js
+{
+    "type": "UAV-HALT",
+    "ids": ["1", "17", "31", "spam"]
+}
+```
+
+**Example response**
+
+```js
+{
+    "type": "UAV-HALT",
+    "success": ["1", "17"],
+    "failure": ["31", "spam"],
+    "reasons": {
+        "31": "UAV does not support forced shutdown.",
+        "spam": "No such UAV."
+    }
+}
+```
+
+## `UAV-INF` — Basic status information of one or more UAVs
 
 A client sends this request to the server to obtain basic status information about one or more UAVs currently known to the server.
 
@@ -68,54 +184,7 @@ All the UAV IDs that were specified in the request MUST appear *either* in the `
 }
 ```
 
-## `UAV-HALT` --- Initiate immediate shutdown
-
-A client send this request to the server to initiate an immediate shutdown of an UAV in case of an emergency. Note that the UAV will *not* attempt to land - typically it will stop the rotors even in mid-air. Use this message only in emergencies.
-
-The server responds with two lists: the first list contains the IDs of the UAVs where a shutdown attempt was *started* (in the sense that the UAV has been notified that they should land now), and the second list contains the IDs where such an attempt was not started. (Possible reasons for failure could be: invalid UAV ID, UAV does not support forced shutdown and so on). The server MAY decide to include more detailed information about failed attempts in the response.
-
-Clients interested in whether the shutdown attempts have succeeded should keep an eye on [`UAV-INF`](#uav-inf-basic-status-information) messages and watch the status flags of the UAVs.
-
-**Request fields**
-
-Name | Required? | Type | Description
----- | --------- | ---- | -----------
-`ids` | yes | list of strings | The list of UAV IDs to target with this message
-
-**Response fields**
-
-Name | Required? | Type | Description
----- | --------- | ---- | -----------
-`success` | no | list of strings | The list of UAV IDs to which the request was sent
-`failure` | no | list of strings | The list of UAV IDs to which the request was *not* sent
-`reasons` | no | object | Object mapping UAV IDs to explanations about why the request failed for these UAVs.
-
-All the UAV IDs that were specified in the request MUST appear *either* in the `success` list or in the `failure` list.
-
-**Example request**
-
-```js
-{
-    "type": "UAV-HALT",
-    "ids": ["1", "17", "31", "spam"]
-}
-```
-
-**Example response**
-
-```js
-{
-    "type": "UAV-HALT",
-    "success": ["1", "17"],
-    "failure": ["31", "spam"],
-    "reasons": {
-        "31": "UAV does not support forced shutdown.",
-        "spam": "No such UAV."
-    }
-}
-```
-
-## `UAV-LAND` --- Initiate unsupervised landing
+## `UAV-LAND` — Initiate unsupervised landing
 
 A client send this request to the server to initiate unsupervised landing on one or more UAVs. The server responds with two lists: the first list contains the IDs of the UAVs where an unsupervised landing attempt was *started* (in the sense that the UAV has been notified that they should land now), and the second list contains the IDs where such an attempt was not started. (Possible reasons for failure could be: invalid UAV ID, UAV does not support unsupervised landing and so on). The server MAY decide to include more detailed information about failed attempts in the response.
 
@@ -157,7 +226,7 @@ Name | Required? | Type | Description
 }
 ```
 
-## `UAV-LIST` --- List of all the UAVs known by the server
+## `UAV-LIST` — List of all the UAVs known by the server
 
 A client sends this request to the server to request the list of all UAVs currently known by the server. The semantics of "knowing" a UAV is left up to the server implementation and configuration; typically, the server will return an UAV ID in the response if it has received a status message from the given UAV recently, typically in the last few minutes.
 
@@ -188,7 +257,7 @@ Name | Required? | Type | Description
 }
 ```
 
-## `UAV-RTH` --- Initiate return to home position
+## `UAV-RTH` — Initiate return to home position
 
 A client send this request to the server to request some of the UAVs to return to their home positions.
 
@@ -233,7 +302,7 @@ Name | Required? | Type | Description
 }
 ```
 
-## `UAV-TAKEOFF` --- Initiate unsupervised take-off
+## `UAV-TAKEOFF` — Initiate unsupervised take-off
 
 A client send this request to the server to initiate unsupervised take-off on one or more UAVs. The server responds with two lists: the first list contains the IDs of the UAVs where an unsupervised take-off was *started* (in the sense that the UAV has been notified that they should take off now), and the second list contains the IDs where such an attempt was not started. (Possible reasons for failure could be: invalid UAV ID, UAV does not support unsupervised take-off and so on). The server MAY decide to include more detailed information about failed attempts in the response.
 
@@ -275,5 +344,3 @@ Name | Required? | Type | Description
     }
 }
 ```
-
-

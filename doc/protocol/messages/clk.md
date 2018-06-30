@@ -1,4 +1,4 @@
-# `CLK` --- Clock and timer-related messages
+# `CLK` — Clock and timer-related messages
 
 Flockwave servers may manage a set of clocks (timers); these timers may be displayed on the user interface in a Flockwave client or may be broadcast to UAVs in the range of the Flockwave server for synchronization purposes.
 
@@ -12,7 +12,7 @@ Clocks are identified by unique string identifiers (just like UAVs or connection
 
 Any other clock ID not listed explicitly above is free to be used for any purpose.
 
-## `CLK-INF` --- Retrieve status of a timer
+## `CLK-INF` — Retrieve status of a timer
 
 A client sends this request to the server to retrieve the status of one or more clocks or timers managed by the server.
 
@@ -28,7 +28,7 @@ Name | Required? | Type | Description
 
 Name | Required? | Type | Description
 ---- | --------- | ---- | -----------
-`status` | no | object | Object mapping clock IDs to the corresponding status information. The structure of this object is described by the [`ClockInfo`](#clockinfo) complex type.
+`status` | no | object | Object mapping clock IDs to the corresponding status information. The structure of this object is described by the [`ClockInfo`](../types.md#clockinfo) complex type.
 `failure` | no | list of strings | List containing the clock IDs for which the status information could not have been retrieved.
 `reasons` | no | object | Object mapping clock IDs to reasons why the corresponding status information could not have been retrieved.
 
@@ -71,7 +71,7 @@ All the clock IDs that were specified in the request MUST appear *either* as key
 }
 ```
 
-## `CLK-LIST` --- List of all the clocks and timers managed by the server
+## `CLK-LIST` — List of all the clocks and timers managed by the server
 
 A client sends this request to the server to obtain the list of all the clocks and timers currently managed by the server.
 
@@ -99,5 +99,3 @@ Name | Required? | Type | Description
     "ids": ["gps", "system", "mtc"]
 }
 ```
-
-

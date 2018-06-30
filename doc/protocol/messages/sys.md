@@ -1,6 +1,6 @@
-# `SYS` --- System information
+# `SYS` — System information
 
-## `SYS-PING` --- Check whether a connection is alive
+## `SYS-PING` — Check whether a connection is alive
 
 Either party in the connection may send a `SYS-PING` message to the other party to test whether the connection is still alive. Parties receiving a `SYS-PING` message are expected to respond with an [`ACK-ACK`](ack.md#ack-ack-positive-acknowledgment) message as soon as it is practical to do so.
 
@@ -21,7 +21,7 @@ Responses should not be sent with this type; use [`ACK-ACK`](#ack-ack-positive-a
 }
 ```
 
-## `SYS-VER` --- Version number of the server
+## `SYS-VER` — Version number of the server
 
 A `SYS-VER` request retrieves the version number of the server.
 

@@ -56,6 +56,9 @@
             "$ref": "request_SYS-VER.json#/"
         },
         {
+            "$ref": "request_UAV-FLY.json#/"
+        },
+        {
             "$ref": "request_UAV-HALT.json#/"
         },
         {
@@ -118,6 +121,9 @@
         },
         {
             "$ref": "response_SYS-VER.json#/"
+        },
+        {
+            "$ref": "response_UAV-FLY.json#/"
         },
         {
             "$ref": "response_UAV-HALT.json#/"

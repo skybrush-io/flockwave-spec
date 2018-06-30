@@ -1,4 +1,4 @@
-# Flockwave
+# Introduction
 
 **Flockwave** is a [JSON][1]-based communication protocol in [CollMot Robotics][2]'s distributed UAV flock system that allows multiple ground control consoles (clients) and tailor-made third-party applications to monitor and control an airborne flock of UAVs via a central ground station (server).
 

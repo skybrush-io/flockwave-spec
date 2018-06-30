@@ -8,7 +8,7 @@ The **Flockwave** protocol is concerned with the communication between a *Flockw
 
 * **Responses** are sent from the server to a client in response to an earlier request. Responses MUST have a unique identifier as well. Even though response IDs are not used in further messages, the IDs can be used by clients to filter duplicate messages if the transport layer does not ensure that each message is delivered exactly once. As stated above, the identifier of the original request MUST also be included in the response.
 
-*  **Notifications** are sent from the server to a client to inform the client about a state change in the server that might be of potential interest to the client. Notifications MUST also have a unique identifier to allow clients to filter duplicate notifications. Responses MUST NOT refer to the identifiers of notifications, and in general the server SHOULD NOT expect a response to a notification.
+* **Notifications** are sent from the server to a client to inform the client about a state change in the server that might be of potential interest to the client. Notifications MUST also have a unique identifier to allow clients to filter duplicate notifications. Responses MUST NOT refer to the identifiers of notifications, and in general the server SHOULD NOT expect a response to a notification.
 
 [1]: http://json.org/
 
@@ -41,7 +41,9 @@ This is called the *envelope* of a message. The parts of the envelope are as fol
 
 **body (object, optional)**: The body of the message. When the body is present, the message MUST NOT contain an `error` part.
 
-****error (object, optional)**: The error condition conveyed in the message. When the error is present, the message MUST NOT contain a `body` part.**: Errors consist of an error code and a human-readable error message. At least one of the error code or the error message must be present.
+**error (object, optional)**: The error condition conveyed in the message. When the error is present, the message MUST NOT contain a `body` part.
+
+Errors consist of an error code and a human-readable error message. At least one of the error code or the error message must be present.
 
 Message objects MAY contain other top-level keys to convey additional metadata. Top-level keys starting with `$` are reserved for future extensions of this protocol.
 
@@ -78,4 +80,3 @@ A typical response from the server to the above message will look like this:
 For sake of clarity, the message envelope will be omitted in most examples throughout the rest of the document, and only the body of the message will be shown.
 
 [6]: https://www.u-blox.com/sites/default/files/products/documents/u-blox6_ReceiverDescrProtSpec_%28GPS.G6-SW-10018%29_Public.pdf
-

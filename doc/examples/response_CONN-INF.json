@@ -10,7 +10,7 @@
         },
         "dgps": {
             "id": "dgps",
-            "purpose": "dgpsStream",
+            "purpose": "dgps",
             "description": "DGPS data from BUTE0",
             "status": "connecting"
         }

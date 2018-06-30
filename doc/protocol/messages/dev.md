@@ -1,6 +1,6 @@
-# `DEV` --- Device and channel related messages
+# `DEV` — Device and channel related messages
 
-## `DEV-INF` --- Retrieve the current value of a channel or device path
+## `DEV-INF` — Retrieve the current value of a channel or device path
 
 A client sends this request to the server to retrieve the current value of a channel or the current values of all channels that are in a subtree of a device node in the device tree. The server will respond with an appropriately formatted JSON object that is structured in exactly the same way as the part of the matched device tree that the client is interested in. For instance, if the client requests the current value of a device node that has four channels with names `ch1`, `ch2`, `ch3` and `ch4`, then the response object will also have four keys with names `ch1`, `ch2`, `ch3` and `ch4`.
 
@@ -49,7 +49,7 @@ All the device tree paths that were specified in the request MUST appear *either
 }
 ```
 
-## `DEV-LIST` --- List of devices and channels
+## `DEV-LIST` — List of devices and channels
 
 A client sends this request to the server to retrieve the list (well, more precisely, the *tree*) of devices and channels associated to one or more UAVs.
 
@@ -128,7 +128,7 @@ All the UAV IDs that were specified in the request MUST appear *either* in the `
 }
 ```
 
-## `DEV-LISTSUB` --- List device tree subscriptions
+## `DEV-LISTSUB` — List device tree subscriptions
 
 A client sends this request to the server to retrieve the list of device tree paths that the client is subscribed to.
 
@@ -171,7 +171,7 @@ Name | Required? | Type | Description
 }
 ```
 
-## `DEV-SUB` --- Subscribe to a part of a device tree
+## `DEV-SUB` — Subscribe to a part of a device tree
 
 A client sends this request to the server to subscribe to changes in the values of channels in a given part of the device tree of a given UAV.
 
@@ -216,7 +216,7 @@ Name | Required? | Type | Description
 }
 ```
 
-## `DEV-UNSUB` --- Unsubscribe from a part of a device tree
+## `DEV-UNSUB` — Unsubscribe from a part of a device tree
 
 A client sends this request to the server to stop receiving notifications changes in the values of channels in a given part of the device tree of a given UAV.
 

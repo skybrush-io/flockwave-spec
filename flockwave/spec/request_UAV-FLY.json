@@ -1,0 +1,21 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["UAV-FLY"]
+		},
+		"ids": {
+			"$ref": "definitions.json#/uavIdList"
+		},
+		"target": {
+			"$ref": "definitions.json#/gpsCoordinate"
+		}
+	},
+	"required": [
+		"type", "ids", "target"
+	],
+	"additionalProperties": false
+}
