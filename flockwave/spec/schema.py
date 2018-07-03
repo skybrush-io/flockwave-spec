@@ -121,7 +121,6 @@ def ref_resolver(uri):
         path = uri[len(FLOCKWAVE_SPEC_PREFIX):]
         if path.startswith("/"):
             path = path[1:]
-        stream = resource_stream(SCHEMA_PACKAGE, path)
-        return json.load(stream)
+        return _get_json_object_from_resource(path)
     else:
         raise NotImplementedError("remote URI lookups are disallowed")
