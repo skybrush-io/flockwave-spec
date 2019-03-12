@@ -1,0 +1,6 @@
+name: flockwave-spec
+title: Flockwave
+version: 'latest'
+nav:
+  - modules/ROOT/nav.adoc
+

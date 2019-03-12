@@ -1,0 +1,629 @@
+== Data types used in messages
+
+This section describes the complex data types and structures that are
+used in Flockwave messages. These data types will be referenced later
+from the *Known message types* section.
+
+=== Dates and times
+
+image:http://imgs.xkcd.com/comics/iso_8601.png[The preferred date and
+time format of Flockwave]
+
+Dates, times and durations MUST always be expressed in UTC using an
+appropriate http://www.iso.org/iso/home/standards/iso8601.htm[ISO 8601]
+format (see also https://tools.ietf.org/html/rfc3339[RFC 3339],
+especially section 5.6 if you don’t like paywalls). Unless stated
+otherwise, the following formats should be used:
+
+* Dates should be expressed as _YYYY_-_MM_-_DD_ (ISO 8601 extended
+format).
+* Times should be expressed as __HH__:__mm__:__ss__.__sss__ (ISO 8601 extended
+format). The millisecond part may be omitted if not relevant.
+* Dates and times should be expressed as the date, followed by a literal
+`T`, followed by the time, followed by `Z`, where the `T` is the
+standard ISO 8601 separator between dates and times, and `Z` is the ISO
+8601 marker for UTC (Zulu time).
+
+=== Angles
+
+Angles are always expressed in degrees because radians are for
+mathematicians. Depending on the context, angles may either be expressed
+in the half-open interval [0, 360), or in the half-open interval [-180,
+180) or [-90, 90). For instance, latitudes, longitudes, roll and pitch
+are naturally expressed in an interval centered around zero, while
+heading and yaw information is typically presented as a non-negative
+number. When in doubt, look at the formal JSON schema specification for
+the allowed range of an angle.
+
+NOTE: Even though it is common in aviation to indicate 360 degrees
+instead of zero degree, we always transmit zero degree instead of 360
+degrees in messages because it comes naturally from the way computers
+handle modulo arithmetics. The user interface may still opt to present
+zero degree as 360 degrees if the user prefers that.
+
+=== Byte arrays
+
+The JSON format does not support the transmission of raw byte arrays
+directly since the JSON string type is a sequence of Unicode characters
+and not a sequence of raw bytes. When a raw byte array has to be
+transmitted in JSON, the typical solution is to send a base64-encoded
+representation as a string (see
+https://tools.ietf.org/html/rfc4648[RFC4648]). This representation is
+approximately 33% longer than the corresponding raw byte array, but is
+still much shorter than the representation of the byte array as a JSON
+array of integers.
+
+=== `Attitude`
+
+An `Attitude` object describes the orientation of a UAV using the
+standard roll, pitch and yaw angles. See the section about
+<<_angles,angles>> for more information about how the angles are
+expressed.
+
+*Fields*
+
+[cols=",,,",options="header",]
+|===
+|Name |Required? |Type |Description
+|roll |yes |<<_angles,angle>> |the roll angle in degrees, in the range
+[-90, 90)
+
+|pitch |yes |<<_angles,angle>> |the pitch angle in degrees, in the
+range [-90, 90)
+
+|yaw |yes |<<_angles,angle>> |the yaw angle in degrees, in the range
+[0, 360)
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "roll": 0,
+    "pitch": 0,
+    "yaw": 90
+}
+----
+
+=== `BatteryInfo`
+
+A `BatteryInfo` object holds information about the state of an on-board
+battery on a UAV.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|voltage |no |float |the battery voltage in volts
+
+|percentage |no |float |the state-of-charge of the battery, expressed as
+percentages in the range [0, 100]
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "voltage": 12.4,
+    "percentage": 100
+}
+----
+
+=== `ChannelOperation`
+
+Enumeration type that describes the possible operations that may be
+performed on a channel of a device (real or virtual) on a UAV. See
+xref:devices.adoc[UAV devices and channels] for more information.
+Currently the following values are defined:
+
+`read`:: Represents the act of reading the current value of the
+channel.
+
+`write`:: Represents the act of writing a new value to the channel.
+
+=== `ChannelType`
+
+Enumeration type that describes the possible types of channels of a
+device (real or virtual) on a UAV. See xref:devices.adoc[UAV devices and
+channels] for more information. Currently the following values are
+defined:
+
+`audio`:: A channel that provides a URL to an audio stream.
+
+`boolean`:: A channel that provides a single Boolean value
+
+`bytes`:: A channel that provides an array of raw bytes.
+
+`color`:: A channel that provides a color in 8-bit RGB, RGBA or RGBW
+format. The color is typically expressed as an array of three or four
+bytes, each byte ranging from 0 to 255.
+
+`duration`:: A channel that provides the duration of a time window,
+expressed as the number of seconds elapsed since the start of the time
+window. Fractional seconds are allowed.
+
+`number`:: A channel that provides a single double-precision
+floating-point number.
+
+`object`:: A channel that provides a complex JSON object.
+
+`string`:: A channel that provides a UTF-8 encoded string.
+
+`time`:: A channel that provides a time instant, expressed as the
+number of seconds elapsed since the UNIX epoch in UTC. Fractional
+seconds are allowed.
+
+`video`:: A channel that provides a URL to a video stream.
+
+=== `ClockEpoch`
+
+A `ClockEpoch` object describes the epoch of a clock or timer that the
+Flockwave server manages. It is either a <<_dates_and_times,datetime>>
+string or one of the following string values:
+
+`unix`:: The UNIX epoch, i.e. midnight on 1 Jan 1970 UTC.
+
+=== `ClockInfo`
+
+A `ClockInfo` object describes the current state of a clock or timer
+that the Flockwave server manages (e.g., a clock that reports the local
+time, the GPS time or a MIDI timecode coming from an external MIDI
+device connected to the server).
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|id |yes |string |the unique identifier of the clock
+
+|epoch |no |<<_clockepoch,ClockEpoch>> |the epoch from which the
+current timestamp of the clock is to be measured, if that makes sense
+for the clock. When the epoch is omitted, the clock is assumed to be
+ticking since an unspecified instant in the past.
+
+|retrievedAt |yes |<<_dates_and_times,datetime>> |the time according
+to the internal clock server when the state of the clock was retrieved.
+If the internal clock of the server and the client is synchronized, this
+can be used by the client to compensate for the time it takes for the
+server to transmit the clock status message to the client.
+
+|running |yes |boolean |whether the clock is running at the moment
+
+|ticksPerSecond |no |float |the number of clock ticks per second. Must
+be larger than zero. When omitted, it is assumed to be equal to 1.
+
+|timestamp |yes |float |the current timestamp of the clock, i.e. the
+number of ticks that have elapsed on the clock
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "id": "mtc",
+    "timestamp": 4221,
+    "retrievedAt": "2016-05-10T14:33:21Z",
+    "ticksPerSecond": 30,
+    "running": true
+}
+----
+
+=== `CommandExecutionStatus`
+
+A `CommandExecutionStatus` object describes the execution status of a
+command that was relayed from a client to a UAV by the server.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|sent |yes |<<_dates_and_times,datetime>> |time when the command
+request was sent to the UAV
+
+|acknowledged |no |<<_dates_and_times,datetime>> |time when the UAV
+acknowledged the receipt of the request (explicitly or implicitly,
+i.e. by sending a status update or a response)
+
+|updated |no |<<_dates_and_times,datetime>> |time when the UAV updated
+the progress of the request (explicitly or implicitly, i.e. by sending
+the completed response)
+
+|finished |no |<<_dates_and_times,datetime>> |time when the final
+response was fully received by the server
+
+|progress |no |float |the progress of the execution of the command,
+expressed as a real value between 0 and 1 (inclusive)
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "sent": "2016-04-03T08:07:22.000Z",
+    "acknowledged": "2016-04-03T08:07:22.471Z",
+    "updated": "2016-04-03T08:07:23.811Z",
+    "progress": 0.8,
+}
+----
+
+=== `CommandResponse`
+
+A `CommandResponse` object stores the response given by a particular UAV
+to a command sent to it using a `CMD-REQ` request, along with a type
+annotation that tells the receiver how the response should be
+interpreted.
+
+Currently the Flockwave protocol defines the following response types:
+
+`plain`:: Plain text response that should be formatted on the receiver
+side as is.
+
+`markdown`:: Markdown-formatted text response that should be
+interpreted by a Markdown processor before it is displayed to the
+user.
+
+Additional response types may be defined by the user as needed.
+
+*Example*
+
+[source,json]
+----
+{
+    "type": "markdown",
+    "data": "# Heading\n\nHello world!"
+}
+----
+
+=== `ConnectionInfo`
+
+A `ConnectionInfo` object describes the purpose and current state of a
+connection that the Flockwave server manages (e.g., a radio link or a
+DGPS stream).
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|id |yes |string |the unique identifier of the connection
+
+|purpose |yes |<<_connectionpurpose,ConnectionPurpose>> |the purpose
+of the connection (i.e. what sort of data it provides)
+
+|description |no |string |human-readable description of the connection
+
+|status |yes |<<_connectionstatus,ConnectionStatus>> |the current
+status of the connection
+
+|timestamp |no |<<_dates_and_times,datetime>> |time when the last
+packet was received from the connection, or if it is not available, the
+time when the connection changed status the last time
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "id": "xbee",
+    "purpose": "uavRadioLink",
+    "description": "Upstream XBee radio link",
+    "status": "connected",
+    "timestamp": "2015-12-08T08:17:41.000Z"
+}
+----
+
+=== `ConnectionPurpose`
+
+Enumeration type that describes the purpose of a connection. Currently
+the following values are defined:
+
+`debug`:: A connection that is meant for debugging purposes only.
+
+`dgps`:: A connection whose purpose is to receive DGPS or RTK correction
+packets from an external stream (e.g., an NTRIP data source or a
+serial link to an RTK base station).
+
+`gps`:: A connection that receives data from a GPS device.
+
+`time`:: A connection whose purpose is to connect to a service or
+device that provides time-related information. Examples are connections
+to an NTP server or a MIDI timecode provider.
+
+`uavRadioLink`:: A connection whose purpose is to receive status
+information from UAVs and/or send commands to them.
+
+`other`:: A connection whose purpose does not fit into the above
+categories. It is advised to use a human-readable description for these
+connections.
+
+=== `ConnectionStatus`
+
+Enumeration type that describes the possible states of a connection. A
+connection may be in exactly one of the following five states at any
+time:
+
+`disconnected`:: The connection is not alive and no connection attempt
+is currently in progress.
+
+`connecting`:: The connection is not alive yet, but a connection or
+reconnection attempt is currently in progress.
+
+`connected`:: The connection is alive.
+
+`disconnecting`:: The connection is not alive any more, but it has not
+been properly shut down yet.
+
+`unknown`:: The status of the connection is unknown (typically because
+we have received no status information from the connection yet).
+
+The value of a field of type `ConnectionStatus` is always a string with
+one of the five values above.
+
+=== `DeviceClass`
+
+Enumeration type that describes the possible classes (i.e. types) of
+devices in a device tree. Device classes may be used by user interfaces
+talking to a Flockwave server to provide some feedback to the user about
+the type of a device (e.g., it could show batteries with a different
+icon). Currently the following values are registered:
+
+`accelerometer`:: The device is an accelerometer.
+
+`actuator`:: The device is a generic actuator that cannot be
+categorised more precisely into any of the other classes.
+
+`altimeter`:: The device is an altimeter (e.g., pressure sensor, radar
+altimeter, sonic altimeter).
+
+`battery`:: The device is a battery.
+
+`camera`:: The device is a camera (consumer-grade, infrared, security
+camera or anything else).
+
+`cpu`:: The device is the CPU on the UAV (or on its companion computer).
+
+`cpuCore`:: The device is one particular CPU core of the CPU of a UAV.
+
+`gps`:: The device is a GPS receiver.
+
+`group`:: The device represents a logical grouping of other devices.
+For instance, the rotors of a UAV may be grouped in a `rotor` group.
+
+`gyroscope`:: The device is a gyroscope.
+
+`led`:: The device is a single LED or a LED strip.
+
+`magnetometer`:: The device is a magnetometer.
+
+`microphone`:: The device is a microphone.
+
+`misc`:: The device does not fall into any of the predefined device
+classes.
+
+`pyro`:: The device is a pyrotechnic device (e.g., firework launcher
+board).
+
+`radio`:: The device is a radio receiver or transmitter (e.g., an XBee
+radio).
+
+`rc`:: The device is an RC receiver.
+
+`rotor`:: The device is a rotor.
+
+`sensor`:: The device is a generic sensor that cannot be categorised
+more precisely into any of the other classes.
+
+`speaker`:: The device is a speaker.
+
+=== `DeviceTreeNode`
+
+This type represents a single node of the device tree. The node may
+represent a UAV, an onboard (real or virtual) device of a UAV, or a
+channel of a device. (See xref:devices.adoc#_uav_devices_and_channels[UAV devices and
+channels] for more details).
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|type |yes |<<_devicetreenodetype,`DeviceTreeNodeType`>> |The type of
+the node
+
+|subType |no |<<_channeltype,`ChannelType`>> |The type of the channel
+if the node is a channel node. This field is required for channel nodes
+and forbidden for other types of nodes.
+
+|class |no |<<_deviceclass,`DeviceClass`>> |The type of the device
+that this node represents. This field is optional for device nodes and
+forbidden for other types of nodes. Its value may be used by Flockwave
+clients to represent the device in a different way on the UI or to hide
+certain types of devices.
+
+|children |no |object of <<_evicetreenode,`DeviceTreeNode`>> |Object
+mapping names of child nodes to their descriptions
+
+|operations |no |list of <<_channeloperation,`ChannelOperation`>> |The
+list of operations supported by the channel. This field is required for
+channel nodes and forbidden for other types of nodes.
+
+|unit |no |string |The unit in which the value of the channel is
+represented. This field is optional for channel nodes (typically makes
+sense for numeric channels) and forbidden for other types of nodes.
+|===
+
+=== `DeviceTreeNodeType`
+
+Enumeration type that describes the type of a device tree node (see
+<<_devicetreenode,`DeviceTreeNode`>>. Currently the following values
+are defined:
+
+`root`:: This is the root node of the device tree. The node has no
+parent by definition. The children of the root node must be nodes of
+type `uav`.
+
+`uav`:: This is a tree node that represents a UAV in the flock. The
+parent of a `uav` node is always a `root` node. The children of the UAV
+nodes must be nodes of type `device`.
+
+`device`:: This is a tree node that represents a device of a UAV, or a
+sub-device of another device. The parent of a `device` node is either a
+`uav` node or another `device` node.
+
+`channel`:: This is a tree node that represents a channel of a device.
+The parent of a `channel` node is always a `device` node.
+
+=== `ErrorList`
+
+This type is simply an array of numbers, where each number represents a
+possible error condition. See xref:errors.adoc[Error codes] for a
+detailed listing of all the error codes that are currently defined in
+the Flockwave protocol.
+
+=== `GPSCoordinate`
+
+This type represents a coordinate given by a GPS in the usual
+"latitude, longitude, altitude above mean sea level, altitude above
+ground level" format using the WGS 84 reference system.
+
+Latitude and longitude should be specified with at least seven digits'
+precision if possible. (More than seven digits is usually not necessary
+because consumer GPS receivers are not that accurate).
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|lat |yes |float |The latitude, in degrees, in the range [-90,90)
+|lon |yes |float |The longitude, in degrees, in the range [-180,180)
+|amsl |no |float |The altitude, in metres, above mean sea level
+|agl |no |float |The altitude, in metres, above ground level
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "lat": 51.99765972,
+    "lon": -0.74068634,
+    "amsl": 93.765
+}
+----
+
+=== `UAVStatusInfo`
+
+Monolithic object containing general status information about a single
+UAV.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|id |yes |string |The unique identifier of the UAV
+
+|algorithm |no |string |The name of the algorithm that the UAV is
+running (if applicable).
+
+|position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the
+UAV
+
+|heading |no |<<_angles,angle>> |The heading of the UAV, i.e. the
+direction the UAV is pointing, projected to the local tangent plane, if
+known.
+
+|attitude |no |<<_attitude,Attitude>> |The attitude of the UAV.
+
+|velocity |no |<<_velocityned,VelocityNED>> |The velocity of the UAV,
+expressed in the NED (North, East, Down) coordinate system.
+
+|timestamp |yes |<<_dates_and_times,datetime>> |Time when the last
+status update was received from the UAV
+
+|battery |no |<<_batteryinfo,BatteryInfo>> |Information about the
+state of the battery on the UAV.
+
+|error |no |<<_errorlist,ErrorList>> |The list of error codes
+currently applicable for the UAV. When omitted, it means that there are
+no errors.
+
+|debug |no |<<_byte_arrays,byte array>> |Debug information provided by
+the algorithm running on the UAV (if applicable).
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "id": "17",
+    "algorithm": "flocking",
+    "position": {
+        "lat": 51.9976597,
+        "lon": -0.7406863,
+        "amsl": 93.765
+    },
+    "heading": 90,
+    "attitude": {
+        "roll": 0,
+        "pitch": 0,
+        "yaw": 90
+    },
+    "velocity": {
+        "north": 2.0,
+        "east": 2.0,
+        "down": -1.0
+    },
+    "timestamp": "2015-12-08T08:17:41.000Z",
+    "debug": "MEJBRENBRkU=",
+    "error": [42]
+}
+----
+
+The debug information in the above example is then decoded to `0BADCAFE`
+using base64.
+
+=== `VelocityNED`
+
+This type represents the velocity of an airborne object (typically a
+UAV) in the NED coordinate system (also called local tangent plane). The
+default unit for the components is m/s (metres per second). For
+instance, a UAV moving northeast with ~2.82 m/s (2.82 = sqrt(8)) while
+ascending with 1 m/s is expressed by a velocity vector where north=2,
+east=2 and down=-1.
+
+*Fields*
+
+[cols=",,,",options="header",]
+|===
+|Name |Required? |Type |Description
+|north |yes |number |The "north" component of the velocity vector, in
+m/s
+
+|east |yes |number |The "east" component of the velocity vector, in
+m/s
+
+|down |yes |number |The "down" component of the velocity vector, in
+m/s
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "north": 2.0,
+    "east": 2.0,
+    "down": -1.0
+}
+----

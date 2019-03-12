@@ -1,0 +1,23 @@
+== Introduction
+
+*Flockwave* is a http://json.org/[JSON]-based communication protocol in
+https://collmot.com[CollMot Robotics]’s distributed UAV flock system that
+allows multiple ground control consoles (clients) and tailor-made third-party
+applications to monitor and control an airborne flock of UAVs via a central
+ground station (server).
+
+This document describes the key actors in the system and specifies the
+communication protocol in detail. The document assumes familiarity with
+http://json.org/[JSON] and standard networking concepts such as TCP
+streams, the Hypertext Transfer Protocol (HTTP) and WebSockets. Details
+of the http://json.org/[JSON] format can be found in
+http://www.ietf.org/rfc/rfc4627.txt[RFC 4627] and
+http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf[ECMA
+404].
+
+=== Conventions
+
+The key words ``MUST``, ``MUST NOT``, ``REQUIRED``, ``SHALL``, ``SHALL
+NOT``, ``SHOULD``, ``SHOULD NOT``, ``RECOMMENDED``, ``MAY``, and
+``OPTIONAL`` in this document are to be interpreted as described in
+http://www.ietf.org/rfc/rfc2119.txt[RFC 2119].
