@@ -1,6 +1,6 @@
-== Transport layer
+= Transport layer
 
-=== TCP streams
+== TCP streams
 
 The Flockwave protocol can simply be implemented on top of TCP streams
 by encoding Flockwave messages in JSON format and separating the
@@ -13,7 +13,7 @@ chunks up to the last newline character as JSON. Should the parsing
 fail, the entire chunk can be thrown away and the parsing can resume
 from the next character after the last newline.
 
-=== UDP datagrams
+== UDP datagrams
 
 Flockwave messages can also be sent in UDP datagrams; in such cases, we
 can simply assume that a single UDP datagram conveys a single Flockwave
@@ -43,7 +43,7 @@ seconds and then request clients to send keepalive messages every 10
 seconds - this way the connection is broken only if six consecutive
 keepalive messages are lost.
 
-=== WebSocket + Socket.io
+== WebSocket + Socket.io
 
 The Flockwave protocol can also be implemented on top of a WebSocket
 connection augmented with https://socket.io/[Socket.io]. In this

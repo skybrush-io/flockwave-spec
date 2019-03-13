@@ -1,4 +1,4 @@
-== Introduction
+= Introduction
 
 *Flockwave* is a http://json.org/[JSON]-based communication protocol in
 https://collmot.com[CollMot Robotics]’s distributed UAV flock system that
@@ -15,7 +15,7 @@ http://www.ietf.org/rfc/rfc4627.txt[RFC 4627] and
 http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf[ECMA
 404].
 
-=== Conventions
+== Conventions
 
 The key words ``MUST``, ``MUST NOT``, ``REQUIRED``, ``SHALL``, ``SHALL
 NOT``, ``SHOULD``, ``SHOULD NOT``, ``RECOMMENDED``, ``MAY``, and

@@ -1,6 +1,6 @@
-== `CONN` — Connection-related messages
+= `CONN` — Connection-related messages
 
-=== `CONN-INF` — Basic status information of one or more connections
+== `CONN-INF` — Basic status information of one or more connections
 
 A client sends this request to the server to obtain basic status
 information about one or more connections (e.g., radio links, RTK correction
@@ -77,7 +77,7 @@ present.
 }
 ----
 
-=== `CONN-LIST` — List of all the connections managed by the server
+== `CONN-LIST` — List of all the connections managed by the server
 
 A client sends this request to the server to obtain the list of all the
 connections (e.g., radio links, RTK correction data streams) currently managed

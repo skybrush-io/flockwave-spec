@@ -1,4 +1,4 @@
-== General protocol description
+= General protocol description
 
 The *Flockwave* protocol is concerned with the communication between a
 _Flockwave server_ (hereinafter: server) and one or more _Flockwave
@@ -33,7 +33,7 @@ to allow clients to filter duplicate notifications. Responses MUST NOT
 refer to the identifiers of notifications, and in general the server
 SHOULD NOT expect a response to a notification.
 
-=== The envelope of a message
+== The envelope of a message
 
 Each message has a fixed structure that contains the version of the
 protocol, the identifier of the message (if any) and the payload or

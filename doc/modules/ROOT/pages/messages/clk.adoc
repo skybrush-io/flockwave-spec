@@ -1,4 +1,4 @@
-== `CLK` — Clock and timer-related messages
+= `CLK` — Clock and timer-related messages
 
 Flockwave servers may manage a set of clocks (timers); these timers may
 be displayed on the user interface in a Flockwave client or may be
@@ -42,7 +42,7 @@ an external time source.
 Any other clock ID not listed explicitly above is free to be used for
 any purpose.
 
-=== `CLK-INF` — Retrieve status of a timer
+== `CLK-INF` — Retrieve status of a timer
 
 A client sends this request to the server to retrieve the status of one
 or more clocks or timers managed by the server.
@@ -122,7 +122,7 @@ _either_ as keys in the `status` object or in the `failure` list.
 }
 ----
 
-=== `CLK-LIST` — List of all the clocks and timers managed by the server
+== `CLK-LIST` — List of all the clocks and timers managed by the server
 
 A client sends this request to the server to obtain the list of all the
 clocks and timers currently managed by the server.

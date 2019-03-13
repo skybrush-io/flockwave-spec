@@ -1,4 +1,4 @@
-== Definitions
+= Definitions
 
 Flockwave client::
 An application that can be used to monitor the status of the UAV flock on a map

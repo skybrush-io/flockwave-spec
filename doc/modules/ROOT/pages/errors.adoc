@@ -1,4 +1,4 @@
-== Error codes
+= Error codes
 
 Error codes are typically small non-negative integers, divided into
 seven groups as follows:
@@ -55,7 +55,7 @@ The following tables list all the commonly used error codes in
 xref:types.adoc#_errorlist[ErrorList] members typically found in
 xref:types.adoc#_uavstatusinfo[UAVStatusInfo] structures.
 
-=== Informational messages (codes 1-63)
+== Informational messages (codes 1-63)
 
 [width="100%",cols="10%,90%",options="header",]
 |===
@@ -64,7 +64,7 @@ xref:types.adoc#_uavstatusinfo[UAVStatusInfo] structures.
 are not able to write entries to their logs for some reason.
 |===
 
-=== Warnings (codes 64-127)
+== Warnings (codes 64-127)
 
 [width="100%",cols="10%,90%",options="header",]
 |===
@@ -82,7 +82,7 @@ continue its current mission with the current battery charge; otherwise
 use code 134 or 199.
 |===
 
-=== Errors (codes 128-191)
+== Errors (codes 128-191)
 
 [width="100%",cols="10%,90%",options="header",]
 |===
@@ -132,7 +132,7 @@ loitering.
 |191 |Other, unspecified error that does not prevent RTH or loitering.
 |===
 
-=== Critical errors (codes 192-255)
+== Critical errors (codes 192-255)
 
 [width="100%",cols="10%,90%",options="header",]
 |===

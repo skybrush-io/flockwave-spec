@@ -1,4 +1,4 @@
-== Known message types
+= Known message types
 
 This section is an exhaustive reference of all the message types
 supported by the Flockwave protocol. The examples provided in this

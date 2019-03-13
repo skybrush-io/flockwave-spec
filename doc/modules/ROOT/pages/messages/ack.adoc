@@ -1,9 +1,9 @@
-== `ACK` — Acknowledgment messages
+= `ACK` — Acknowledgment messages
 
 The messages in this section are always used as responses; no request is
 ever sent with these message types.
 
-=== `ACK-ACK` — Positive acknowledgment
+== `ACK-ACK` — Positive acknowledgment
 
 Sent by the server to the client in response to requests that have been
 executed successfully and where it is not necessary for the response to
@@ -22,7 +22,7 @@ This response has no fields.
 }
 ----
 
-=== `ACK-NAK` — Negative acknowledgment
+== `ACK-NAK` — Negative acknowledgment
 
 Sent by the server to the client in response to requests that the server
 has either attempted to execute but failed to do so, or to requests that

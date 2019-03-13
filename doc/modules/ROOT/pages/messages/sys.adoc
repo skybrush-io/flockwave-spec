@@ -1,6 +1,6 @@
-== `SYS` — System information
+= `SYS` — System information
 
-=== `SYS-PING` — Check whether a connection is alive
+== `SYS-PING` — Check whether a connection is alive
 
 Either party in the connection may send a `SYS-PING` message to the
 other party to test whether the connection is still alive. Parties
@@ -35,7 +35,7 @@ xref:messages/ack.adoc#_ack_ack_positive_acknowledgment[`ACK-ACK`] instead.
 }
 ----
 
-=== `SYS-VER` — Version number of the server
+== `SYS-VER` — Version number of the server
 
 A `SYS-VER` request retrieves the version number of the server.
 

@@ -1,6 +1,6 @@
-== `UAV` — UAV-related messages
+= `UAV` — UAV-related messages
 
-=== `UAV-FLY` — Fly to a specific GPS coordinate
+== `UAV-FLY` — Fly to a specific GPS coordinate
 
 A client sends this request to the server to ask a UAV to fly to a
 specific GPS coordinate and altitude. Note that it is possible to target
@@ -89,7 +89,7 @@ in the `success` list or in the `failure` list.
 }
 ----
 
-=== `UAV-HALT` — Initiate immediate shutdown
+== `UAV-HALT` — Initiate immediate shutdown
 
 A client sends this request to the server to initiate an immediate
 shutdown of an UAV in case of an emergency. Note that the UAV will _not_
@@ -160,7 +160,7 @@ in the `success` list or in the `failure` list.
 }
 ----
 
-=== `UAV-INF` — Basic status information of one or more UAVs
+== `UAV-INF` — Basic status information of one or more UAVs
 
 A client sends this request to the server to obtain basic status
 information about one or more UAVs currently known to the server.
@@ -245,7 +245,7 @@ as a notification, only the `status` field SHOULD be present.
 }
 ----
 
-=== `UAV-LAND` — Initiate unsupervised landing
+== `UAV-LAND` — Initiate unsupervised landing
 
 A client send this request to the server to initiate unsupervised
 landing on one or more UAVs. The server responds with two lists: the
@@ -310,7 +310,7 @@ the request failed for these UAVs.
 }
 ----
 
-=== `UAV-LIST` — List of all the UAVs known by the server
+== `UAV-LIST` — List of all the UAVs known by the server
 
 A client sends this request to the server to request the list of all
 UAVs currently known by the server. The semantics of ``knowing'' a UAV
@@ -350,7 +350,7 @@ This request has no fields.
 }
 ----
 
-=== `UAV-RTH` — Initiate return to home position
+== `UAV-RTH` — Initiate return to home position
 
 A client send this request to the server to request some of the UAVs to
 return to their home positions.
@@ -418,7 +418,7 @@ the request failed for these UAVs.
 }
 ----
 
-=== `UAV-TAKEOFF` — Initiate unsupervised take-off
+== `UAV-TAKEOFF` — Initiate unsupervised take-off
 
 A client send this request to the server to initiate unsupervised
 take-off on one or more UAVs. The server responds with two lists: the

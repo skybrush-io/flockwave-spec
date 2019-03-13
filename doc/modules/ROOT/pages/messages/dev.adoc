@@ -1,6 +1,6 @@
-== `DEV` — Device and channel related messages
+= `DEV` — Device and channel related messages
 
-=== `DEV-INF` — Retrieve the current value of a channel or device path
+== `DEV-INF` — Retrieve the current value of a channel or device path
 
 A client sends this request to the server to retrieve the current value
 of a channel or the current values of all channels that are in a subtree
@@ -76,7 +76,7 @@ present.
 }
 ----
 
-=== `DEV-LIST` — List of devices and channels
+== `DEV-LIST` — List of devices and channels
 
 A client sends this request to the server to retrieve the list (well,
 more precisely, the _tree_) of devices and channels associated to one or
@@ -173,7 +173,7 @@ in the `status` list or in the `failure` list.
 }
 ----
 
-=== `DEV-LISTSUB` — List device tree subscriptions
+== `DEV-LISTSUB` — List device tree subscriptions
 
 A client sends this request to the server to retrieve the list of device
 tree paths that the client is subscribed to.
@@ -235,7 +235,7 @@ tree.].
 }
 ----
 
-=== `DEV-SUB` — Subscribe to a part of a device tree
+== `DEV-SUB` — Subscribe to a part of a device tree
 
 A client sends this request to the server to subscribe to changes in the
 values of channels in a given part of the device tree of a given UAV.
@@ -300,7 +300,7 @@ the subscription failed for these paths.
 }
 ----
 
-=== `DEV-UNSUB` — Unsubscribe from a part of a device tree
+== `DEV-UNSUB` — Unsubscribe from a part of a device tree
 
 A client sends this request to the server to stop receiving
 notifications changes in the values of channels in a given part of the
