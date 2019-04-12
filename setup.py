@@ -6,8 +6,8 @@ requires = [
     "click>=6.2",
     "enum-compat>=0.0.2",
     "jsonpointer>=1.10",
-    "jsonschema>=2.5.1",
-    "memoized>=0.2.1"
+    "jsonschema>=3.0.1",
+    "memoized>=0.3.0"
 ]
 
 extra_requires = {

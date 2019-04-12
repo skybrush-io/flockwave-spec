@@ -1,7 +1,7 @@
 {
     "attitude": {
         "$schema": "http://json-schema.org/schema#",
-        "id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
+        "$id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
 
         "title": "Attitude",
         "description": "Attitude around the principal aircraft axes",
@@ -10,20 +10,17 @@
             "roll": {
                 "type": "number",
                 "minimum": -90,
-                "maximum": 90,
-                "exclusiveMaximum": true
+                "exclusiveMaximum": 90
             },
             "pitch": {
                 "type": "number",
                 "minimum": -90,
-                "maximum": 90,
-                "exclusiveMaximum": true
+                "exclusiveMaximum": 90
             },
             "yaw": {
                 "type": "number",
                 "minimum": 0,
-                "maximum": 360,
-                "exclusiveMaximum": true
+                "exclusiveMaximum": 360
             }
         },
         "required": [ "roll", "pitch", "yaw" ],
@@ -32,7 +29,7 @@
 
     "batteryInfo": {
         "$schema": "http://json-schema.org/schema#",
-        "id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
+        "$id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
 
         "title": "Battery information",
         "description": "Information about the on-board battery of the UAV, if applicable",
@@ -353,7 +350,7 @@
 
     "gpsCoordinate": {
         "$schema": "http://json-schema.org/schema#",
-        "id": "http://collmot.com/schemas/flockwave/1.0/gps_coordinate.json",
+        "$id": "http://collmot.com/schemas/flockwave/1.0/gps_coordinate.json",
 
         "title": "GPS coordinate",
         "description": "GPS coordinate of a UAV",
@@ -435,7 +432,7 @@
 
     "uavStatusInfo": {
         "$schema": "http://json-schema.org/schema#",
-        "id": "http://collmot.com/schemas/flockwave/1.0/uav_status_info.json",
+        "$id": "http://collmot.com/schemas/flockwave/1.0/uav_status_info.json",
 
         "title": "UAV status info",
         "description": "Status information of a single UAV",
@@ -457,8 +454,7 @@
                 "description": "The heading of the UAV in the local tangent plane",
                 "type": "number",
                 "minimum": 0,
-                "maximum": 360,
-                "exclusiveMaximum": true
+                "exclusiveMaximum": 360
             },
             "attitude": {
                 "$ref": "definitions.json#/attitude"
@@ -484,7 +480,7 @@
 
     "velocityNED": {
         "$schema": "http://json-schema.org/schema#",
-        "id": "http://collmot.com/schemas/flockwave/1.0/velocity_ned.json",
+        "$id": "http://collmot.com/schemas/flockwave/1.0/velocity_ned.json",
 
         "title": "Velocity (NED)",
         "description": "Velocity in the NED coordinate system",

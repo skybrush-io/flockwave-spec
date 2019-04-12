@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/schema#",
-    "id": "http://collmot.com/schemas/flockwave/1.0/message_body.json",
+    "$id": "http://collmot.com/schemas/flockwave/1.0/message_body.json",
     "oneOf": [
         {
             "type": "null"

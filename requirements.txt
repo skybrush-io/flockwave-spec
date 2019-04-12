@@ -1,2 +1,1 @@
-http://pypi.collmot.com/memoized/memoized-0.2.1.tar.gz
 -e .
