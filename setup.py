@@ -2,16 +2,9 @@
 
 from setuptools import setup, find_packages
 
-requires = [
-    "click>=6.2",
-    "enum-compat>=0.0.2",
-    "jsonpointer>=1.10",
-    "jsonschema>=3.0.1",
-    "memoized>=0.3.0"
-]
+requires = ["click>=6.2", "jsonpointer>=1.10", "jsonschema>=3.0.1", "memoized>=0.3.0"]
 
-extra_requires = {
-}
+extra_requires = {}
 
 __version__ = None
 exec(open("flockwave/spec/version.py").read())
@@ -19,15 +12,11 @@ exec(open("flockwave/spec/version.py").read())
 setup(
     name="flockwave-spec",
     version=__version__,
-
     author=u"Tam\u00e1s Nepusz",
     author_email="tamas@collmot.com",
-
     packages=find_packages(exclude=["test"]),
     include_package_data=True,
-
     install_requires=requires,
     extras_require=extra_requires,
-
-    test_suite="test"
+    test_suite="test",
 )
