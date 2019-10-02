@@ -1,0 +1,13 @@
+[
+  {
+    "type": "AUTH-REQ",
+    "method": "basic",
+    "data": "dXNlcm5hbWU6cGFzc3dvcmQ="
+  },
+  {
+    "type": "AUTH-REQ",
+    "method": "multistep",
+    "session": 2,
+    "data": "dXNlcm5hbWU6cGFzc3dvcmQ="
+  }
+]

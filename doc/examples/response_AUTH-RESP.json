@@ -1,0 +1,15 @@
+[
+  {
+    "type": "AUTH-RESP",
+    "result": true,
+    "user": "username@domain.xyz"
+  },
+  {
+    "type": "AUTH-RESP",
+    "result": false
+  },
+  {
+    "type": "AUTH-RESP",
+    "data": "some-more-data-to-use"
+  }
+]

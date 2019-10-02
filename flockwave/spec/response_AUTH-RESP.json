@@ -1,0 +1,43 @@
+{
+	"oneOf": [
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["AUTH-RESP"]
+				},
+				"data": {
+					"title": "Data",
+					"description": "Data to send to the client that is to be used in the next step of multi-step authentication methods",
+					"type": "string"
+				}
+			},
+			"required": [
+				"type", "data"
+			],
+			"additionalProperties": false
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["AUTH-RESP"]
+				},
+				"result": {
+					"title": "Result",
+					"description": "Result of the authentication",
+					"type": "boolean"
+				},
+				"user": {
+					"$ref": "definitions.json#/userName"
+				}
+			},
+			"required": [
+				"type", "result"
+			],
+			"additionalProperties": false
+		}
+	]
+}

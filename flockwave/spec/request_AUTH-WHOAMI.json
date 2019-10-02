@@ -1,0 +1,15 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["AUTH-WHOAMI"]
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}

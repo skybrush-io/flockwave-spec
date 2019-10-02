@@ -1,0 +1,10 @@
+[
+  {
+    "type": "AUTH-WHOAMI",
+    "user": "user@domain.xyz"
+  },
+  {
+    "type": "AUTH-WHOAMI",
+    "user": "user"
+  }
+]

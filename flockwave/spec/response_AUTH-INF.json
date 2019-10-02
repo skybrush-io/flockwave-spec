@@ -1,0 +1,22 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"enum": ["AUTH-INF"]
+		},
+		"mandatory": {
+			"type": "boolean"
+		},
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+	},
+	"required": [
+		"type", "mandatory", "methods"
+	],
+	"additionalProperties": false
+}

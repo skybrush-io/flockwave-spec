@@ -10,21 +10,21 @@
 		"ids": {
 			"$ref": "definitions.json#/uavIdList"
 		},
-        "command": {
-            "title": "Command",
-            "description": "The command to send",
-            "type": "string"
-        },
-        "args": {
-            "title": "Arguments",
-            "description": "Positional arguments of the command",
-            "type": "array"
-        },
-        "kwds": {
-            "title": "Keyword arguments",
-            "description": "Keyword arguments of the command",
-            "type": "object"
-        }
+    "command": {
+      "title": "Command",
+      "description": "The command to send",
+      "type": "string"
+    },
+    "args": {
+      "title": "Arguments",
+      "description": "Positional arguments of the command",
+      "type": "array"
+    },
+    "kwds": {
+      "title": "Keyword arguments",
+      "description": "Keyword arguments of the command",
+      "type": "object"
+    }
 	},
 	"required": [
 		"type", "ids", "command"

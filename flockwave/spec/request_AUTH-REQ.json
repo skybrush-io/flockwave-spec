@@ -1,0 +1,31 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["AUTH-REQ"]
+		},
+		"method": {
+			"title": "Method",
+			"description": "Name of the authentication method to use",
+			"type": "string"
+		},
+		"session": {
+			"title": "Session ID",
+			"description": "Session ID for multi-step authentication methods",
+			"type": "integer",
+			"default": 0
+		},
+		"data": {
+			"title": "Data",
+			"description": "Data to send to the authentication method",
+			"type": "string"
+		}
+	},
+	"required": [
+		"type", "method", "data"
+	],
+	"additionalProperties": false
+}

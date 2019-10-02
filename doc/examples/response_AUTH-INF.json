@@ -1,0 +1,5 @@
+{
+  "type": "AUTH-INF",
+  "mandatory": false,
+  "methods": ["basic", "jwt"]
+}

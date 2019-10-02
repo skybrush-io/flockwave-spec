@@ -14,6 +14,15 @@
         },
 
         {
+            "$ref": "request_AUTH-INF.json#/"
+        },
+        {
+            "$ref": "request_AUTH-REQ.json#/"
+        },
+        {
+            "$ref": "request_AUTH-WHOAMI.json#/"
+        },
+        {
             "$ref": "request_CLK-INF.json#/"
         },
         {
@@ -82,6 +91,15 @@
         },
         {
             "$ref": "response_ACK-NAK.json#/"
+        },
+        {
+            "$ref": "response_AUTH-INF.json#/"
+        },
+        {
+            "$ref": "response_AUTH-RESP.json#/"
+        },
+        {
+            "$ref": "response_AUTH-WHOAMI.json#/"
         },
         {
             "$ref": "response_CLK-INF.json#/"
