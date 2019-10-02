@@ -1,10 +1,10 @@
+__pycache__/
 *.egg-info
 *.pyc
 *.pyo
 build/doc/
-_book/
 dist/
 .python-version
 .tags
 .tox/
-
+.venv/
