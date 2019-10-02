@@ -12,11 +12,12 @@ import sys
 
 from flockwave.spec.schema import get_message_body_schema, ref_resolver
 
-__all__ = ("validate", )
+__all__ = ("validate",)
 
 
-SCRIPT_ROOT = os.path.abspath(os.path.join(
-    os.path.dirname(sys.modules[__name__].__file__), "..", ".."))
+SCRIPT_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(sys.modules[__name__].__file__), "..", "..")
+)
 
 
 def check_validity(filename, schema, resolver=None, allow_multiple=True):
@@ -50,7 +51,7 @@ def check_validity(filename, schema, resolver=None, allow_multiple=True):
 
 
 @click.command()
-@click.argument('name', nargs=-1, type=click.Path(exists=True))
+@click.argument("name", nargs=-1, type=click.Path(exists=True))
 def validate(name):
     """Validates the JSON message stored in the file with the given NAME to see
     if it is a valid Flockwave message. When omitted, the script will validate
@@ -60,13 +61,16 @@ def validate(name):
 
     # Create a resolver that resolves JSON schema references locally
     resolver = jsonschema.RefResolver.from_schema(
-        schema, handlers={"http": ref_resolver})
+        schema, handlers={"http": ref_resolver}
+    )
 
     if not name:
         examples_dir = os.path.join(SCRIPT_ROOT, "doc", "examples")
-        name = [os.path.join(examples_dir, fname)
-                for fname in os.listdir(examples_dir)
-                if fname.endswith(".json")]
+        name = sorted(
+            os.path.join(examples_dir, fname)
+            for fname in os.listdir(examples_dir)
+            if fname.endswith(".json")
+        )
 
     for fn in name:
         num_objs = check_validity(fn, schema, resolver)
