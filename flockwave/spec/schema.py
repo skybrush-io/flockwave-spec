@@ -7,9 +7,13 @@ from memoized import memoized
 from jsonpointer import JsonPointer, resolve_pointer
 from pkg_resources import resource_stream
 
-__all__ = ("SCHEMA_PACKAGE", "get_message_schema",
-           "get_message_body_schema", "get_complex_object_schema",
-           "ref_resolver")
+__all__ = (
+    "SCHEMA_PACKAGE",
+    "get_message_schema",
+    "get_message_body_schema",
+    "get_complex_object_schema",
+    "ref_resolver",
+)
 
 
 SCHEMA_PACKAGE = "flockwave.spec"
@@ -94,8 +98,7 @@ def get_enum_from_schema(name, class_name=None):
         class_name = class_name or name.capitalize()
         return Enum(class_name, schema["enum"])
     else:
-        raise TypeError("{0!r} cannot be converted into a Python enum"
-                        .format(name))
+        raise TypeError("{0!r} cannot be converted into a Python enum".format(name))
 
 
 def get_message_schema():
@@ -118,7 +121,7 @@ def ref_resolver(uri):
     ``jsonschema`` and turned into a ``RefResoutionError``.
     """
     if uri.startswith(FLOCKWAVE_SPEC_PREFIX):
-        path = uri[len(FLOCKWAVE_SPEC_PREFIX):]
+        path = uri[len(FLOCKWAVE_SPEC_PREFIX) :]
         if path.startswith("/"):
             path = path[1:]
         return _get_json_object_from_resource(path)

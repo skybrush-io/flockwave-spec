@@ -14,8 +14,11 @@ def is_valid_uav_id(identifier):
     Returns:
         bool: whether the identifier is valid
     """
-    return len(identifier) >= 1 and len(identifier) <= MAX_UAV_ID_LENGTH and \
-            "/" not in identifier
+    return (
+        len(identifier) >= 1
+        and len(identifier) <= MAX_UAV_ID_LENGTH
+        and "/" not in identifier
+    )
 
 
 def make_valid_uav_id(identifier):
@@ -33,4 +36,3 @@ def make_valid_uav_id(identifier):
     if len(identifier) > MAX_UAV_ID_LENGTH:
         identifier = identifier[:MAX_UAV_ID_LENGTH]
     return identifier.replace("/", "-")
-
