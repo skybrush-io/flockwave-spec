@@ -18,8 +18,8 @@ distributed.
 == Supported authentication methods
 
 This section lists the standard authentication methods used by the
-xref:/messages/auth.adoc#auth-req[`AUTH-REQ`] and
-xref:/messages/auth.adoc#auth-resp[`AUTH-RESP`] messages. Flockwave server
+xref:messages/auth.adoc#auth-req[`AUTH-REQ`] and
+xref:messages/auth.adoc#auth-resp[`AUTH-RESP`] messages. Flockwave server
 implementations MUST implement authentication methods with these identifier
 according to the specification outlined here.
 

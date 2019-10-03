@@ -14,7 +14,7 @@ sending messages immediately and the server will respond accordingly. However,
 the server MAY be configured in a way that it accepts certain requests from
 authenticated clients only; in that case, the server will reject any requests
 that require authentication by simply responding with an
-xref:/messages/ack.adoc#ack-nak[`ACK-NAK`] message.
+xref:messages/ack.adoc#ack-nak[`ACK-NAK`] message.
 
 A server may provide multiple methods for clients to authenticate themselves;
 typical examples are:
@@ -69,7 +69,7 @@ This request has no fields.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`methods` | yes | array of strings | The list of supported xref:/security.adoc#auth-methods[authentication methods]
+|`methods` | yes | array of strings | The list of supported xref:../security.adoc#auth-methods[authentication methods]
 |`required` |yes |boolean |Whether authentication is mandatory on this server.
 |===
 
@@ -118,9 +118,9 @@ continuation of the previous multi-step authentication attempt.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`method` |yes |string |The xref:/security.adoc#auth-methods[authentication method] to use.
+|`method` |yes |string |The xref:security.adoc#auth-methods[authentication method] to use.
 |`data` |yes |string |Data to send to the server in this authentication step.
-The content of this field is defined by the xref:/security.adoc#auth-methods[authentication method].
+The content of this field is defined by the xref:security.adoc#auth-methods[authentication method].
 |`session` |no |int |Session ID of the authentication process
 |===
 
