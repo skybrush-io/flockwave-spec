@@ -5,18 +5,18 @@
 			"type": "string",
 			"enum": ["AUTH-INF"]
 		},
-		"mandatory": {
-			"type": "boolean"
-		},
     "methods": {
       "type": "array",
       "items": {
         "type": "string"
       }
-    }
+    },
+		"required": {
+			"type": "boolean"
+		}
 	},
 	"required": [
-		"type", "mandatory", "methods"
+		"type", "required", "methods"
 	],
 	"additionalProperties": false
 }

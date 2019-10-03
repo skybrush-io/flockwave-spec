@@ -5,6 +5,7 @@
 * xref:errors.adoc[Error codes]
 * xref:messages/index.adoc[Known message types]
 ** xref:messages/ack.adoc[ACK — Acknowledgment messages]
+** xref:messages/auth.adoc[AUTH — Authentication-related messages]
 ** xref:messages/clk.adoc[CLK — Clock and timer-related messages]
 ** xref:messages/cmd.adoc[CMD — Direct command execution on UAVs]
 ** xref:messages/conn.adoc[CONN — Connection-related messages]
@@ -12,3 +13,4 @@
 ** xref:messages/sys.adoc[SYS — System information]
 ** xref:messages/uav.adoc[UAV — UAV-related messages]
 * xref:transport.adoc[Transport layer]
+* xref:security.adoc[Security considerations]

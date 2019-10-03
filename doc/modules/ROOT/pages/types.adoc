@@ -166,6 +166,7 @@ string or one of the following string values:
 
 `unix`:: The UNIX epoch, i.e. midnight on 1 Jan 1970 UTC.
 
+[#clock-info]
 == `ClockInfo`
 
 A `ClockInfo` object describes the current state of a clock or timer

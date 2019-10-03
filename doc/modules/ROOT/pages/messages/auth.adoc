@@ -1,0 +1,250 @@
+= `AUTH` — Authentication-related messages
+
+The messages in this section are concerned with _authentication_, i.e. the
+process or action of verifying the identity of the user that is connecting to
+the Flockwave server.
+
+Each connection to a Flockwave server MAY have exactly one corresponding
+identity. Connections start as unauthenticated by default (except in
+special cases when the identity of the user who connects to the server can
+be established from the connection handshake, e.g., in the case of TLS
+authentication with client certificates). If the server is configured in a
+way that it accepts unauthenticated connections, then clients may start
+sending messages immediately and the server will respond accordingly. However,
+the server MAY be configured in a way that it accepts certain requests from
+authenticated clients only; in that case, the server will reject any requests
+that require authentication by simply responding with an
+xref:/messages/ack.adoc#ack-nak[`ACK-NAK`] message.
+
+A server may provide multiple methods for clients to authenticate themselves;
+typical examples are:
+
+* basic username-password submission
+
+* http://jwt.info[JWT tokens]
+
+* TLS client certificate authentication
+
+and so on. Clients can get information about the set of supported authentication
+methods and whether authentication is mandatory by sending an
+<<auth-inf,`AUTH-INF`>> message. It is also possible to ask the
+server whether the current connection is authenticated by sending an
+<<auth-whoami,`AUTH-WHOAMI`>> message. These requests are typically
+sent during the early stages of a connection so the client can decide whether it
+is allowed to send additional requests without authenticating or not.
+
+Authentication can be performed in the server by sending one or more
+_authentication requests_ in the form of <<auth-req,`AUTH-REQ`>> messages.
+Some authentication types (like the basic username-password submission)
+require a single authentication request only as the request will contain all the
+information that is needed by the server to decide whether the client is really
+who she claims to be or not; in these cases, the server replies with a
+single <<auth-resp,`AUTH-RESP`>> message that grants or denies access.
+Other authentication methods may be multi-step, requiring several rounds of
+challenge-response rounds between the client and the server. In such cases,
+the client typically initiates the authentication with an empty
+<<auth-req,`AUTH-REQ`>> message that contains the name of the authentication
+method only, and the server will send the first authentication challenge to
+the client in an <<auth-resp,`AUTH-RESP`>> message. The client must then
+send an appropriate response to the challenge in its next <<auth-req,`AUTH-REQ`>>
+message; the process continues until the server either accepts or denies the
+connection with an appropriate <<auth-resp,`AUTH-RESP`>> message.
+
+For more details about the supported authentication methods, see
+xref:security.adoc[the chapter about security considerations].
+
+[#auth-inf]
+== `AUTH-INF` — Query supported authentication methods
+
+A client sends this request to the server to determine the list of authentication
+methods supported by the server, and whether authentication is required in
+order to use the server.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`methods` | yes | array of strings | The list of supported xref:/security.adoc#auth-methods[authentication methods]
+|`required` |yes |boolean |Whether authentication is mandatory on this server.
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "AUTH-INF"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "AUTH-INF",
+    "methods": ["basic", "jwt"],
+    "required": true
+}
+----
+
+[#auth-req]
+== `AUTH-REQ` — Send an authentication request
+
+A client sends this request to start an authentication session or to continue
+an existing one if the server responded to the previous authentication request
+with a challenge.
+
+The request MAY include a session ID; this is used to let clients indicate that
+an authentication request belongs to the same multi-step authentication
+process as one of the previous messages with the same session ID. Typically,
+servers will keep track of only one authentication request per client
+connection, and in the absence of a session ID, they will simply assume that
+the request belongs to the multi-step authentication session that is already
+in progress, so there is no need to send a session ID by default. The only time
+when you _do_ need to send a session ID is when you want to _abandon_ a
+multi-step authentication procedure and start a new one (with possibly a
+different method); in that case, you MUST include a session ID that is different
+from the one used before so the server knows not to consider your request as a
+continuation of the previous multi-step authentication attempt.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`method` |yes |string |The xref:/security.adoc#auth-methods[authentication method] to use.
+|`data` |yes |string |Data to send to the server in this authentication step.
+The content of this field is defined by the xref:/security.adoc#auth-methods[authentication method].
+|`session` |no |int |Session ID of the authentication process
+|===
+
+*Response fields*
+
+This message is never sent as a response; see <<auth-resp,AUTH-RESP>>.
+
+*Example request: basic authentication*
+
+[source,json]
+----
+{
+    "type": "AUTH-REQ",
+    "method": "basic",
+    "data": "dXNlckBkb21haW4ueHl6OnBhc3N3b3Jk"
+}
+----
+
+[#auth-resp]
+== `AUTH-RESP` — Send a response to an authentication request
+
+This message is sent by the server in response to an <<auth-req,AUTH-REQ>>
+message.
+
+For successful authentication attempts, the server will return an object where
+the `result` key set to `true`, and also set the `user` key to the
+username and domain that it now considers authenticated. For failed
+authentication attempts, the server will return an objet where the `result`
+key is set to `false`. For multi-step authentication methods, the server
+may also send an additional challenge to the client by omitting the `result`
+key and sending a `data` key instead with the challenge.
+
+*Request fields*
+
+This message is never sent as a request; see <<auth-req,AUTH-REQ>>.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`data` |no |string |Challenge provided by the server that acts as an
+input for the next step of a multi-step authentication process.
+|`result` |no |boolean |Whether the authentication was successful.
+|`user` |no |string |Username and domain that the server associates to the connection
+after a successful authentication.
+|===
+
+`result` and `data` are mutually exclusive; one of them MUST be present in the
+response, but both of them MUST NOT be present at the same time.
+
+If `result` is `true`, the `user` key MUST be present, otherwise it MUST be
+absent.
+
+*Example response: successful authentication*
+
+[source,json]
+----
+{
+    "type": "AUTH-RESP",
+    "result": true,
+    "user": "user@domain.xyz"
+}
+----
+
+*Example response: failed authentication*
+
+[source,json]
+----
+{
+    "type": "AUTH-RESP",
+    "result": false
+}
+----
+
+*Example response: server sends a challenge*
+
+[source,json]
+----
+{
+    "type": "AUTH-RESP",
+    "data": "JZNNkpaf5LpPU6CSeRjM+Q=="
+}
+----
+
+[#auth-whoami]
+== `AUTH-WHOAMI` — Query the user associated to the connection
+
+A client sends this request to the server to query the name and domain of
+the user that is associated to the current connection.
+
+Usernames and domains provided in the response are formatted as `name@domain`.
+The domain part and the preceding `@` is omitted if the domain is empty.
+Unauthenticated connections will return an empty string.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`user` |yes |string |Name and domain of the user associated to the
+current connection (in the format `name@domain`), or an empty string if the
+current connection is unauthenticated.
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "AUTH-WHOAMI"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "AUTH-WHOAMI",
+    "user": "user@domain.xyz"
+}
+----

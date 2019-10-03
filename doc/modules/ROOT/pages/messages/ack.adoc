@@ -3,6 +3,7 @@
 The messages in this section are always used as responses; no request is
 ever sent with these message types.
 
+[#ack-ack]
 == `ACK-ACK` — Positive acknowledgment
 
 Sent by the server to the client in response to requests that have been
@@ -22,6 +23,7 @@ This response has no fields.
 }
 ----
 
+[#ack-nak]
 == `ACK-NAK` — Negative acknowledgment
 
 Sent by the server to the client in response to requests that the server

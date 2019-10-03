@@ -69,7 +69,7 @@ interested in
 |Name |Required? |Type |Description
 |`status` |no |object |Object mapping clock IDs to the corresponding
 status information. The structure of this object is described by the
-link:../types.md#clockinfo[`ClockInfo`] complex type.
+xref:/types.adoc#clock-info[`ClockInfo`] complex type.
 
 |`failure` |no |list of strings |List containing the clock IDs for which
 the status information could not have been retrieved.

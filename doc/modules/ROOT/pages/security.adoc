@@ -1,0 +1,95 @@
+= Security considerations
+
+If you are concerned about security, protect your communication channels
+with TLS. This applies to Flockwave-over-TCP and Flockwave-over-Socket.IO
+easily: use a proxy such as https://www.stunnel.org/[`stunnel`] that wraps
+TCP or HTTP connections in SSL.
+
+The Flockwave protocol itself provides no encryption support at the moment,
+so Flockwave-over-UDP is not an option if you are concerned about security.
+We may implement AES encryption for Flockwave packets later in the future,
+which would make Flockwave-over-UDP feasible even in security-oriented
+applications, assuming that there is enough processing power on both ends
+to perform the AES encryption / decryption, and there is an additional,
+secure channel via which the shared encryption / decryption key can be
+distributed.
+
+[#auth-methods]
+== Supported authentication methods
+
+This section lists the standard authentication methods used by the
+xref:/messages/auth.adoc#auth-req[`AUTH-REQ`] and
+xref:/messages/auth.adoc#auth-resp[`AUTH-RESP`] messages. Flockwave server
+implementations MUST implement authentication methods with these identifier
+according to the specification outlined here.
+
+=== `basic` -- Basic username / password authentication
+
+This authentication method mimics the standard HTTP basic authentication.
+It SHOULD be used only over encrypted channels (such as Flockwave-over-TCP
+or Flockwave-over-Socket.IO encrypted with TLS) as the username and the
+password field is easy to decipher.
+
+The authentication method is single-step; the client sends an `AUTH-REQ`
+request where the `data` part is set to the base64-encoded representation
+of the username and the password, concatenated with `:`. For example,
+to authenticate as `user@domain.xyz` with `password` as the password,
+one should send `base64("user@domain.xyz" + ":" + "password")`, i.e.:
+
+[source,json]
+----
+{
+    "type": "AUTH-REQ",
+    "method": "basic",
+    "data": "dXNlckBkb21haW4ueHl6OnBhc3N3b3Jk"
+}
+----
+
+The server then responds with a successful authentication message if
+the password is correct:
+
+[source,json]
+----
+{
+    "type": "AUTH-RESP",
+    "result": true,
+    "user": "user@domain.xyz"
+}
+----
+
+=== `jwt` -- JSON Web Token authentication
+
+This authentication method uses a JSON Web Token issued by a trusted provider
+to authenticate with the server. The `sub` claim of the token contains the
+username and domain of the authenticated user. The `exp` claim of the
+token contains the expiry date. See https://tools.ietf.org/html/rfc7519[RFC7519]
+for a formal description of JSON Web Tokens, or https://auth0.com/docs/jwt[this page]
+for a more informal introduction.
+
+The authentication method is single-step; the client sends an `AUTH-REQ`
+request where the `data` part is set to the JSON Web Token that it possesses:
+
+[source,json]
+----
+{
+    "type": "AUTH-REQ",
+    "method": "basic",
+    "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+}
+----
+
+The server then verifies the signature of the token and responds with a successful
+authentication message if the signature is valid and the token has not expired
+yet:
+
+[source,json]
+----
+{
+    "type": "AUTH-RESP",
+    "result": true,
+    "user": "John Doe"
+}
+----
+
+In order to be able to verify the signature, the server needs access to the
+public key of the entity that produces the tokens.

@@ -1,5 +1,6 @@
 = `CMD` — Direct command execution on UAVs
 
+[#cmd-inf]
 == `CMD-INF` — Retrieve execution status of a command
 
 A client sends this request to the server to retrieve the execution
@@ -112,10 +113,10 @@ UAVs for which the transmission failed, as well as a mapping that maps
 the IDs of the UAVs for which the command was sent successfully to
 unique _receipts_ that can be used by the client to retrieve the
 progress of execution for these commands using a
-xref:#_cmd_inf_retrieve_execution_status_of_a_command[CMD-INF] command.
+<<cmd-inf,CMD-INF>> command.
 The actual response of a command request (sent by a targeted UAV) will
 be relayed back to the client that initiated the command in a
-xref:#_cmd_resp_response_to_a_command_request[CMD-RESP] notification.
+<<cmd-resp,CMD-RESP>> notification.
 
 *Request fields*
 
@@ -183,6 +184,7 @@ _either_ in the `receipts` mapping as keys or in the `failure` list.
 }
 ----
 
+[#cmd-resp]
 == `CMD-RESP` — Response to a command request
 
 A server sends a notification of this type to a client when an earlier
