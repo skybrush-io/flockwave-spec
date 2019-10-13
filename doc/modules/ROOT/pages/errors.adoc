@@ -80,6 +80,10 @@ require external control in normal conditions); otherwise use code 131.
 |66 |Battery low. Use this error code only if the UAV is still safe to
 continue its current mission with the current battery charge; otherwise
 use code 134 or 199.
+
+|67 |Timesync error. Use this error code if the UAV tries to synchronize
+its own clock with an external time source (such as the GPS system) and
+it fails to do so.
 |===
 
 == Errors (codes 128-191)
@@ -118,6 +122,10 @@ beacon that it should attempt to follow.
 
 |136 |Target is too far. The target of the UAV is outside the allowed
 safety distance.
+
+|137 |Configuration error. The confirmation of the UAV is incorrect. Depending
+on the type of the UAV, this can typically be resolved by adjusting some
+configuration parameters or configuration files on the UAV.
 
 |188 |Simulated error. Use this error code to trigger a simulated RTH or
 loitering in the absence of any other error, for testing purposes.
@@ -177,6 +185,12 @@ properly. Use code 202 for internal clocks.
 |204 |Required hardware component missing. The UAV can not communicate
 with one of the hardware components that it needs to use during its
 mission.
+
+|205 |Autopilot initialization failed. The UAV cannot set up its own
+autopilot in a way that is suitable for its mission.
+
+|206 |Autopilot communication failed. The UAV tried to communicate with
+its autopilot but the communication failed in a non-recoverable way.
 
 |253 |Simulated critical error. se this error code to trigger an
 emergency landing in the absence of any other critical error, for
