@@ -332,6 +332,9 @@ the following values are defined:
 packets from an external stream (e.g., an NTRIP data source or a
 serial link to an RTK base station).
 
+`dock`:: A connection that provides information about the status of a
+docking station.
+
 `gps`:: A connection that receives data from a GPS device.
 
 `time`:: A connection whose purpose is to connect to a service or
