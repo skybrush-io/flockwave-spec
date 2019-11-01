@@ -59,6 +59,9 @@
             "$ref": "request_DEV-UNSUB.json#/"
         },
         {
+            "$ref": "request_OBJ-LIST.json#/"
+        },
+        {
             "$ref": "request_SYS-PING.json#/"
         },
         {
@@ -136,6 +139,9 @@
         },
         {
             "$ref": "response_DEV-UNSUB.json#/"
+        },
+        {
+            "$ref": "response_OBJ-LIST.json#/"
         },
         {
             "$ref": "response_SYS-VER.json#/"

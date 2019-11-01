@@ -1,0 +1,13 @@
+[
+  {
+    "type": "OBJ-LIST"
+  },
+  {
+    "type": "OBJ-LIST",
+    "filter": ["uav"]
+  },
+  {
+    "type": "OBJ-LIST",
+    "filter": ["uav", "somethingElse"]
+  }
+]

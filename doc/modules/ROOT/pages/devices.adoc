@@ -1,4 +1,4 @@
-= UAV devices and channels
+= Objects, devices and channels
 
 Each UAV in the Flockwave system may consist of an arbitrary number of
 _devices_. Devices usually correspond to real, tangible hardware

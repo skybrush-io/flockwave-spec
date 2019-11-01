@@ -80,14 +80,14 @@ present.
 
 A client sends this request to the server to retrieve the list (well,
 more precisely, the _tree_) of devices and channels associated to one or
-more UAVs.
+more objects.
 
 *Request fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`ids` |yes |list of strings |The list of UAV IDs that the client is
+|`ids` |yes |list of strings |The list of object IDs that the client is
 interested in
 |===
 
@@ -96,20 +96,20 @@ interested in
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`devices` |no |object |Object mapping UAV IDs to the corresponding
+|`devices` |no |object |Mapping from object IDs to the corresponding
 device trees. The structure of this object is described by the
 xref:types.adoc#_devicetreenode[`DeviceTreeNode`] complex type.
 
-|`failure` |no |list of strings |List containing the UAV IDs for which
-the device tree could not have been retrieved. Note that UAVs not
+|`failure` |no |list of strings |List containing the object IDs for which
+the device tree could not have been retrieved. Note that objects not
 supporting any devices will _not_ appear in this list; they will provide
 an empty device tree instead.
 
-|`reasons` |no |object |Object mapping UAV IDs to reasons why the
+|`reasons` |no |object |Mapping from object IDs to reasons why the
 corresponding device tree could not have been retrieved.
 |===
 
-All the UAV IDs that were specified in the request MUST appear _either_
+All the object IDs that were specified in the request MUST appear _either_
 in the `status` list or in the `failure` list.
 
 *Example request*
@@ -168,7 +168,7 @@ in the `status` list or in the `failure` list.
     },
     "failure": ["spam"],
     "reasons": {
-        "spam": "No such UAV."
+        "spam": "No such object."
     }
 }
 ----
@@ -238,7 +238,7 @@ tree.].
 == `DEV-SUB` — Subscribe to a part of a device tree
 
 A client sends this request to the server to subscribe to changes in the
-values of channels in a given part of the device tree of a given UAV.
+values of channels in a given part of the device tree of a given object.
 
 The channel and/or device paths specified in the request are added to a
 client-specific list of subscriptions in the server. When a value of a
@@ -304,7 +304,7 @@ the subscription failed for these paths.
 
 A client sends this request to the server to stop receiving
 notifications changes in the values of channels in a given part of the
-device tree of a given UAV.
+device tree of a given object.
 
 The channel and/or device paths specified in the request are removed
 from a client-specific list of subscriptions in the server. Only exact

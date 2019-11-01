@@ -6,14 +6,14 @@ import re
 
 from typing import Tuple
 
-MAX_UAV_ID_LENGTH = 64
+MAX_OBJECT_ID_LENGTH = MAX_UAV_ID_LENGTH = 64
 
 
-def is_valid_uav_id(identifier: str) -> bool:
-    """Returns whether the given identifier is a valid UAV ID.
+def is_valid_object_id(identifier: str) -> bool:
+    """Returns whether the given identifier is a valid object ID.
 
     Parameters:
-        identifier: the UAV identifier to validate
+        identifier: the object identifier to validate
 
     Returns:
         whether the identifier is valid
@@ -23,6 +23,9 @@ def is_valid_uav_id(identifier: str) -> bool:
         and len(identifier) <= MAX_UAV_ID_LENGTH
         and "/" not in identifier
     )
+
+
+is_valid_uav_id = is_valid_object_id
 
 
 _user_regex = re.compile(
@@ -43,9 +46,9 @@ def is_valid_user(identifier: str) -> bool:
     return _user_regex.match(identifier)
 
 
-def make_valid_uav_id(identifier: str) -> str:
-    """Given an identifier, produces a UAV identifier from it that
-    should pass all checks in `is_valid_uav_id()`.
+def make_valid_object_id(identifier: str) -> str:
+    """Given an identifier, produces an object identifier from it that
+    should pass all checks in `is_valid_object_id()`.
 
     Parameters:
         identifier: the identifier to transform
@@ -55,8 +58,8 @@ def make_valid_uav_id(identifier: str) -> str:
     """
     if len(identifier) < 1:
         return "-"
-    if len(identifier) > MAX_UAV_ID_LENGTH:
-        identifier = identifier[:MAX_UAV_ID_LENGTH]
+    if len(identifier) > MAX_OBJECT_ID_LENGTH:
+        identifier = identifier[:MAX_OBJECT_ID_LENGTH]
     return identifier.replace("/", "-")
 
 

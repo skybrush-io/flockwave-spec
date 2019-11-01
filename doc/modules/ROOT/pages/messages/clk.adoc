@@ -15,7 +15,7 @@ epochs can only be mapped into the number of seconds that have elapsed
 since the epoch by multiplying the tick count with the number of ticks
 per second.
 
-Clocks are identified by unique string identifiers (just like UAVs or
+Clocks are identified by unique string identifiers (just like objects or
 connections). The following reserved clock IDs are defined in the
 Flockwave protocol:
 

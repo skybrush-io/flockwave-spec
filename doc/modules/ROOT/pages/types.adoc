@@ -116,7 +116,7 @@ percentages in the range [0, 100]
 
 Enumeration type that describes the possible operations that may be
 performed on a channel of a device (real or virtual) on a UAV. See
-xref:devices.adoc[UAV devices and channels] for more information.
+xref:devices.adoc[Objects, devices and channels] for more information.
 Currently the following values are defined:
 
 `read`:: Represents the act of reading the current value of the
@@ -523,6 +523,30 @@ because consumer GPS receivers are not that accurate).
     "amsl": 93.765
 }
 ----
+
+== `ObjectType`
+
+Enumeration type that describes the possible object types that the server
+knows about. See xref:devices.adoc[Objects, devices and channels] for more
+information.
+
+Currently the following values are defined:
+
+`beacon`:: A beacon on the ground or in the air. May also be used for waypoints
+that do not have a physical presence.
+
+`dock`:: A docking station.
+
+`other`:: Other object type, not listed here.
+
+`uav`:: An unmanned aerial vehicle.
+
+`weatherStation`:: A weather station.
+
+Values not listed here should also be accepted by the server. If the server
+does not know a particular object type, it should simply return an empty list
+when the user queries about objects of an unknown type. This allows server
+extensions to register custom object types later on.
 
 == `UAVStatusInfo`
 

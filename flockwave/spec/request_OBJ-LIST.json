@@ -5,14 +5,12 @@
 			"title": "Type",
 			"description": "Type of the message",
 			"type": "string",
-			"enum": ["DEV-SUB"]
+			"enum": ["OBJ-LIST"]
 		},
-    "paths": {
-			"$ref": "definitions.json#/deviceTreePathList"
+		"filter": {
+			"$ref": "definitions.json#/objectTypeFilter"
 		}
 	},
-	"required": [
-		"type", "paths"
-	],
+	"required": ["type"],
 	"additionalProperties": false
 }

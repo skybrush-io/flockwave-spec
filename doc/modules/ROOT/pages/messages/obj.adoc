@@ -1,0 +1,182 @@
+= `OBJ` — Generic object-related messages
+
+== `OBJ-LIST` — List of objects known by the server
+
+A client sends this request to the server to request the list of all objects
+(UAVs, docking stations, beacons etc) currently known to the server. The
+semantics of ``knowing'' an object is left up to the server implementation
+and configuration; typically, the server will consider an object to be "known"
+if it has received a status message from the object recently, typically in the
+last few minutes. Other objects may be considered to be known permanently;
+for instance, a server pre-filled with a list of weather stations around a
+country may simply return these as active objects even though it is not receiving
+any explicit updates from them.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`filter` |no |list of xref:types.adoc#_objecttype[ObjectType] |The list of object types that the caller is interested in; default is all object types
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of object IDs that the server knows
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "OBJ-LIST",
+    "filter": ["uav"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "OBJ-LIST",
+    "ids": ["1", "17", "31"]
+}
+----
+
+== `UAV-RTH` — Initiate return to home position
+
+A client send this request to the server to request some of the UAVs to
+return to their home positions.
+
+The server responds with two lists: the first list contains the IDs of
+the UAVs where an unsupervised landing attempt was _started_ (in the
+sense that the UAV has been notified that they should return to their
+home positions now), and the second list contains the IDs where such an
+attempt was not started. (Possible reasons for failure could be: invalid
+UAV ID, UAV does not know the concept of a home position and so on). The
+server MAY decide to include more detailed information about failed
+attempts in the response.
+
+Clients interested in whether the targeted UAVs have returned to their
+home positions should keep an eye on
+<<_uav_inf_basic_status_information_of_one_or_more_uavs,`UAV-INF`>>
+messages and watch the GPS coordinates of the UAVs.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs to target with this
+message
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`success` |no |list of strings |The list of UAV IDs to which the
+request was sent
+
+|`failure` |no |list of strings |The list of UAV IDs to which the
+request was _not_ sent
+
+|`reasons` |no |object |Object mapping UAV IDs to explanations about why
+the request failed for these UAVs.
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-RTH",
+    "ids": ["1", "17", "31", "spam"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-RTH",
+    "success": ["1", "17"],
+    "failure": ["31", "spam"],
+    "reasons": {
+        "31": "UAV is a beacon.",
+        "spam": "No such UAV."
+    }
+}
+----
+
+== `UAV-TAKEOFF` — Initiate unsupervised take-off
+
+A client send this request to the server to initiate unsupervised
+take-off on one or more UAVs. The server responds with two lists: the
+first list contains the IDs of the UAVs where an unsupervised take-off
+was _started_ (in the sense that the UAV has been notified that they
+should take off now), and the second list contains the IDs where such an
+attempt was not started. (Possible reasons for failure could be: invalid
+UAV ID, UAV does not support unsupervised take-off and so on). The
+server MAY decide to include more detailed information about failed
+attempts in the response.
+
+Clients interested in whether the take-off attempts have succeeded
+should keep an eye on <<_uav_inf_basic_status_information_of_one_or_more_uavs,`UAV-INF`>>
+messages and watch the status flags of the UAVs.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs to target with this
+message
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`success` |no |list of strings |The list of UAV IDs to which the
+request was sent
+
+|`failure` |no |list of strings |The list of UAV IDs to which the
+request was _not_ sent
+
+|`reasons` |no |object |Object mapping UAV IDs to explanations about why
+the request failed for these UAVs.
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-TAKEOFF",
+    "ids": ["1", "17", "31", "spam"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-TAKEOFF",
+    "success": ["1", "17"],
+    "failure": ["31", "spam"],
+    "reasons": {
+        "31": "UAV is a beacon.",
+        "spam": "No such UAV."
+    }
+}
+----

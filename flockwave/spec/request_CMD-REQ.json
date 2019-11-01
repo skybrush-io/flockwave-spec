@@ -8,7 +8,7 @@
 			"enum": ["CMD-REQ"]
 		},
 		"ids": {
-			"$ref": "definitions.json#/uavIdList"
+			"$ref": "definitions.json#/objectIdList"
 		},
     "command": {
       "title": "Command",

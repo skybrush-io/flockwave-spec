@@ -12,24 +12,36 @@ information between the drones in the flock and the clients.
 Flockwave server::
 A headless server application that can accept connections from _Flockwave
 clients_ and maintains one or several additional connections to the UAVs and
-other data sources (for instance, RTK correction data providers).
+other data sources (for instance, RTK correction data providers, drone
+docking stations, weather stations and so on).
+
+Object::
+In the context of a _Flockwave server_, an object is an entity whose state is
+tracked by the server. Examples include unmanned aerial vehicles (_UAV_),
+_beacons_ on the ground or in the air, weather stations, control towers and
+ground stations, drone docking stations and so on. Each object consists of a set
+of _devices_ and _channels_ that are organised in a tree-like structure. See
+xref:devices.adoc[Objects, devices and channels] for more information.
 
 UAV (abbr.)::
 Unmanned aerial vehicle; typically a quad-, hexa- or octocopter that is equipped
 with the necessary onboard computer, software and communication equipment that
-enables it to participate in a UAV flock. Even though it is called an _aerial_
-vehicle, not all UAVs are required to be airborne. (See also: _beacon_). Each
-UAVs consists of a set of _devices_ and _channels_ that are organised in a
-tree-like structure. See xref:devices.adoc[UAV devices and channels] for more
-information.
+enables it to participate in a UAV flock.
 
 Beacon::
-A subtype of _UAV_ that is not capable of moving on its own but can broadcast
-its position to other UAVs in the flock.
+A typically immobile ground object that is not capable of moving on its own but
+can broadcast its position to UAVs and to the server.
+
+Docking station::
+A type of ground object that allows a drone to land and recharge itself in an
+autonomous manner.
 
 Device::
 A hardware component, an external peripheral or a virtual software component
-attached to a UAV that provides real-time measurement data via a set of
-_channels_. For instance, a UAV may have a device named `battery` that provides
-the voltage of the battery of the UAV via a single numeric channel named
-`voltage`. See xref:devices.adoc[UAV devices and channels] for more information.
+attached to an UAV or other object that provides real-time measurement data via
+a set of _channels_. For instance, a UAV may have a device named `battery` that
+provides the voltage of the battery of the UAV via a single numeric channel
+named `voltage`. A drone docking station may have devices representing the
+individual docking pads; others may use these devices to query whether the
+docking pads are occupied. See xref:devices.adoc[Objects, devices and channels]
+for more information.

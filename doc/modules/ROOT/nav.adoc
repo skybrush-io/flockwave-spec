@@ -1,6 +1,6 @@
 * xref:definitions.adoc[Definitions]
 * xref:general.adoc[General protocol description]
-* xref:devices.adoc[UAV devices and channels]
+* xref:devices.adoc[Objects, devices and channels]
 * xref:types.adoc[Data types used in messages]
 * xref:errors.adoc[Error codes]
 * xref:messages/index.adoc[Known message types]

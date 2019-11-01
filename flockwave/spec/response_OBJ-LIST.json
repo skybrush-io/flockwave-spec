@@ -2,12 +2,10 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"title": "Type",
-			"description": "Type of the message",
 			"type": "string",
-			"enum": ["DEV-LIST"]
+			"enum": ["OBJ-LIST"]
 		},
-    "ids": {
+		"ids": {
 			"$ref": "definitions.json#/objectIdList"
 		}
 	},

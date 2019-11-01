@@ -393,6 +393,44 @@
         "maxLength": 36
     },
 
+    "objectIdList": {
+        "title": "Object IDs",
+        "description": "IDs of the objects that the message refers to",
+        "type": "array",
+        "items": {
+            "$ref": "#/objectId"
+        },
+        "uniqueItems": true
+    },
+
+    "objectId": {
+        "title": "Object ID",
+        "description": "Identifier of a single object",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[^/]+$"
+    },
+
+    "objectType": {
+        "title": "Object type",
+        "description": "Type of an object tracked by the server",
+        "type": "string",
+        "examples": [
+            "beacon", "dock", "other", "uav", "weatherStation"
+        ]
+    },
+
+    "objectTypeFilter": {
+        "title": "Object types",
+        "description": "Types of objects that the user is interested in",
+        "type": "array",
+        "items": {
+            "$ref": "#/objectType"
+        },
+        "uniqueItems": true
+    },
+
     "receiptId": {
         "title": "Receipt ID",
         "description": "Identifier of the receipt",
@@ -411,21 +449,12 @@
         "uniqueItems": true
     },
 
-    "uavId": {
-        "title": "UAV ID",
-        "description": "Identifier of a single UAV",
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 64,
-        "pattern": "^[^/]+$"
-    },
-
     "uavIdList": {
         "title": "UAV IDs",
         "description": "IDs of the UAVs that the message refers to",
         "type": "array",
         "items": {
-            "$ref": "#/uavId"
+            "$ref": "#/objectId"
         },
         "uniqueItems": true
     },
@@ -439,7 +468,7 @@
         "type": "object",
         "properties": {
             "id": {
-                "$ref": "definitions.json#/uavId"
+                "$ref": "definitions.json#/objectId"
             },
             "algorithm": {
                 "title": "Algorithm",

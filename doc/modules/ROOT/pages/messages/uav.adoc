@@ -1,5 +1,9 @@
 = `UAV` — UAV-related messages
 
+UAVs are subtypes of objects and thus exist in the same namespace as all other
+objects in the server. The messages listed in this section are specific to UAVs
+and do not apply to other object types.
+
 == `UAV-FLY` — Fly to a specific GPS coordinate
 
 A client sends this request to the server to ask a UAV to fly to a
@@ -318,6 +322,10 @@ is left up to the server implementation and configuration; typically,
 the server will return an UAV ID in the response if it has received a
 status message from the given UAV recently, typically in the last few
 minutes.
+
+This message is equivalent to sending an `OBJ-LIST` message with its
+`filter` set to `uav`; it exists solely for compatibility with legacy
+clients and will be deprecated in Flockwave 2.0.
 
 *Request fields*
 
