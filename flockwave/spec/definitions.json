@@ -311,7 +311,7 @@
         "description": "Type of a device tree node",
         "type": "string",
         "enum": [
-            "root", "uav", "device", "channel"
+            "root", "object", "device", "channel"
         ]
     },
 

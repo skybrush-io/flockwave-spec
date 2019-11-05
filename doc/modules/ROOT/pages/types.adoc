@@ -472,13 +472,13 @@ are defined:
 
 `root`:: This is the root node of the device tree. The node has no
 parent by definition. The children of the root node must be nodes of
-type `uav`.
+type `object`.
 
-`uav`:: This is a tree node that represents a UAV in the flock. The
-parent of a `uav` node is always a `root` node. The children of the UAV
-nodes must be nodes of type `device`.
+`object`:: This is a tree node that represents an object that is identified
+by its ID in the server. The parent of an `object` node is always a `root`
+node. The children of the object nodes must be nodes of type `device`.
 
-`device`:: This is a tree node that represents a device of a UAV, or a
+`device`:: This is a tree node that represents a device of an object, or a
 sub-device of another device. The parent of a `device` node is either a
 `uav` node or another `device` node.
 
