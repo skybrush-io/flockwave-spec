@@ -430,9 +430,9 @@ more precisely into any of the other classes.
 == `DeviceTreeNode`
 
 This type represents a single node of the device tree. The node may
-represent a UAV, an onboard (real or virtual) device of a UAV, or a
-channel of a device. (See xref:devices.adoc#_uav_devices_and_channels[UAV devices and
-channels] for more details).
+represent a UAV or any other top-level object that has a unique ID, an
+onboard (real or virtual) device of an object, or a channel of a device.
+(See xref:devices.adoc[Objects, devices and channels] for more details).
 
 *Fields*
 
