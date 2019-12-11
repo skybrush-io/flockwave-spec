@@ -10,6 +10,7 @@
 ** xref:messages/cmd.adoc[CMD — Direct command execution on UAVs]
 ** xref:messages/conn.adoc[CONN — Connection-related messages]
 ** xref:messages/dev.adoc[DEV — Device and channel related messages]
+** xref:messages/obj.adoc[OBJ - Generic object-related messages]
 ** xref:messages/sys.adoc[SYS — System information]
 ** xref:messages/uav.adoc[UAV — UAV-related messages]
 * xref:transport.adoc[Transport layer]
