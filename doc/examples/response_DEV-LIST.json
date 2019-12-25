@@ -2,7 +2,7 @@
     "type": "DEV-LIST",
     "devices": {
       "1": {
-        "type": "uav",
+        "type": "object",
         "children": {
           "battery": {
             "type": "device",

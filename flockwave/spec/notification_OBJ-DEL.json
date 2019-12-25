@@ -1,0 +1,18 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the notification",
+			"type": "string",
+			"enum": ["OBJ-DEL"]
+		},
+        "ids": {
+            "$ref": "definitions.json#/objectIdList"
+        }
+	},
+	"required": [
+		"type", "ids"
+	],
+	"additionalProperties": false
+}

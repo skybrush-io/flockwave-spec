@@ -12,6 +12,9 @@
         {
             "$ref": "notification_CMD-TIMEOUT.json#/"
         },
+        {
+            "$ref": "notification_OBJ-DEL.json#/"
+        },
 
         {
             "$ref": "request_AUTH-INF.json#/"

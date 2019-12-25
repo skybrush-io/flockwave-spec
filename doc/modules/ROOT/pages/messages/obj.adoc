@@ -1,5 +1,29 @@
 = `OBJ` — Generic object-related messages
 
+== `OBJ-DEL` - Object removal notification
+
+A server sends a notification of this type to a client when an existing object
+(UAV, docking station, beacon etc) was removed from the server, typically
+due to inactivity.
+
+*Notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of objects that were removed
+|===
+
+*Example notification*
+
+[source,json]
+----
+{
+    "type": "OBJ-DEL",
+    "ids": ["dock-01"]
+}
+----
+
 == `OBJ-LIST` — List of objects known by the server
 
 A client sends this request to the server to request the list of all objects
@@ -47,4 +71,3 @@ any explicit updates from them.
     "ids": ["1", "17", "31"]
 }
 ----
-
