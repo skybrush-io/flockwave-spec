@@ -67,18 +67,20 @@ standard roll, pitch and yaw angles. See the section about
 <<_angles,angles>> for more information about how the angles are
 expressed.
 
-*Fields*
+The object is stored as a list with three mandatory items.
 
-[cols=",,,",options="header",]
+*Items*
+
+[cols="1,1,1,7",options="header",]
 |===
-|Name |Required? |Type |Description
-|roll |yes |<<_angles,angle>> |the roll angle in degrees, in the range
+|Index | Required? |Type |Description
+|0 |yes |<<_angles,angle>> |the roll angle in degrees, in the range
 [-900, 900)
 
-|pitch |yes |<<_angles,angle>> |the pitch angle in degrees, in the
+|1 |yes |<<_angles,angle>> |the pitch angle in degrees, in the
 range [-900, 900)
 
-|yaw |yes |<<_angles,angle>> |the yaw angle in degrees, in the range
+|2 |yes |<<_angles,angle>> |the yaw angle in degrees, in the range
 [0, 3600)
 |===
 
@@ -86,11 +88,7 @@ range [-900, 900)
 
 [source,json]
 ----
-{
-    "roll": 0,
-    "pitch": 0,
-    "yaw": 900
-}
+[0, 0, 900]
 ----
 
 == `BatteryInfo`
@@ -100,7 +98,7 @@ battery on a UAV.
 
 *Fields*
 
-[width="100%",cols="15%,10%,25%,50%",options="header",]
+[cols="2,1,1,6",options="header",]
 |===
 |Name |Required? |Type |Description
 |voltage |no |float |the battery voltage in one tenths of volts
@@ -511,26 +509,25 @@ because consumer GPS receivers are not that accurate). To avoid floating point
 inaccuracies, latitudes and longitudes are stored in 10^-7^ degrees, and altitudes
 are stored in millimeters as integers.
 
-*Fields*
+The object is stored as a list with four items. The third and fourth items
+(AMSL and AGL) may be null if they are not known. Trailing nulls may be omitted.
 
-[width="100%",cols="15%,10%,25%,50%",options="header",]
+*Items*
+
+[cols="1,1,1,7",options="header",]
 |===
-|Name |Required? |Type |Description
-|lat |yes |float |The latitude, in 10^-7^ degrees, in the range [-90 × 10^7^, 90 × 10^7^)
-|lon |yes |float |The longitude, in 10^-7^ degrees, in the range [-180 × 10^7^,180 × 10^7^)
-|amsl |no |float |The altitude, in millimeters, above mean sea level
-|agl |no |float |The altitude, in millimeters, above ground level
+|Index |Required? |Type |Description
+|0 |yes |float |The latitude, in 10^-7^ degrees, in the range [-90 × 10^7^, 90 × 10^7^)
+|1 |yes |float |The longitude, in 10^-7^ degrees, in the range [-180 × 10^7^,180 × 10^7^)
+|2 |no |float |The altitude, in millimeters, above mean sea level
+|3 |no |float |The altitude, in millimeters, above ground level
 |===
 
 *Example*
 
 [source,json]
 ----
-{
-    "lat": 519976597,
-    "lon": -7406863,
-    "amsl": 93765
-}
+[519976597, -7406863, 93765]
 ----
 
 == `ObjectType`
@@ -639,28 +636,21 @@ instance, a UAV moving northeast with ~2.82 m/s (2.82 = sqrt(8)) while
 ascending with 1 m/s is expressed by a velocity vector where north=2000,
 east=2000 and down=-1000.
 
+The object is stored as a list with three mandatory items.
+
 *Fields*
 
-[cols=",,,",options="header",]
+[cols="1,1,1,7",options="header",]
 |===
-|Name |Required? |Type |Description
-|north |yes |number |The "north" component of the velocity vector, in
-mm/s
-
-|east |yes |number |The "east" component of the velocity vector, in
-mm/s
-
-|down |yes |number |The "down" component of the velocity vector, in
-mm/s
+|Index |Required? |Type |Description
+|0 |yes |number |The "north" component of the velocity vector, in mm/s
+|1 |yes |number |The "east" component of the velocity vector, in mm/s
+|2 |yes |number |The "down" component of the velocity vector, in mm/s
 |===
 
 *Example*
 
 [source,json]
 ----
-{
-    "north": 2000,
-    "east": 2000,
-    "down": -1000
-}
+[2000, 2000, -1000]
 ----

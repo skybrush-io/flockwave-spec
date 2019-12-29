@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-requires = ["click>=6.2", "jsonpointer>=1.10", "jsonschema>=3.0.1", "memoized>=0.3.0"]
+requires = ["click>=6.2", "jsonpointer>=2.0", "jsonschema>=3.2.0", "memoized>=0.3.0"]
 
 extra_requires = {}
 

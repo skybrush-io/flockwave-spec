@@ -5,32 +5,30 @@
 
         "title": "Attitude",
         "description": "Attitude around the principal aircraft axes",
-        "type": "object",
-        "properties": {
-            "roll": {
+        "type": "array",
+        "items": [
+            {
                 "title": "Roll angle",
                 "description": "Roll angle, in 1/10th of degrees",
                 "type": "integer",
                 "minimum": -900,
                 "exclusiveMaximum": 900
             },
-            "pitch": {
+            {
                 "title": "Pitch angle",
                 "description": "Pitch angle, in 1/10th of degrees",
                 "type": "integer",
                 "minimum": -9000,
                 "exclusiveMaximum": 9000
             },
-            "yaw": {
+            {
                 "title": "Yaw angle",
                 "description": "Yaw angle, in 1/10th of degrees",
                 "type": "integer",
                 "minimum": 0,
                 "exclusiveMaximum": 36000
             }
-        },
-        "required": [ "roll", "pitch", "yaw" ],
-        "additionalProperties": false
+        ]
     },
 
     "batteryInfo": {
@@ -360,34 +358,33 @@
 
         "title": "GPS coordinate",
         "description": "GPS coordinate of an object",
-        "type": "object",
-        "properties": {
-            "lat": {
-                "title": "Latitude",
-                "description": "Latitude, in 1e-7 degrees",
-                "type": "integer",
-                "minimum": -900000000,
-                "maximum": 900000000
-            },
-            "lon": {
-                "title": "Longitude",
-                "description": "Longitude, in 1e-7 degrees",
-                "type": "integer",
-                "minimum": -1800000000,
-                "maximum": 1800000000
-            },
-            "amsl": {
-                "title": "AMSL",
-                "description": "Altitude above mean sea level, in millimeters",
-                "type": "integer"
-            },
-            "agl": {
-                "title": "AGL",
-                "description": "Altitude above ground level, in millimeters",
-                "type": "integer"
-            }
-        },
-        "required": [ "lat", "lon" ],
+        "type": "array",
+        "items": [
+          {
+            "title": "Latitude",
+            "description": "Latitude, in 1e-7 degrees",
+            "type": "integer",
+            "minimum": -900000000,
+            "maximum": 900000000
+          },
+          {
+            "title": "Longitude",
+            "description": "Longitude, in 1e-7 degrees",
+            "type": "integer",
+            "minimum": -1800000000,
+            "maximum": 1800000000
+          },
+          {
+            "title": "AMSL",
+            "description": "Altitude above mean sea level, in millimeters",
+            "type": [ "integer", "null" ]
+          },
+          {
+            "title": "AGL",
+            "description": "Altitude above ground level, in millimeters",
+            "type": [ "integer", "null" ]
+          }
+        ],
         "additionalProperties": false
     },
 
@@ -519,26 +516,24 @@
 
         "title": "Velocity (NED)",
         "description": "Velocity in the NED coordinate system",
-        "type": "object",
-        "properties": {
-            "north": {
+        "type": "array",
+        "items": [
+            {
                 "title": "North component",
                 "description": "North component of the vector, in mm/s",
                 "type": "integer"
             },
-            "east": {
+            {
                 "title": "East component",
                 "description": "East component of the vector, in mm/s",
                 "type": "integer"
             },
-            "down": {
+            {
                 "title": "Down component",
                 "description": "Down component of the vector, in mm/s",
                 "type": "integer"
             }
-        },
-        "required": [ "north", "east", "down" ],
-        "additionalProperties": false
+        ]
     },
 
     "versionNumber": {
