@@ -41,6 +41,13 @@ degrees in messages because it comes naturally from the way computers
 handle modulo arithmetics. The user interface may still opt to present
 zero degree as 360 degrees if the user prefers that.
 
+However, when encoding an angle, it is first quantized in 1/10th of degrees
+and then encoded as a signed or unsigned integer in order to avoid floating
+point related inaccuracies and the accumulation of quantization errors
+(see discussion about xref:appendix/floating-point.adoc[floating-point
+inacccuracies]). Therefore, the typical range of angles is [0, 3600) or
+[-1800, 1800), both of which are well versed to fit in a 16-bit integer.
+
 == Byte arrays
 
 The JSON format does not support the transmission of raw byte arrays
@@ -66,13 +73,13 @@ expressed.
 |===
 |Name |Required? |Type |Description
 |roll |yes |<<_angles,angle>> |the roll angle in degrees, in the range
-[-90, 90)
+[-900, 900)
 
 |pitch |yes |<<_angles,angle>> |the pitch angle in degrees, in the
-range [-90, 90)
+range [-900, 900)
 
 |yaw |yes |<<_angles,angle>> |the yaw angle in degrees, in the range
-[0, 360)
+[0, 3600)
 |===
 
 *Example*
@@ -82,7 +89,7 @@ range [-90, 90)
 {
     "roll": 0,
     "pitch": 0,
-    "yaw": 90
+    "yaw": 900
 }
 ----
 
@@ -96,7 +103,7 @@ battery on a UAV.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|voltage |no |float |the battery voltage in volts
+|voltage |no |float |the battery voltage in one tenths of volts
 
 |percentage |no |float |the state-of-charge of the battery, expressed as
 percentages in the range [0, 100]
@@ -107,7 +114,7 @@ percentages in the range [0, 100]
 [source,json]
 ----
 {
-    "voltage": 12.4,
+    "voltage": 124,
     "percentage": 100
 }
 ----
@@ -239,7 +246,7 @@ the completed response)
 response was fully received by the server
 
 |progress |no |float |the progress of the execution of the command,
-expressed as a real value between 0 and 1 (inclusive)
+expressed as an integer value between 0 and 100 (inclusive)
 |===
 
 *Example*
@@ -250,7 +257,7 @@ expressed as a real value between 0 and 1 (inclusive)
     "sent": "2016-04-03T08:07:22.000Z",
     "acknowledged": "2016-04-03T08:07:22.471Z",
     "updated": "2016-04-03T08:07:23.811Z",
-    "progress": 0.8,
+    "progress": 80,
 }
 ----
 
@@ -496,21 +503,23 @@ the Flockwave protocol.
 
 This type represents a coordinate given by a GPS in the usual
 "latitude, longitude, altitude above mean sea level, altitude above
-ground level" format using the WGS 84 reference system.
+ground level" format using the WGS84 reference system.
 
 Latitude and longitude should be specified with at least seven digits'
 precision if possible. (More than seven digits is usually not necessary
-because consumer GPS receivers are not that accurate).
+because consumer GPS receivers are not that accurate). To avoid floating point
+inaccuracies, latitudes and longitudes are stored in 10^-7^ degrees, and altitudes
+are stored in millimeters as integers.
 
 *Fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|lat |yes |float |The latitude, in degrees, in the range [-90,90)
-|lon |yes |float |The longitude, in degrees, in the range [-180,180)
-|amsl |no |float |The altitude, in metres, above mean sea level
-|agl |no |float |The altitude, in metres, above ground level
+|lat |yes |float |The latitude, in 10^-7^ degrees, in the range [-90 × 10^7^, 90 × 10^7^)
+|lon |yes |float |The longitude, in 10^-7^ degrees, in the range [-180 × 10^7^,180 × 10^7^)
+|amsl |no |float |The altitude, in millimeters, above mean sea level
+|agl |no |float |The altitude, in millimeters, above ground level
 |===
 
 *Example*
@@ -518,9 +527,9 @@ because consumer GPS receivers are not that accurate).
 [source,json]
 ----
 {
-    "lat": 51.99765972,
-    "lon": -0.74068634,
-    "amsl": 93.765
+    "lat": 519976597,
+    "lon": -7406863,
+    "amsl": 93765
 }
 ----
 
@@ -597,20 +606,20 @@ the algorithm running on the UAV (if applicable).
     "id": "17",
     "algorithm": "flocking",
     "position": {
-        "lat": 51.9976597,
-        "lon": -0.7406863,
-        "amsl": 93.765
+        "lat": 519976597,
+        "lon": -7406863,
+        "amsl": 93765
     },
-    "heading": 90,
+    "heading": 900,
     "attitude": {
         "roll": 0,
         "pitch": 0,
-        "yaw": 90
+        "yaw": 900
     },
     "velocity": {
-        "north": 2.0,
-        "east": 2.0,
-        "down": -1.0
+        "north": 2000,
+        "east": 2000,
+        "down": -1000
     },
     "timestamp": "2015-12-08T08:17:41.000Z",
     "debug": "MEJBRENBRkU=",
@@ -625,10 +634,10 @@ using base64.
 
 This type represents the velocity of an airborne object (typically a
 UAV) in the NED coordinate system (also called local tangent plane). The
-default unit for the components is m/s (metres per second). For
+default unit for the components is mm/s (millimeters per second). For
 instance, a UAV moving northeast with ~2.82 m/s (2.82 = sqrt(8)) while
-ascending with 1 m/s is expressed by a velocity vector where north=2,
-east=2 and down=-1.
+ascending with 1 m/s is expressed by a velocity vector where north=2000,
+east=2000 and down=-1000.
 
 *Fields*
 
@@ -636,13 +645,13 @@ east=2 and down=-1.
 |===
 |Name |Required? |Type |Description
 |north |yes |number |The "north" component of the velocity vector, in
-m/s
+mm/s
 
 |east |yes |number |The "east" component of the velocity vector, in
-m/s
+mm/s
 
 |down |yes |number |The "down" component of the velocity vector, in
-m/s
+mm/s
 |===
 
 *Example*
@@ -650,8 +659,8 @@ m/s
 [source,json]
 ----
 {
-    "north": 2.0,
-    "east": 2.0,
-    "down": -1.0
+    "north": 2000,
+    "east": 2000,
+    "down": -1000
 }
 ----

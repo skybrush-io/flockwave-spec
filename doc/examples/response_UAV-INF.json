@@ -5,26 +5,26 @@
             "id": "1",
             "algorithm": "flocking",
             "position": {
-                "lat": 51.9976597,
-                "lon": -0.7406863,
-                "amsl": 93.765
+                "lat": 519976597,
+                "lon": -7406863,
+                "amsl": 93765
             },
             "heading": 90,
             "attitude": {
                 "roll": 0,
                 "pitch": 0,
-                "yaw": 90
+                "yaw": 900
             },
             "velocity": {
-                "north": 2,
-                "east": 2,
-                "down": -1
+                "north": 2000,
+                "east": 2000,
+                "down": -1000
             },
             "timestamp": "2015-12-08T08:17:41.000Z",
             "debug": "0BADCAFE",
             "error": [17, 41],
             "battery": {
-                "voltage": 12.4,
+                "voltage": 124,
                 "percentage": 100
             }
         }

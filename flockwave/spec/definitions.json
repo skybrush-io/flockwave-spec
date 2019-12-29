@@ -8,19 +8,25 @@
         "type": "object",
         "properties": {
             "roll": {
-                "type": "number",
-                "minimum": -90,
-                "exclusiveMaximum": 90
+                "title": "Roll angle",
+                "description": "Roll angle, in 1/10th of degrees",
+                "type": "integer",
+                "minimum": -900,
+                "exclusiveMaximum": 900
             },
             "pitch": {
-                "type": "number",
-                "minimum": -90,
-                "exclusiveMaximum": 90
+                "title": "Pitch angle",
+                "description": "Pitch angle, in 1/10th of degrees",
+                "type": "integer",
+                "minimum": -9000,
+                "exclusiveMaximum": 9000
             },
             "yaw": {
-                "type": "number",
+                "title": "Yaw angle",
+                "description": "Yaw angle, in 1/10th of degrees",
+                "type": "integer",
                 "minimum": 0,
-                "exclusiveMaximum": 360
+                "exclusiveMaximum": 36000
             }
         },
         "required": [ "roll", "pitch", "yaw" ],
@@ -38,14 +44,14 @@
             "percentage": {
                 "title": "State of charge (%)",
                 "description": "Percentage indicator of the state of charge of the battery (100% = full, 0% = empty)",
-                "type": "number",
+                "type": "integer",
                 "minimum": 0,
                 "maximum": 100
             },
             "voltage": {
                 "title": "Battery voltage",
                 "description": "The voltage of the battery",
-                "type": "number"
+                "type": "integer"
             }
         },
         "additionalProperties": false
@@ -74,8 +80,8 @@
         "description": "Type of a channel",
         "type": "string",
         "enum": [
-            "audio", "boolean", "bytes", "color", "duration", "object",
-            "number", "string", "time", "video"
+            "audio", "boolean", "bytes", "cartesian", "color", "duration",
+            "gps", "number", "object", "string", "time", "video"
         ]
     },
 
@@ -165,9 +171,9 @@
                 "format": "date-time"
             },
             "progress": {
-                "type": "number",
+                "type": "integer",
                 "minimum": 0,
-                "maximum": 1
+                "maximum": 100
             }
         },
         "required": [ "sent" ],
@@ -337,7 +343,7 @@
         "description": "List of currently active error codes for a single UAV",
         "type": "array",
         "items": {
-            "type": "number"
+            "type": "integer"
         }
     },
 
@@ -353,32 +359,32 @@
         "$id": "http://collmot.com/schemas/flockwave/1.0/gps_coordinate.json",
 
         "title": "GPS coordinate",
-        "description": "GPS coordinate of a UAV",
+        "description": "GPS coordinate of an object",
         "type": "object",
         "properties": {
             "lat": {
                 "title": "Latitude",
-                "description": "Latitude, in degrees",
-                "type": "number",
-                "minimum": -90,
-                "maximum": 90
+                "description": "Latitude, in 1e-7 degrees",
+                "type": "integer",
+                "minimum": -900000000,
+                "maximum": 900000000
             },
             "lon": {
                 "title": "Longitude",
-                "description": "Longitude, in degrees",
-                "type": "number",
-                "minimum": -180,
-                "maximum": 180
+                "description": "Longitude, in 1e-7 degrees",
+                "type": "integer",
+                "minimum": -1800000000,
+                "maximum": 1800000000
             },
             "amsl": {
                 "title": "AMSL",
-                "description": "Altitude above mean sea level, in meters",
-                "type": "number"
+                "description": "Altitude above mean sea level, in millimeters",
+                "type": "integer"
             },
             "agl": {
                 "title": "AGL",
-                "description": "Altitude above ground level, in meters",
-                "type": "number"
+                "description": "Altitude above ground level, in millimeters",
+                "type": "integer"
             }
         },
         "required": [ "lat", "lon" ],
@@ -480,10 +486,10 @@
             },
             "heading": {
                 "title": "Heading",
-                "description": "The heading of the UAV in the local tangent plane",
-                "type": "number",
+                "description": "The heading of the UAV in the local tangent plane, in 1/10th of degrees",
+                "type": "integer",
                 "minimum": 0,
-                "exclusiveMaximum": 360
+                "exclusiveMaximum": 3600
             },
             "attitude": {
                 "$ref": "definitions.json#/attitude"
@@ -516,13 +522,19 @@
         "type": "object",
         "properties": {
             "north": {
-                "type": "number"
+                "title": "North component",
+                "description": "North component of the vector, in mm/s",
+                "type": "integer"
             },
             "east": {
-                "type": "number"
+                "title": "East component",
+                "description": "East component of the vector, in mm/s",
+                "type": "integer"
             },
             "down": {
-                "type": "number"
+                "title": "Down component",
+                "description": "Down component of the vector, in mm/s",
+                "type": "integer"
             }
         },
         "required": [ "north", "east", "down" ],

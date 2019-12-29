@@ -1,0 +1,33 @@
+= Floating-point related issues
+
+Throughout the Flockwave protocol, we mostly avoid using floating-point
+numbers, except in places where we expect the exponent of a value in standard
+scientific notation to cover a wide range (several order of magnitudes). This is
+intentional, due to the problems that one may encounter with floating-point
+numbers in almost all computer languages from low-level ones like C to
+high-level ones like JavaScript.
+
+As an illustration, consider what happens in https://www.python.org[Python], a
+popular high-level language when attempting to serialize the value 0.3
+(expressed as 0.1 + 0.2) into JSON:
+
+[source,python]
+----
+>>> import json
+>>> json.dumps(0.1 + 0.2)
+'0.30000000000000004'
+----
+
+The net consequence of this is that any time Python would attempt to serialize
+a floating-point number into JSON, we cannot be sure that it does not end up
+with an unnecessary amount of extra digits at the end due to rounding errors.
+Therefore, in cases where it is possible, it makes more sense to use signed
+or unsigned integers when transmitting these values over the wire, and then do
+the appropriate conversion to floats at the very end of the data processing
+pipeline where the value has to be presented to the user.
+
+For more information about this topic, refer to
+https://floating-point-gui.de/[What Every Programmer Should Know About Floating-Point Arithmetic]
+for a high-level overview and
+https://www.itu.dk/~sestoft/bachelor/IEEE754_article.pdf[What Every Computer Scientist Should Know About Floating-Point Arithmetic]
+for a more thorough academic discussion.

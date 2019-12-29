@@ -5,7 +5,7 @@
             "sent": "2016-04-03T08:07:22.000Z",
             "acknowledged": "2016-04-03T08:07:22.471Z",
             "updated": "2016-04-03T08:07:23.811Z",
-            "progress": 0.8
+            "progress": 80
         }
     },
     "failure": ["0badcafe-deadbeef:3"],

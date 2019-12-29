@@ -1,0 +1,4 @@
+= Appendix
+
+This section contains all the chapters that are not directly related to the
+Flockwave protocol but can be useful nevertheless to some of the readers.

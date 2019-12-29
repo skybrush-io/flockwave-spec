@@ -91,6 +91,18 @@ interval, expressed as the number of seconds elapsed since the beginning
 of the time interval. Typical use-case: uptime, flight duration, time
 left until a certain event and so on.
 
+*GPS coordinate channels*: GPS coordinate channels provide the location of
+some object in the WGS84 reference frame, expressed as an array of numbers that
+encode the latitude, longitude, altitude above mean sea level, and altitude
+above ground level. Latitude and longitude are expressed as integers with a
+quantization of 10^-7^ degrees. Altitudes are expressed in millimeters. When
+encoding matters, these numbers should be represented as 32-bit signed integers.
+
+*Cartesian coordinate channels*: Cartesian coordinate channels provide the
+location of some object in a not specified fixed flat Earth coordinate frame,
+expressed as an array of numbers that encode the X, Y and Z coordinates,
+represented as floats.
+
 *Object channels*: Object channels provide complex structured or
 unstructured information in the form of JSON-encoded objects.
 

@@ -15,3 +15,5 @@
 ** xref:messages/uav.adoc[UAV — UAV-related messages]
 * xref:transport.adoc[Transport layer]
 * xref:security.adoc[Security considerations]
+* xref:appendix/index.adoc[Appendix]
+** xref:appendix/floating-point.adoc[Floating-point related issues]
