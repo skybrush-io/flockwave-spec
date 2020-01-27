@@ -102,15 +102,15 @@ _either_ as keys in the `status` object or in the `failure` list.
     "status": {
         "gps": {
             "id": "gps",
-            "timestamp": 1462891061.824093,
-            "retrievedAt": "2016-05-10T14:33:21Z",
+            "ticks": 1462891061.824093,
+            "retrievedAt": 1462890801000,
             "epoch": "unix",
             "running": true
         },
         "mtc": {
             "id": "mtc",
-            "timestamp": 4221,
-            "retrievedAt": "2016-05-10T14:33:21Z",
+            "ticks": 4221,
+            "retrievedAt": 1462890801000,
             "ticksPerSecond": 30,
             "running": true
         }

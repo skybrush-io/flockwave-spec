@@ -4,7 +4,13 @@ This section describes the complex data types and structures that are
 used in Flockwave messages. These data types will be referenced later
 from the *Known message types* section.
 
-== Dates and times
+== Timestamps
+
+Timestamps MUST always be expressed as the number of milliseconds elapsed since
+the Unix epoch (1970-01-11 00:00:00 UTC. Note that this means that timestamps
+expressed in local time MUST be converted to UTC before expressing them as milliseconds.
+
+== Dates and times as strings
 
 image:http://imgs.xkcd.com/comics/iso_8601.png[The preferred date and
 time format of Flockwave]
@@ -96,25 +102,23 @@ range [-900, 900)
 A `BatteryInfo` object holds information about the state of an on-board
 battery on a UAV.
 
+The object is stored as a list with one mandatory and one optional item.
+
 *Fields*
 
 [cols="2,1,1,6",options="header",]
 |===
-|Name |Required? |Type |Description
-|voltage |no |float |the battery voltage in one tenths of volts
-
-|percentage |no |float |the state-of-charge of the battery, expressed as
-percentages in the range [0, 100]
+|Index |Required? |Type |Description
+|0 |yes |integer |the battery voltage in one tenths of volts; zero if unknown
+|1 |no  |integer |the state-of-charge of the battery, expressed as a percentage
+in the range [0, 100]; omitted if unknown
 |===
 
 *Example*
 
 [source,json]
 ----
-{
-    "voltage": 124,
-    "percentage": 100
-}
+[124, 100]
 ----
 
 == `ChannelOperation`
@@ -166,8 +170,9 @@ seconds are allowed.
 == `ClockEpoch`
 
 A `ClockEpoch` object describes the epoch of a clock or timer that the
-Flockwave server manages. It is either a <<_dates_and_times,datetime>>
-string or one of the following string values:
+Flockwave server manages. It is either a numeric <<_timestamps,timestamp>>,
+a <<_dates_and_times_as_strings_as_strings,datetime>> string or one of the
+following string values:
 
 `unix`:: The UNIX epoch, i.e. midnight on 1 Jan 1970 UTC.
 
@@ -191,7 +196,7 @@ current timestamp of the clock is to be measured, if that makes sense
 for the clock. When the epoch is omitted, the clock is assumed to be
 ticking since an unspecified instant in the past.
 
-|retrievedAt |yes |<<_dates_and_times,datetime>> |the time according
+|retrievedAt |yes |<<_timestamps,timestamp>> |the time according
 to the internal clock server when the state of the clock was retrieved.
 If the internal clock of the server and the client is synchronized, this
 can be used by the client to compensate for the time it takes for the
@@ -202,8 +207,7 @@ server to transmit the clock status message to the client.
 |ticksPerSecond |no |float |the number of clock ticks per second. Must
 be larger than zero. When omitted, it is assumed to be equal to 1.
 
-|timestamp |yes |float |the current timestamp of the clock, i.e. the
-number of ticks that have elapsed on the clock
+|ticks |yes |float |the number of ticks that have elapsed on the clock
 |===
 
 *Example*
@@ -212,8 +216,8 @@ number of ticks that have elapsed on the clock
 ----
 {
     "id": "mtc",
-    "timestamp": 4221,
-    "retrievedAt": "2016-05-10T14:33:21Z",
+    "ticks": 4221,
+    "retrievedAt": 1462890801000,
     "ticksPerSecond": 30,
     "running": true
 }
@@ -229,18 +233,18 @@ command that was relayed from a client to a UAV by the server.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|sent |yes |<<_dates_and_times,datetime>> |time when the command
+|sent |yes |<<_timestamps,timestamp>> |time when the command
 request was sent to the UAV
 
-|acknowledged |no |<<_dates_and_times,datetime>> |time when the UAV
+|acknowledged |no |<<_timestamps,timestamp>> |time when the UAV
 acknowledged the receipt of the request (explicitly or implicitly,
 i.e. by sending a status update or a response)
 
-|updated |no |<<_dates_and_times,datetime>> |time when the UAV updated
+|updated |no |<<_timestamps,timestamp>> |time when the UAV updated
 the progress of the request (explicitly or implicitly, i.e. by sending
 the completed response)
 
-|finished |no |<<_dates_and_times,datetime>> |time when the final
+|finished |no |<<_timestamps,timestamp>> |time when the final
 response was fully received by the server
 
 |progress |no |float |the progress of the execution of the command,
@@ -252,9 +256,9 @@ expressed as an integer value between 0 and 100 (inclusive)
 [source,json]
 ----
 {
-    "sent": "2016-04-03T08:07:22.000Z",
-    "acknowledged": "2016-04-03T08:07:22.471Z",
-    "updated": "2016-04-03T08:07:23.811Z",
+    "sent": 1459670842000,
+    "acknowledged": 1459670842471,
+    "updated": 1459670842811,
     "progress": 80,
 }
 ----
@@ -308,7 +312,7 @@ of the connection (i.e. what sort of data it provides)
 |status |yes |<<_connectionstatus,ConnectionStatus>> |the current
 status of the connection
 
-|timestamp |no |<<_dates_and_times,datetime>> |time when the last
+|timestamp |no |<<_timestamps,timestamp>> |time when the last
 packet was received from the connection, or if it is not available, the
 time when the connection changed status the last time
 |===
@@ -322,7 +326,7 @@ time when the connection changed status the last time
     "purpose": "uavRadioLink",
     "description": "Upstream XBee radio link",
     "status": "connected",
-    "timestamp": "2015-12-08T08:17:41.000Z"
+    "timestamp": 1449562061000
 }
 ----
 
@@ -581,13 +585,13 @@ known.
 |velocity |no |<<_velocityned,VelocityNED>> |The velocity of the UAV,
 expressed in the NED (North, East, Down) coordinate system.
 
-|timestamp |yes |<<_dates_and_times,datetime>> |Time when the last
+|timestamp |yes |<<_timestamps,timestamp>> |Time when the last
 status update was received from the UAV
 
 |battery |no |<<_batteryinfo,BatteryInfo>> |Information about the
 state of the battery on the UAV.
 
-|error |no |<<_errorlist,ErrorList>> |The list of error codes
+|errors |no |<<_errorlist,ErrorList>> |The list of error codes
 currently applicable for the UAV. When omitted, it means that there are
 no errors.
 
@@ -618,9 +622,9 @@ the algorithm running on the UAV (if applicable).
         "east": 2000,
         "down": -1000
     },
-    "timestamp": "2015-12-08T08:17:41.000Z",
+    "timestamp": 1449562661000,
     "debug": "MEJBRENBRkU=",
-    "error": [42]
+    "errors": [42]
 }
 ----
 

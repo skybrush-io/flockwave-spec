@@ -2,9 +2,9 @@
     "type": "CMD-INF",
     "status": {
         "0badcafe-deadbeef:1": {
-            "sent": "2016-04-03T08:07:22.000Z",
-            "acknowledged": "2016-04-03T08:07:22.471Z",
-            "updated": "2016-04-03T08:07:23.811Z",
+            "sent": 1459670842000,
+            "acknowledged": 1459670842471,
+            "updated": 1459670842811,
             "progress": 80
         }
     },

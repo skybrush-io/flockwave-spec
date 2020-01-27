@@ -37,22 +37,22 @@
 
         "title": "Battery information",
         "description": "Information about the on-board battery of the UAV, if applicable",
-        "type": "object",
-        "properties": {
-            "percentage": {
+        "type": "array",
+        "items": [
+            {
+                "title": "Battery voltage",
+                "description": "The voltage of the battery, in 1/10th of volts",
+                "type": "integer",
+                "minimum": 0
+            },
+            {
                 "title": "State of charge (%)",
                 "description": "Percentage indicator of the state of charge of the battery (100% = full, 0% = empty)",
                 "type": "integer",
                 "minimum": 0,
                 "maximum": 100
-            },
-            "voltage": {
-                "title": "Battery voltage",
-                "description": "The voltage of the battery",
-                "type": "integer"
             }
-        },
-        "additionalProperties": false
+        ]
     },
 
     "channelId": {
@@ -126,8 +126,7 @@
                 "$ref": "definitions.json#/clockEpoch"
             },
             "retrievedAt": {
-                "type": "string",
-                "format": "datetime"
+                "type": "number"
             },
             "running": {
                 "type": "boolean"
@@ -137,11 +136,11 @@
                 "minimum": 0,
                 "exclusiveMinimum": true
             },
-            "timestamp": {
+            "ticks": {
                 "type": "number"
             }
         },
-        "required": [ "id", "retrievedAt", "running", "timestamp" ]
+        "required": [ "id", "retrievedAt", "running", "ticks" ]
     },
 
     "commandExecutionStatus": {
@@ -153,20 +152,16 @@
                 "$ref": "definitions.json#/receiptId"
             },
             "sent": {
-                "type": "string",
-                "format": "date-time"
+                "type": "number"
             },
             "acknowledged": {
-                "type": "string",
-                "format": "date-time"
+                "type": "number"
             },
             "updated": {
-                "type": "string",
-                "format": "date-time"
+                "type": "number"
             },
             "finished": {
-                "type": "string",
-                "format": "date-time"
+                "type": "number"
             },
             "progress": {
                 "type": "integer",
@@ -228,8 +223,7 @@
                 "$ref": "definitions.json#/connectionStatus"
             },
             "timestamp": {
-                "type": "string",
-                "format": "date-time"
+                "type": "number"
             }
         },
         "required": [ "id", "purpose", "status" ]
@@ -384,8 +378,7 @@
             "description": "Altitude above ground level, in millimeters",
             "type": [ "integer", "null" ]
           }
-        ],
-        "additionalProperties": false
+        ]
     },
 
     "messageId": {
@@ -497,13 +490,12 @@
             "timestamp": {
                 "title": "Last updated at",
                 "description": "Timestamp that denotes when the status of the UAV was updated the last time",
-                "type": "string",
-                "format": "date-time"
+                "type": "number"
             },
             "battery": {
                 "$ref": "definitions.json#/batteryInfo"
             },
-            "error": {
+            "errors": {
                 "$ref": "definitions.json#/errorList"
             }
         },

@@ -6,7 +6,7 @@
             "purpose": "uavRadioLink",
             "description": "Upstream XBee radio link",
             "status": "connected",
-            "timestamp": "2015-12-14T17:31:18.000Z"
+            "timestamp": 1450114278000
         },
         "dgps": {
             "id": "dgps",

@@ -8,13 +8,10 @@
             "heading": 900,
             "attitude": [0, 0, 900],
             "velocity": [2000, 2000, -1000],
-            "timestamp": "2015-12-08T08:17:41.000Z",
+            "timestamp": 1449562661000,
             "debug": "0BADCAFE",
-            "error": [17, 41],
-            "battery": {
-                "voltage": 124,
-                "percentage": 100
-            }
+            "errors": [17, 41],
+            "battery": [124]
         }
     },
     "failure": ["spam"],
