@@ -62,6 +62,10 @@ xref:types.adoc#_uavstatusinfo[UAVStatusInfo] structures.
 |Code |Description
 |1 |Logging deactivated. This message is shown when logging-capable UAVs
 are not able to write entries to their logs for some reason.
+|2 |Autopilot initializing. This message is shown when the autopilot of the
+UAV has not finished initializing and the UAV is not ready for takeoff yet.
+|3 |Prearm check in progress. This message is shown when the UAV is performing
+prearm checks and is not ready for takeoff yet.
 |===
 
 == Warnings (codes 64-127)
