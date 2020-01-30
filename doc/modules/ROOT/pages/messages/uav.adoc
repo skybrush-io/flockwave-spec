@@ -102,7 +102,7 @@ this message only in emergencies.
 
 The server responds with two lists: the first list contains the IDs of
 the UAVs where a shutdown attempt was _started_ (in the sense that the
-UAV has been notified that they should land now), and the second list
+UAV has been notified that they should shut down now), and the second list
 contains the IDs where such an attempt was not started. (Possible
 reasons for failure could be: invalid UAV ID, UAV does not support
 forced shutdown and so on). The server MAY decide to include more
@@ -355,6 +355,78 @@ This request has no fields.
 {
     "type": "UAV-LIST",
     "ids": ["1", "17", "31"]
+}
+----
+
+== `UAV-RST` — Send reboot request
+
+A client sends this request to the server to initiate the reboot of the
+entire UAV or some subsystem of it. Note that this is a potentially dangerous
+operation; this message only if the UAV is on the ground or if you are sure
+that the rebooted subsystem does not affect the normal operation of the UAV
+during flight.
+
+The server responds with two lists: the first list contains the IDs of
+the UAVs where a reboot attempt was _started_ (in the sense that the
+UAV has been notified that they should reboot), and the second list
+contains the IDs where such an attempt was not started. (Possible
+reasons for failure could be: invalid UAV ID, UAV does not support
+rebooting and so on). The server MAY decide to include more detailed
+information about failed attempts in the response.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs to target with this
+message
+|`component` |no |string |The name of the UAV component to reboot. The list
+of allowed names depends on the type of the UAV. When omitted or empty, the
+entire UAV will be rebooted as if it was turned off and then on again.
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`success` |no |list of strings |The list of UAV IDs to which the
+request was sent
+
+|`failure` |no |list of strings |The list of UAV IDs to which the
+request was _not_ sent
+
+|`reasons` |no |object |Object mapping UAV IDs to explanations about why
+the request failed for these UAVs.
+|===
+
+All the UAV IDs that were specified in the request MUST appear _either_
+in the `success` list or in the `failure` list.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-RST",
+    "ids": ["1", "17", "31", "spam"],
+    "component": "autopilot"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-RST",
+    "success": ["1", "17"],
+    "failure": ["31", "spam"],
+    "reasons": {
+        "31": "UAV does not support rebooting.",
+        "spam": "No such UAV."
+    }
 }
 ----
 

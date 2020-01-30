@@ -1,0 +1,23 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["UAV-RST"]
+		},
+		"ids": {
+			"$ref": "definitions.json#/uavIdList"
+		},
+    "component": {
+      "title": "Component",
+      "description": "The component to reboot",
+      "type": "string"
+    }
+	},
+	"required": [
+		"type", "ids"
+	],
+	"additionalProperties": false
+}

@@ -66,6 +66,8 @@ are not able to write entries to their logs for some reason.
 UAV has not finished initializing and the UAV is not ready for takeoff yet.
 |3 |Prearm check in progress. This message is shown when the UAV is performing
 prearm checks and is not ready for takeoff yet.
+|4 |Drone not armed yet. This message is shown when the UAV is in a state that
+motor thrust is prevented by a hardware or software switch.
 |===
 
 == Warnings (codes 64-127)

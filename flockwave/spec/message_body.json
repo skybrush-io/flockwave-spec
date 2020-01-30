@@ -86,6 +86,9 @@
             "$ref": "request_UAV-LIST.json#/"
         },
         {
+            "$ref": "request_UAV-RST.json#/"
+        },
+        {
             "$ref": "request_UAV-RTH.json#/"
         },
         {
@@ -163,6 +166,9 @@
         },
         {
             "$ref": "response_UAV-LIST.json#/"
+        },
+        {
+            "$ref": "response_UAV-RST.json#/"
         },
         {
             "$ref": "response_UAV-RTH.json#/"
