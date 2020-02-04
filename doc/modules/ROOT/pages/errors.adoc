@@ -53,41 +53,46 @@ of the error message is not known to the GUI client.
 
 The following tables list all the commonly used error codes in
 xref:types.adoc#_errorlist[ErrorList] members typically found in
-xref:types.adoc#_uavstatusinfo[UAVStatusInfo] structures.
+xref:types.adoc#_uavstatusinfo[UAVStatusInfo] structures. The tables also
+list a proposed abbreviation for some of the error codes; this can be used
+on user interfaces where space is at a premium.
 
 == Informational messages (codes 1-63)
 
 [width="100%",cols="10%,90%",options="header",]
 |===
-|Code |Description
-|1 |Logging deactivated. This message is shown when logging-capable UAVs
-are not able to write entries to their logs for some reason.
-|2 |Autopilot initializing. This message is shown when the autopilot of the
-UAV has not finished initializing and the UAV is not ready for takeoff yet.
-|3 |Prearm check in progress. This message is shown when the UAV is performing
-prearm checks and is not ready for takeoff yet.
-|4 |Drone not armed yet. This message is shown when the UAV is in a state that
+|Code |Abbr |Description
+|1 |DISARM |Drone not armed yet. This message is shown when the UAV is in a state that
 motor thrust is prevented by a hardware or software switch.
+|2 |NO LOG |Logging deactivated. This message is shown when logging-capable UAVs
+are not able to write entries to their logs for some reason.
+|3 |PREARM |Prearm check in progress. This message is shown when the UAV is performing
+prearm checks and is not ready for takeoff yet.
+|4 |INIT |Autopilot initializing. This message is shown when the autopilot of the
+UAV has not finished initializing and the UAV is not ready for takeoff yet.
+|5 |TAKEOFF |Drone is taking off.
+|6 |LANDING |Drone is landing.
+|7 |LANDED  |Drone has landed successfully.
 |===
 
 == Warnings (codes 64-127)
 
 [width="100%",cols="10%,90%",options="header",]
 |===
-|Code |Description
-|64 |Low disk space. This message is shown by UAVs having an internal
+|Code |Abbr |Description
+|64 |STORAGE |Low disk space. This message is shown by UAVs having an internal
 storage (e.g., an SD card) in cases when they are running out of free
 space on the storage device.
 
-|65 |RC signal lost. Use this error code only if the UAV can deal with
+|65 |RC LOST |RC signal lost. Use this error code only if the UAV can deal with
 this situation (e.g., when it is running an algorithm that does not
 require external control in normal conditions); otherwise use code 131.
 
-|66 |Battery low. Use this error code only if the UAV is still safe to
+|66 |LOWBAT |Battery low. Use this error code only if the UAV is still safe to
 continue its current mission with the current battery charge; otherwise
 use code 134 or 199.
 
-|67 |Timesync error. Use this error code if the UAV tries to synchronize
+|67 |TIMESYNC |Timesync error. Use this error code if the UAV tries to synchronize
 its own clock with an external time source (such as the GPS system) and
 it fails to do so.
 |===
@@ -97,53 +102,53 @@ it fails to do so.
 [width="100%",cols="10%,90%",options="header",]
 |===
 |Code |Description
-|128 |Autopilot communication timeout. High-level control algorithms
+|128 |COMM TO |Autopilot communication timeout. High-level control algorithms
 failed to communicate with a lower-level autopilot component. The
 autopilot will probably attempt RTH or switch to loiter mode.
 
-|129 |Autopilot acknowledgment timeout. A lower-level autopilot component
+|129 |ACK TO |Autopilot acknowledgment timeout. A lower-level autopilot component
 did not acknowledge a command sent to it by a higher-level control
 algorithm.
 
-|130 |Autopilot communication protocol error. High-level control
+|130 |PROTO |Autopilot communication protocol error. High-level control
 algorithms failed to parse a message sent by the lower-level autopilot
 component or vice versa. The autopilot will probably attempt RTH or
 switch to loitering mode.
 
-|131 |Prearm check failure. One of the pre-flight checks has failed.
+|131 |PREARM |Prearm check failure. One of the pre-flight checks has failed.
 
 |132 |RC signal lost. Use this error code only if the UAV can not deal
 with this situation and will RTH or land; otherwise use code 65.
 
-|133 |GPS error or GPS signal lost. Use this error code only if loitering
+|133 |NO GPS |GPS error or GPS signal lost. Use this error code only if loitering
 is probably still possible with the remaining sensors; otherwise use
 code 197.
 
-|134 |Battery low. Use this error code only if the UAV is not safe to
+|134 |LOWBAT |Battery low. Use this error code only if the UAV is not safe to
 continue its current mission with the current battery charge but can
 safely attempt RTH or loitering; otherwise use code 66 or 199.
 
-|135 |Target not found. The UAV does not find the target waypoint or
+|135 |TARGET |Target not found. The UAV does not find the target waypoint or
 beacon that it should attempt to follow.
 
-|136 |Target is too far. The target of the UAV is outside the allowed
+|136 |TOO FAR |Target is too far. The target of the UAV is outside the allowed
 safety distance.
 
-|137 |Configuration error. The confirmation of the UAV is incorrect. Depending
+|137 |CONFIG |Configuration error. The confirmation of the UAV is incorrect. Depending
 on the type of the UAV, this can typically be resolved by adjusting some
 configuration parameters or configuration files on the UAV.
 
-|188 |Simulated error. Use this error code to trigger a simulated RTH or
+|188 |SIMERR |Simulated error. Use this error code to trigger a simulated RTH or
 loitering in the absence of any other error, for testing purposes.
 
-|189 |Error in control algorithm. Use this error when the higher-level
+|189 |CONTROL |Error in control algorithm. Use this error when the higher-level
 control algorithm that drives the autopilot of the UAV failed to produce
 sensible input for the autopilot.
 
-|190 |Other, unspecified sensor failure that does not prevent RTH or
+|190 |SENSOR |Other, unspecified sensor failure that does not prevent RTH or
 loitering.
 
-|191 |Other, unspecified error that does not prevent RTH or loitering.
+|191 |ERROR |Other, unspecified error that does not prevent RTH or loitering.
 |===
 
 == Critical errors (codes 192-255)
@@ -151,60 +156,62 @@ loitering.
 [width="100%",cols="10%,90%",options="header",]
 |===
 |Code |Description
-|192 |Incompatible hardware or software. Some hardware or software
+|192 |COMPAT |Incompatible hardware or software. Some hardware or software
 components are not compatible with each other; e.g., using a
 PixHawk-based autopilot with an incompatible FlockCtrl software.
 
-|193 |Magnetic sensor error.
+|193 |MAG |Magnetic sensor error.
 
-|194 |Gyroscope error.
+|194 |GYRO |Gyroscope error.
 
-|195 |Accelerometer error.
+|195 |ACC |Accelerometer error.
 
-|196 |Pressure sensor or altimeter error.
+|196 |BARO |Pressure sensor or altimeter error.
 
-|197 |GPS error or GPS signal lost. Use this error code only if loitering
+|197 |GPS |GPS error or GPS signal lost. Use this error code only if loitering
 will not be attempted by the UAV with the remaining sensors; otherwise
 use code 133.
 
-|198 |Motor malfunction.
+|198 |MOTOR |Motor malfunction.
 
-|199 |Battery critical. Use this error code only if the UAV is not safe
+|199 |LOWBAT |Battery critical. Use this error code only if the UAV is not safe
 to continue its current mission or to attempt RTH or loitering;
 otherwise use code 66 or 134.
 
-|200 |No GPS home position.
+|200 |HOME |No GPS home position.
 
-|201 |Geofence violation (out of flying zone). When leaving the
+|201 |ZONE |Geofence violation (out of flying zone). When leaving the
 designated flying zone, it is generally assumed that the UAV does not
 (and can not) know how to navigate back to the flying zone so it will
 attempt to land where it currently is.
 
-|202 |Internal clock error. This code should be used if one of the
+|202 |CLK |Internal clock error. This code should be used if one of the
 internal clocks of the UAV is not set properly. Use code 203 for
 external clocks.
 
-|203 |External clock error. This code should be used if one of the
+|203 |EXTCLK |External clock error. This code should be used if one of the
 external clocks required for the operation of the UAV is not set
 properly. Use code 202 for internal clocks.
 
-|204 |Required hardware component missing. The UAV can not communicate
+|204 |NO HW |Required hardware component missing. The UAV can not communicate
 with one of the hardware components that it needs to use during its
 mission.
 
-|205 |Autopilot initialization failed. The UAV cannot set up its own
+|205 |INITFAIL |Autopilot initialization failed. The UAV cannot set up its own
 autopilot in a way that is suitable for its mission.
 
-|206 |Autopilot communication failed. The UAV tried to communicate with
+|206 |COMMFAIL |Autopilot communication failed. The UAV tried to communicate with
 its autopilot but the communication failed in a non-recoverable way.
 
-|253 |Simulated critical error. se this error code to trigger an
+|207 |CRASH |Drone crashed.
+
+|253 |SIMCRIT |Simulated critical error. se this error code to trigger an
 emergency landing in the absence of any other critical error, for
 testing purposes.
 
-|254 |Other, unspecified sensor failure that triggers an immediate
+|254 |SENSOR |Other, unspecified sensor failure that triggers an immediate
 landing attempt.
 
-|255 |Other, unspecified fatal error that triggers an immediate landing
+|255 |FATAL |Other, unspecified fatal error that triggers an immediate landing
 attempt.
 |===
