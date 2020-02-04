@@ -101,7 +101,7 @@ it fails to do so.
 
 [width="100%",cols="10%,10%,80%",options="header",]
 |===
-|Code |Description
+|Code |Abbr |Description
 |128 |COMM TO |Autopilot communication timeout. High-level control algorithms
 failed to communicate with a lower-level autopilot component. The
 autopilot will probably attempt RTH or switch to loiter mode.
@@ -155,7 +155,7 @@ loitering.
 
 [width="100%",cols="10%,10%,80%",options="header",]
 |===
-|Code |Description
+|Code |Abbr |Description
 |192 |COMPAT |Incompatible hardware or software. Some hardware or software
 components are not compatible with each other; e.g., using a
 PixHawk-based autopilot with an incompatible FlockCtrl software.
