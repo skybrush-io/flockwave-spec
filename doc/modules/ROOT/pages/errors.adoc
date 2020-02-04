@@ -117,7 +117,7 @@ switch to loitering mode.
 
 |131 |PREARM |Prearm check failure. One of the pre-flight checks has failed.
 
-|132 |RC signal lost. Use this error code only if the UAV can not deal
+|132 |RC LOST |RC signal lost. Use this error code only if the UAV can not deal
 with this situation and will RTH or land; otherwise use code 65.
 
 |133 |NO GPS |GPS error or GPS signal lost. Use this error code only if loitering
