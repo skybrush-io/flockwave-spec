@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"enum": ["EXT-RELOAD"]
+		},
+		"status": {
+			"type": "object",
+			"additionalProperties": {
+				"type": "object"
+			}
+		},
+		"failure": {
+			"$ref": "definitions.json#/extensionIdList"
+		},
+		"reasons": {
+			"$ref": "definitions.json#/failureReasons"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}

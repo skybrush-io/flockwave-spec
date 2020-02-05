@@ -1,6 +1,10 @@
-= Known message types
+= Message types
 
-This section is an exhaustive reference of all the message types
-supported by the Flockwave protocol. The examples provided in this
+This section is an exhaustive reference of all the mandatory message types
+supported by the Flockwave protocol. Flockwave server implementations MUST
+provide message handlers for these messages. Future versions of the specification
+might demote some of these messages from mandatory to optional.
+
+The examples provided in this
 section contain the message body only; each body object must be wrapped
 by an appropriate xref:general.adoc#_the_envelope_of_a_message[message envelope].

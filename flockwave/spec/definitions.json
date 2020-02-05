@@ -339,6 +339,45 @@
         }
     },
 
+    "extensionId": {
+        "title": "Extension ID",
+        "description": "Identifier of a single extension",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+    },
+
+    "extensionIdList": {
+        "title": "Extension IDs",
+        "description": "IDs of the extensions that the message refers to",
+        "type": "array",
+        "items": {
+            "$ref": "#/extensionId"
+        },
+        "uniqueItems": true
+    },
+
+    "extensionInfo": {
+        "title": "Clock info",
+        "description": "Information about an extension",
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "definitions.json#/extensionId"
+            },
+            "loaded": {
+                "type": "boolean"
+            },
+            "name": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            }
+        },
+        "required": [ "id", "loaded", "name" ]
+    },
+
     "failureReasons": {
         "type": "object",
         "additionalProperties": {

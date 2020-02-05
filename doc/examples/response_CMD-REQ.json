@@ -1,5 +1,5 @@
 {
-    "type": "CMD-REQ",
+  "type": "CMD-REQ",
 	"receipts": {
 	    "1": "0badcafe-deadbeef:1",
 	    "17": "0badcafe-deadbeef:2"

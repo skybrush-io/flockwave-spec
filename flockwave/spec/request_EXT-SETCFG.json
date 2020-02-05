@@ -1,0 +1,21 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["EXT-SETCFG"]
+		},
+		"ids": {
+			"type": "object",
+			"additionalProperties": {
+				"type": "object"
+			}
+		}
+	},
+	"required": [
+		"type", "ids"
+	],
+	"additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+    "type": "EXT-INF",
+    "status": {
+        "system_clock": {
+            "id": "system_clock",
+            "name": "System clock",
+            "loaded": true
+        },
+        "ssdp": {
+            "id": "ssdp",
+            "name": "SSDP discovery service",
+            "loaded": false
+        }
+    },
+    "failure": ["beer"],
+    "reasons": {
+        "beer": "No such extension. Unfortunately."
+    }
+}

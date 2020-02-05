@@ -1,0 +1,15 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["EXT-LIST"]
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}

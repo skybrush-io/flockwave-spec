@@ -1,0 +1,5 @@
+{
+  "type": "EXT-LIST",
+  "loaded": ["foo", "bar"],
+  "available": ["baz"]
+}

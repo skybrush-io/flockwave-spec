@@ -1,0 +1,8 @@
+{
+    "type": "EXT-CFG",
+    "ids": [
+        "beer",
+        "ssdp",
+        "system_clock"
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "type": "EXT-UNLOAD",
+    "status": {
+        "ssdp": {}
+    },
+    "failure": ["beer"],
+  	"reasons": {
+  		"beer": "No such extension. Unfortunately."
+  	}
+}

@@ -1,0 +1,8 @@
+{
+    "type": "EXT-INF",
+    "ids": [
+        "beer",
+        "ssdp",
+        "system_clock"
+    ]
+}

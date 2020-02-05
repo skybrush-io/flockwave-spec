@@ -1,0 +1,9 @@
+= Optional message types
+
+This section is a reference of the optional message types supported by the
+Flockwave protocol. Flockwave servers might not implement these messages, or
+might support these messages only if an extension providing the message type is
+loaded.
+
+The examples provided in this section contain the message body only; each body
+object must be wrapped by an appropriate xref:general.adoc#_the_envelope_of_a_message[message envelope].

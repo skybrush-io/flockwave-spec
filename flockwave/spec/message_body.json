@@ -62,6 +62,27 @@
             "$ref": "request_DEV-UNSUB.json#/"
         },
         {
+            "$ref": "request_EXT-CFG.json#/"
+        },
+        {
+            "$ref": "request_EXT-INF.json#/"
+        },
+        {
+            "$ref": "request_EXT-LIST.json#/"
+        },
+        {
+            "$ref": "request_EXT-LOAD.json#/"
+        },
+        {
+            "$ref": "request_EXT-RELOAD.json#/"
+        },
+        {
+            "$ref": "request_EXT-SETCFG.json#/"
+        },
+        {
+            "$ref": "request_EXT-UNLOAD.json#/"
+        },
+        {
             "$ref": "request_OBJ-LIST.json#/"
         },
         {
@@ -145,6 +166,27 @@
         },
         {
             "$ref": "response_DEV-UNSUB.json#/"
+        },
+        {
+            "$ref": "response_EXT-CFG.json#/"
+        },
+        {
+            "$ref": "response_EXT-INF.json#/"
+        },
+        {
+            "$ref": "response_EXT-LIST.json#/"
+        },
+        {
+            "$ref": "response_EXT-LOAD.json#/"
+        },
+        {
+            "$ref": "response_EXT-RELOAD.json#/"
+        },
+        {
+            "$ref": "response_EXT-SETCFG.json#/"
+        },
+        {
+            "$ref": "response_EXT-UNLOAD.json#/"
         },
         {
             "$ref": "response_OBJ-LIST.json#/"

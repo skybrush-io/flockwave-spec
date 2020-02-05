@@ -1,0 +1,264 @@
+= `EXT` — Management of extension modules
+
+Flockwave server implementations may be built in a modular manner such that
+certain parts of its functionality are provided by extension modules. Messages
+in this group provide facilities for loading, unloading and reconfiguring
+extensions.
+
+Note that Flockwave server implementations MUST provide handlers for these
+messages even if the server itself does not provide extensions. In such
+cases, requests for the list of extensions MUST return an empty list, and
+all other messages referring to specific extensions can simply return an
+error code.
+
+== `EXT-CFG` - Retrieve the current configuration of extensions
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "EXT-CFG",
+    "ids": [
+        "beer",
+        "ssdp",
+        "system_clock"
+    ]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "EXT-CFG",
+    "status": {
+        "system_clock": {},
+        "ssdp": {
+            "multicast_group": "239.255.255.250",
+            "port": 1900,
+            "label": "My awesome server"
+        }
+    },
+    "failure": ["beer"],
+    "reasons": {
+        "beer": "No such extension. Unfortunately."
+    }
+}
+----
+
+== `EXT-INF` - Retrieve details about an extension
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "EXT-INF",
+    "ids": [
+        "beer",
+        "ssdp",
+        "system_clock"
+    ]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "EXT-INF",
+    "status": {
+        "system_clock": {
+            "id": "system_clock",
+            "name": "System clock",
+            "loaded": true
+        },
+        "ssdp": {
+            "id": "ssdp",
+            "name": "SSDP discovery service",
+            "loaded": false
+        }
+    },
+    "failure": ["beer"],
+    "reasons": {
+        "beer": "No such extension. Unfortunately."
+    }
+}
+----
+
+== `EXT-LIST` — List of loaded and unloaded extensions
+
+A client sends this request to the server to retrieve the list of extensions
+that are currently loaded as well as the list of extensions that are not
+loaded but could be loaded.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`loaded` |yes |list of strings |List containng the identifiers of the extensions that are currently loaded and used by the server
+
+|`available` |yes |list of strings |List containng the identifiers of the extensions that are currently not loaded by the server but could be loaded upon request
+
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "EXT-LIST",
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "EXT-LIST",
+    "loaded": ["foo", "bar"],
+    "available": ["frob"]
+}
+----
+
+== `EXT-LOAD` - Load an extension
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "EXT-LOAD",
+    "ids": ["ssdp", "beer"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "EXT-LOAD",
+    "status": {
+        "ssdp": {}
+    },
+    "failure": ["beer"],
+  	"reasons": {
+  		"beer": "No such extension. Unfortunately."
+  	}
+}
+----
+
+== `EXT-RELOAD` - Reload an extension
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "EXT-RELOAD",
+    "ids": ["ssdp", "beer"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "EXT-RELOAD",
+    "status": {
+        "ssdp": {}
+    },
+    "failure": ["beer"],
+  	"reasons": {
+  		"beer": "No such extension. Unfortunately."
+  	}
+}
+----
+
+== `EXT-SETCFG` - Set the current configuration of extensions
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "EXT-SETCFG",
+    "ids": {
+        "ssdp": {
+            "multicast_group": "239.255.255.250",
+            "port": 1900,
+            "label": "My awesome server"
+        },
+        "beer": {
+            "type": "IPA"
+        }
+    }
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "EXT-SETCFG",
+    "status": {
+        "ssdp": {}
+    },
+    "failure": ["beer"],
+    "reasons": {
+        "beer": "No such extension. Unfortunately."
+    }
+}
+----
+
+== `EXT-UNLOAD` - Unload an extension
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "EXT-UNLOAD",
+    "ids": ["ssdp", "beer"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "EXT-UNLOAD",
+    "status": {
+        "ssdp": {}
+    },
+    "failure": ["beer"],
+  	"reasons": {
+  		"beer": "No such extension. Unfortunately."
+  	}
+}
+----
