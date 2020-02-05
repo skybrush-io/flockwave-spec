@@ -102,11 +102,11 @@ it fails to do so.
 [width="100%",cols="10%,10%,80%",options="header",]
 |===
 |Code |Abbr |Description
-|128 |COMM TO |Autopilot communication timeout. High-level control algorithms
+|128 |COMM T/O |Autopilot communication timeout. High-level control algorithms
 failed to communicate with a lower-level autopilot component. The
 autopilot will probably attempt RTH or switch to loiter mode.
 
-|129 |ACK TO |Autopilot acknowledgment timeout. A lower-level autopilot component
+|129 |ACK T/O |Autopilot acknowledgment timeout. A lower-level autopilot component
 did not acknowledge a command sent to it by a higher-level control
 algorithm.
 
@@ -180,7 +180,7 @@ otherwise use code 66 or 134.
 
 |200 |HOME |No GPS home position.
 
-|201 |ZONE |Geofence violation (out of flying zone). When leaving the
+|201 |FENCE |Geofence violation (out of flying zone). When leaving the
 designated flying zone, it is generally assumed that the UAV does not
 (and can not) know how to navigate back to the flying zone so it will
 attempt to land where it currently is.
