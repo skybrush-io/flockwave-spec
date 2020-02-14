@@ -45,10 +45,7 @@ execution requests that the client is interested in
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`status` |no |object |Object mapping receipts to the corresponding
-status information. The structure of this object is described by the
-xref:types.adoc#_commandexecutionstatus[`CommandExecutionStatus`]
-complex type.
+|`status` |no |xref:types.adoc#_commandexecutionstatus[`CommandExecutionStatus`] |Object mapping receipts to the corresponding status information.
 
 |`failure` |no |list of strings |List containing the connection IDs for
 which the status information could not have been retrieved.
@@ -81,10 +78,10 @@ as keys in the `status` object or in the `failure` list.
     "type": "CMD-INF",
     "status": {
         "0badcafe-deadbeef:1": {
-            "sent": "2016-04-03T08:07:22.000Z",
-            "acknowledged": "2016-04-03T08:07:22.471Z",
-            "updated": "2016-04-03T08:07:23.811Z",
-            "progress": 0.8,
+            "sent": 1459670842000,
+            "acknowledged": 1459670842471,
+            "updated": 1459670842811,
+            "progress": 80,
         }
     },
     "failure": ["0badcafe-deadbeef:3"],
