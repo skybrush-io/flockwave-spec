@@ -1,0 +1,9 @@
+{
+    "type": "SHOW-SETCFG",
+    "configuration": {
+        "start": {
+            "time": 1581881192,
+            "method": "auto"
+        }
+    }
+}

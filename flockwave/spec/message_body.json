@@ -86,6 +86,12 @@
             "$ref": "request_OBJ-LIST.json#/"
         },
         {
+            "$ref": "request_SHOW-CFG.json#/"
+        },
+        {
+            "$ref": "request_SHOW-SETCFG.json#/"
+        },
+        {
             "$ref": "request_SYS-PING.json#/"
         },
         {
@@ -190,6 +196,9 @@
         },
         {
             "$ref": "response_OBJ-LIST.json#/"
+        },
+        {
+            "$ref": "response_SHOW-CFG.json#/"
         },
         {
             "$ref": "response_SYS-VER.json#/"

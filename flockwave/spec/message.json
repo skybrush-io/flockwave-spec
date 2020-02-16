@@ -22,7 +22,7 @@
 				"id": {
 					"$ref": "definitions.json#/messageId"
 				},
-				"correlationId": {
+				"refs": {
 					"$ref": "definitions.json#/messageId"
 				},
 				"body": {
@@ -47,7 +47,7 @@
 				"id": {
 					"$ref": "definitions.json#/messageId"
 				},
-				"correlationId": {
+				"refs": {
 					"$ref": "definitions.json#/messageId"
 				},
 				"error": {

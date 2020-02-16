@@ -1,0 +1,18 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["SHOW-SETCFG"]
+		},
+		"configuration": {
+			"$ref": "definitions.json#/droneShowConfiguration"
+		}
+	},
+	"required": [
+		"type", "configuration"
+	],
+	"additionalProperties": false
+}

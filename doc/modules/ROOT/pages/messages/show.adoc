@@ -1,0 +1,59 @@
+= `SHOW` — Management and execution of drone shows
+
+#TODO: document this#
+
+== `SHOW-CFG` - Retrieve the current configuration of the drone show
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "SHOW-CFG"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "SHOW-CFG",
+    "configuration": {
+        "start": {
+            "time": 1581881192,
+            "method": "rc"
+        }
+    }
+}
+----
+
+== `SHOW-SETCFG` - Set the current configuration of the drone show
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "SHOW-SETCFG",
+    "configuration": {
+        "start": {
+            "time": 1581881192,
+            "method": "auto"
+        }
+    }
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "ACK-ACK"
+}
+----

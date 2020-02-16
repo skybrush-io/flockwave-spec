@@ -330,6 +330,30 @@
         }
     },
 
+    "droneShowConfiguration": {
+        "title": "Drone show configuration",
+        "description": "Full configuration of a drone show",
+        "type": "object",
+        "properties": {
+            "start": {
+                "type": "object",
+                "properties": {
+                    "time": {
+                        "description": "Timestamp when the drone show should start",
+                        "anyOf": [
+                            { "type": "number" },
+                            { "type": "null" }
+                        ]
+                    },
+                    "method": {
+                        "type": "string",
+                        "enum": ["rc", "auto"]
+                    }
+                }
+            }
+        }
+    },
+
     "errorList": {
         "title": "List of errors",
         "description": "List of currently active error codes for a single UAV",

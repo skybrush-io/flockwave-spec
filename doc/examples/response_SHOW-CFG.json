@@ -1,0 +1,9 @@
+{
+    "type": "SHOW-CFG",
+    "configuration": {
+        "start": {
+            "time": 1581881192,
+            "method": "rc"
+        }
+    }
+}
