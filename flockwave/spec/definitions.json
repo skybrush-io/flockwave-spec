@@ -338,6 +338,10 @@
             "start": {
                 "type": "object",
                 "properties": {
+                    "authorized": {
+                        "description": "Whether the server has received authorization from a human operator to start the show",
+                        "type": "boolean"
+                    },
                     "time": {
                         "description": "Timestamp when the drone show should start",
                         "anyOf": [

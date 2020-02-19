@@ -23,6 +23,7 @@
     "type": "SHOW-CFG",
     "configuration": {
         "start": {
+            "authorized": false,
             "time": 1581881192,
             "method": "rc"
         }
