@@ -11,6 +11,7 @@
             "timestamp": 1449562661000,
             "debug": "0BADCAFE",
             "errors": [17, 41],
+            "light": 2016,
             "battery": [124]
         }
     },

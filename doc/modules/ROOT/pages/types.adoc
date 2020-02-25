@@ -223,6 +223,18 @@ be larger than zero. When omitted, it is assumed to be equal to 1.
 }
 ----
 
+[#colorrgb565]
+== `ColorRGB565`
+
+A `ColorRGB565` object is essentially a single integer in the range 0 to 65535
+such that the most significant 5 bits encode the red component of an RGB color,
+the least significant 5 bits encode the blue component, and the remaining 6
+bits in the middle encode the green component. This data type is used when some
+color information has to be transmitted in a way that does not occupy too much
+space in the message, assuming that the exact color is not too important as
+there is some quantization error when converting a 24-bit RGB color into
+RGB565 representation.
+
 == `CommandExecutionStatus`
 
 A `CommandExecutionStatus` object describes the execution status of a
@@ -591,6 +603,9 @@ status update was received from the UAV
 |battery |no |<<_batteryinfo,BatteryInfo>> |Information about the
 state of the battery on the UAV.
 
+|light |no |<<_colorrgb565,ColorRGB565>> |Information about the
+color of the light attached to the UAV, assuming that it has a primary light.
+
 |errors |no |<<_errorlist,ErrorList>> |The list of error codes
 currently applicable for the UAV. When omitted, it means that there are
 no errors.
@@ -624,6 +639,7 @@ the algorithm running on the UAV (if applicable).
     },
     "timestamp": 1449562661000,
     "debug": "MEJBRENBRkU=",
+    "light": 2016,
     "errors": [42]
 }
 ----

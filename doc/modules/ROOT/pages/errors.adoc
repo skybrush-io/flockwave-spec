@@ -62,17 +62,18 @@ on user interfaces where space is at a premium.
 [width="100%",cols="10%,10%,80%",options="header",]
 |===
 |Code |Abbr |Description
-|1 |DISARM |Drone not armed yet. This message is shown when the UAV is in a state that
+|1  |DISARM  |Drone not armed yet. This message is shown when the UAV is in a state that
 motor thrust is prevented by a hardware or software switch.
-|2 |NO LOG |Logging deactivated. This message is shown when logging-capable UAVs
+|2  |NO LOG  |Logging deactivated. This message is shown when logging-capable UAVs
 are not able to write entries to their logs for some reason.
-|3 |PREARM |Prearm check in progress. This message is shown when the UAV is performing
+|3  |PREARM  |Prearm check in progress. This message is shown when the UAV is performing
 prearm checks and is not ready for takeoff yet.
-|4 |INIT |Autopilot initializing. This message is shown when the autopilot of the
+|4  |INIT    |Autopilot initializing. This message is shown when the autopilot of the
 UAV has not finished initializing and the UAV is not ready for takeoff yet.
-|5 |TAKEOFF |Drone is taking off.
-|6 |LANDING |Drone is landing.
-|7 |LANDED  |Drone has landed successfully.
+|5  |TAKEOFF |Drone is taking off.
+|6  |LANDING |Drone is landing.
+|7  |LANDED  |Drone has landed successfully.
+|63 |RTH     |Drone is returning to its home position.
 |===
 
 == Warnings (codes 64-127)

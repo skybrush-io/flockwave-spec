@@ -143,6 +143,14 @@
         "required": [ "id", "retrievedAt", "running", "ticks" ]
     },
 
+    "colorRGB565": {
+        "title": "Color",
+        "description": "Color in RGB565 representation",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 65535
+    },
+
     "commandExecutionStatus": {
         "title": "Command execution status",
         "description": "Execution status of a command executed on a UAV",
@@ -561,6 +569,9 @@
             },
             "battery": {
                 "$ref": "definitions.json#/batteryInfo"
+            },
+            "light": {
+                "$ref": "definitions.json#/colorRGB565"
             },
             "errors": {
                 "$ref": "definitions.json#/errorList"
