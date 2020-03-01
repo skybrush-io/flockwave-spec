@@ -4,6 +4,7 @@
         "start": {
             "time": 1581881192,
             "method": "auto"
-        }
+        },
+        "mapping": ["01", "02", null, "05", "42"]
     }
 }

@@ -5,6 +5,7 @@
             "authorized": false,
             "time": 1581881192,
             "method": "rc"
-        }
+        },
+        "mapping": ["01", "02", null, "05", "42"]
     }
 }

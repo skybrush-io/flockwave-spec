@@ -362,6 +362,15 @@
                         "enum": ["rc", "auto"]
                     }
                 }
+            },
+            "mapping": {
+                "type": "array",
+                "items": {
+                    "anyOf": [
+                        { "$ref": "#/objectId" },
+                        { "type": "null" }
+                    ]
+                }
             }
         }
     },
