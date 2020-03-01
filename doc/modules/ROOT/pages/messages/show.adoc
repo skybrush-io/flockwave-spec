@@ -25,7 +25,8 @@
         "start": {
             "authorized": false,
             "time": 1581881192,
-            "method": "rc"
+            "method": "auto",
+            "uavIds": ["01", "42"]
         },
         "mapping": ["01", "02", null, "05", "42"]
     }
@@ -45,7 +46,8 @@
     "configuration": {
         "start": {
             "time": 1581881192,
-            "method": "auto"
+            "method": "auto",
+            "uavIds": ["01", "42"]
         },
         "mapping": ["01", "02", null, "05", "42"]
     }

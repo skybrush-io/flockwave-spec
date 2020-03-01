@@ -360,10 +360,18 @@
                     "method": {
                         "type": "string",
                         "enum": ["rc", "auto"]
+                    },
+                    "uavIds": {
+                        "description": "Array containing the IDs of the UAVs that should be started automatically",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/objectId"
+                        }
                     }
                 }
             },
             "mapping": {
+                "description": "Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory.",
                 "type": "array",
                 "items": {
                     "anyOf": [
