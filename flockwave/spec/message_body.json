@@ -15,6 +15,12 @@
         {
             "$ref": "notification_OBJ-DEL.json#/"
         },
+        {
+            "$ref": "notification_SYS-CLOSE.json#/"
+        },
+        {
+            "$ref": "notification_SYS-MSG.json#/"
+        },
 
         {
             "$ref": "request_AUTH-INF.json#/"

@@ -570,6 +570,23 @@ does not know a particular object type, it should simply return an empty list
 when the user queries about objects of an unknown type. This allows server
 extensions to register custom object types later on.
 
+== `Severity`
+
+Enumeration type that describes the severity level of a human-readable message
+that the server sends to the client.
+
+Currently the following values are defined:
+
+`debug`:: Debug messages that are of interest to developers only.
+
+`info`:: Informational messages.
+
+`warning`:: Warning messages.
+
+`error`:: Error messages.
+
+`critical`:: Critical errors that require immediate attention.
+
 == `UAVStatusInfo`
 
 Monolithic object containing general status information about a single

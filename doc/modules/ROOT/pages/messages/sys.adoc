@@ -1,5 +1,61 @@
 = `SYS` — System information
 
+== `SYS-CLOSE` - Notifies the client that the connection is about to be closed
+
+A server sends a notification of this type to a client when the client will be
+forcibly disconnected from the server. Clients may then display the reason
+attached to the message to the user if it is practical to do so.
+
+Typical reasons for a forced disconnection may be:
+
+* the server is shutting down
+* the server is limiting the number of concurrent connections
+* the server is enforcing limits on the maximum duration of a connection
+
+Note that servers are not _required_ to send this message upon a disconnection;
+the message is sent only as a courtesy to the user at the other end of the
+connection.
+
+*Notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`reason` |no |string |An optional explanation of why the forced disconnection happened
+|===
+
+*Example notification*
+
+[source,json]
+----
+{
+    "type": "SYS-CLOSE",
+    "reason": "Maximum number of concurrent connections exceeded"
+}
+----
+
+== `SYS-MSG` - Send an arbitrary human-readable message to the client
+
+*Notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`severity` |no |xref:types.adoc#_severity[`Severity`] |The severity level of the message; defaults to `"info"`
+|`message` |yes |string |The message to send to the client
+|===
+
+*Example notification*
+
+[source,json]
+----
+{
+    "type": "SYS-MSG",
+    "severity": "info",
+    "message": "Free cookies in the lobby!"
+}
+----
+
 == `SYS-PING` — Check whether a connection is alive
 
 Either party in the connection may send a `SYS-PING` message to the

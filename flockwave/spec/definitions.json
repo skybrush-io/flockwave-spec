@@ -537,6 +537,13 @@
         "uniqueItems": true
     },
 
+    "severity": {
+        "title": "Severity",
+        "description": "Severity of the message",
+        "type": "string",
+        "enum": ["debug", "info", "warning", "error", "critical"]
+    },
+
     "uavIdList": {
         "title": "UAV IDs",
         "description": "IDs of the UAVs that the message refers to",

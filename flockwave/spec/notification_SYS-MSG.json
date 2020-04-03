@@ -1,0 +1,21 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the notification",
+			"type": "string",
+			"enum": ["SYS-MSG"]
+		},
+    "severity": {
+			"$ref": "definitions.json#/severity"
+    },
+    "message": {
+      "type": "string"
+    }
+	},
+	"required": [
+		"type", "message"
+	],
+	"additionalProperties": false
+}

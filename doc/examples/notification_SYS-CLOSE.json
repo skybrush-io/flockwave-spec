@@ -1,0 +1,4 @@
+{
+    "type": "SYS-CLOSE",
+    "reason": "Maximum number of concurrent connections exceeded"
+}
