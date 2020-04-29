@@ -29,7 +29,7 @@ is_valid_uav_id = is_valid_object_id
 
 
 _user_regex = re.compile(
-    r"^(?P<name>[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~]*)(@(?P<domain>[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~.]+))?$"
+    r"^(?P<name>[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~.]*)(@(?P<domain>[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~.]+))?$"
 )
 
 
