@@ -101,6 +101,9 @@
             "$ref": "request_SYS-PING.json#/"
         },
         {
+            "$ref": "request_SYS-TIME.json#/"
+        },
+        {
             "$ref": "request_SYS-VER.json#/"
         },
         {
@@ -205,6 +208,9 @@
         },
         {
             "$ref": "response_SHOW-CFG.json#/"
+        },
+        {
+            "$ref": "response_SYS-TIME.json#/"
         },
         {
             "$ref": "response_SYS-VER.json#/"

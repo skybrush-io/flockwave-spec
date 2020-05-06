@@ -7,7 +7,7 @@ from the *Known message types* section.
 == Timestamps
 
 Timestamps MUST always be expressed as the number of milliseconds elapsed since
-the Unix epoch (1970-01-11 00:00:00 UTC. Note that this means that timestamps
+the Unix epoch (1970-01-01 00:00:00 UTC. Note that this means that timestamps
 expressed in local time MUST be converted to UTC before expressing them as milliseconds.
 
 == Dates and times as strings

@@ -1,0 +1,16 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"enum": ["SYS-TIME"]
+		},
+		"timestamp": {
+      "type": "number"
+		}
+	},
+	"required": [
+		"type", "timestamp"
+	],
+	"additionalProperties": false
+}

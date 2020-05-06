@@ -91,6 +91,46 @@ xref:messages/ack.adoc#_ack_ack_positive_acknowledgment[`ACK-ACK`] instead.
 }
 ----
 
+== `SYS-TIME` - Return the current UNIX timestamp on the server
+
+A client sends a request of this type to the server to obtain an accurate
+representation of the current UNIX timestamp on the server.
+
+This message is typically used to detect clock skew between the client and
+the server, so care should be taken on the server side to ensure the accuracy
+of the returned timestamp to the extent permitted by the transport protocol.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`timestamp` |yes |xref:types.adoc#_timestamp[timestamp] |The current UNIX timestamp on the server at the time when the message was received.
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "SYS-TIME"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "SYS-TIME",
+    "timestamp": 1588763723147
+}
+----
+
 == `SYS-VER` — Version number of the server
 
 A `SYS-VER` request retrieves the version number of the server.
