@@ -498,9 +498,81 @@ the request failed for these UAVs.
 }
 ----
 
+== `UAV-SIGNAL` - Emit light or audio signals
+
+A client sends this request to the server to ask one or more UAVs to emit
+a light or audio signal in order to attract attention. This is useful if you
+are trying to find a lost drone in the field or if you want to identify a
+drone needing battery replacement in a drone swarm, given its ID.
+
+The message specifies what sort of signal should be emitted; right now the
+protocol supports `light` and `sound` signals, but more signal types may be
+added in the future. As the signal types are merely strings, the protocol can
+easily be extended in the future with additional signal types, and UAVs that
+do not know or do not support a specific signal type should simply ignore the
+unknown ones.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs to target with this
+message
+
+|`signals` |yes |list of strings |The list of signal types that the targeted UAVs
+should emit
+
+|`duration` |yes |integer |The duration of the signal, in milliseconds. UAVs
+that do not support prescribed signal durations may ignore it and fall back to
+a default duration.
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-SIGNAL",
+    "ids": ["1", "17", "31", "spam"],
+    "signals": ["sound", "light"],
+    "duration": 5000
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-SIGNAL",
+    "success": ["1", "17"],
+    "failure": ["31", "spam"],
+    "reasons": {
+        "31": "UAV is a beacon.",
+        "spam": "No such UAV."
+    }
+}
+----
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`success` |no |list of strings |The list of UAV IDs to which the
+request was sent
+
+|`failure` |no |list of strings |The list of UAV IDs to which the
+request was _not_ sent
+
+|`reasons` |no |object |Object mapping UAV IDs to explanations about why
+the request failed for these UAVs.
+|===
+
 == `UAV-TAKEOFF` — Initiate unsupervised take-off
 
-A client send this request to the server to initiate unsupervised
+A client sends this request to the server to initiate unsupervised
 take-off on one or more UAVs. The server responds with two lists: the
 first list contains the IDs of the UAVs where an unsupervised take-off
 was _started_ (in the sense that the UAV has been notified that they

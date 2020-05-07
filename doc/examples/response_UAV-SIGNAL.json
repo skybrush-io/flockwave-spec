@@ -1,0 +1,9 @@
+{
+    "type": "UAV-SIGNAL",
+    "success": ["1", "17"],
+    "failure": ["31", "spam"],
+    "reasons": {
+        "31": "UAV is a beacon.",
+        "spam": "No such UAV."
+    }
+}

@@ -1,0 +1,28 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["UAV-SIGNAL"]
+		},
+		"ids": {
+			"$ref": "definitions.json#/uavIdList"
+		},
+    "signals": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"duration": {
+			"type": "number",
+			"minimum": 0
+		}
+	},
+	"required": [
+		"type", "ids"
+	],
+	"additionalProperties": false
+}
