@@ -68,6 +68,9 @@
             "$ref": "request_DEV-UNSUB.json#/"
         },
         {
+            "$ref": "request_DOCK-INF.json#/"
+        },
+        {
             "$ref": "request_EXT-CFG.json#/"
         },
         {
@@ -184,6 +187,9 @@
         },
         {
             "$ref": "response_DEV-UNSUB.json#/"
+        },
+        {
+            "$ref": "response_DOCK-INF.json#/"
         },
         {
             "$ref": "response_EXT-CFG.json#/"

@@ -1,0 +1,18 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"title": "Type",
+			"description": "Type of the message",
+			"type": "string",
+			"enum": ["DOCK-INF"]
+		},
+		"ids": {
+			"$ref": "definitions.json#/dockIdList"
+		}
+	},
+	"required": [
+		"type", "ids"
+	],
+	"additionalProperties": false
+}

@@ -338,6 +338,36 @@
         }
     },
 
+    "dockIdList": {
+        "title": "Dock IDs",
+        "description": "IDs of the docking stations that the message refers to",
+        "type": "array",
+        "items": {
+            "$ref": "#/objectId"
+        },
+        "uniqueItems": true
+    },
+
+    "dockStatusInfo": {
+        "title": "Docking station status info",
+        "description": "Status information of a single docking station",
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "definitions.json#/objectId"
+            },
+            "position": {
+                "$ref": "definitions.json#/gpsCoordinate"
+            },
+            "timestamp": {
+                "title": "Last updated at",
+                "description": "Timestamp that denotes when the status of the docking station was updated the last time",
+                "type": "number"
+            }
+        },
+        "required": ["id", "timestamp"]
+    },
+
     "droneShowConfiguration": {
         "title": "Drone show configuration",
         "description": "Full configuration of a drone show",

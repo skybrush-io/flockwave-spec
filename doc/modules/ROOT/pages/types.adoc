@@ -506,6 +506,40 @@ sub-device of another device. The parent of a `device` node is either a
 `channel`:: This is a tree node that represents a channel of a device.
 The parent of a `channel` node is always a `device` node.
 
+== `DockStatusInfo`
+
+Monolithic object containing general status information about a single
+docking station.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|id |yes |string |The unique identifier of the docking station
+
+|position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the
+docking station
+
+|timestamp |yes |<<_timestamps,timestamp>> |Time when the last
+status update was received from the docking station
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "id": "base",
+    "position": {
+        "lat": 519976597,
+        "lon": -7406863,
+        "amsl": 93765
+    },
+    "timestamp": 1449562661000
+}
+----
+
 == `ErrorList`
 
 This type is simply an array of numbers, where each number represents a
