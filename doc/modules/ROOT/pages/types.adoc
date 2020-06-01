@@ -572,6 +572,11 @@ hold its altitude and self-levels the roll and pitch angles.
 `loiter`:: The UAV holds its altitude and position, using GPS for movements. The
 pilot controls the velocities along the axes.
 
+`mission`:: The UAV is following a preprogrammed mission.
+
+`other`:: The UAV is in a control mode that cannot be covered by any of the modes
+outlined here.
+
 `pos`:: The UAV holds its altitude and position, using GPS for movements. THe
 pilot controls the roll and pitch angles when the sticks are not centered.
 
@@ -580,6 +585,8 @@ when the home position is reached.
 
 `stab`:: Stabilization mode; roll and pitch axes are self-leveled, but
 the altitude is not controlled.
+
+`unknown`:: The UAV is in an unknown control mode; typically indicates an error.
 
 == `GPSCoordinate`
 
