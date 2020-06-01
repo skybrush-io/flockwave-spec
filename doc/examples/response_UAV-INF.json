@@ -3,8 +3,9 @@
     "status": {
         "1": {
             "id": "1",
-            "algorithm": "flocking",
+            "mode": "pos",
             "position": [519976597, -7406863, 93765],
+            "gps": [3, 17],
             "heading": 900,
             "attitude": [0, 0, 900],
             "velocity": [2000, 2000, -1000],

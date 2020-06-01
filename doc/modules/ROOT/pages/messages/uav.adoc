@@ -220,7 +220,7 @@ as a notification, only the `status` field SHOULD be present.
     "status": {
         "1": {
             "id": "1",
-            "algorithm": "flocking",
+            "mode": "pos",
             "position": {
                 "lat": 51.9976597,
                 "lon": -0.7406863,

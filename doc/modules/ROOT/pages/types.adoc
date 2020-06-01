@@ -547,6 +547,40 @@ possible error condition. See xref:errors.adoc[Error codes] for a
 detailed listing of all the error codes that are currently defined in
 the Flockwave protocol.
 
+== `FlightMode`
+
+Enumeration type that describes the typical flight modes of a UAV. The list of
+values presented here are not exhaustive; UAVs may use additional flight mode
+constants if none of the modes below are suitable to describe the flight mode.
+Currently the following values have pre-defined meanings, mostly modelled
+after the common flight modes in ArduPilot:
+
+`acro`:: Acro mode; the pilot is controlling the attitude of the UAV directly
+and there is no self-leveling.
+
+`alt`:: Altitude hold mode; in the absence of any input, the UAV attempts to
+hold its altitude and self-levels the roll and pitch angles.
+
+`circle`:: The UAV is circling around a pre-defined point of interest.
+
+`follow`:: The UAV is following another device.
+
+`guided`:: The UAV is controlled by an external companion computer.
+
+`land`:: The UAV is attempting an unsupervised landing.
+
+`loiter`:: The UAV holds its altitude and position, using GPS for movements. The
+pilot controls the velocities along the axes.
+
+`pos`:: The UAV holds its altitude and position, using GPS for movements. THe
+pilot controls the roll and pitch angles when the sticks are not centered.
+
+`rth`:: The UAV is returning to its home position autonomously, optinally landing
+when the home position is reached.
+
+`stab`:: Stabilization mode; roll and pitch axes are self-leveled, but
+the altitude is not controlled.
+
 == `GPSCoordinate`
 
 This type represents a coordinate given by a GPS in the usual
@@ -579,6 +613,28 @@ The object is stored as a list with four items. The third and fourth items
 ----
 [519976597, -7406863, 93765]
 ----
+
+== `GPSFix`
+
+This type represents a short summary of the current GPS fix achieved by a UAV.
+The value is a list consisting of one or two items. The first item of the list
+represents the type of the GPS fix according to the following table:
+
+[cols="1,9",options="header",]
+|===
+|Value |Description
+|0 |The UAV does not have a GPS.
+|1 |The UAV has a GPS but there is no GPS fix yet.
+|2 |2D GPS fix.
+|3 |3D GPS fix.
+|4 |3D GPS fix augmented with DGPS/SBAS or similar.
+|5 |3D RTK float solution.
+|6 |3D RTK fixed solution.
+|7 |Static position, known in advance.
+|===
+
+The second item of the list is optional and it may contain the number of GPS
+satellites that were used in the calculation.
 
 == `ObjectType`
 
@@ -633,11 +689,13 @@ UAV.
 |Name |Required? |Type |Description
 |id |yes |string |The unique identifier of the UAV
 
-|algorithm |no |string |The name of the algorithm that the UAV is
-running (if applicable).
+|mode |no |string |The flight mode of the UAV. Several values have pre-defined
+meanings; see <<_flightmode,FlightMode>> for these pre-defined values.
 
 |position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the
 UAV
+
+|gps |no |<<_gpsfix,GPSFix>> |Basic information about the GPS fix of the UAV
 
 |heading |no |<<_angles,angle>> |The heading of the UAV, i.e. the
 direction the UAV is pointing, projected to the local tangent plane, if
@@ -671,12 +729,13 @@ the algorithm running on the UAV (if applicable).
 ----
 {
     "id": "17",
-    "algorithm": "flocking",
+    "mode": "pos",
     "position": {
         "lat": 519976597,
         "lon": -7406863,
         "amsl": 93765
     },
+    "gps": [3, 17],
     "heading": 900,
     "attitude": {
         "roll": 0,

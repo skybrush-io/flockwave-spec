@@ -503,6 +503,25 @@
         ]
     },
 
+    "gpsFix": {
+        "title": "GPS fix",
+        "description": "Basic information about the GPS fix",
+        "type": "array",
+        "items": [
+            {
+              "title": "GPS fix type",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 7
+            }
+        ],
+        "additionalItems": {
+            "type": "number"
+        },
+        "minItems": 1,
+        "maxItems": 2
+    },
+
     "messageId": {
         "title": "Message ID",
         "description": "Identifier of the message",
@@ -595,13 +614,16 @@
             "id": {
                 "$ref": "definitions.json#/objectId"
             },
-            "algorithm": {
-                "title": "Algorithm",
-                "description": "The algorithm that the UAV is running (if applicable)",
+            "mode": {
+                "title": "Flight mode",
+                "description": "The flight mode of the UAV",
                 "type": "string"
             },
             "position": {
                 "$ref": "definitions.json#/gpsCoordinate"
+            },
+            "gps": {
+                "$ref": "definitions.json#/gpsFix"
             },
             "heading": {
                 "title": "Heading",
