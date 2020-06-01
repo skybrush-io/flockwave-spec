@@ -651,6 +651,9 @@
             },
             "errors": {
                 "$ref": "definitions.json#/errorList"
+            },
+            "debug": {
+                "type": "string"
             }
         },
         "required": ["id", "position", "timestamp"]
