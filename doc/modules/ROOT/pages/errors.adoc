@@ -73,6 +73,7 @@ UAV has not finished initializing and the UAV is not ready for takeoff yet.
 |5  |TAKEOFF |Drone is taking off.
 |6  |LANDING |Drone is landing.
 |7  |LANDED  |Drone has landed successfully.
+|8  |MOTORS  |Motors are running while the drone is on the ground.
 |63 |RTH     |Drone is returning to its home position.
 |===
 
