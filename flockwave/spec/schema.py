@@ -3,9 +3,9 @@
 import json
 
 from enum import Enum
+from importlib.resources import open_text
 from memoized import memoized
 from jsonpointer import JsonPointer, resolve_pointer
-from pkg_resources import resource_stream
 
 __all__ = (
     "SCHEMA_PACKAGE",
@@ -33,9 +33,7 @@ def _get_json_object_from_resource(resource_path):
     Returns:
         object: the JSON object from the given resource
     """
-    stream = resource_stream(SCHEMA_PACKAGE, resource_path)
-    data = stream.read().decode("utf-8")
-    return json.loads(data)
+    return json.load(open_text(SCHEMA_PACKAGE, resource_path))
 
 
 @memoized
