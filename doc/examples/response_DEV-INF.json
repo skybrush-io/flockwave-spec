@@ -6,8 +6,7 @@
             "on": true
         }
     },
-    "failure": ["/1/cpu/core3"],
-    "reasons": {
+    "error": {
         "/1/cpu/core3": "Path does not exist"
     }
 }

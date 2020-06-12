@@ -234,8 +234,7 @@ as a notification, only the `status` field SHOULD be present.
             "error": [42]
         }
     },
-    "failure": ["spam"],
-    "reasons": {
+    "error": {
         "spam": "No such UAV."
     }
 }

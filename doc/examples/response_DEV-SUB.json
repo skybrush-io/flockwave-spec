@@ -4,8 +4,7 @@
         "/1/battery/voltage",
         "/1/led"
     ],
-    "failure": ["/1/cpu/core3"],
-    "reasons": {
+    "error": {
         "/1/cpu/core3": "Path does not exist"
     }
 }

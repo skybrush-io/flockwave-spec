@@ -11,11 +11,8 @@
 				"$ref": "definitions.json#/connectionInfo"
 			}
 		},
-		"failure": {
-			"$ref": "definitions.json#/connectionIdList"
-		},
-		"reasons": {
-			"$ref": "definitions.json#/failureReasons"
+		"error": {
+			"$ref": "definitions.json#/errorMap"
 		}
 	},
 	"required": [

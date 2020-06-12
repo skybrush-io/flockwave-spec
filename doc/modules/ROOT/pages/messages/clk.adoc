@@ -115,8 +115,7 @@ _either_ as keys in the `status` object or in the `failure` list.
             "running": true
         }
     },
-    "failure": ["beer_can"],
-    "reasons": {
+    "error": {
         "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
     }
 }

@@ -9,7 +9,7 @@
 			"$ref": "definitions.json#/asyncBoolMap"
 		},
 		"error": {
-			"$ref": "definitions.json#/asyncErrorMap"
+			"$ref": "definitions.json#/errorMap"
 		},
 		"receipts": {
 			"$ref": "definitions.json#/receiptMap"

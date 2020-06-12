@@ -11,11 +11,8 @@
         "$ref": "definitions.json#/extensionInfo"
 			}
 		},
-		"failure": {
-			"$ref": "definitions.json#/extensionIdList"
-		},
-		"reasons": {
-			"$ref": "definitions.json#/failureReasons"
+    "error": {
+			"$ref": "definitions.json#/errorMap"
 		}
 	},
 	"required": [

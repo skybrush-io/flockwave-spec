@@ -43,8 +43,7 @@ error code.
             "label": "My awesome server"
         }
     },
-    "failure": ["beer"],
-    "reasons": {
+    "error": {
         "beer": "No such extension. Unfortunately."
     }
 }
@@ -86,8 +85,7 @@ error code.
             "loaded": false
         }
     },
-    "failure": ["beer"],
-    "reasons": {
+    "error": {
         "beer": "No such extension. Unfortunately."
     }
 }
@@ -157,8 +155,7 @@ This request has no fields.
     "status": {
         "ssdp": {}
     },
-    "failure": ["beer"],
-    "reasons": {
+    "error": {
         "beer": "No such extension. Unfortunately."
     }
 }
@@ -187,8 +184,7 @@ This request has no fields.
     "status": {
         "ssdp": {}
     },
-    "failure": ["beer"],
-    "reasons": {
+    "error": {
         "beer": "No such extension. Unfortunately."
     }
 }
@@ -226,8 +222,7 @@ This request has no fields.
     "status": {
         "ssdp": {}
     },
-    "failure": ["beer"],
-    "reasons": {
+    "error": {
         "beer": "No such extension. Unfortunately."
     }
 }
@@ -256,8 +251,7 @@ This request has no fields.
     "status": {
         "ssdp": {}
     },
-    "failure": ["beer"],
-    "reasons": {
+    "error": {
         "beer": "No such extension. Unfortunately."
     }
 }

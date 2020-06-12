@@ -4,11 +4,6 @@
         "additionalProperties": { "type": "boolean" }
     },
 
-    "asyncErrorMap": {
-        "type": "object",
-        "additionalProperties": { "type": "string" }
-    },
-
     "asyncCommandResponseMap": {
         "type": "object",
         "additionalProperties": {
@@ -442,6 +437,11 @@
         }
     },
 
+    "errorMap": {
+        "type": "object",
+        "additionalProperties": { "type": "string" }
+    },
+
     "extensionId": {
         "title": "Extension ID",
         "description": "Identifier of a single extension",
@@ -479,13 +479,6 @@
             }
         },
         "required": [ "id", "loaded", "name" ]
-    },
-
-    "failureReasons": {
-        "type": "object",
-        "additionalProperties": {
-            "type": "string"
-        }
     },
 
     "gpsCoordinate": {

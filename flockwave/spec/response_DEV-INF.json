@@ -9,11 +9,8 @@
 			"type": "object",
 			"additionalProperties": true
 		},
-		"failure": {
-			"$ref": "definitions.json#/deviceTreePathList"
-		},
-		"reasons": {
-			"$ref": "definitions.json#/failureReasons"
+    "error": {
+			"$ref": "definitions.json#/errorMap"
 		}
 	},
 	"required": [

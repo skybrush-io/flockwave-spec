@@ -69,8 +69,7 @@ present.
             "on": true
         }
     },
-    "failure": ["/1/cpu/core3"],
-    "reasons": {
+    "error": {
         "/1/cpu/core3": "Path does not exist"
     }
 }
@@ -166,8 +165,7 @@ in the `status` list or in the `failure` list.
         }
       }
     },
-    "failure": ["spam"],
-    "reasons": {
+    "error": {
         "spam": "No such object."
     }
 }
@@ -293,8 +291,7 @@ the subscription failed for these paths.
         "/1/battery/voltage",
         "/1/led"
     ],
-    "failure": ["/1/cpu/core3"],
-    "reasons": {
+    "error": {
         "/1/cpu/core3": "Path does not exist"
     }
 }
@@ -371,8 +368,7 @@ the subscription failed for these paths.
         "/1/battery/voltage",
         "/1/led"
     ],
-    "failure": ["/1/cpu/core3", "/2/battery"],
-    "reasons": {
+    "error": {
         "/1/cpu/core3": "Path does not exist",
         "/2/battery": "Not subscribed to this path"
     }

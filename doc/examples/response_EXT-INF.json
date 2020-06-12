@@ -12,8 +12,7 @@
             "loaded": false
         }
     },
-    "failure": ["beer"],
-    "reasons": {
+    "error": {
         "beer": "No such extension. Unfortunately."
     }
 }

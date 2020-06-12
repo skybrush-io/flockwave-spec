@@ -11,11 +11,8 @@
                 "$ref": "definitions.json#/deviceTreeNode"
             }
 		},
-		"failure": {
-			"$ref": "definitions.json#/uavIdList"
-		},
-		"reasons": {
-			"$ref": "definitions.json#/failureReasons"
+    "error": {
+			"$ref": "definitions.json#/errorMap"
 		}
 	},
 	"required": [

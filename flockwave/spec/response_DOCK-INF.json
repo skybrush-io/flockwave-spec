@@ -11,11 +11,8 @@
 				"$ref": "definitions.json#/dockStatusInfo"
 			}
 		},
-		"failure": {
-			"$ref": "definitions.json#/dockIdList"
-		},
-		"reasons": {
-			"$ref": "definitions.json#/failureReasons"
+    "error": {
+			"$ref": "definitions.json#/errorMap"
 		}
 	},
 	"required": [

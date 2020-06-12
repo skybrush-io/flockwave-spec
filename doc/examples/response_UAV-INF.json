@@ -16,8 +16,7 @@
             "battery": [124]
         }
     },
-    "failure": ["spam"],
-    "reasons": {
+    "error": {
         "spam": "No such UAV."
     }
 }

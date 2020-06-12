@@ -38,8 +38,7 @@
         }
       }
     },
-    "failure": ["spam"],
-    "reasons": {
+    "error": {
         "spam": "No such UAV."
     }
 }

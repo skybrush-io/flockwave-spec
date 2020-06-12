@@ -3,8 +3,7 @@
     "status": {
         "ssdp": {}
     },
-    "failure": ["beer"],
-    "reasons": {
+    "error": {
         "beer": "No such extension. Unfortunately."
     }
 }

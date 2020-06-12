@@ -12,7 +12,7 @@
       "$ref": "definitions.json#/receiptId"
     },
 		"error": {
-			"$ref": "definitions.json#/asyncErrorMap"
+			"$ref": "definitions.json#/errorMap"
 		},
 		"result": {
 			"$ref": "definitions.json#/asyncCommandResponseMap"

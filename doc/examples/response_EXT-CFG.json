@@ -8,8 +8,7 @@
             "label": "My awesome server"
         }
     },
-    "failure": ["beer"],
-    "reasons": {
+    "error": {
         "beer": "No such extension. Unfortunately."
     }
 }

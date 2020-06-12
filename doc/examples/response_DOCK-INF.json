@@ -7,8 +7,7 @@
             "timestamp": 1449562661000
         }
     },
-    "failure": ["spam"],
-    "reasons": {
+    "error": {
         "spam": "No such dock."
     }
 }
