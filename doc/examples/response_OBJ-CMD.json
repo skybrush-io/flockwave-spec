@@ -1,0 +1,13 @@
+{
+  "type": "OBJ-CMD",
+  "result": {
+    "1": "brewing"
+  },
+	"receipts": {
+	   "17": "0badcafedeadbeef"
+	},
+	"error": {
+		"31": "Command execution not supported.",
+		"spam": "No such UAV."
+	}
+}

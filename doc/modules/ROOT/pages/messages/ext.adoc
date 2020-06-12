@@ -158,9 +158,9 @@ This request has no fields.
         "ssdp": {}
     },
     "failure": ["beer"],
-  	"reasons": {
-  		"beer": "No such extension. Unfortunately."
-  	}
+    "reasons": {
+        "beer": "No such extension. Unfortunately."
+    }
 }
 ----
 
@@ -188,9 +188,9 @@ This request has no fields.
         "ssdp": {}
     },
     "failure": ["beer"],
-  	"reasons": {
-  		"beer": "No such extension. Unfortunately."
-  	}
+    "reasons": {
+        "beer": "No such extension. Unfortunately."
+    }
 }
 ----
 
@@ -257,8 +257,8 @@ This request has no fields.
         "ssdp": {}
     },
     "failure": ["beer"],
-  	"reasons": {
-  		"beer": "No such extension. Unfortunately."
-  	}
+    "reasons": {
+        "beer": "No such extension. Unfortunately."
+    }
 }
 ----

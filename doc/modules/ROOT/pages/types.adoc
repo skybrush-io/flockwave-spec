@@ -278,11 +278,11 @@ expressed as an integer value between 0 and 100 (inclusive)
 == `CommandResponse`
 
 A `CommandResponse` object stores the response given by a particular UAV
-to a command sent to it using a `CMD-REQ` request, along with a type
+to a command sent to it using an `OBJ-CMD` request, along with a type
 annotation that tells the receiver how the response should be
 interpreted.
 
-Currently the Flockwave protocol defines the following response types:
+Currently the protocol defines the following response types:
 
 `plain`:: Plain text response that should be formatted on the receiver
 side as is.

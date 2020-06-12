@@ -3,23 +3,23 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["UAV-FLY"]
+      "enum": ["OBJ-CMD"]
 		},
-    "result": {
-			"$ref": "definitions.json#/asyncBoolMap"
-		},
-		"error": {
-			"$ref": "definitions.json#/asyncErrorMap"
-		},
-		"receipts": {
+    "receipts": {
 			"$ref": "definitions.json#/receiptMap"
 		},
     "receiptId": {
       "$ref": "definitions.json#/receiptId"
-    }
+    },
+		"error": {
+			"$ref": "definitions.json#/asyncErrorMap"
+		},
+		"result": {
+			"$ref": "definitions.json#/asyncCommandResponseMap"
+		}
 	},
 	"required": [
 		"type"
 	],
-	"additionalProperties": false
+  "additionalProperties": false
 }

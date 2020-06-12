@@ -1,0 +1,81 @@
+= Asynchronous operations
+
+Most of the operations that you can perform on a UAV, a docking station or any
+other model object handled by the server can potentially be long-running,
+meaning that there is a significant time interval between the time the server
+receives your initial request and the time the targeted object (typically a
+UAV) finishes processing the message. This is especially true if there is a
+slower or unreliable link between the server and the UAV and the message
+requires several retransmissions from the server to the UAV to go through.
+Sometimes the message triggers an even longer operation on the UAV.
+
+To keep the server responsive, potentially long-running operations are handled
+_asynchronously_, meaning that the server will acknowledge the receipt of the
+message with a response as early as possible, and performs the actual operation
+in the background. The response that the server sends back contains a unique
+_receipt identifier_, which can be used in subsequent requests to poll
+the status and progress of the operation. The _real_ result of the operation
+will come in a notification sent by the server on its own volition. The
+notification always contains the receipt identifier to help the client
+associate its own requests with the result from the server.
+
+[#async-response]
+== Format of an asynchronous response
+
+In the general case, the response body of a fictional request of `SOME-REQ` that
+can potentially be handled asynchronously by the server looks like this:
+
+[source,json]
+----
+{
+  "type": "SOME-RESP",
+  "result": 1234,
+  "error": "Not enough beer left in the fridge",
+  "receipts": "0badcafedeadbeef"
+}
+----
+
+Note that the type of the response may or may not be the same as the type of
+the request. By default, it is assumed that the expected response type is the
+same as the type of the request; if they are different, it will always be
+documented explicitly. The behaviour of the response body will always be the
+same, though, so it will likely be omitted in the specification and you should
+simply refer to this section instead.
+
+Besides `type`, exactly _one_ additional top-level key will be present in the
+response. If the server decided to execute the operation immediately, it
+returns the result of the operation associated to the `result` key. If the
+server decided to execute the operation immediately _and it already knows that
+it failed_, it returns the error message associated to the `error` key. If the
+server started the operation asynchronously, it returns the receipt identifier
+instead in the `receipt` key. _It is a protocol error to respond with an
+object that contains more than one of the keys above_.
+
+[#multi-async-response]
+== Multi-object asynchronous responses
+
+Some messages (e.g., xref:messages/uav.adoc#uav-land[UAV-LAND]) can target
+multiple objects at the same time. In this case, the response of the server
+will look like this:
+
+[source,json]
+----
+{
+  "type": "SOME-RESP",
+  "result": {
+    "id1": 1234,
+    "id2": 2345
+  },
+  "error": {
+    "id3": "Not enough beer left in the fridge"
+  },
+  "receipts": {
+    "id4": "0badcafedeadbeef"
+  }
+}
+----
+
+In other words, the `result`, `error` and `receipt` keys will be mappings from
+the targeted object IDs (e.g., UAV ids) and the associated values will be the
+results, error messages and receipts. Each ID sent in the original request
+MUST appear in exactly one of the `result`, `error` and `receipt` mappings.

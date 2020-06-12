@@ -1,9 +1,13 @@
 {
     "type": "UAV-LAND",
-    "success": ["1", "17"],
-    "failure": ["31", "spam"],
-    "reasons": {
+    "result": {
+        "1": true
+    },
+    "error": {
         "31": "UAV is a beacon.",
         "spam": "No such UAV."
+    },
+    "receipts": {
+        "17": "0badcafedeadbeef"
     }
 }

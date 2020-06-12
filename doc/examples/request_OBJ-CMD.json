@@ -1,5 +1,5 @@
 {
-    "type": "CMD-REQ",
+    "type": "OBJ-CMD",
     "ids": ["1", "17", "31", "spam"],
     "command": "algo"
 }

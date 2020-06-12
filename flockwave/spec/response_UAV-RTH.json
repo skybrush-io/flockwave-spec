@@ -5,15 +5,18 @@
 			"type": "string",
 			"enum": ["UAV-RTH"]
 		},
-		"success": {
-			"$ref": "definitions.json#/uavIdList"
+    "result": {
+			"$ref": "definitions.json#/asyncBoolMap"
 		},
-		"failure": {
-			"$ref": "definitions.json#/uavIdList"
+		"error": {
+			"$ref": "definitions.json#/asyncErrorMap"
 		},
-		"reasons": {
-			"$ref": "definitions.json#/failureReasons"
-		}
+		"receipts": {
+			"$ref": "definitions.json#/receiptMap"
+    },
+    "receiptId": {
+      "$ref": "definitions.json#/receiptId"
+    }
 	},
 	"required": [
 		"type"

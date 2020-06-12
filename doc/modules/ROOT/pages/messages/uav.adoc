@@ -47,21 +47,13 @@ coordinate to fly to
 
 *Response fields*
 
-[width="100%",cols="15%,10%,25%,50%",options="header",]
-|===
-|Name |Required? |Type |Description
-|`success` |no |list of strings |The list of UAV IDs to which the
-request was sent
-
-|`failure` |no |list of strings |The list of UAV IDs to which the
-request was _not_ sent
-
-|`reasons` |no |object |Object mapping UAV IDs to explanations about why
-the request failed for these UAVs.
-|===
-
-All the UAV IDs that were specified in the request MUST appear _either_
-in the `success` list or in the `failure` list.
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the operation was sent
+successfully to the UAV. If the UAV supports acknowledgments for this
+operation, the result will indicate whether the UAV has _acknowledged_ the
+operation. If the UAV does not support acknowledgments for this type of
+operation, the result will indicate whether the request has been _sent_ to
+the UAV.
 
 *Example request*
 
@@ -84,11 +76,15 @@ in the `success` list or in the `failure` list.
 ----
 {
     "type": "UAV-FLY",
-    "success": ["1", "17"],
-    "failure": ["31", "spam"],
-    "reasons": {
+    "result": {
+        "1": true,
+    },
+    "error": {
         "31": "UAV does not support flying to waypoints.",
         "spam": "No such UAV."
+    },
+    "receipts": {
+        "17": "0badcafedeadbeef"
     }
 }
 ----
@@ -123,21 +119,13 @@ message
 
 *Response fields*
 
-[width="100%",cols="15%,10%,25%,50%",options="header",]
-|===
-|Name |Required? |Type |Description
-|`success` |no |list of strings |The list of UAV IDs to which the
-request was sent
-
-|`failure` |no |list of strings |The list of UAV IDs to which the
-request was _not_ sent
-
-|`reasons` |no |object |Object mapping UAV IDs to explanations about why
-the request failed for these UAVs.
-|===
-
-All the UAV IDs that were specified in the request MUST appear _either_
-in the `success` list or in the `failure` list.
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the operation was sent
+successfully to the UAV. If the UAV supports acknowledgments for this
+operation, the result will indicate whether the UAV has _acknowledged_ the
+operation. If the UAV does not support acknowledgments for this type of
+operation, the result will indicate whether the request has been _sent_ to
+the UAV.
 
 *Example request*
 
@@ -155,11 +143,15 @@ in the `success` list or in the `failure` list.
 ----
 {
     "type": "UAV-HALT",
-    "success": ["1", "17"],
-    "failure": ["31", "spam"],
-    "reasons": {
+    "result": {
+        "1": true,
+    },
+    "error": {
         "31": "UAV does not support forced shutdown.",
         "spam": "No such UAV."
+    },
+    "receipts": {
+        "17": "0badcafedeadbeef"
     }
 }
 ----
@@ -249,6 +241,7 @@ as a notification, only the `status` field SHOULD be present.
 }
 ----
 
+[#uav-land]
 == `UAV-LAND` — Initiate unsupervised landing
 
 A client send this request to the server to initiate unsupervised
@@ -276,18 +269,13 @@ message
 
 *Response fields*
 
-[width="100%",cols="15%,10%,25%,50%",options="header",]
-|===
-|Name |Required? |Type |Description
-|`success` |no |list of strings |The list of UAV IDs to which the
-request was sent
-
-|`failure` |no |list of strings |The list of UAV IDs to which the
-request was _not_ sent
-
-|`reasons` |no |object |Object mapping UAV IDs to explanations about why
-the request failed for these UAVs.
-|===
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the operation was sent
+successfully to the UAV. If the UAV supports acknowledgments for this
+operation, the result will indicate whether the UAV has _acknowledged_ the
+operation. If the UAV does not support acknowledgments for this type of
+operation, the result will indicate whether the request has been _sent_ to
+the UAV.
 
 *Example request*
 
@@ -305,11 +293,15 @@ the request failed for these UAVs.
 ----
 {
     "type": "UAV-LAND",
-    "success": ["1", "17"],
-    "failure": ["31", "spam"],
-    "reasons": {
+    "result": {
+        "1": true,
+    },
+    "error": {
         "31": "UAV is a beacon.",
         "spam": "No such UAV."
+    },
+    "receipts": {
+        "17": "0badcafedeadbeef"
     }
 }
 ----
@@ -388,18 +380,13 @@ entire UAV will be rebooted as if it was turned off and then on again.
 
 *Response fields*
 
-[width="100%",cols="15%,10%,25%,50%",options="header",]
-|===
-|Name |Required? |Type |Description
-|`success` |no |list of strings |The list of UAV IDs to which the
-request was sent
-
-|`failure` |no |list of strings |The list of UAV IDs to which the
-request was _not_ sent
-
-|`reasons` |no |object |Object mapping UAV IDs to explanations about why
-the request failed for these UAVs.
-|===
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the operation was sent
+successfully to the UAV. If the UAV supports acknowledgments for this
+operation, the result will indicate whether the UAV has _acknowledged_ the
+operation. If the UAV does not support acknowledgments for this type of
+operation, the result will indicate whether the request has been _sent_ to
+the UAV.
 
 All the UAV IDs that were specified in the request MUST appear _either_
 in the `success` list or in the `failure` list.
@@ -421,11 +408,15 @@ in the `success` list or in the `failure` list.
 ----
 {
     "type": "UAV-RST",
-    "success": ["1", "17"],
-    "failure": ["31", "spam"],
-    "reasons": {
+    "result": {
+        "1": true,
+    },
+    "error": {
         "31": "UAV does not support rebooting.",
         "spam": "No such UAV."
+    },
+    "receipts": {
+        "17": "0badcafedeadbeef"
     }
 }
 ----
@@ -460,18 +451,13 @@ message
 
 *Response fields*
 
-[width="100%",cols="15%,10%,25%,50%",options="header",]
-|===
-|Name |Required? |Type |Description
-|`success` |no |list of strings |The list of UAV IDs to which the
-request was sent
-
-|`failure` |no |list of strings |The list of UAV IDs to which the
-request was _not_ sent
-
-|`reasons` |no |object |Object mapping UAV IDs to explanations about why
-the request failed for these UAVs.
-|===
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the operation was sent
+successfully to the UAV. If the UAV supports acknowledgments for this
+operation, the result will indicate whether the UAV has _acknowledged_ the
+operation. If the UAV does not support acknowledgments for this type of
+operation, the result will indicate whether the request has been _sent_ to
+the UAV.
 
 *Example request*
 
@@ -489,11 +475,15 @@ the request failed for these UAVs.
 ----
 {
     "type": "UAV-RTH",
-    "success": ["1", "17"],
-    "failure": ["31", "spam"],
-    "reasons": {
+    "result": {
+        "1": true,
+    },
+    "error": {
         "31": "UAV is a beacon.",
         "spam": "No such UAV."
+    },
+    "receipts": {
+        "17": "0badcafedeadbeef"
     }
 }
 ----
@@ -528,6 +518,16 @@ that do not support prescribed signal durations may ignore it and fall back to
 a default duration.
 |===
 
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the operation was sent
+successfully to the UAV. If the UAV supports acknowledgments for this
+operation, the result will indicate whether the UAV has _acknowledged_ the
+operation. If the UAV does not support acknowledgments for this type of
+operation, the result will indicate whether the request has been _sent_ to
+the UAV.
+
 *Example request*
 
 [source,json]
@@ -546,11 +546,15 @@ a default duration.
 ----
 {
     "type": "UAV-SIGNAL",
-    "success": ["1", "17"],
-    "failure": ["31", "spam"],
-    "reasons": {
+    "result": {
+        "1": true,
+    },
+    "error": {
         "31": "UAV is a beacon.",
         "spam": "No such UAV."
+    },
+    "receipts": {
+        "17": "0badcafedeadbeef"
     }
 }
 ----
@@ -597,18 +601,13 @@ message
 
 *Response fields*
 
-[width="100%",cols="15%,10%,25%,50%",options="header",]
-|===
-|Name |Required? |Type |Description
-|`success` |no |list of strings |The list of UAV IDs to which the
-request was sent
-
-|`failure` |no |list of strings |The list of UAV IDs to which the
-request was _not_ sent
-
-|`reasons` |no |object |Object mapping UAV IDs to explanations about why
-the request failed for these UAVs.
-|===
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the operation was sent
+successfully to the UAV. If the UAV supports acknowledgments for this
+operation, the result will indicate whether the UAV has _acknowledged_ the
+operation. If the UAV does not support acknowledgments for this type of
+operation, the result will indicate whether the request has been _sent_ to
+the UAV.
 
 *Example request*
 
@@ -626,11 +625,15 @@ the request failed for these UAVs.
 ----
 {
     "type": "UAV-TAKEOFF",
-    "success": ["1", "17"],
-    "failure": ["31", "spam"],
-    "reasons": {
+    "result": {
+        "1": true,
+    },
+    "error": {
         "31": "UAV is a beacon.",
         "spam": "No such UAV."
+    },
+    "receipts": {
+        "17": "0badcafedeadbeef"
     }
 }
 ----

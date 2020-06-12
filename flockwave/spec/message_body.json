@@ -7,12 +7,6 @@
         },
 
         {
-            "$ref": "notification_CMD-RESP.json#/"
-        },
-        {
-            "$ref": "notification_CMD-TIMEOUT.json#/"
-        },
-        {
             "$ref": "notification_OBJ-DEL.json#/"
         },
         {
@@ -36,15 +30,6 @@
         },
         {
             "$ref": "request_CLK-LIST.json#/"
-        },
-        {
-            "$ref": "request_CMD-DEL.json#/"
-        },
-        {
-            "$ref": "request_CMD-INF.json#/"
-        },
-        {
-            "$ref": "request_CMD-REQ.json#/"
         },
         {
             "$ref": "request_CONN-INF.json#/"
@@ -90,6 +75,9 @@
         },
         {
             "$ref": "request_EXT-UNLOAD.json#/"
+        },
+        {
+            "$ref": "request_OBJ-CMD.json#/"
         },
         {
             "$ref": "request_OBJ-LIST.json#/"
@@ -159,15 +147,6 @@
             "$ref": "response_CLK-LIST.json#/"
         },
         {
-            "$ref": "response_CMD-DEL.json#/"
-        },
-        {
-            "$ref": "response_CMD-INF.json#/"
-        },
-        {
-            "$ref": "response_CMD-REQ.json#/"
-        },
-        {
             "$ref": "response_CONN-INF.json#/"
         },
         {
@@ -211,6 +190,9 @@
         },
         {
             "$ref": "response_EXT-UNLOAD.json#/"
+        },
+        {
+            "$ref": "response_OBJ-CMD.json#/"
         },
         {
             "$ref": "response_OBJ-LIST.json#/"

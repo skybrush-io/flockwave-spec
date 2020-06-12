@@ -5,7 +5,7 @@
 			"title": "Type",
 			"description": "Type of the message",
 			"type": "string",
-			"enum": ["CMD-REQ"]
+			"enum": ["OBJ-CMD"]
 		},
 		"ids": {
 			"$ref": "definitions.json#/objectIdList"

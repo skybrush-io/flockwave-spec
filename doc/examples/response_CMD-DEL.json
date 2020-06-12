@@ -1,8 +1,0 @@
-{
-    "type": "CMD-DEL",
-    "success": ["0badcafe-deadbeef:1"],
-    "failure": ["0badcafe-deadbeef:3"],
-    "reasons": {
-        "0badcafe-deadbeef:3": "invalid receipt"
-    }
-}

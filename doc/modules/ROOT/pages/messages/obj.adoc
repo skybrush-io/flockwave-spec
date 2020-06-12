@@ -1,5 +1,104 @@
 = `OBJ` — Generic object-related messages
 
+[#obj-cmd]
+== `OBJ-CMD` — Send a command execution request to a target object
+
+A client sends this request to the server to ask the server to forward a generic
+command to one or more target objects. The interpretation of the command string
+depends entirely on the target; for instance, a UAV running our `flockctrl`
+software will accept `flockctrl` console commands and respond appropriately.
+The server merely acts as a forwarder between the client and the target.
+
+Depending on the protocol that the target speaks, it may accept a
+raw command string only, or a command string with positional and/or
+keyword arguments. Positional arguments are passed as a single array.
+Keyword arguments are passed as a JSON object that maps the names of the
+arguments to their values. It is the responsibility of the caller to
+ensure that the command and its arguments use the appropriate syntax.
+
+Sending and executing a command typically takes some time (especially
+because there is usually a slower radio link involved between the ground
+station and the target). To keep things running smoothly, the server will
+not wait for the responses of the targets to arrive - it will respond with
+an `OBJ-CMD` response packet as soon as it has attempted to send the
+command to all the targets. The response is a
+xref:async.adoc#multi-async-response[multi-object asynchronous response]
+that contains immediate results for the target IDs where the execution of the
+command was synchronous and receipts for the target IDs where the execution
+of the command was asynchronous.
+
+The actual response of asynchronous executions will be relayed back to the client
+in additional <<obj-cmd,OBJ-CMD>> notifications containing the receipt ID and
+the response (or error).
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of object IDs that the command
+should be sent to
+
+|`command` |yes |string |The command to send to the objects
+
+|`args` |no |array |The positional arguments of the command
+
+|`kwds` |no |object |The keyword arguments of the command
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each target ID is mapped to the result of the command execution on the target,
+either as a string or as a more complex xref:types.adoc#commandresponse[CommandResponse]
+object.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "OBJ-CMD",
+    "ids": ["1", "17", "31", "spam"],
+    "command": "algo"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "OBJ-CMD",
+    "result": {
+        "1": "brewing"
+    },
+    "receipts": {
+        "17": "0badcafe-deadbeef:1"
+    },
+    "error": {
+        "31": "Command execution not supported.",
+        "spam": "No such object."
+    }
+}
+----
+
+*Example notification with Markdown, delivered asynchronously*
+
+[source,json]
+----
+{
+    "type": "OBJ-CMD",
+    "refs": "0badcafe-deadbeef:1",
+    "result": {
+        "17": {
+            "type": "markdown",
+            "data": "# Heading\nHello there!"
+        }
+    }
+}
+----
+
 == `OBJ-DEL` - Object removal notification
 
 A server sends a notification of this type to a client when an existing object

@@ -1,4 +1,24 @@
 {
+    "asyncBoolMap": {
+        "type": "object",
+        "additionalProperties": { "type": "boolean" }
+    },
+
+    "asyncErrorMap": {
+        "type": "object",
+        "additionalProperties": { "type": "string" }
+    },
+
+    "asyncCommandResponseMap": {
+        "type": "object",
+        "additionalProperties": {
+          "anyOf": [
+            { "$ref": "#/commandResponse" },
+            { "type": "string" }
+          ]
+        }
+    },
+
     "attitude": {
         "$schema": "http://json-schema.org/schema#",
         "$id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
@@ -120,10 +140,10 @@
         "type": "object",
         "properties": {
             "id": {
-                "$ref": "definitions.json#/clockId"
+                "$ref": "#/clockId"
             },
             "epoch": {
-                "$ref": "definitions.json#/clockEpoch"
+                "$ref": "#/clockEpoch"
             },
             "retrievedAt": {
                 "type": "number"
@@ -157,7 +177,7 @@
         "type": "object",
         "properties": {
             "id": {
-                "$ref": "definitions.json#/receiptId"
+                "$ref": "#/receiptId"
             },
             "sent": {
                 "type": "number"
@@ -219,16 +239,16 @@
         "type": "object",
         "properties": {
             "id": {
-                "$ref": "definitions.json#/connectionId"
+                "$ref": "#/connectionId"
             },
             "purpose": {
-                "$ref": "definitions.json#/connectionPurpose"
+                "$ref": "#/connectionPurpose"
             },
             "description": {
                 "type": "string"
             },
             "status": {
-                "$ref": "definitions.json#/connectionStatus"
+                "$ref": "#/connectionStatus"
             },
             "timestamp": {
                 "type": "number"
@@ -584,6 +604,11 @@
             "$ref": "#/receiptId"
         },
         "uniqueItems": true
+    },
+
+    "receiptMap": {
+        "type": "object",
+        "additionalProperties": { "$ref": "definitions.json#/receiptId" }
     },
 
     "severity": {
