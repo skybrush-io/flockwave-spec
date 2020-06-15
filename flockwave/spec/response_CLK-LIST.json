@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["CLK-LIST"]
+			"const": "CLK-LIST"
 		},
 		"ids": {
 			"$ref": "definitions.json#/clockIdList"

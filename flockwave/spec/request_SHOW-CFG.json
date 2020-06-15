@@ -2,10 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"title": "Type",
-			"description": "Type of the message",
-			"type": "string",
-			"enum": ["SHOW-CFG"]
+			"const": "SHOW-CFG"
 		}
 	},
 	"required": [

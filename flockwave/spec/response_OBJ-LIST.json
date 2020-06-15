@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["OBJ-LIST"]
+			"const": "OBJ-LIST"
 		},
 		"ids": {
 			"$ref": "definitions.json#/objectIdList"

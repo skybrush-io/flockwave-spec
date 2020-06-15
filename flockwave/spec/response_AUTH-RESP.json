@@ -4,8 +4,7 @@
 			"type": "object",
 			"properties": {
 				"type": {
-					"type": "string",
-					"enum": ["AUTH-RESP"]
+					"const": "AUTH-RESP"
 				},
 				"data": {
 					"title": "Data",
@@ -23,7 +22,7 @@
 			"properties": {
 				"type": {
 					"type": "string",
-					"enum": ["AUTH-RESP"]
+					"const": "AUTH-RESP"
 				},
 				"result": {
 					"title": "Result",

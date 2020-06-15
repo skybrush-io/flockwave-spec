@@ -2,8 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"type": "string",
-			"enum": ["EXT-LIST"]
+			"const": "EXT-LIST"
 		},
 		"loaded": {
 			"$ref": "definitions.json#/extensionIdList"

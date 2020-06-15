@@ -2,10 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"title": "Type",
-			"description": "Type of the message",
-			"type": "string",
-			"enum": ["OBJ-LIST"]
+			"const": "OBJ-LIST"
 		},
 		"filter": {
 			"$ref": "definitions.json#/objectTypeFilter"

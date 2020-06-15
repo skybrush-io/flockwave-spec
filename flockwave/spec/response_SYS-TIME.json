@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["SYS-TIME"]
+			"const": "SYS-TIME"
 		},
 		"timestamp": {
       "type": "number"

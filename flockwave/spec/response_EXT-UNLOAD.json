@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["EXT-UNLOAD"]
+			"const": "EXT-UNLOAD"
 		},
 		"status": {
 			"type": "object",

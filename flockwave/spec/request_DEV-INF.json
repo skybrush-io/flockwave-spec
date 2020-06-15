@@ -2,12 +2,9 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"title": "Type",
-			"description": "Type of the message",
-			"type": "string",
-			"enum": ["DEV-INF"]
+			"const": "DEV-INF"
 		},
-        "paths": {
+    "paths": {
 			"$ref": "definitions.json#/deviceTreePathList"
 		}
 	},

@@ -2,8 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"type": "string",
-			"enum": ["AUTH-WHOAMI"]
+			"const": "AUTH-WHOAMI"
 		},
 		"user": {
 			"$ref": "definitions.json#/userName"

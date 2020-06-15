@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["UAV-LAND"]
+			"const": "UAV-LAND"
 		},
     "result": {
 			"$ref": "definitions.json#/asyncBoolMap"

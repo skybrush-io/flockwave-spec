@@ -2,10 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"title": "Type",
-			"description": "Type of the notification",
-			"type": "string",
-			"enum": ["ASYNC-RESP"]
+			"const": "ASYNC-RESP"
 		},
     "id": {
       "$ref": "definitions.json#/receiptId"

@@ -2,10 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"title": "Type",
-			"description": "Type of the notification",
-			"type": "string",
-			"enum": ["SYS-MSG"]
+			"const": "SYS-MSG"
 		},
     "severity": {
 			"$ref": "definitions.json#/severity"

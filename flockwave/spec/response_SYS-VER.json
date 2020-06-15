@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["SYS-VER"]
+			"const": "SYS-VER"
 		},
 		"name": {
 			"type": "string"

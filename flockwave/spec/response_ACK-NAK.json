@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["ACK-NAK"]
+			"const": "ACK-NAK"
 		},
 		"reason": {
 			"type": "string"

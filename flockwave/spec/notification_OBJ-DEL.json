@@ -2,10 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"title": "Type",
-			"description": "Type of the notification",
-			"type": "string",
-			"enum": ["OBJ-DEL"]
+			"const": "OBJ-DEL"
 		},
     "ids": {
         "$ref": "definitions.json#/objectIdList"

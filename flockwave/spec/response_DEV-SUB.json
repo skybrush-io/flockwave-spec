@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["DEV-SUB"]
+			"const": "DEV-SUB"
 		},
 		"success": {
             "$ref": "definitions.json#/deviceTreePathList"

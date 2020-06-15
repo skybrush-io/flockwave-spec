@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["UAV-INF"]
+			"const": "UAV-INF"
 		},
 		"status": {
 			"type": "object",

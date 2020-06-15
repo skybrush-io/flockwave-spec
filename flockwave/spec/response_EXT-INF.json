@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["EXT-INF"]
+			"const": "EXT-INF"
 		},
 		"status": {
 			"type": "object",

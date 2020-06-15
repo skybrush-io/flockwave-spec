@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["DEV-LIST"]
+			"const": "DEV-LIST"
 		},
 		"devices": {
 			"type": "object",

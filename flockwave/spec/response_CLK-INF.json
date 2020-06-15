@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["CLK-INF"]
+			"const": "CLK-INF"
 		},
 		"status": {
 			"type": "object",

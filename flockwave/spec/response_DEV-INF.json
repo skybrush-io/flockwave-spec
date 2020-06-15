@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["DEV-INF"]
+			"const": "DEV-INF"
 		},
 		"values": {
 			"type": "object",

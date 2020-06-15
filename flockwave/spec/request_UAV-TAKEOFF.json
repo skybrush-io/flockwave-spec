@@ -2,10 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"title": "Type",
-			"description": "Type of the message",
-			"type": "string",
-			"enum": ["UAV-TAKEOFF"]
+			"const": "UAV-TAKEOFF"
 		},
 		"ids": {
 			"$ref": "definitions.json#/uavIdList"

@@ -2,10 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"title": "Type",
-			"description": "Type of the notification",
-			"type": "string",
-			"enum": ["SYS-CLOSE"]
+			"const": "SYS-CLOSE"
 		},
     "reason": {
       "type": "string"

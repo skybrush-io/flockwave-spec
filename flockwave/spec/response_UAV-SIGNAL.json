@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["UAV-SIGNAL"]
+			"const": "UAV-SIGNAL"
 		},
     "result": {
 			"$ref": "definitions.json#/asyncBoolMap"

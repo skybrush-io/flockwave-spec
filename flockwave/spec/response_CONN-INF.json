@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["CONN-INF"]
+			"const": "CONN-INF"
 		},
 		"status": {
 			"type": "object",

@@ -3,7 +3,7 @@
 	"properties": {
 		"type": {
 			"type": "string",
-			"enum": ["EXT-LOAD"]
+			"const": "EXT-LOAD"
 		},
 		"status": {
 			"type": "object",
