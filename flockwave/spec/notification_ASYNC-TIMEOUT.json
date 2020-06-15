@@ -5,10 +5,10 @@
 			"title": "Type",
 			"description": "Type of the notification",
 			"type": "string",
-			"enum": ["OBJ-DEL"]
+			"enum": ["ASYNC-TIMEOUT"]
 		},
     "ids": {
-        "$ref": "definitions.json#/objectIdList"
+        "$ref": "definitions.json#/receiptIdList"
     }
 	},
 	"required": [

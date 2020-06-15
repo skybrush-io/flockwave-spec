@@ -6,6 +6,7 @@
 * xref:errors.adoc[Error codes]
 * xref:messages/index.adoc[Message types]
 ** xref:messages/ack.adoc[ACK — Acknowledgment messages]
+** xref:messages/async.adoc[ASYNC - Asynchronous operations]
 ** xref:messages/auth.adoc[AUTH — Authentication-related messages]
 ** xref:messages/conn.adoc[CONN — Connection-related messages]
 ** xref:messages/dev.adoc[DEV — Device and channel related messages]

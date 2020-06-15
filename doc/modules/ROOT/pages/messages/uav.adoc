@@ -83,7 +83,7 @@ the UAV.
         "31": "UAV does not support flying to waypoints.",
         "spam": "No such UAV."
     },
-    "receipts": {
+    "receipt": {
         "17": "0badcafedeadbeef"
     }
 }
@@ -150,7 +150,7 @@ the UAV.
         "31": "UAV does not support forced shutdown.",
         "spam": "No such UAV."
     },
-    "receipts": {
+    "receipt": {
         "17": "0badcafedeadbeef"
     }
 }
@@ -299,7 +299,7 @@ the UAV.
         "31": "UAV is a beacon.",
         "spam": "No such UAV."
     },
-    "receipts": {
+    "receipt": {
         "17": "0badcafedeadbeef"
     }
 }
@@ -414,7 +414,7 @@ in the `success` list or in the `failure` list.
         "31": "UAV does not support rebooting.",
         "spam": "No such UAV."
     },
-    "receipts": {
+    "receipt": {
         "17": "0badcafedeadbeef"
     }
 }
@@ -481,7 +481,7 @@ the UAV.
         "31": "UAV is a beacon.",
         "spam": "No such UAV."
     },
-    "receipts": {
+    "receipt": {
         "17": "0badcafedeadbeef"
     }
 }
@@ -552,7 +552,7 @@ the UAV.
         "31": "UAV is a beacon.",
         "spam": "No such UAV."
     },
-    "receipts": {
+    "receipt": {
         "17": "0badcafedeadbeef"
     }
 }
@@ -631,7 +631,7 @@ the UAV.
         "31": "UAV is a beacon.",
         "spam": "No such UAV."
     },
-    "receipts": {
+    "receipt": {
         "17": "0badcafedeadbeef"
     }
 }

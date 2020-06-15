@@ -73,7 +73,7 @@ object.
     "result": {
         "1": "brewing"
     },
-    "receipts": {
+    "receipt": {
         "17": "0badcafe-deadbeef:1"
     },
     "error": {

@@ -7,7 +7,7 @@
         "31": "UAV does not support rebooting.",
         "spam": "No such UAV."
     },
-    "receipts": {
+    "receipt": {
         "17": "0badcafedeadbeef"
     }
 }

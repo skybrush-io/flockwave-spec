@@ -428,7 +428,11 @@
         }
     },
 
-    "errorList": {
+    "error": {
+        "type": "string"
+    },
+
+    "errorCodeList": {
         "title": "List of errors",
         "description": "List of currently active error codes for a single UAV",
         "type": "array",
@@ -439,7 +443,7 @@
 
     "errorMap": {
         "type": "object",
-        "additionalProperties": { "type": "string" }
+        "additionalProperties": { "$ref": "#/error" }
     },
 
     "extensionId": {
@@ -668,7 +672,7 @@
                 "$ref": "definitions.json#/colorRGB565"
             },
             "errors": {
-                "$ref": "definitions.json#/errorList"
+                "$ref": "definitions.json#/errorCodeList"
             },
             "debug": {
                 "type": "string"

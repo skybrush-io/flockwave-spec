@@ -5,14 +5,18 @@
 			"title": "Type",
 			"description": "Type of the notification",
 			"type": "string",
-			"enum": ["OBJ-DEL"]
+			"enum": ["ASYNC-RESP"]
 		},
-    "ids": {
-        "$ref": "definitions.json#/objectIdList"
-    }
+    "id": {
+      "$ref": "definitions.json#/receiptId"
+    },
+    "error": {
+      "$ref": "definitions.json#/error"
+		},
+		"result": {}
 	},
 	"required": [
-		"type", "ids"
+		"type", "id"
 	],
 	"additionalProperties": false
 }

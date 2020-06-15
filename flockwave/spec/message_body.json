@@ -7,6 +7,12 @@
         },
 
         {
+            "$ref": "notification_ASYNC-RESP.json#/"
+        },
+        {
+            "$ref": "notification_ASYNC-TIMEOUT.json#/"
+        },
+        {
             "$ref": "notification_OBJ-DEL.json#/"
         },
         {

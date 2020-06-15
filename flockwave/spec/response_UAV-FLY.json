@@ -11,7 +11,7 @@
 		"error": {
 			"$ref": "definitions.json#/errorMap"
 		},
-		"receipts": {
+		"receipt": {
 			"$ref": "definitions.json#/receiptMap"
 		},
     "receiptId": {

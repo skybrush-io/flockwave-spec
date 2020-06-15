@@ -1,0 +1,59 @@
+= `ASYNC` — Messages related to asynchronous operations
+
+The messages in this chapter are related to the handling of
+xref:async.adoc[asynchronous operations]; please read that chapter for more
+details.
+
+== `ASYNC-RESP` — Result of an asynchronous operation
+
+A server sends this notification to a client when an asynchronous operation
+initiated earlier by the client has finished, either successfully or with an
+error.
+
+*Notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`id` |yes |list of strings |The list of receipt IDs that the message refers to
+
+|`result` |no |object |The result of the asynchronous operation identified by the receipt ID
+
+|`error` |no |string |The error message returned by the asynchronous operation identified by the receipt ID
+|===
+
+Exactly one of the `result` and the `error` keys MUST be present in the message.
+
+*Example notification*
+
+[source,json]
+----
+{
+    "type": "ASYNC-RESP",
+    "id": "0badcafedeadbeef",
+    "result": 1234
+}
+----
+
+== `ASYNC-TIMEOUT` — Timeout notification for one or more asynchronous operations
+
+A server sends this notification to a client when an asynchronous operation
+initiated earlier by the client has timed out.
+
+*Notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of receipt IDs of the operations that have timed out
+|===
+
+*Example notification*
+
+[source,json]
+----
+{
+    "type": "ASYNC-TIMEOUT",
+    "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2"]
+}
+----

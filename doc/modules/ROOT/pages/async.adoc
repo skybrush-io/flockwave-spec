@@ -15,9 +15,9 @@ message with a response as early as possible, and performs the actual operation
 in the background. The response that the server sends back contains a unique
 _receipt identifier_, which can be used in subsequent requests to poll
 the status and progress of the operation. The _real_ result of the operation
-will come in a notification sent by the server on its own volition. The
-notification always contains the receipt identifier to help the client
-associate its own requests with the result from the server.
+will come in a notification sent by the server later on. The notification always
+contains the receipt identifier to help the client associate its own requests
+with the result from the server.
 
 [#async-response]
 == Format of an asynchronous response
@@ -28,10 +28,10 @@ can potentially be handled asynchronously by the server looks like this:
 [source,json]
 ----
 {
-  "type": "SOME-RESP",
+  "type": "SOME-REQ",
   "result": 1234,
   "error": "Not enough beer left in the fridge",
-  "receipts": "0badcafedeadbeef"
+  "receipt": "0badcafedeadbeef"
 }
 ----
 
@@ -51,6 +51,19 @@ server started the operation asynchronously, it returns the receipt identifier
 instead in the `receipt` key. _It is a protocol error to respond with an
 object that contains more than one of the keys above_.
 
+If the server decided to handle the operation asynchronously, it will deliver
+the result of the operation in an xref:messages/async.adoc#async-resp[ASYNC-RESP]
+notification. The notification will contain an `id` key that has the same value
+as the `receipt` in the initial response.
+
+In some cases, the server may also decide to abandon an asynchronous operation
+if it seems to take too long (which usually indicates a communication error
+between the server and the target, typically a UAV). In such cases, the server
+will deliver an xref:messages/async.adoc#async-resp[ASYNC-TIMEOUT] notification
+instead, with the `receipt` values of the operations that timed out in the
+`ids` key of the notification. Note that one `ASYNC-TIMEOUT` message may deliver
+a timeout notification for multiple async operations.
+
 [#multi-async-response]
 == Multi-object asynchronous responses
 
@@ -69,13 +82,13 @@ will look like this:
   "error": {
     "id3": "Not enough beer left in the fridge"
   },
-  "receipts": {
+  "receipt": {
     "id4": "0badcafedeadbeef"
   }
 }
 ----
 
 In other words, the `result`, `error` and `receipt` keys will be mappings from
-the targeted object IDs (e.g., UAV ids) and the associated values will be the
+the targeted object IDs (e.g., UAV IDs) and the associated values will be the
 results, error messages and receipts. Each ID sent in the original request
 MUST appear in exactly one of the `result`, `error` and `receipt` mappings.

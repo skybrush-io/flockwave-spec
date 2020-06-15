@@ -5,12 +5,9 @@
 			"type": "string",
       "enum": ["OBJ-CMD"]
 		},
-    "receipts": {
+    "receipt": {
 			"$ref": "definitions.json#/receiptMap"
 		},
-    "receiptId": {
-      "$ref": "definitions.json#/receiptId"
-    },
 		"error": {
 			"$ref": "definitions.json#/errorMap"
 		},
