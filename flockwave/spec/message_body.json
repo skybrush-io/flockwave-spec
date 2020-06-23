@@ -13,6 +13,9 @@
             "$ref": "notification_ASYNC-TIMEOUT.json#/"
         },
         {
+            "$ref": "notification_CONN-DEL.json#/"
+        },
+        {
             "$ref": "notification_OBJ-DEL.json#/"
         },
         {

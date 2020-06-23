@@ -1,5 +1,28 @@
 = `CONN` — Connection-related messages
 
+== `CONN-DEL` - Connection removal notification
+
+A server sends a notification of this type to a client when an existing
+connection was removed from the server.
+
+*Notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of connection IDs that were removed
+|===
+
+*Example notification*
+
+[source,json]
+----
+{
+    "type": "CONN-DEL",
+    "ids": ["dgps"]
+}
+----
+
 == `CONN-INF` — Basic status information of one or more connections
 
 A client sends this request to the server to obtain basic status
