@@ -2,10 +2,10 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"const": "CONN-LIST"
+			"const": "UAV-VER"
 		},
 		"ids": {
-			"$ref": "definitions.json#/connectionIdList"
+			"$ref": "definitions.json#/uavIdList"
 		}
 	},
 	"required": [

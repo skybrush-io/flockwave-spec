@@ -2,14 +2,13 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"type": "string",
 			"const": "DEV-LIST"
 		},
 		"devices": {
 			"type": "object",
 			"additionalProperties": {
-                "$ref": "definitions.json#/deviceTreeNode"
-            }
+        "$ref": "definitions.json#/deviceTreeNode"
+      }
 		},
     "error": {
 			"$ref": "definitions.json#/errorMap"

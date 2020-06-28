@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "UAV-MOTOR"
+		},
+		"ids": {
+			"$ref": "definitions.json#/uavIdList"
+		},
+    "start": {
+      "title": "Motor start?",
+      "description": "Whether the motors should be started or stopped",
+      "type": "boolean"
+    },
+    "force": {
+      "title": "Forced",
+      "description": "Whether the command should be forced even if it is unsafe",
+      "type": "boolean"
+    }
+	},
+	"required": [
+		"type", "ids", "start"
+	],
+	"additionalProperties": false
+}

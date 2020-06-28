@@ -14,6 +14,16 @@
         }
     },
 
+    "asyncStringMap": {
+        "type": "object",
+        "additionalProperties": { "type": "string" }
+    },
+
+    "asyncVersionMap": {
+        "type": "object",
+        "additionalProperties": { "$ref": "#/versionMap" }
+    },
+
     "attitude": {
         "$schema": "http://json-schema.org/schema#",
         "$id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
@@ -705,6 +715,12 @@
                 "type": "integer"
             }
         ]
+    },
+
+    "versionMap": {
+        "type": "object",
+        "description": "Object mapping string identifiers to version numbers in no particular format",
+        "additionalProperties": { "type": "string" }
     },
 
     "versionNumber": {

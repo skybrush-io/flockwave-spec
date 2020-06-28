@@ -2,7 +2,6 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"type": "string",
 			"const": "UAV-FLY"
 		},
     "result": {
@@ -13,10 +12,7 @@
 		},
 		"receipt": {
 			"$ref": "definitions.json#/receiptMap"
-		},
-    "receiptId": {
-      "$ref": "definitions.json#/receiptId"
-    }
+		}
 	},
 	"required": [
 		"type"

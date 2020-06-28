@@ -2,7 +2,6 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"type": "string",
 			"const": "UAV-SIGNAL"
 		},
     "result": {
@@ -13,9 +12,6 @@
 		},
 		"receipt": {
 			"$ref": "definitions.json#/receiptMap"
-    },
-    "receiptId": {
-      "$ref": "definitions.json#/receiptId"
     }
 	},
 	"required": [

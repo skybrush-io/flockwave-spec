@@ -1,0 +1,6 @@
+{
+    "type": "UAV-MOTOR",
+    "ids": ["1", "17", "31", "spam"],
+    "start": false,
+    "force": true
+}

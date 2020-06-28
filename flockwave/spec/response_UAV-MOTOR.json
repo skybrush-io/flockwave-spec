@@ -2,7 +2,7 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"const": "UAV-HALT"
+			"const": "UAV-MOTOR"
 		},
     "result": {
 			"$ref": "definitions.json#/asyncBoolMap"

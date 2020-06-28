@@ -13,9 +13,6 @@
 		},
 		"receipt": {
 			"$ref": "definitions.json#/receiptMap"
-    },
-    "receiptId": {
-      "$ref": "definitions.json#/receiptId"
     }
 	},
 	"required": [

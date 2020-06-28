@@ -1,0 +1,13 @@
+{
+    "type": "UAV-MOTOR",
+    "result": {
+        "1": true
+    },
+    "error": {
+        "31": "UAV does not support forced motor shutdown.",
+        "spam": "No such UAV."
+    },
+    "receipt": {
+        "17": "0badcafedeadbeef"
+    }
+}

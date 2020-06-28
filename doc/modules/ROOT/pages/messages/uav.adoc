@@ -349,6 +349,71 @@ This request has no fields.
 }
 ----
 
+== `UAV-MOTOR` — Send request to turn motors on (without taking off) or off
+
+A client sends this request to the server to request one or more of the UAVs
+to turn their motors on or off. Not all UAVs support this operation; UAVs that
+do not support turning on their motors without taking off should do nothing.
+
+Typically, it is dangerous to turn off the motors while the UAV is airborne,
+and the default behaviour in such cases is to deny the operation. When the
+operator wants to stop the motors of the UAV even if it is airborne (in other
+words, to initiate an emergency stop _without_ shutting down the software of
+the UAV), the command must be sent in "forced" mode.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs to target with this
+message
+|`start` |yes |boolean |Whether to start (`true`) or stop (`false`) the motor.
+|`force` |no  |boolean |Whether the command is forced, i.e. the UAV should execute it even if it is not safe to do so. Defaults to `false` if omitted.
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the operation was sent
+successfully to the UAV. If the UAV supports acknowledgments for this
+operation, the result will indicate whether the UAV has _acknowledged_ the
+operation. If the UAV does not support acknowledgments for this type of
+operation, the result will indicate whether the request has been _sent_ to
+the UAV.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-MOTOR",
+    "ids": ["1", "17", "31", "spam"],
+    "start": false,
+    "force": true
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-MOTOR",
+    "result": {
+        "1": true
+    },
+    "error": {
+        "31": "UAV does not support forced motor shutdown.",
+        "spam": "No such UAV."
+    },
+    "receipt": {
+        "17": "0badcafedeadbeef"
+    }
+}
+----
+
+
 == `UAV-RST` — Send reboot request
 
 A client sends this request to the server to initiate the reboot of the
@@ -386,9 +451,6 @@ operation, the result will indicate whether the UAV has _acknowledged_ the
 operation. If the UAV does not support acknowledgments for this type of
 operation, the result will indicate whether the request has been _sent_ to
 the UAV.
-
-All the UAV IDs that were specified in the request MUST appear _either_
-in the `success` list or in the `failure` list.
 
 *Example request*
 
@@ -629,6 +691,62 @@ the UAV.
     },
     "error": {
         "31": "UAV is a beacon.",
+        "spam": "No such UAV."
+    },
+    "receipt": {
+        "17": "0badcafedeadbeef"
+    }
+}
+----
+
+== `UAV-VER` — Query version number of components
+
+A client sends this request to the server to retrieve the version numbers
+of the essential components of one or more UAVs.
+
+It is up to the UAVs to decide which components can report version numbers
+and how these version numbers should be presented to the user. A simple
+non-autonomous UAV may report only the version number of the hardware and
+the firmware, while a more complex autonomous UAV may report several version
+numbers for various software components.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs to target with this
+message
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to another object mapping component names to version numbers.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-VER",
+    "ids": ["1", "17", "spam"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-VER",
+    "result": {
+        "1": {
+            "firmware": "2.4.17",
+            "hardware": "1.3"
+        }
+    },
+    "error": {
         "spam": "No such UAV."
     },
     "receipt": {

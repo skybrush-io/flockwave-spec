@@ -122,6 +122,9 @@
             "$ref": "request_UAV-LIST.json#/"
         },
         {
+            "$ref": "request_UAV-MOTOR.json#/"
+        },
+        {
             "$ref": "request_UAV-RST.json#/"
         },
         {
@@ -132,6 +135,9 @@
         },
         {
             "$ref": "request_UAV-TAKEOFF.json#/"
+        },
+        {
+            "$ref": "request_UAV-VER.json#/"
         },
 
         {
@@ -231,6 +237,9 @@
             "$ref": "response_UAV-LIST.json#/"
         },
         {
+            "$ref": "response_UAV-MOTOR.json#/"
+        },
+        {
             "$ref": "response_UAV-RST.json#/"
         },
         {
@@ -241,6 +250,9 @@
         },
         {
             "$ref": "response_UAV-TAKEOFF.json#/"
+        },
+        {
+            "$ref": "response_UAV-VER.json#/"
         }
     ]
 }

@@ -2,11 +2,10 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"type": "string",
 			"const": "DEV-UNSUB"
 		},
 		"success": {
-            "$ref": "definitions.json#/deviceTreePathList"
+      "$ref": "definitions.json#/deviceTreePathList"
 		},
     "error": {
 			"$ref": "definitions.json#/errorMap"

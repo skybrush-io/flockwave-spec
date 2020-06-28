@@ -2,10 +2,10 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"const": "UAV-HALT"
+			"const": "UAV-VER"
 		},
     "result": {
-			"$ref": "definitions.json#/asyncBoolMap"
+			"$ref": "definitions.json#/asyncVersionMap"
 		},
 		"error": {
 			"$ref": "definitions.json#/errorMap"
