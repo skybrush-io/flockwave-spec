@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "flockwave-spec"
+version = "0.39.0"
+description = "JSON-Schema specification of the Flockwave protocol"
+authors = ["Tamas Nepusz <tamas@collmot.com>"]
+packages = [
+    { include = "flockwave", from = "src" }
+]
+include = ["src/flockwave/spec/*.json"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "^7.1.2"
+jsonschema = "^3.2.0"
+memoized = "^0.3"
+jsonpointer = "^2.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.3"
+coverage = {extras = ["toml"], version = "^5.2"}
+pytest-cov = "^2.10.0"
+
+[[tool.poetry.source]]
+name = "collmot"
+url = "https://pypi.collmot.com/simple/"
+
+[tool.coverage.paths]
+source = ["src"]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.coverage.report]
+show_missing = true
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
