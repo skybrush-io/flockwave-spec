@@ -111,14 +111,15 @@ The object is stored as a list with one mandatory and one optional item.
 |Index |Required? |Type |Description
 |0 |yes |integer |the battery voltage in one tenths of volts; zero if unknown
 |1 |no  |integer |the state-of-charge of the battery, expressed as a percentage
-in the range [0, 100]; omitted if unknown
+in the range [0, 100]; omitted or negative if unknown
+|2 |no  |boolean |whether the battery is charging; defaults to false if omitted
 |===
 
 *Example*
 
 [source,json]
 ----
-[124, 100]
+[124, 100, false]
 ----
 
 == `ChannelOperation`
@@ -667,6 +668,143 @@ does not know a particular object type, it should simply return an empty list
 when the user queries about objects of an unknown type. This allows server
 extensions to register custom object types later on.
 
+== `PositionXYZ`
+
+This type represents the position of an airborne object (typically a
+UAV) in a local (flat-Earth) right-handed XYZ coordinate system. The origin of
+the coordinate system and the orientation of its X axis is typically specific
+to the UAV. The Z axis points upwards.
+
+The object is stored as a list with three mandatory items.
+
+*Fields*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Index |Required? |Type |Description
+|0 |yes |number |The X component of the position vector, in mm
+|1 |yes |number |The Y component of the position vector, in mm
+|2 |yes |number |The Z component of the position vector, in mm
+|===
+
+*Example*
+
+[source,json]
+----
+[2000, 2000, 1000]
+----
+
+== `PreflightCheckInfo`
+
+Monolithic object containing information about the preflight checklist of a UAV.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|result |yes |<<_preflightcheckresult,PreflightCheckResult>> |The result of the preflight check
+
+|items |yes |array of <<_preflightcheckitem,PreflightCheckItem>> |List of preflight check items,
+containing information aobut the individual checks that were performed onboard
+and the corresponding results.
+
+|message |no |string |Custom message to show next to the result of the preflight
+check, containing even more details (if applicable).
+
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "message": "Compass inconsistency",
+    "result": "failure",
+    "items": [{
+        "id": "compass",
+        "label": "Compass",
+        "result": "failure",
+        "message": "Compass inconsistency detected"
+    }, {
+        "id": "imu",
+        "label": "IMU",
+        "result": "pass",
+        "message": "IMU subsystem healthy"
+    }, {
+        "id": "gps",
+        "label": "GPS",
+        "result": "pass",
+        "message": "3D GPS fix"
+    }, {
+        "id": "Home",
+        "label": "Home position",
+        "result": "warning",
+        "message": "Home position not set yet"
+    }]
+}
+----
+
+== `PreflightCheckItem`
+
+Object containing information about a single item in a preflight checklist.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|id |yes |string |The unique identifier of the preflight check item
+
+|label |no |string |A custom label to show next to the preflight check item on user interfaces showing the checklist
+
+|result |yes |<<_preflightcheckresult,PreflightCheckResult>> |The result of the preflight checklist item
+
+|message |no |string |Custom message to show next to the result of the preflight
+check item, containing more details (if applicable).
+
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "id": "compass",
+    "label": "Compass",
+    "result": "failure",
+    "message": "Compass inconsistency detected"
+}
+----
+
+== `PreflightCheckResult`
+
+Enumeration type that describes the possible results of an item on a preflight
+checklist, or the preflight check as a whole. Currently the following values are
+defined:
+
+`off`:: The preflight check is disabled.
+
+`pass`:: The preflight check passed.
+
+`warning`:: There were some issues during the preflight checks; this does not
+prevent a takeoff but should be investigated later. It may also indicate a
+temporary issue that is likely to resolve itself on its own.
+
+`running`:: The preflight check is in progress and there is no conclusive result
+yet.
+
+`softFailure`:: The preflight check failed, but it is likely that it will pass
+soon without any further operator intervention.
+
+`failure`:: The preflight check failed and it will not pass soon without
+operator intervention.
+
+`error`:: There was an error during the preflight check that prevented the check
+from reaching a conclusive result. This is usually indicative of a failure in
+the code or firmware of the UAV.
+
+
 == `Severity`
 
 Enumeration type that describes the severity level of a human-readable message
@@ -684,6 +822,7 @@ Currently the following values are defined:
 
 `critical`:: Critical errors that require immediate attention.
 
+
 == `UAVStatusInfo`
 
 Monolithic object containing general status information about a single
@@ -699,8 +838,11 @@ UAV.
 |mode |no |string |The flight mode of the UAV. Several values have pre-defined
 meanings; see <<_flightmode,FlightMode>> for these pre-defined values.
 
-|position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the
-UAV
+|position |no |<<_gpscoordinate,GPSCoordinate>> |The position of the
+UAV, in GPS coordinates
+
+|positionXYZ |no |<<_positionxyz,PositionXYZ>> |The position of the
+UAV, in a local right-handed flat Earth coordinate system
 
 |gps |no |<<_gpsfix,GPSFix>> |Basic information about the GPS fix of the UAV
 
@@ -712,6 +854,9 @@ known.
 
 |velocity |no |<<_velocityned,VelocityNED>> |The velocity of the UAV,
 expressed in the NED (North, East, Down) coordinate system.
+
+|velocityXYZ |no |<<_velocityXYZ,VelocityXYZ>> |The velocity of the
+UAV, in a local right-handed flat Earth coordinate system
 
 |timestamp |yes |<<_timestamps,timestamp>> |Time when the last
 status update was received from the UAV
@@ -737,23 +882,13 @@ the algorithm running on the UAV (if applicable).
 {
     "id": "17",
     "mode": "pos",
-    "position": {
-        "lat": 519976597,
-        "lon": -7406863,
-        "amsl": 93765
-    },
+    "position": [519976597, -7406863, 93765],
+    "positionXYZ": [0, 0, 0],
     "gps": [3, 17],
     "heading": 900,
-    "attitude": {
-        "roll": 0,
-        "pitch": 0,
-        "yaw": 900
-    },
-    "velocity": {
-        "north": 2000,
-        "east": 2000,
-        "down": -1000
-    },
+    "attitude": [0, 0, 900],
+    "velocity": [2000, 2000, -1000],
+    "velocityXYZ": [2000, 2000, 1000],
     "timestamp": 1449562661000,
     "debug": "MEJBRENBRkU=",
     "light": 2016,
@@ -790,4 +925,30 @@ The object is stored as a list with three mandatory items.
 [source,json]
 ----
 [2000, 2000, -1000]
+----
+
+== `VelocityXYZ`
+
+This type represents the velocity of an airborne object (typically a
+UAV) in a local (flat-Earth) right-handed XYZ coordinate system. The origin of
+the coordinate system and the orientation of its X axis is typically specific
+to the UAV. The Z axis points upwards.
+
+The object is stored as a list with three mandatory items.
+
+*Fields*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Index |Required? |Type |Description
+|0 |yes |number |The X component of the velocity vector, in mm/s
+|1 |yes |number |The Y component of the velocity vector, in mm/s
+|2 |yes |number |The Z component of the velocity vector, in mm/s
+|===
+
+*Example*
+
+[source,json]
+----
+[2000, 2000, 1000]
 ----

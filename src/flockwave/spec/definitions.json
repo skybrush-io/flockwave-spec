@@ -25,9 +25,6 @@
     },
 
     "attitude": {
-        "$schema": "http://json-schema.org/schema#",
-        "$id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
-
         "title": "Attitude",
         "description": "Attitude around the principal aircraft axes",
         "type": "array",
@@ -57,9 +54,6 @@
     },
 
     "batteryInfo": {
-        "$schema": "http://json-schema.org/schema#",
-        "$id": "http://collmot.com/schemas/flockwave/1.0/attitude.json",
-
         "title": "Battery information",
         "description": "Information about the on-board battery of the UAV, if applicable",
         "type": "array",
@@ -72,10 +66,15 @@
             },
             {
                 "title": "State of charge (%)",
-                "description": "Percentage indicator of the state of charge of the battery (100% = full, 0% = empty)",
+                "description": "Percentage indicator of the state of charge of the battery (100% = full, 0% = empty, -1 = unknown)",
                 "type": "integer",
-                "minimum": 0,
+                "minimum": -1,
                 "maximum": 100
+            },
+            {
+                "title": "Charging",
+                "description": "Whether the battery is charging",
+                "type": "boolean"
             }
         ]
     },
@@ -379,10 +378,10 @@
         "type": "object",
         "properties": {
             "id": {
-                "$ref": "definitions.json#/objectId"
+                "$ref": "#/objectId"
             },
             "position": {
-                "$ref": "definitions.json#/gpsCoordinate"
+                "$ref": "#/gpsCoordinate"
             },
             "timestamp": {
                 "title": "Last updated at",
@@ -480,7 +479,7 @@
         "type": "object",
         "properties": {
             "id": {
-                "$ref": "definitions.json#/extensionId"
+                "$ref": "#/extensionId"
             },
             "loaded": {
                 "type": "boolean"
@@ -496,9 +495,6 @@
     },
 
     "gpsCoordinate": {
-        "$schema": "http://json-schema.org/schema#",
-        "$id": "http://collmot.com/schemas/flockwave/1.0/gps_coordinate.json",
-
         "title": "GPS coordinate",
         "description": "GPS coordinate of an object",
         "type": "array",
@@ -595,6 +591,86 @@
         "uniqueItems": true
     },
 
+    "preflightCheckInfo": {
+        "title": "UAV preflight check info",
+        "description": "Preflight check information of a single UAV",
+        "type": "object",
+        "properties": {
+            "items": {
+                "title": "Preflight check items",
+                "type": "array",
+                "items": {
+                    "$ref": "#/preflightCheckItem"
+                }
+            },
+            "message": {
+                "title": "Preflight check summary",
+                "description": "Preflight check summary message",
+                "type": "string"
+            },
+            "result": {
+                "$ref": "#/preflightCheckResult"
+            }
+        },
+        "required": ["items", "result"]
+    },
+
+    "preflightCheckItem": {
+        "title": "A single item in a preflight checklist",
+        "type": "object",
+        "properties": {
+            "id": {
+                "$ref": "#/preflightCheckItemId"
+            },
+            "label": {
+                "title": "Label of the preflight checklist item",
+                "type": "string"
+            },
+            "result": {
+                "$ref": "#/preflightCheckResult"
+            },
+            "message": {
+                "title": "Detailed message for the preflight checklist item",
+                "type": "string"
+            }
+        },
+        "required": ["id", "result"]
+    },
+
+    "preflightCheckItemId": {
+        "$ref": "#/objectId"
+    },
+
+    "preflightCheckResult": {
+        "title": "Preflight check result",
+        "description": "Result of the preflight check or a single item in a preflight checklist",
+        "type": "string",
+        "enum": ["off", "pass", "warning", "running", "softFailure", "failure", "error"]
+    },
+
+    "positionXYZ": {
+        "title": "Position (XYZ)",
+        "description": "Position in a local right-handed XYZ coordinate system",
+        "type": "array",
+        "items": [
+            {
+                "title": "X component",
+                "description": "X component of the vector, in mm",
+                "type": "integer"
+            },
+            {
+                "title": "Y component",
+                "description": "Y component of the vector, in mm",
+                "type": "integer"
+            },
+            {
+                "title": "Z component",
+                "description": "Z component of the vector, in mm",
+                "type": "integer"
+            }
+        ]
+    },
+
     "receiptId": {
         "title": "Receipt ID",
         "description": "Identifier of the receipt",
@@ -615,7 +691,7 @@
 
     "receiptMap": {
         "type": "object",
-        "additionalProperties": { "$ref": "definitions.json#/receiptId" }
+        "additionalProperties": { "$ref": "#/receiptId" }
     },
 
     "severity": {
@@ -636,15 +712,12 @@
     },
 
     "uavStatusInfo": {
-        "$schema": "http://json-schema.org/schema#",
-        "$id": "http://collmot.com/schemas/flockwave/1.0/uav_status_info.json",
-
         "title": "UAV status info",
         "description": "Status information of a single UAV",
         "type": "object",
         "properties": {
             "id": {
-                "$ref": "definitions.json#/objectId"
+                "$ref": "#/objectId"
             },
             "mode": {
                 "title": "Flight mode",
@@ -652,10 +725,13 @@
                 "type": "string"
             },
             "position": {
-                "$ref": "definitions.json#/gpsCoordinate"
+                "$ref": "#/gpsCoordinate"
+            },
+            "positionXYZ": {
+                "$ref": "#/positionXYZ"
             },
             "gps": {
-                "$ref": "definitions.json#/gpsFix"
+                "$ref": "#/gpsFix"
             },
             "heading": {
                 "title": "Heading",
@@ -665,10 +741,13 @@
                 "exclusiveMaximum": 3600
             },
             "attitude": {
-                "$ref": "definitions.json#/attitude"
+                "$ref": "#/attitude"
             },
             "velocity": {
-                "$ref": "definitions.json#/velocityNED"
+                "$ref": "#/velocityNED"
+            },
+            "velocityXYZ": {
+                "$ref": "#/velocityXYZ"
             },
             "timestamp": {
                 "title": "Last updated at",
@@ -676,13 +755,13 @@
                 "type": "number"
             },
             "battery": {
-                "$ref": "definitions.json#/batteryInfo"
+                "$ref": "#/batteryInfo"
             },
             "light": {
-                "$ref": "definitions.json#/colorRGB565"
+                "$ref": "#/colorRGB565"
             },
             "errors": {
-                "$ref": "definitions.json#/errorCodeList"
+                "$ref": "#/errorCodeList"
             },
             "debug": {
                 "type": "string"
@@ -692,9 +771,6 @@
     },
 
     "velocityNED": {
-        "$schema": "http://json-schema.org/schema#",
-        "$id": "http://collmot.com/schemas/flockwave/1.0/velocity_ned.json",
-
         "title": "Velocity (NED)",
         "description": "Velocity in the NED coordinate system",
         "type": "array",
@@ -712,6 +788,29 @@
             {
                 "title": "Down component",
                 "description": "Down component of the vector, in mm/s",
+                "type": "integer"
+            }
+        ]
+    },
+
+    "velocityXYZ": {
+        "title": "Velocity (XYZ)",
+        "description": "Velocity in a local right-handed XYZ coordinate system",
+        "type": "array",
+        "items": [
+            {
+                "title": "X component",
+                "description": "X component of the vector, in mm/s",
+                "type": "integer"
+            },
+            {
+                "title": "Y component",
+                "description": "Y component of the vector, in mm/s",
+                "type": "integer"
+            },
+            {
+                "title": "Z component",
+                "description": "Z component of the vector, in mm/s",
                 "type": "integer"
             }
         ]

@@ -2,15 +2,10 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"const": "UAV-RST"
+			"const": "UAV-PREFLT"
 		},
 		"ids": {
 			"$ref": "definitions.json#/uavIdList"
-		},
-		"component": {
-			"title": "Component",
-			"description": "The component to reboot",
-			"type": "string"
 		}
 	},
 	"required": [

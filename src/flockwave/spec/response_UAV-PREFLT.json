@@ -2,16 +2,16 @@
 	"type": "object",
 	"properties": {
 		"type": {
-			"const": "UAV-FLY"
+			"const": "UAV-PREFLT"
 		},
-		"result": {
-			"$ref": "definitions.json#/asyncBoolMap"
+		"status": {
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "definitions.json#/preflightCheckInfo"
+			}
 		},
-		"error": {
+        "error": {
 			"$ref": "definitions.json#/errorMap"
-		},
-		"receipt": {
-			"$ref": "definitions.json#/receiptMap"
 		}
 	},
 	"required": [

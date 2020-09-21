@@ -182,15 +182,12 @@ interested in
 |`status` |no |object of xref:types.adoc#_uavstatusinfo[`UAVStatusInfo`] |Object mapping UAV IDs to the corresponding
 status information.
 
-|`failure` |no |list of strings |List containing the UAV IDs for which
-the status information could not have been retrieved.
-
-|`reasons` |no |object |Object mapping UAV IDs to reasons why the
+|`error` |no |object |Object mapping UAV IDs to reasons why the
 corresponding status information could not have been retrieved.
 |===
 
 All the UAV IDs that were specified in the request MUST appear _either_
-in the `status` list or in the `failure` list. When this message is sent
+in the `status` list or in the `error` list. When this message is sent
 as a notification, only the `status` field SHOULD be present.
 
 *Example request*
@@ -414,6 +411,86 @@ the UAV.
 ----
 
 
+== `UAV-PREFLT` -- Preflight checklist information of one or more UAVs
+
+A client sends this request to the server to obtain detailed information
+about the state of the onboard preflight checks on one or more UAVs
+currently known to the server.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs that the client is
+interested in
+|===
+
+*Response and notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`status` |no |object of xref:types.adoc#_preflightcheckinfo[`PreflightCheckInfo`] |Object mapping UAV IDs to the corresponding preflight check information.
+
+|`error` |no |object |Object mapping UAV IDs to reasons why the
+corresponding preflight checklist could not have been retrieved.
+|===
+
+All the UAV IDs that were specified in the request MUST appear _either_
+in the `status` list or in the `error` list. When this message is sent
+as a notification, only the `status` field SHOULD be present.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-PREFLT",
+    "ids": ["1", "spam"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-PREFLT",
+    "status": {
+        "1": {
+            "message": "Compass inconsistency",
+            "result": "failure",
+            "items": [{
+                "id": "compass",
+                "label": "Compass",
+                "result": "failure",
+                "message": "Compass inconsistency detected"
+            }, {
+                "id": "imu",
+                "label": "IMU",
+                "result": "pass",
+                "message": "IMU subsystem healthy"
+            }, {
+                "id": "gps",
+                "label": "GPS",
+                "result": "pass",
+                "message": "3D GPS fix"
+            }, {
+                "id": "Home",
+                "label": "Home position",
+                "result": "warning",
+                "message": "Home position not set yet"
+            }]
+        }
+    },
+    "error": {
+        "spam": "No such UAV."
+    }
+}
+----
+
+
 == `UAV-RST` — Send reboot request
 
 A client sends this request to the server to initiate the reboot of the
@@ -619,21 +696,6 @@ the UAV.
     }
 }
 ----
-
-*Response fields*
-
-[width="100%",cols="15%,10%,25%,50%",options="header",]
-|===
-|Name |Required? |Type |Description
-|`success` |no |list of strings |The list of UAV IDs to which the
-request was sent
-
-|`failure` |no |list of strings |The list of UAV IDs to which the
-request was _not_ sent
-
-|`reasons` |no |object |Object mapping UAV IDs to explanations about why
-the request failed for these UAVs.
-|===
 
 == `UAV-TAKEOFF` — Initiate unsupervised take-off
 

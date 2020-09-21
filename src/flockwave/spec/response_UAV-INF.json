@@ -10,7 +10,7 @@
 				"$ref": "definitions.json#/uavStatusInfo"
 			}
 		},
-    "error": {
+		"error": {
 			"$ref": "definitions.json#/errorMap"
 		}
 	},

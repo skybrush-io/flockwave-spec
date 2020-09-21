@@ -16,7 +16,7 @@ __all__ = ("validate",)
 
 
 SCRIPT_ROOT = os.path.abspath(
-    os.path.join(os.path.dirname(sys.modules[__name__].__file__), "..", "..")
+    os.path.join(os.path.dirname(sys.modules[__name__].__file__), "..", "..", "..")
 )
 
 

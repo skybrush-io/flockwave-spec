@@ -4,7 +4,7 @@
 		"type": {
 			"const": "UAV-HALT"
 		},
-    "result": {
+		"result": {
 			"$ref": "definitions.json#/asyncBoolMap"
 		},
 		"error": {

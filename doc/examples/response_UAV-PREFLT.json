@@ -1,0 +1,33 @@
+{
+    "type": "UAV-PREFLT",
+    "status": {
+        "1": {
+            "message": "Compass inconsistency",
+            "result": "failure",
+            "items": [{
+                "id": "compass",
+                "label": "Compass",
+                "result": "failure",
+                "message": "Compass inconsistency detected"
+            }, {
+                "id": "imu",
+                "label": "IMU",
+                "result": "pass",
+                "message": "IMU subsystem healthy"
+            }, {
+                "id": "gps",
+                "label": "GPS",
+                "result": "pass",
+                "message": "3D GPS fix"
+            }, {
+                "id": "Home",
+                "label": "Home position",
+                "result": "warning",
+                "message": "Home position not set yet"
+            }]
+        }
+    },
+    "error": {
+        "spam": "No such UAV."
+    }
+}
