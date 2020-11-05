@@ -9,7 +9,7 @@
 		}
 	},
 	"required": [
-		"type", "timestamps"
+		"type"
 	],
 	"additionalProperties": false
 }
