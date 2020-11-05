@@ -104,6 +104,9 @@
             "$ref": "request_SYS-TIME.json#/"
         },
         {
+            "$ref": "request_SYS-TIMESYNC.json#/"
+        },
+        {
             "$ref": "request_SYS-VER.json#/"
         },
         {

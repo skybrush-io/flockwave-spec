@@ -1,0 +1,15 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "SYS-TIMESYNC"
+		},
+		"timestamps": {
+			"$ref": "definitions.json#/timestampList"
+		}
+	},
+	"required": [
+		"type", "timestamps"
+	],
+	"additionalProperties": false
+}
