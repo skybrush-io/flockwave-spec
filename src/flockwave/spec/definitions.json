@@ -701,15 +701,6 @@
         "enum": ["debug", "info", "warning", "error", "critical"]
     },
 
-    "timestampList": {
-        "title": "Timestamps",
-        "description": "Array of UNIX timestamps",
-        "type": "array",
-        "items": {
-            "type": "number"
-        }
-    },
-
     "uavIdList": {
         "title": "UAV IDs",
         "description": "IDs of the UAVs that the message refers to",
