@@ -91,25 +91,38 @@ xref:messages/ack.adoc#_ack_ack_positive_acknowledgment[`ACK-ACK`] instead.
 }
 ----
 
-== `SYS-TIME` - Return the current UNIX timestamp on the server
+== `SYS-TIME` - Retrieve or adjust the server clock
 
 A client sends a request of this type to the server to obtain an accurate
-representation of the current UNIX timestamp on the server.
+representation of the current UNIX timestamp on the server, or to adjust the
+server clock by a given number of milliseconds if the server allows it.
 
-This message is typically used to detect clock skew between the client and
-the server, so care should be taken on the server side to ensure the accuracy
-of the returned timestamp to the extent permitted by the transport protocol.
+The retrieval form of the message is typically used to measure round-trip time
+and estimate clock skew between the client and the server, so care should be
+taken on the server side to ensure the accuracy of the returned timestamp to the
+extent permitted by the transport protocol.
+
+The adjustment form of the message uses a relative adjustment deliberately. The
+idea is that one should first estimate the round-trip time and the necessary
+adjustment between client and server to bring their clocks in sync (using the
+retrieval form of the `SYS-TIME` message), and then send the required adjustment
+to the server only, avoiding the need to compensate for the round-trip time
+once again.
 
 *Request fields*
 
-This request has no fields.
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`adjustment` |no |number |The number of milliseconds that the clock of the server should be forwarded by. Use zero to detect whether the server supports clock adjustment or not.
+|===
 
 *Response fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`timestamp` |yes |xref:types.adoc#_timestamp[timestamp] |The current UNIX timestamp on the server at the time when the message was received.
+|`timestamp` |yes |xref:types.adoc#_timestamp[timestamp] |The current UNIX timestamp on the server at the time when the message was received if no adjustment was performed, or the timestamp _after_ the adjustment if an adjustment was performed.
 |===
 
 *Example request*

@@ -3,6 +3,9 @@
 	"properties": {
 		"type": {
 			"const": "SYS-TIME"
+		},
+		"adjustment": {
+			"type": "number"
 		}
 	},
 	"required": [

@@ -5,7 +5,7 @@
 			"const": "SYS-TIME"
 		},
 		"timestamp": {
-      "type": "number"
+			"type": "number"
 		}
 	},
 	"required": [
