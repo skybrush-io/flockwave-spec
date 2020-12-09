@@ -34,15 +34,14 @@ connection.
 }
 ----
 
-== `SYS-MSG` - Send an arbitrary human-readable message to the client
+== `SYS-MSG` - Send arbitrary human-readable messages to the client
 
 *Notification fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`severity` |no |xref:types.adoc#_severity[`Severity`] |The severity level of the message; defaults to `"info"`
-|`message` |yes |string |The message to send to the client
+|`items` |yes |array of xref:types.adoc#_logmessage[`LogMessage`] |The array of messages to send
 |===
 
 *Example notification*
@@ -51,8 +50,10 @@ connection.
 ----
 {
     "type": "SYS-MSG",
-    "severity": "info",
-    "message": "Free cookies in the lobby!"
+    "items": [{
+        "severity": "info",
+        "message": "Free cookies in the lobby!"
+    }]
 }
 ----
 

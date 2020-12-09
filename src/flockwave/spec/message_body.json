@@ -107,6 +107,9 @@
             "$ref": "request_SYS-VER.json#/"
         },
         {
+            "$ref": "request_UAV-CALIB.json#/"
+        },
+        {
             "$ref": "request_UAV-FLY.json#/"
         },
         {
@@ -138,6 +141,9 @@
         },
         {
             "$ref": "request_UAV-TAKEOFF.json#/"
+        },
+        {
+            "$ref": "request_UAV-TEST.json#/"
         },
         {
             "$ref": "request_UAV-VER.json#/"
@@ -225,6 +231,9 @@
             "$ref": "response_SYS-VER.json#/"
         },
         {
+            "$ref": "response_UAV-CALIB.json#/"
+        },
+        {
             "$ref": "response_UAV-FLY.json#/"
         },
         {
@@ -256,6 +265,9 @@
         },
         {
             "$ref": "response_UAV-TAKEOFF.json#/"
+        },
+        {
+            "$ref": "response_UAV-TEST.json#/"
         },
         {
             "$ref": "response_UAV-VER.json#/"

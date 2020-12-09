@@ -1,5 +1,7 @@
 {
     "type": "SYS-MSG",
-    "severity": "info",
-    "message": "Free cookies in the lobby!"
+    "items": [{
+        "severity": "info",
+        "message": "Free cookies in the lobby!"
+    }]
 }

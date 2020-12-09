@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-CALIB"
+    },
+    "ids": {
+      "$ref": "definitions.json#/uavIdList"
+    },
+    "component": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object"
+    }
+  },
+  "required": ["type", "ids"],
+  "additionalProperties": false
+}

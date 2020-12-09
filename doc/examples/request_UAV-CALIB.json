@@ -1,0 +1,6 @@
+{
+    "type": "UAV-CALIB",
+    "ids": ["1", "17", "31", "spam"],
+    "component": "baro",
+    "parameters": {}
+}

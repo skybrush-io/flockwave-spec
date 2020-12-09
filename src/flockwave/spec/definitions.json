@@ -545,6 +545,27 @@
         "maxItems": 2
     },
 
+    "logMessage": {
+        "title": "Log message",
+        "description": "A single log message sent from the server to the client",
+        "type": "object",
+        "properties": {
+            "message": {
+                "type": "string"
+            },
+            "timestamp": {
+                "type": "number"
+            },
+            "sender": {
+                "$ref": "#/objectId"
+            },
+            "severity": {
+                "$ref": "#/severity"
+            }
+        },
+        "required": ["message"]
+    },
+
     "messageId": {
         "title": "Message ID",
         "description": "Identifier of the message",

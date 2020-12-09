@@ -1,18 +1,17 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "SYS-MSG"
-		},
-    "severity": {
-			"$ref": "definitions.json#/severity"
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SYS-MSG"
     },
-    "message": {
-      "type": "string"
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "definitions.json#/logMessage"
+      },
+      "minItems": 1
     }
-	},
-	"required": [
-		"type", "message"
-	],
-	"additionalProperties": false
+  },
+  "required": ["type", "items"],
+  "additionalProperties": false
 }

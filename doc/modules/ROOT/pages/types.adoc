@@ -644,6 +644,36 @@ represents the type of the GPS fix according to the following table:
 The second item of the list is optional and it may contain the number of GPS
 satellites that were used in the calculation.
 
+== `LogMessage`
+
+This type represents a single log message that is sent from the server to the
+client, intended for human consumption.
+
+The log message may originate from the server itself, or it may be relayed by
+the server from one of the objects (UAVs, docks, weather stations etc) that
+the server manages.
+
+*Items*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Index |Required? |Type |Description
+|`severity` |no |xref:types.adoc#_severity[`Severity`] |The severity level of the message; defaults to `"info"`
+|`sender` |no |string |The ID of the object that sent the message if the server is relaying it; omitted if the server generated the message on its own
+|`message` |yes |string |The message to send to the client
+|`timestamp` |no |<<_timestamps,timestamp>> |Time when the message was generated or received by the server; may be omitted if not relevant
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "severity": "info",
+    "message": "Free cookies in the lobby!"
+}
+----
+
 == `ObjectType`
 
 Enumeration type that describes the possible object types that the server

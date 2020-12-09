@@ -4,6 +4,76 @@ UAVs are subtypes of objects and thus exist in the same namespace as all other
 objects in the server. The messages listed in this section are specific to UAVs
 and do not apply to other object types.
 
+== `UAV-CALIB` - Calibrate a component of one or more UAVs
+
+A client sends this request to the server to ask one or more UAVs to calibrate
+one of its components accelerometer, pressure sensor, ESCs and so on).
+
+The message specifies the name of the component to calibrate and an additional
+parameter object. The interpretation of the parameter object depends on the
+component itself. Right now the protocol supports `baro`, `compass`, `esc`,
+`gyro` and `rc`, although not all UAV types may implement all of these
+calibration types. As the component names are merely strings, the protocol can
+easily be extended in the future with additional component types. UAVs that do
+not know or do not support calibrating a specific component will return failures
+for the unsupported components.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs to target with this
+message
+
+|`component` |yes |string |The name of the UAV component to calibrate
+
+|`parameters` |no |object |Additional parameters of the calibration
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the calibration was performed
+successfully on the UAV. The semantics of a successful response may vary from
+component to component; for instance, the calibration of a compass is a long
+process that requires a human operator to rotate the drone, so in this case the
+response will indicate success if the calibration has _started_. However, a
+pressure sensor is easily calibrated to a specific altitude without human
+intervention, so in this case the result indicates whether the calibration was
+_successful_.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-CALIB",
+    "ids": ["1", "17", "31", "spam"],
+    "component": "baro",
+    "parameters": {}
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-CALIB",
+    "result": {
+        "1": true,
+    },
+    "error": {
+        "31": "Component not supported.",
+        "spam": "No such UAV."
+    },
+    "receipt": {
+        "17": "0badcafedeadbeef"
+    }
+}
+----
+
 == `UAV-FLY` — Fly to a specific GPS coordinate
 
 A client sends this request to the server to ask a UAV to fly to a
@@ -753,6 +823,74 @@ the UAV.
     },
     "error": {
         "31": "UAV is a beacon.",
+        "spam": "No such UAV."
+    },
+    "receipt": {
+        "17": "0badcafedeadbeef"
+    }
+}
+----
+
+== `UAV-TEST` - Test a component of one or more UAVs
+
+A client sends this request to the server to ask one or more UAVs to perform
+a self-test on one of its components.
+
+The message specifies the name of the component to test and an additional
+parameter object. The interpretation of the parameter object depends on the
+component itself. Right now the protocol supports `motor` and `led` as the
+component names, but more component types may be added in the future. As the
+component names are merely strings, the protocol can easily be extended in the
+future with additional component types. UAVs that do not know or do not support
+testing a specific component will return failures for the unsupported components.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs to target with this
+message
+
+|`component` |yes |string |The name of the UAV component to test
+
+|`parameters` |no |object |Additional parameters of the test
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the self-test was performed
+successfully on the UAV. The semantics of a successful response may vary from
+component to component; for instance, the self-test of a LED light requires a
+human operator to observe whether the LED light works correctly, so in this case
+the response will indicate success if the test has _started_. Similarly, a motor
+test might be handled by a particular UAV in a way that a human operator has to
+observe the motors to check whether they are spinning in the right direction.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-TEST",
+    "ids": ["1", "17", "31", "spam"],
+    "component": "motor",
+    "parameters": {}
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-TEST",
+    "result": {
+        "1": true,
+    },
+    "error": {
+        "31": "Component not supported.",
         "spam": "No such UAV."
     },
     "receipt": {

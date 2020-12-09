@@ -1,0 +1,13 @@
+{
+    "type": "UAV-CALIB",
+    "result": {
+        "1": true
+    },
+    "error": {
+        "31": "Component not supported.",
+        "spam": "No such UAV."
+    },
+    "receipt": {
+        "17": "0badcafedeadbeef"
+    }
+}
