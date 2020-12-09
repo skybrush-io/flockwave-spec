@@ -10,8 +10,8 @@ include = ["src/flockwave/spec/*.json"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-click = "^7.1.2"
-jsonschema = "^3.2.0"
+click = {version = "^7.1.2", optional = true}
+jsonschema = {version = "^3.2.0", optional = true}
 memoized = "^0.3"
 jsonpointer = "^2.0"
 
@@ -19,6 +19,9 @@ jsonpointer = "^2.0"
 pytest = "^5.4.3"
 coverage = {extras = ["toml"], version = "^5.2"}
 pytest-cov = "^2.10.0"
+
+[tool.poetry.extras]
+cli = ["click", "jsonschema"]
 
 [[tool.poetry.source]]
 name = "collmot"
