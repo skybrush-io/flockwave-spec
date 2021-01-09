@@ -23,6 +23,5 @@
 	},
 	"required": [
 		"type", "method", "data"
-	],
-	"additionalProperties": false
+	]
 }

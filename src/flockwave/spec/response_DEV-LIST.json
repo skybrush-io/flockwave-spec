@@ -7,10 +7,10 @@
 		"devices": {
 			"type": "object",
 			"additionalProperties": {
-        "$ref": "definitions.json#/deviceTreeNode"
-      }
+				"$ref": "definitions.json#/deviceTreeNode"
+			}
 		},
-    "error": {
+		"error": {
 			"$ref": "definitions.json#/errorMap"
 		}
 	},

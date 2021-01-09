@@ -4,7 +4,7 @@
 		"type": {
 			"const": "UAV-RTH"
 		},
-    "result": {
+		"result": {
 			"$ref": "definitions.json#/asyncBoolMap"
 		},
 		"error": {
@@ -12,7 +12,7 @@
 		},
 		"receipt": {
 			"$ref": "definitions.json#/receiptMap"
-    }
+		}
 	},
 	"required": [
 		"type"

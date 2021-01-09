@@ -12,7 +12,7 @@
 		},
 		"receipt": {
 			"$ref": "definitions.json#/receiptMap"
-    }
+		}
 	},
 	"required": [
 		"type"

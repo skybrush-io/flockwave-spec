@@ -10,7 +10,7 @@
 				"$ref": "definitions.json#/dockStatusInfo"
 			}
 		},
-    "error": {
+		"error": {
 			"$ref": "definitions.json#/errorMap"
 		}
 	},

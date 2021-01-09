@@ -13,6 +13,5 @@
 	},
 	"required": [
 		"type", "ids"
-	],
-	"additionalProperties": false
+	]
 }

@@ -4,12 +4,11 @@
 		"type": {
 			"const": "DEV-INF"
 		},
-    "paths": {
+		"paths": {
 			"$ref": "definitions.json#/deviceTreePathList"
 		}
 	},
 	"required": [
 		"type", "paths"
-	],
-	"additionalProperties": false
+	]
 }

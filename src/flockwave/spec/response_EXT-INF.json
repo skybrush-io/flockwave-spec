@@ -7,10 +7,10 @@
 		"status": {
 			"type": "object",
 			"additionalProperties": {
-        "$ref": "definitions.json#/extensionInfo"
+				"$ref": "definitions.json#/extensionInfo"
 			}
 		},
-    "error": {
+		"error": {
 			"$ref": "definitions.json#/errorMap"
 		}
 	},

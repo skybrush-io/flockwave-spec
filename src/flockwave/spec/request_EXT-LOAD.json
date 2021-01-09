@@ -4,12 +4,11 @@
 		"type": {
 			"const": "EXT-LOAD"
 		},
-    "ids": {
+		"ids": {
 			"$ref": "definitions.json#/extensionIdList"
 		}
 	},
 	"required": [
 		"type", "ids"
-	],
-	"additionalProperties": false
+	]
 }

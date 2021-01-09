@@ -8,7 +8,7 @@
 			"type": "object",
 			"additionalProperties": true
 		},
-    "error": {
+		"error": {
 			"$ref": "definitions.json#/errorMap"
 		}
 	},

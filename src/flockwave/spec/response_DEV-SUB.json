@@ -5,9 +5,9 @@
 			"const": "DEV-SUB"
 		},
 		"success": {
-      "$ref": "definitions.json#/deviceTreePathList"
+			"$ref": "definitions.json#/deviceTreePathList"
 		},
-    "error": {
+		"error": {
 			"$ref": "definitions.json#/errorMap"
 		}
 	},

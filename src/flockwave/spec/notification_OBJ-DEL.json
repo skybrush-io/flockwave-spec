@@ -4,12 +4,11 @@
 		"type": {
 			"const": "OBJ-DEL"
 		},
-    "ids": {
-        "$ref": "definitions.json#/objectIdList"
-    }
+		"ids": {
+			"$ref": "definitions.json#/objectIdList"
+		}
 	},
 	"required": [
 		"type", "ids"
-	],
-	"additionalProperties": false
+	]
 }

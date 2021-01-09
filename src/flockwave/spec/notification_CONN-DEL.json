@@ -4,12 +4,11 @@
 		"type": {
 			"const": "CONN-DEL"
 		},
-    "ids": {
-        "$ref": "definitions.json#/connectionIdList"
-    }
+		"ids": {
+			"$ref": "definitions.json#/connectionIdList"
+		}
 	},
 	"required": [
 		"type", "ids"
-	],
-	"additionalProperties": false
+	]
 }

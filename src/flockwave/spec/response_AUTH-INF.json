@@ -4,18 +4,17 @@
 		"type": {
 			"const": "AUTH-INF"
 		},
-    "methods": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
+		"methods": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
 		"required": {
 			"type": "boolean"
 		}
 	},
 	"required": [
 		"type", "required", "methods"
-	],
-	"additionalProperties": false
+	]
 }

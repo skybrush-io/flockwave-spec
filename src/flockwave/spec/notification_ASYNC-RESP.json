@@ -4,16 +4,15 @@
 		"type": {
 			"const": "ASYNC-RESP"
 		},
-    "id": {
-      "$ref": "definitions.json#/receiptId"
-    },
-    "error": {
-      "$ref": "definitions.json#/error"
+		"id": {
+			"$ref": "definitions.json#/receiptId"
+		},
+		"error": {
+			"$ref": "definitions.json#/error"
 		},
 		"result": {}
 	},
 	"required": [
 		"type", "id"
-	],
-	"additionalProperties": false
+	]
 }

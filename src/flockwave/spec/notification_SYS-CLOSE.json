@@ -4,12 +4,11 @@
 		"type": {
 			"const": "SYS-CLOSE"
 		},
-    "reason": {
-      "type": "string"
-    }
+		"reason": {
+			"type": "string"
+		}
 	},
 	"required": [
 		"type"
-	],
-	"additionalProperties": false
+	]
 }

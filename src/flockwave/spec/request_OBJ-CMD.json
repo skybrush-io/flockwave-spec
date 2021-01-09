@@ -25,6 +25,5 @@
 	},
 	"required": [
 		"type", "ids", "command"
-	],
-	"additionalProperties": false
+	]
 }

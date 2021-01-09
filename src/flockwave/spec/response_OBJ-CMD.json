@@ -4,7 +4,7 @@
 		"type": {
 			"const": "OBJ-CMD"
 		},
-    "receipt": {
+		"receipt": {
 			"$ref": "definitions.json#/receiptMap"
 		},
 		"error": {
@@ -17,5 +17,5 @@
 	"required": [
 		"type"
 	],
-  "additionalProperties": false
+	"additionalProperties": false
 }

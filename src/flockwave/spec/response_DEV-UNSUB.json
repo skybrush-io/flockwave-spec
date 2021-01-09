@@ -5,9 +5,9 @@
 			"const": "DEV-UNSUB"
 		},
 		"success": {
-      "$ref": "definitions.json#/deviceTreePathList"
+			"$ref": "definitions.json#/deviceTreePathList"
 		},
-    "error": {
+		"error": {
 			"$ref": "definitions.json#/errorMap"
 		}
 	},

@@ -23,6 +23,5 @@
 	},
 	"required": [
 		"type", "ids", "start"
-	],
-	"additionalProperties": false
+	]
 }

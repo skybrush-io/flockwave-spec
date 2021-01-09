@@ -22,6 +22,5 @@
 	},
 	"required": [
 		"type", "paths"
-	],
-	"additionalProperties": false
+	]
 }

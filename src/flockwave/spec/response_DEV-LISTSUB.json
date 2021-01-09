@@ -5,7 +5,7 @@
 			"const": "DEV-LISTSUB"
 		},
 		"paths": {
-      "$ref": "definitions.json#/deviceTreePathList"
+			"$ref": "definitions.json#/deviceTreePathList"
 		}
 	},
 	"required": [
