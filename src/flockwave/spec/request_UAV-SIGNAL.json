@@ -7,7 +7,7 @@
 		"ids": {
 			"$ref": "definitions.json#/uavIdList"
 		},
-    "signals": {
+		"signals": {
 			"type": "array",
 			"items": {
 				"type": "string"
@@ -16,6 +16,9 @@
 		"duration": {
 			"type": "number",
 			"minimum": 0
+		},
+		"transport": {
+			"$ref": "definitions.json#/transportOptions"
 		}
 	},
 	"required": [

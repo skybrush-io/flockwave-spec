@@ -185,6 +185,8 @@ messages.
 |Name |Required? |Type |Description
 |`ids` |yes |list of strings |The list of UAV IDs to target with this
 message
+|`transport` |no |xref:types.adoc#_transportoptions[TransportOptions] |Object
+describing any additional preferences about how the messages should be delivered
 |===
 
 *Response fields*
@@ -331,6 +333,8 @@ messages.
 |Name |Required? |Type |Description
 |`ids` |yes |list of strings |The list of UAV IDs to target with this
 message
+|`transport` |no |xref:types.adoc#_transportoptions[TransportOptions] |Object
+describing any additional preferences about how the messages should be delivered
 |===
 
 *Response fields*
@@ -437,6 +441,8 @@ the UAV), the command must be sent in "forced" mode.
 message
 |`start` |yes |boolean |Whether to start (`true`) or stop (`false`) the motor.
 |`force` |no  |boolean |Whether the command is forced, i.e. the UAV should execute it even if it is not safe to do so. Defaults to `false` if omitted.
+|`transport` |no |xref:types.adoc#_transportoptions[TransportOptions] |Object
+describing any additional preferences about how the messages should be delivered
 |===
 
 *Response fields*
@@ -587,6 +593,8 @@ message
 |`component` |no |string |The name of the UAV component to reboot. The list
 of allowed names depends on the type of the UAV. When omitted or empty, the
 entire UAV will be rebooted as if it was turned off and then on again.
+|`transport` |no |xref:types.adoc#_transportoptions[TransportOptions] |Object
+describing any additional preferences about how the messages should be delivered
 |===
 
 *Response fields*
@@ -655,6 +663,8 @@ messages and watch the GPS coordinates of the UAVs.
 |Name |Required? |Type |Description
 |`ids` |yes |list of strings |The list of UAV IDs to target with this
 message
+|`transport` |no |xref:types.adoc#_transportoptions[TransportOptions] |Object
+describing any additional preferences about how the messages should be delivered
 |===
 
 *Response fields*
@@ -673,7 +683,11 @@ the UAV.
 ----
 {
     "type": "UAV-RTH",
-    "ids": ["1", "17", "31", "spam"]
+    "ids": ["1", "17", "31", "spam"],
+    "transport": {
+        "channel": 1,
+        "broadcast": true
+    }
 }
 ----
 
@@ -724,6 +738,9 @@ should emit
 |`duration` |yes |integer |The duration of the signal, in milliseconds. UAVs
 that do not support prescribed signal durations may ignore it and fall back to
 a default duration.
+
+|`transport` |no |xref:types.adoc#_transportoptions[TransportOptions] |Object
+describing any additional preferences about how the messages should be delivered
 |===
 
 *Response fields*
@@ -790,6 +807,8 @@ messages and watch the status flags of the UAVs.
 |Name |Required? |Type |Description
 |`ids` |yes |list of strings |The list of UAV IDs to target with this
 message
+|`transport` |no |xref:types.adoc#_transportoptions[TransportOptions] |Object
+describing any additional preferences about how the messages should be delivered
 |===
 
 *Response fields*

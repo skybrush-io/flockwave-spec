@@ -6,6 +6,9 @@
 		},
 		"ids": {
 			"$ref": "definitions.json#/uavIdList"
+		},
+		"transport": {
+			"$ref": "definitions.json#/transportOptions"
 		}
 	},
 	"required": [

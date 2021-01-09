@@ -562,7 +562,13 @@ and there is no self-leveling.
 `alt`:: Altitude hold mode; in the absence of any input, the UAV attempts to
 hold its altitude and self-levels the roll and pitch angles.
 
+`auto`:: Automatic mode; the UAV is executing an unspecified autonomous control
+algorithm that requires no human intervention.
+
 `circle`:: The UAV is circling around a pre-defined point of interest.
+
+`flow`:: The UAV is attempting to hold its position using an optical flow
+sensor.
 
 `follow`:: The UAV is following another device.
 
@@ -581,13 +587,20 @@ outlined here.
 `pos`:: The UAV holds its altitude and position, using GPS for movements. THe
 pilot controls the roll and pitch angles when the sticks are not centered.
 
+`precland`:: The UAV is executing a precision landing maneuver, typically aided
+by an external beacon, sensor or other guidance method.
+
 `rth`:: The UAV is returning to its home position autonomously, optinally landing
 when the home position is reached.
+
+`simple`:: The UAV is in a simplified control mode.
 
 `stab`:: Stabilization mode; roll and pitch axes are self-leveled, but
 the altitude is not controlled.
 
-`unknown`:: The UAV is in an unknown control mode; typically indicates an error.
+`takeoff`:: The UAV is executing an autonomous takeoff algorithm.
+
+`unknown`:: The UAV is in an unknown control mode.
 
 == `GPSCoordinate`
 
@@ -851,6 +864,52 @@ Currently the following values are defined:
 `error`:: Error messages.
 
 `critical`:: Critical errors that require immediate attention.
+
+
+== `TransportOptions`
+
+Object describing how a particular message should be delivered to a target UAV
+if multiple communication channels are available.
+
+This data type is supported by some of the `UAV-...` commands to allow the
+sender to specify its preference about how the message should be delivered to
+the UAVs. In particular, the transport options let the server know which
+communication channel the server should use if the UAVs are reachable over
+multiple communication channels (primary and secondary ones), and whether the
+server is allowed to use a broadcast message instead of addressing all the
+targeted UAVs one by one. THe broadcasting option should be used only if the
+sender is certain that it is safe to target all UAVs with the particular
+`UAV-...` message.
+
+UAVs MAY NOT respect the transport options specified by the sender, but
+implementations should try to satisfy the preferences of the caller on a
+best-effort basis.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|channel |no |integer |Index of the communication channel to use if there are
+multiple channels over which the UAV can be reached. Zero means the primary
+channel, 1 means the first backup channel and so on. Defaults to zero if omitted.
+
+|broadcast |no |boolean |Whether the sender allows the server to use a broadcast
+message to reach all UAVs in range. Defaults to false if omitted.
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "channel": 1,
+    "broadcast": true
+}
+----
+
+The example above means that the first backup channel should be used and that
+broadcasting is allowed.
 
 
 == `UAVStatusInfo`

@@ -71,17 +71,27 @@ def validate(name):
             for fname in os.listdir(examples_dir)
             if fname.endswith(".json")
         )
+        compact_output = True
+    else:
+        compact_output = False
 
     for fn in name:
-        num_objs = check_validity(fn, schema, resolver)
+        try:
+            num_objs = check_validity(fn, schema, resolver)
+        except jsonschema.exceptions.ValidationError:
+            fn = click.format_filename(fn)
+            click.echo("{0} is not a valid Flockwave message.".format(fn))
+            click.echo("")
+            raise
 
-        fn = click.format_filename(fn)
-        if num_objs == 1:
-            click.echo("{0} is a valid Flockwave message.".format(fn))
-        elif num_objs > 1:
-            click.echo("{0} contains valid Flockwave messages.".format(fn))
-        else:
-            click.echo("{0} contains no objects at all.".format(fn))
+        if not compact_output:
+            fn = click.format_filename(fn)
+            if num_objs == 1:
+                click.echo("{0} is a valid Flockwave message.".format(fn))
+            elif num_objs > 1:
+                click.echo("{0} contains valid Flockwave messages.".format(fn))
+            else:
+                click.echo("{0} contains no objects at all.".format(fn))
 
 
 if __name__ == "__main__":

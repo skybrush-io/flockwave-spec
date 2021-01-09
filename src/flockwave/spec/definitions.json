@@ -722,6 +722,24 @@
         "enum": ["debug", "info", "warning", "error", "critical"]
     },
 
+    "transportOptions": {
+        "title": "Transport options",
+        "description": "Additional preferences about how the message should be delivered to UAVs",
+        "type": "object",
+        "properties": {
+            "channel": {
+                "title": "Channel",
+                "description": "Index of the communication channel to use",
+                "type": "integer"
+            },
+            "broadcast": {
+                "title": "Broadcast allowed?",
+                "description": "Stores whether the server is allowed to use a broadcast message",
+                "type": "boolean"
+            }
+        }
+    },
+
     "uavIdList": {
         "title": "UAV IDs",
         "description": "IDs of the UAVs that the message refers to",

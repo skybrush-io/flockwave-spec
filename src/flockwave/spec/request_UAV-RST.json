@@ -11,6 +11,9 @@
 			"title": "Component",
 			"description": "The component to reboot",
 			"type": "string"
+		},
+		"transport": {
+			"$ref": "definitions.json#/transportOptions"
 		}
 	},
 	"required": [
