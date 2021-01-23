@@ -1,0 +1,7 @@
+{
+    "type": "SHOW-SETLIGHTS",
+    "configuration": {
+        "color": [255, 128, 0],
+        "effect": "solid"
+    }
+}

@@ -93,6 +93,9 @@ def validate(name):
             else:
                 click.echo("{0} contains no objects at all.".format(fn))
 
+    if compact_output:
+        click.echo("All tested messages were valid.")
+
 
 if __name__ == "__main__":
     validate()

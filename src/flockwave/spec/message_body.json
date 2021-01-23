@@ -98,6 +98,12 @@
             "$ref": "request_SHOW-SETCFG.json#/"
         },
         {
+            "$ref": "request_SHOW-LIGHTS.json#/"
+        },
+        {
+            "$ref": "request_SHOW-SETLIGHTS.json#/"
+        },
+        {
             "$ref": "request_SYS-PING.json#/"
         },
         {
@@ -223,6 +229,9 @@
         },
         {
             "$ref": "response_SHOW-CFG.json#/"
+        },
+        {
+            "$ref": "response_SHOW-LIGHTS.json#/"
         },
         {
             "$ref": "response_SYS-TIME.json#/"

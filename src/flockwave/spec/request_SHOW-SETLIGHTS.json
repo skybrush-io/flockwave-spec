@@ -1,0 +1,14 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "SHOW-SETLIGHTS"
+		},
+		"configuration": {
+			"$ref": "definitions.json#/droneLightsConfiguration"
+		}
+	},
+	"required": [
+		"type", "configuration"
+	]
+}

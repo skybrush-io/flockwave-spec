@@ -33,6 +33,34 @@
 }
 ----
 
+#TODO: document this#
+
+== `SHOW-LIGHTS` - Retrieve the current configuration of the behaviour of the LED lights on the show drones
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "SHOW-LIGHTS"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "SHOW-LIGHTS",
+    "configuration": {
+        "color": [0, 128, 255],
+        "effect": "solid"
+    }
+}
+----
+
 == `SHOW-SETCFG` - Set the current configuration of the drone show
 
 #TODO: document me!#
@@ -50,6 +78,32 @@
             "uavIds": ["01", "42"]
         },
         "mapping": ["01", "02", null, "05", "42"]
+    }
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "ACK-ACK"
+}
+----
+
+== `SHOW-SETLIGHTS` - Set the behaviour of the LED lights on the show drones
+
+#TODO: document me!#
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "SHOW-SETLIGHTS",
+    "configuration": {
+        "color": [255, 128, 0],
+        "effect": "solid"
     }
 }
 ----

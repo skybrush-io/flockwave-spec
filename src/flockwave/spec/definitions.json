@@ -437,6 +437,25 @@
         }
     },
 
+    "droneLightsConfiguration": {
+        "title": "Drone lights configuration",
+        "description": "Full configuration of the behaviour of the LED lights on a drone during a drone show",
+        "type": "object",
+        "properties": {
+            "effect": {
+                "type": "string",
+                "description": "Type of the light effect."
+            },
+            "color": {
+                "type": "array",
+                "description": "Color of the light effect in RGB notations. Values in the array must be between 0 and 255, inclusive.",
+                "items": {
+                    "type": "number"
+                }
+            }
+        }
+    },
+
     "error": {
         "type": "string"
     },
