@@ -97,6 +97,12 @@ use code 134 or 199.
 |67 |TIMESYNC |Timesync error. Use this error code if the UAV tries to synchronize
 its own clock with an external time source (such as the GPS system) and
 it fails to do so.
+
+|68 |TKOFFPOS |The UAV is going to fly a mission that specifies the takeoff position
+of the UAV, and it is not placed at the right takeoff position.
+
+|69 |MISSION |There is an error with the current mission configuration of the UAV;
+for instance, the mission would take the UAV outside the current geofence zone.
 |===
 
 == Errors (codes 128-191)

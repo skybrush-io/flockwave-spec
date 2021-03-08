@@ -22,6 +22,8 @@ _error_code_to_abbreviation = {
     65: "RC lost",
     66: "lowbat",
     67: "timesync",
+    68: "tkoffpos",
+    69: "mission",
     128: "comm t/o",
     129: "ack t/o",
     130: "proto",
@@ -74,6 +76,8 @@ _error_code_to_description = {
     65: "RC lost",
     66: "Battery low",
     67: "Timesync error",
+    68: "Drone is not at its designated takeoff position",
+    69: "Mission configuration error or mission out of geofence",
     128: "Autopilot communication timeout",
     129: "Autopilot acknowledgment timeout",
     130: "Autopilot communication protocol error",
@@ -131,6 +135,8 @@ class FlockwaveErrorCode(IntEnum):
     RC_SIGNAL_LOST_WARNING = 65
     BATTERY_LOW_WARNING = 66
     TIMESYNC_ERROR = 67
+    FAR_FROM_TAKEOFF_POSITION = 68
+    INVALID_MISSION_CONFIGURATION = 69
 
     # Errors
     AUTOPILOT_COMM_TIMEOUT = 128
