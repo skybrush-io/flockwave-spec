@@ -92,6 +92,12 @@
             "$ref": "request_OBJ-LIST.json#/"
         },
         {
+            "$ref": "request_PRM-GET.json#/"
+        },
+        {
+            "$ref": "request_PRM-SET.json#/"
+        },
+        {
             "$ref": "request_SHOW-CFG.json#/"
         },
         {
@@ -226,6 +232,12 @@
         },
         {
             "$ref": "response_OBJ-LIST.json#/"
+        },
+        {
+            "$ref": "response_PRM-GET.json#/"
+        },
+        {
+            "$ref": "response_PRM-SET.json#/"
         },
         {
             "$ref": "response_SHOW-CFG.json#/"

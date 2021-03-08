@@ -1,0 +1,110 @@
+= `PRM` — Retrieving and setting parameters
+
+[#prm-get]
+== `PRM-GET` — Retrieve the value a patameter from one or more target objects
+
+A client sends this request to the server to ask the server to retrieve the
+current value of a parameter from one or more target objects.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of object IDs that the command
+should be sent to
+
+|`name` |yes |string |The name of the parameter whose value is to be retrieved
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each target ID is mapped to the value of the parameter on the target. Typically,
+parameter values are strings or numbers, but more complex objects are also
+allowed, depending on the target object.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "PRM-GET",
+    "ids": ["1", "17", "31", "spam"],
+    "name": "EK2_ALT_SOURCE"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "PRM-GET",
+    "result": {
+        "1": 2
+    },
+    "receipt": {
+        "17": "0badcafe-deadbeef:1"
+    },
+    "error": {
+        "31": "No such parameter.",
+        "spam": "No such object."
+    }
+}
+----
+
+[#prm-set]
+== `PRM-SET` - Set the value of a parameter on a target object
+
+A client sends this request to the server to request the server to set the
+value of a parameter on one or more target objects.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids`  |yes |list of strings |The list of object IDs where the parameter value
+should be set
+
+|`name`  |yes |string |The name of the parameter whose value is to be set
+|`value` |yes |any |The new value of the parameter
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each target ID is mapped to a boolean denoting whether the parameter value was
+set successfully on the target object.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "PRM-SET",
+    "ids": ["1", "17", "31", "spam"],
+    "name": "EK2_ALT_SOURCE",
+    "value": 2
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "PRM-SET",
+    "result": {
+        "1": true
+    },
+    "receipt": {
+        "17": "0badcafe-deadbeef:1"
+    },
+    "error": {
+        "31": "No such parameter.",
+        "spam": "No such object."
+    }
+}
+----

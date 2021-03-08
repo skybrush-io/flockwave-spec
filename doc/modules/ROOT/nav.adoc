@@ -12,6 +12,7 @@
 ** xref:messages/dev.adoc[DEV — Device and channel related messages]
 ** xref:messages/ext.adoc[EXT — Management of extension modules]
 ** xref:messages/obj.adoc[OBJ - Generic object-related messages]
+** xref:messages/prm.adoc[PRM - Retrieving and setting parameters]
 ** xref:messages/sys.adoc[SYS — System information]
 ** xref:messages/uav.adoc[UAV — UAV-related messages]
 * xref:messages/optional.adoc[Optional message types]

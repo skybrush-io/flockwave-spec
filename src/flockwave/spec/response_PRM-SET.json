@@ -1,0 +1,22 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"type": "string",
+			"const": "PRM-SET"
+		},
+		"result": {
+            "$ref": "definitions.json#/asyncBoolMap"
+		},
+		"error": {
+			"$ref": "definitions.json#/errorMap"
+		},
+		"receipt": {
+			"$ref": "definitions.json#/receiptMap"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}

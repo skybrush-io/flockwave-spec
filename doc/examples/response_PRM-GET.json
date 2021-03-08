@@ -1,0 +1,13 @@
+{
+    "type": "PRM-GET",
+    "result": {
+        "1": 2
+    },
+    "receipt": {
+        "17": "0badcafe-deadbeef:1"
+    },
+    "error": {
+        "31": "No such parameter.",
+        "spam": "No such object."
+    }
+}

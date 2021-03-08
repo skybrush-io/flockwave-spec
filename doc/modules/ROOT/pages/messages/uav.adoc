@@ -38,7 +38,7 @@ each UAV is mapped to a boolean denoting whether the calibration was performed
 successfully on the UAV. The semantics of a successful response may vary from
 component to component; for instance, the calibration of a compass is a long
 process that requires a human operator to rotate the drone, so in this case the
-response will indicate success if the calibration has _started_. However, a
+response may indicate success if the calibration has _started_. However, a
 pressure sensor is easily calibrated to a specific altitude without human
 intervention, so in this case the result indicates whether the calibration was
 _successful_.
