@@ -50,7 +50,7 @@ should be sent to
 
 The response is a xref:async.adoc#multi-async-response[multi-object async response];
 each target ID is mapped to the result of the command execution on the target,
-either as a string or as a more complex xref:types.adoc#commandresponse[CommandResponse]
+either as a string or as a more complex xref:types.adoc#command-response[CommandResponse]
 object.
 
 *Example request*

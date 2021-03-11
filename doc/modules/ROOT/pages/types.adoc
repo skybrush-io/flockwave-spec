@@ -276,6 +276,7 @@ expressed as an integer value between 0 and 100 (inclusive)
 }
 ----
 
+[#command-response]
 == `CommandResponse`
 
 A `CommandResponse` object stores the response given by a particular UAV
@@ -286,7 +287,12 @@ interpreted.
 Currently the protocol defines the following response types:
 
 `plain`:: Plain text response that should be formatted on the receiver
-side as is.
+side as is. The receiver side is allowed to use a variable-width font and it
+can also perform additional formatting or word wrapping on the text if needed.
+
+`preformatted`:: Preformatted response that should be printed on the receiver
+end with a fixed-width font. Newlines and tabulation should also be preserved
+on the receiver end if possible.
 
 `markdown`:: Markdown-formatted text response that should be
 interpreted by a Markdown processor before it is displayed to the
