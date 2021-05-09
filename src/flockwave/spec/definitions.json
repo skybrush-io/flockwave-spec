@@ -564,6 +564,90 @@
         "maxItems": 2
     },
 
+    "license": {
+        "title": "License",
+        "description": "A license object that is activated on the server",
+        "type": "object",
+        "properties": {
+            "id": {
+                "title": "License ID",
+                "type": "string"
+            },
+            "licensee": {
+                "title": "Name of the license holder",
+                "type": "string"
+            },
+            "expiryDate": {
+                "title": "Expiry date",
+                "type": "string",
+                "format": "date"
+            },
+            "features": {
+                "title": "Additional features",
+                "type": "array",
+                "items": {
+                    "$ref": "#/licenseFeature"
+                }
+            },
+            "restrictions": {
+                "title": "Restrictions",
+                "type": "array",
+                "items": {
+                    "$ref": "#/licenseRestriction"
+                }
+            }
+        },
+        "required": ["id", "licensee"]
+    },
+
+    "licenseFeature": {
+        "title": "License feature",
+        "description": "An optional feature that is enabled by a license",
+        "type": "object",
+        "properties": {
+            "type": {
+                "title": "Feature type",
+                "type": "string"
+            },
+            "label": {
+                "title": "Description",
+                "type": "string"
+            },
+            "secondaryLabel": {
+                "title": "Additional info",
+                "type": "string"
+            },
+            "parameters": {
+                "type": "object"
+            }
+        },
+        "required": ["type"]
+    },
+
+    "licenseRestriction": {
+        "title": "License restrictions",
+        "description": "Restrictions imposed on the functionality of the server by a license",
+        "type": "object",
+        "properties": {
+            "type": {
+                "title": "Restriction type",
+                "type": "string"
+            },
+            "label": {
+                "title": "Description",
+                "type": "string"
+            },
+            "secondaryLabel": {
+                "title": "Additional info",
+                "type": "string"
+            },
+            "parameters": {
+                "type": "object"
+            }
+        },
+        "required": ["type"]
+    },
+
     "logMessage": {
         "title": "Log message",
         "description": "A single log message sent from the server to the client",

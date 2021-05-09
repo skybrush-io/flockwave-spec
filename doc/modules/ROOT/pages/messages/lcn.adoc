@@ -1,0 +1,224 @@
+= `LCN` — License-related information
+
+== `LCN-INF` - Retrieves the currently installed license of the server
+
+A client sends this request to the server to retrieve the details of the license
+that the server currently uses.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`license` |yes |<<license,`License`>> |The license installed on the server.
+The ID of the license will be set to an empty string if the server operates
+without a license.
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "LCN-INF"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "LCN-INF",
+    "license": {
+        "id": "license-123",
+        "licensee": "Inspector Flying Fox of the Yard",
+        "expiryDate": "2021-05-01",
+        "restrictions": [
+            {
+                "id": "mac",
+                "label": "Restricted to MAC address",
+                "secondaryLabel": "04:17:AB:43:BE:EF",
+                "parameters": {
+                    "addresses": ["04:17:AB:43:BE:EF"]
+                }
+            }
+        ],
+        "features": [
+            {
+                "id": "some-extra-feature",
+                "label": "spam spam spam",
+                "secondaryLabel": "Lovely spam! Wonderful spam!"
+            }
+        ]
+    }
+}
+----
+
+== Custom types
+
+This section lists the custom types used solely by `LCN-...` messages.
+
+[#license]
+=== `License`
+
+A `License` object represents a license installed on the server. Licenses
+MUST have a vendor-defined ID that can be used to identify the license
+unambiguously; vendors MUST make sure not to re-use old license IDs when
+generating new licenses. The license MUST also have a corresponding licensee
+name, an optional expiry date, and an optional list of additional restrictions
+and extra features.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|id |yes |string |the unique identifier of the license. An empty string if the
+server operates without a license.
+
+|licensee |yes |string |the name of the licensee
+
+|expiryDate |no |string |the expiry date of the license, in year-month-day format, if any
+
+|restrictions |no |array of <<license-restriction,LicenseRestriction>>s |the list of restrictions
+associated to the license, if any. Defaults to an empty array.
+
+|features |no |array of <<license-feature,LicenseFeature>>s |the list of extra features associated
+to the license, if any. Defaults to an empty array.
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "id": "license-123",
+    "licensee": "Inspector Flying Fox of the Yard",
+    "expiryDate": "2021-05-01",
+    "restrictions": [
+        {
+            "type": "mac",
+            "label": "Restricted to MAC address",
+            "secondaryLabel": "04:17:AB:43:BE:EF",
+            "parameters": {
+                "addresses": ["04:17:AB:43:BE:EF"]
+            }
+        }
+    ],
+    "features": [
+        {
+            "type": "some-extra-feature",
+            "label": "spam spam spam",
+            "secondaryLabel": "Lovely spam! Wonderful spam!"
+        }
+    ]
+}
+----
+
+[#license-feature]
+== LicenseFeature
+
+A `LicenseFeature` object represents an additional feature of the server that
+is normally not available but that the license enables explicitly when loaded.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|type |yes |string |the type of the feature
+
+|label |no |string |a human-readable description of the type of the feature
+
+|secondaryLabel |no |string |a human-readable description that provides additional
+context about the feature; e.g., the values of the most important parameters
+
+|parameters |no |object |a key-value mapping that provides additional parameters
+to the feature, to be interpreted according to the type of the feature
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "type": "some-extra-feature",
+    "label": "spam spam spam",
+    "secondaryLabel": "Lovely spam! Wonderful spam!"
+}
+----
+
+[#license-restriction]
+== LicenseRestriction
+
+A `LicenseRestriction` object represents a kind of restriction on the normal
+usage conditions of a license. A few possible examples of such restrictions are
+as follows:
+
+* restricting the usage of the license only to machines with certain MAC addresses
+
+* restricting the usage of the license only to machines having internal hard
+  drives with certain serial numbers
+
+* limiting the number of UAVs that can be handled by the server simultaneously
+
+Each restriction object has a mandatory type, optional human-readable primary
+and secondary labels, and a parameter object that consist of key-value pairs.
+The interpretation of parameters depends on the type of the restriction.
+The following restrictions are defined by this specification:
+
+`mac`:: restricts the usage of the license to machines with certain MAC
+addresses. The parameters object MUST contain a key named `addresses` whose
+value is a list of MAC addresses. MAC addresses must be specified in colon
+notation, with uppercase hexadecimal characters, although clients MAY interpret
+MAC addresses in other formats (e.g., dashed notation or lowercase hexadecimal
+characters).
+
+`disk`:: restricts the usage of the license to machines having internal hard
+drives or solid state drives with certain serial numbers. The parameters object
+MUST contain a key named `serialNumbers` whose value is a list of serial numbers
+for the hard drives or SSD drives that the license is bound to.
+
+`drones`:: puts an upper limit on the number of drones that the server can
+handle simultaneously. The parameters object MUST contain a key named `maxCount`
+that contains the maximum number of drones that the server can handle.
+
+The primary labels SHOULD typically provide a human-readable description of the
+type of the license, without mentioning the exact parameter values. A secondary
+label MAY be added to provide additional context, including the values of the
+parameters, when relevant.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|type |yes |string |the type of the restriction
+
+|label |no |string |a human-readable description of the type of the restriction
+
+|secondaryLabel |no |string |a human-readable description that provides additional
+context about the restrictions; e.g., the values of the most important parameters
+
+|parameters |no |object |a key-value mapping that provides additional parameters
+to the restriction, to be interpreted according to the type of the restriction
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "type": "mac",
+    "label": "Restricted to MAC address",
+    "secondaryLabel": "04:17:AB:43:BE:EF",
+    "parameters": {
+        "addresses": ["04:17:AB:43:BE:EF"]
+    }
+}
+----
