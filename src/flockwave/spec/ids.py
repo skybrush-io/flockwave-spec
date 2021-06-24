@@ -43,7 +43,7 @@ def is_valid_user(identifier: str) -> bool:
     Returns:
         whether the identifier is a valid username-domain pair
     """
-    return _user_regex.match(identifier)
+    return bool(_user_regex.match(identifier))
 
 
 def make_valid_object_id(identifier: str) -> str:

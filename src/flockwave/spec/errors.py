@@ -176,7 +176,7 @@ class FlockwaveErrorCode(IntEnum):
     UNSPECIFIED_CRITICAL_ERROR = 255
 
     @property
-    def abbreviation(self):
+    def abbreviation(self) -> str:
         """Returns a short abbreviation of the error code that is more-or-less
         human-readable, but requires less space on the screen than the full
         description of the error.
@@ -184,6 +184,6 @@ class FlockwaveErrorCode(IntEnum):
         return _error_code_to_abbreviation.get(self) or f"E{self}"
 
     @property
-    def description(self):
+    def description(self) -> str:
         """Returns a human-readable description of the error code."""
         return _error_code_to_description.get(self) or f"Error {self}"

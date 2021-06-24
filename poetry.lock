@@ -137,22 +137,6 @@ url = "https://pypi.collmot.com/simple"
 reference = "collmot"
 
 [[package]]
-name = "memoized"
-version = "0.3"
-description = "General purpose efficient memoization"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.extras]
-sig = ["decorator"]
-
-[package.source]
-type = "legacy"
-url = "https://pypi.collmot.com/simple"
-reference = "collmot"
-
-[[package]]
 name = "more-itertools"
 version = "8.8.0"
 description = "More routines for operating on iterables, beyond itertools"
@@ -363,7 +347,7 @@ cli = ["click", "jsonschema"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "7dc85746d179685f62f6db324cac2fd8f715e4e5214453ab564e3335ea513645"
+content-hash = "19d972ccffd5df2338a583b82857572852657a3c96992cafd8c134618ef0ce90"
 
 [metadata.files]
 atomicwrites = [
@@ -447,9 +431,6 @@ jsonpointer = [
 jsonschema = [
     {file = "jsonschema-3.2.0-py2.py3-none-any.whl", hash = "sha256:4e5b3cf8216f577bee9ce139cbe72eca3ea4f292ec60928ff24758ce626cd163"},
     {file = "jsonschema-3.2.0.tar.gz", hash = "sha256:c8a85b28d377cc7737e46e2d9f2b4f44ee3c0e1deac6bf46ddefc7187d30797a"},
-]
-memoized = [
-    {file = "memoized-0.3.tar.gz", hash = "sha256:cdce8bacc6941a64f9a825067602c13810cfd9b84efaaf024c400ef6e7d378d8"},
 ]
 more-itertools = [
     {file = "more-itertools-8.8.0.tar.gz", hash = "sha256:83f0308e05477c68f56ea3a888172c78ed5d5b3c282addb67508e7ba6c8f813a"},

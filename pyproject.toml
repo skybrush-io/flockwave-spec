@@ -12,7 +12,6 @@ include = ["src/flockwave/spec/*.json"]
 python = "^3.7"
 click = {version = "^8.0.0", optional = true}
 jsonschema = {version = "^3.2.0", optional = true}
-memoized = "^0.3"
 jsonpointer = "^2.0"
 
 [tool.poetry.dev-dependencies]

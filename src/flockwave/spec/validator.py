@@ -10,7 +10,10 @@ import jsonschema
 import os
 import sys
 
-from flockwave.spec.schema import get_message_body_schema, ref_resolver
+from jsonschema.exceptions import ValidationError
+from typing import Optional, Sequence
+
+from flockwave.spec.schema import get_message_body_schema, ref_resolver, Schema
 
 __all__ = ("validate",)
 
@@ -20,7 +23,12 @@ SCRIPT_ROOT = os.path.abspath(
 )
 
 
-def check_validity(filename, schema, resolver=None, allow_multiple=True):
+def check_validity(
+    filename: str,
+    schema: Schema,
+    resolver: Optional[jsonschema.RefResolver] = None,
+    allow_multiple: bool = True,
+) -> int:
     """Check the validity of a JSON object found in a file-like object.
 
     Parameters:
@@ -52,7 +60,7 @@ def check_validity(filename, schema, resolver=None, allow_multiple=True):
 
 @click.command()
 @click.argument("name", nargs=-1, type=click.Path(exists=True))
-def validate(name):
+def validate(name: Optional[Sequence[str]]) -> None:
     """Validates the JSON message stored in the file with the given NAME to see
     if it is a valid Flockwave message. When omitted, the script will validate
     all ``.json`` files found in ``doc/examples``.
@@ -78,7 +86,7 @@ def validate(name):
     for fn in name:
         try:
             num_objs = check_validity(fn, schema, resolver)
-        except jsonschema.exceptions.ValidationError:
+        except ValidationError:
             fn = click.format_filename(fn)
             click.echo("{0} is not a valid Flockwave message.".format(fn))
             click.echo("")
