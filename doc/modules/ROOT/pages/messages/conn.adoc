@@ -50,15 +50,12 @@ is interested in
 |`status` |no |object of xref:types.adoc#_connectioninfo[`ConnectionInfo`]|Object mapping connection IDs to the
 corresponding status information.
 
-|`failure` |no |list of strings |List containing the connection IDs for
-which the status information could not have been retrieved.
-
-|`reasons` |no |object |Object mapping connection IDs to reasons why the
+|`error` |no |object |Object mapping connection IDs to reasons why the
 corresponding status information could not have been retrieved.
 |===
 
 All the connection IDs that were specified in the request MUST appear
-_either_ in the `status` list or in the `failure` list. When this
+_either_ in the `status` list or in the `error` map. When this
 message is sent as a notification, only the `status` field SHOULD be
 present.
 

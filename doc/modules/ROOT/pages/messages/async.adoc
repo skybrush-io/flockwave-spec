@@ -40,13 +40,37 @@ notification.
 ----
 {
     "type": "ASYNC-CANCEL",
-    "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2"]
+    "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2", "beer"]
 }
 ----
 
 *Response fields*
 
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`success` |no |list of strings |The list of receipt IDs where the corresponding
+operation was successfully cancelled
+
+|`error` |no |object |Object mapping receipt IDs to explanations about why
+the cancellation failed for these receipt IDs.
+|===
+
 *Example response*
+
+[source,json]
+----
+{
+    "type": "ASYNC-CANCEL",
+    "success": [
+        "0badcafedeadbeef:1",
+        "0badcafedeadbeef:2"
+    ],
+    "error": {
+        "beer": "Invalid receipt ID"
+    }
+}
+----
 
 [#async-resp]
 == `ASYNC-RESP` — Result of an asynchronous operation

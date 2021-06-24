@@ -35,15 +35,12 @@ client is interested in
 corresponding values of the channels. A channel value may be replaced
 with `null` if the value is not known yet.
 
-|`failure` |no |list of strings |List containing the device tree paths
-for which the channel values could not have been retrieved.
-
-|`reasons` |no |object |Object mapping device tree paths to reasons why
+|`error` |no |object |Object mapping failed device tree paths to reasons why
 the corresponding channel values could not have been retrieved.
 |===
 
 All the device tree paths that were specified in the request MUST appear
-_either_ in the `status` list or in the `failure` list. When this
+_either_ in the `status` list or in the `error` map. When this
 message is sent as a notification, only the `status` field SHOULD be
 present.
 
@@ -99,17 +96,12 @@ interested in
 device trees. The structure of this object is described by the
 xref:types.adoc#_devicetreenode[`DeviceTreeNode`] complex type.
 
-|`failure` |no |list of strings |List containing the object IDs for which
-the device tree could not have been retrieved. Note that objects not
-supporting any devices will _not_ appear in this list; they will provide
-an empty device tree instead.
-
-|`reasons` |no |object |Mapping from object IDs to reasons why the
+|`error` |no |object |Mapping from failed object IDs to reasons why the
 corresponding device tree could not have been retrieved.
 |===
 
 All the object IDs that were specified in the request MUST appear _either_
-in the `status` list or in the `failure` list.
+in the `status` list or in the `error` map.
 
 *Example request*
 
@@ -264,10 +256,7 @@ the client is interested in
 |`success` |no |list of strings |The list of paths that the client was
 successfully subscribed to
 
-|`failure` |no |list of strings |The list of paths that the client
-failed to subscribe to
-
-|`reasons` |no |object |Object mapping paths to explanations about why
+|`error` |no |object |Object mapping failed paths to explanations about why
 the subscription failed for these paths.
 |===
 
@@ -340,10 +329,7 @@ request. The default is `false`.
 successfully unsubscribed from. This list may include paths that were
 not in the original `paths` list if `includeSubtrees` was `true`.
 
-|`failure` |no |list of strings |The list of paths that the client
-failed to subscribe to
-
-|`reasons` |no |object |Object mapping paths to explanations about why
+|`error` |no |object |Object mapping failed paths to explanations about why
 the subscription failed for these paths.
 |===
 

@@ -71,15 +71,12 @@ interested in
 status information. The structure of this object is described by the
 xref:types.adoc#clock-info[`ClockInfo`] complex type.
 
-|`failure` |no |list of strings |List containing the clock IDs for which
-the status information could not have been retrieved.
-
-|`reasons` |no |object |Object mapping clock IDs to reasons why the
+|`error` |no |object |Object mapping clock IDs to reasons why the
 corresponding status information could not have been retrieved.
 |===
 
 All the clock IDs that were specified in the request MUST appear
-_either_ as keys in the `status` object or in the `failure` list.
+_either_ as keys in the `status` object or in the `error` map.
 
 *Example request*
 

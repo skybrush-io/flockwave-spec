@@ -26,15 +26,12 @@ interested in
 |`status` |no |object of xref:types.adoc#_dockstatusinfo[`DockStatusInfo`] |Object mapping docking station IDs to the corresponding
 status information.
 
-|`failure` |no |list of strings |List containing the docking station IDs for which
-the status information could not have been retrieved.
-
-|`reasons` |no |object |Object mapping docking station IDs to reasons why the
+|`error` |no |object |Object mapping docking station IDs to reasons why the
 corresponding status information could not have been retrieved.
 |===
 
 All the docking station IDs that were specified in the request MUST appear
-_either_ in the `status` list or in the `failure` list.
+_either_ in the `status` list or in the `error` map.
 
 *Example request*
 

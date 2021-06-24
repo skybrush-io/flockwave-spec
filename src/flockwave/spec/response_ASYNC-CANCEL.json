@@ -1,0 +1,18 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "ASYNC-CANCEL"
+		},
+		"success": {
+			"$ref": "definitions.json#/receiptIdList"
+		},
+		"error": {
+			"$ref": "definitions.json#/errorMap"
+		}
+	},
+	"required": [
+		"type"
+	],
+	"additionalProperties": false
+}
