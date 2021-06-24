@@ -1,0 +1,14 @@
+{
+	"type": "object",
+	"properties": {
+		"type": {
+			"const": "ASYNC-CANCEL"
+	    },
+        "ids": {
+            "$ref": "definitions.json#/receiptIdList"
+        }
+	},
+	"required": [
+		"type", "ids"
+	]
+}

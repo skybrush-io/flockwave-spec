@@ -4,9 +4,9 @@
 		"type": {
 			"const": "ASYNC-TIMEOUT"
 		},
-    "ids": {
-        "$ref": "definitions.json#/receiptIdList"
-    }
+		"ids": {
+			"$ref": "definitions.json#/receiptIdList"
+		}
 	},
 	"required": [
 		"type", "ids"

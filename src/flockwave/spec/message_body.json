@@ -26,6 +26,9 @@
         },
 
         {
+            "$ref": "request_ASYNC-CANCEL.json#/"
+        },
+        {
             "$ref": "request_AUTH-INF.json#/"
         },
         {

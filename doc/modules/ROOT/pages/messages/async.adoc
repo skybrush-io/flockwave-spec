@@ -4,6 +4,51 @@ The messages in this chapter are related to the handling of
 xref:async.adoc[asynchronous operations]; please read that chapter for more
 details.
 
+== `ASYNC-CANCEL` — Cancellation of an asynchronous operation
+
+A client sends this request to the server when it is not interested in the result
+of an asynchronous operation any more. It is up to the server to decide whether
+the cancellation is supported and what its effect would be; in certain cases it
+can be safer to continue with the operation and simply not inform the client
+about further progress and results, while in other cases it might make more sense
+to terminate the operation altogether.
+
+The server responds to an `ASYNC-CANCEL` request with an `ASYNC-CANCEL` response,
+listing the receipt IDs of all the operations that have been cancelled successfully
+and also the IDs of all the operations where cancellation was not possible.
+For operations that have been cancelled prematurely, the server will also need
+to dispatch an appropriate <<async-resp,ASYNC-RESP>> response with a cancellation error to
+make it easier for clients to handle cancellations the same way as any other
+error condition. In other words, the response to `ASYNC-CANCEL` simply
+acknowledges that the server has received and processed the cancellation request,
+and the actual cancellation will result in an <<async-resp,ASYNC-RESP>>
+notification. This way it is guaranteed that each receipt ID appears sooner or
+later in either an <<async-resp,ASYNC-RESP>> or an <<async-timeout,ASYNC-TIMEOUT>>
+notification.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of receipt IDs of the operations that the client wishes to cancel
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "ASYNC-CANCEL",
+    "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2"]
+}
+----
+
+*Response fields*
+
+*Example response*
+
+[#async-resp]
 == `ASYNC-RESP` — Result of an asynchronous operation
 
 A server sends this notification to a client when an asynchronous operation
@@ -15,7 +60,7 @@ error.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`id` |yes |list of strings |The list of receipt IDs that the message refers to
+|`id` |yes |string |The list of receipt IDs that the message refers to
 
 |`result` |no |object |The result of the asynchronous operation identified by the receipt ID
 
@@ -35,6 +80,7 @@ Exactly one of the `result` and the `error` keys MUST be present in the message.
 }
 ----
 
+[#async-timeout]
 == `ASYNC-TIMEOUT` — Timeout notification for one or more asynchronous operations
 
 A server sends this notification to a client when an asynchronous operation
