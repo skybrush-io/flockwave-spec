@@ -13,6 +13,9 @@ __all__ = (
     "SCHEMA_PACKAGE",
     "get_message_schema",
     "get_message_body_schema",
+    "get_notification_body_schema",
+    "get_request_body_schema",
+    "get_response_body_schema",
     "get_complex_object_schema",
     "ref_resolver",
     "Schema",
@@ -116,6 +119,21 @@ def get_message_schema() -> Schema:
 def get_message_body_schema() -> Schema:
     """Returns the JSON schema of Flockwave message bodies."""
     return _get_schema_from_resource("message_body.json")
+
+
+def get_notification_body_schema() -> Schema:
+    """Returns the JSON schema of Flockwave notification bodies."""
+    return _get_schema_from_resource("notification_body.json")
+
+
+def get_response_body_schema() -> Schema:
+    """Returns the JSON schema of Flockwave response bodies."""
+    return _get_schema_from_resource("response_body.json")
+
+
+def get_request_body_schema() -> Schema:
+    """Returns the JSON schema of Flockwave request bodies."""
+    return _get_schema_from_resource("request_body.json")
 
 
 def ref_resolver(uri: str) -> Dict[str, Any]:
