@@ -103,6 +103,9 @@ of the UAV, and it is not placed at the right takeoff position.
 
 |69 |MISSION |There is an error with the current mission configuration of the UAV;
 for instance, the mission would take the UAV outside the current geofence zone.
+
+|70 |NO RADIO |The UAV is supposed to use a radio channel for communication, but
+it indicates that the channel is currently not available.
 |===
 
 == Errors (codes 128-191)
