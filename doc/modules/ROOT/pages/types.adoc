@@ -1103,7 +1103,7 @@ response fields; only the position and the timestamp is mandatory.
     "pressure": 101900,
     "humidity": 62,
     "dewPoint": 2771,
-    "uvIndeX": 89,
+    "uvIndex": 89,
     "clouds": 0,
     "visibility": 10000,
     "windSpeed": 6000,
