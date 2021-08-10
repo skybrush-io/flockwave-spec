@@ -1022,6 +1022,16 @@
         "minimum": 200,
         "maximum": 804
       },
+      "sunrise": {
+        "title": "Sunrise",
+        "description": "Time of sunrise; negative if the Sun does not rise on the given day",
+        "type": "integer"
+      },
+      "sunset": {
+        "title": "Sunset",
+        "description": "Time of sunset; negative if the Sun does not set on the given day",
+        "type": "integer"
+      },
       "temperature": {
         "title": "Temperature",
         "description": "Temperature, in kelvin",
@@ -1042,7 +1052,9 @@
       "humidity": {
         "title": "Humidity",
         "description": "Humidity, in %",
-        "type": "integer"
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
       },
       "dewPoint": {
         "title": "Dew point",
@@ -1053,21 +1065,27 @@
       "clouds": {
         "title": "Cloudiness",
         "description": "Cloudiness, in %",
-        "type": "integer"
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
       },
       "uvIndex": {
         "title": "UV index",
         "description": "UV index, 1/100 units; e.g. 89 --> 0.89",
-        "type": "integer"
+        "type": "integer",
+        "minimum": 0
       },
       "kpIndex": {
         "title": "Planetary K-index",
-        "type": "integer"
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9
       },
       "visibility": {
         "title": "Visibility",
         "description": "Average visibility, in metres",
-        "type": "integer"
+        "type": "integer",
+        "minimum": 0
       },
       "windDirection": {
         "title": "Wind direction",
@@ -1078,11 +1096,18 @@
       },
       "windSpeed": {
         "title": "Wind speed",
-        "description": "Wind speed, in centimetres per second",
-        "type": "integer"
+        "description": "Wind speed, in mm/s",
+        "type": "integer",
+        "minimum": 0
+      },
+      "windGust": {
+        "title": "Wind gust",
+        "description": "Wind gust, in mm/s",
+        "type": "integer",
+        "minimum": 0
       }
     },
-    "required": ["timestamp"]
+    "required": ["timestamp", "position"]
   },
 
   "weatherStationIdList": {

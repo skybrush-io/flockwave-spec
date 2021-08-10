@@ -1,4 +1,4 @@
-= `WTT` — Weather station related messages
+= `WTH` — Weather station related messages
 
 Weather stations use a combination of instruments to provide basic measurements
 about the current weather and also to provide short-term forecasts. The messages
@@ -68,7 +68,7 @@ station, and the position shows the coordinate of the weather station.
     "uvIndeX": 89,
     "clouds": 0,
     "visibility": 10000,
-    "windSpeed": 600,
+    "windSpeed": 6000,
     "windDirection": 3000
   }
 }
@@ -137,7 +137,7 @@ _either_ in the `status` list or in the `error` map.
       "uvIndeX": 89,
       "clouds": 0,
       "visibility": 10000,
-      "windSpeed": 600,
+      "windSpeed": 6000,
       "windDirection": 3000
     }
   },

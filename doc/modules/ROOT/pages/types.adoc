@@ -66,6 +66,15 @@ approximately 33% longer than the corresponding raw byte array, but is
 still much shorter than the representation of the byte array as a JSON
 array of integers.
 
+== Temperatures
+
+Temperatures are always expressed in kelvin because we do not want to take
+sides in the Celsius vs Fahrenheit debate. However, when encoding a temperature,
+it is first quantized in 1/10th of degrees kelvin and then encoded as an
+unsigned integer in order to avoid floating point related inaccuracies
+(see discussion about xref:appendix/floating-point.adoc[floating-point
+inacccuracies]).
+
 == `Attitude`
 
 An `Attitude` object describes the orientation of a UAV using the
@@ -1057,12 +1066,32 @@ response fields; only the position and the timestamp is mandatory.
 
 *Fields*
 
-#TODO#
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|position |yes |<<_gpscoordinate,GPSCoordinate>> |GPS coordinate that the weather object refers to
+|timestamp |yes |<<_timestamps,timestamp>> |Time that the weather object refers to
+|code |no |integer |https://openweathermap.org/weather-conditions[OpenWeatherMap weather condition code]
+|sunrise |no |<<_timestamps,timestamp>> |Time of sunrise; negative if the Sun does not rise on the given day
+|sunset |no |<<_timestamps,timestamp>> |Time of sunset; negative if the Sun does not set on the given day
+|temperature |no |<<_temperatures,temperature>> |Temperature
+|feelsLike |no |<<_temperatures,temperature>> |Temperature, adjusted for human perception
+|pressure |no |integer |Atmospheric pressure, in Pa
+|humidity |no |integer |Humidity, in %
+|dewPoint |no |<<_temperatures,temperature>> |Dew point
+|uvIndex |no |integer |UV index, multiplied by 100 (e.g., 89 means 0.89)
+|kpIndex |no |integer |Planetary K-index
+|clouds |no |integer |Cloudiness, in %
+|visibility |no |integer |Visibility, in metres
+|windDirection |no |<<_angles,angle>> |Meteorological wind direction (i.e. where the wind blows from)
+|windSpeed |no |integer |Wind speed, in millimetres per second
+|windGust |no |integer |Wind gust, in millimetres per second
+|===
 
 *Example*
 
 [source,json]
----
+----
 {
     "position": [519976597, -7406863],
     "timestamp": 1628607017000,
@@ -1077,7 +1106,7 @@ response fields; only the position and the timestamp is mandatory.
     "uvIndeX": 89,
     "clouds": 0,
     "visibility": 10000,
-    "windSpeed": 600,
+    "windSpeed": 6000,
     "windDirection": 3000
 }
----
+----
