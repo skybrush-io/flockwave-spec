@@ -20,6 +20,7 @@
 ** xref:messages/lcn.adoc[LCN — Licensing information]
 ** xref:messages/prm.adoc[PRM — Retrieving and setting parameters]
 ** xref:messages/show.adoc[SHOW — Management and execution of drone shows]
+** xref:messages/wth.adoc[WTH — Weather station related messages]
 * xref:transport.adoc[Transport layer]
 * xref:security.adoc[Security considerations]
 * xref:appendix/index.adoc[Appendix]

@@ -1,0 +1,20 @@
+{
+  "type": "WTH-AT",
+  "weather": {
+    "position": [519976597, -7406863],
+    "timestamp": 1628607017000,
+    "code": 500,
+    "sunrise": 1628609700000,
+    "sunset": 1628618640000,
+    "temperature": 2840,
+    "feelsLike": 2828,
+    "pressure": 101900,
+    "humidity": 62,
+    "dewPoint": 2771,
+    "uvIndeX": 89,
+    "clouds": 0,
+    "visibility": 10000,
+    "windSpeed": 600,
+    "windDirection": 3000
+  }
+}

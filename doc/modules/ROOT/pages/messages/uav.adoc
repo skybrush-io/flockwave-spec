@@ -282,22 +282,10 @@ as a notification, only the `status` field SHOULD be present.
         "1": {
             "id": "1",
             "mode": "pos",
-            "position": {
-                "lat": 51.9976597,
-                "lon": -0.7406863,
-                "amsl": 93.765
-            },
+            "position": [519976597, -7406863, 93765],
             "heading": 90,
-            "attitude": {
-                "roll": 0,
-                "pitch": 0,
-                "yaw": 90
-            },
-            "velocity": {
-                "north": 2.0,
-                "east": 2.0,
-                "down": -1.0
-            },
+            "attitude": [0, 0, 900],
+            "velocity": [2000, 2000, -1000],
             "timestamp": "2015-12-08T08:17:41.000Z",
             "debug": "MEJBRENBRkU=",
             "error": [42]

@@ -139,6 +139,12 @@
     },
     {
       "$ref": "response_UAV-VER.json#/"
+    },
+    {
+      "$ref": "response_WTH-AT.json#/"
+    },
+    {
+      "$ref": "response_WTH-INF.json#/"
     }
   ]
 }

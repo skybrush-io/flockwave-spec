@@ -538,11 +538,7 @@ status update was received from the docking station
 ----
 {
     "id": "base",
-    "position": {
-        "lat": 519976597,
-        "lon": -7406863,
-        "amsl": 93765
-    },
+    "position": [519976597, -7406863, 93765],
     "timestamp": 1449562661000
 }
 ----
@@ -1047,3 +1043,41 @@ The object is stored as a list with three mandatory items.
 ----
 [2000, 2000, 1000]
 ----
+
+== `Weather`
+
+This type encapsulates information about the weather at a given time and
+geographical coordinate. Objects of this type are typically provided by
+weather stations or external weather APIs.
+
+The structure of this object is heavily influenced by the OpenWeatherMap
+one-call API response. Almost all of the fields are optional to account
+for use-cases when a weather station cannot provide one or more of the
+response fields; only the position and the timestamp is mandatory.
+
+*Fields*
+
+#TODO#
+
+*Example*
+
+[source,json]
+---
+{
+    "position": [519976597, -7406863],
+    "timestamp": 1628607017000,
+    "code": 500,
+    "sunrise": 1628609700000,
+    "sunset": 1628618640000,
+    "temperature": 2840,
+    "feelsLike": 2828,
+    "pressure": 101900,
+    "humidity": 62,
+    "dewPoint": 2771,
+    "uvIndeX": 89,
+    "clouds": 0,
+    "visibility": 10000,
+    "windSpeed": 600,
+    "windDirection": 3000
+}
+---

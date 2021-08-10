@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "WTH-AT"
+    },
+    "position": {
+      "$ref": "definitions.json#/gpsCoordinate"
+    }
+  },
+  "required": ["type", "position"]
+}

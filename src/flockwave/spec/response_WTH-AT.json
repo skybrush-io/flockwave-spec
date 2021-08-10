@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "WTH-AT"
+    },
+    "weather": {
+      "$ref": "definitions.json#/weather"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

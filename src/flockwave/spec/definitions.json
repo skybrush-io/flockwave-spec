@@ -1,980 +1,1097 @@
 {
-    "asyncBoolMap": {
-        "type": "object",
-        "additionalProperties": { "type": "boolean" }
-    },
+  "asyncBoolMap": {
+    "type": "object",
+    "additionalProperties": { "type": "boolean" }
+  },
 
-    "asyncCommandResponseMap": {
-        "type": "object",
-        "additionalProperties": {
-          "anyOf": [
-            { "$ref": "#/commandResponse" },
-            { "type": "string" }
-          ]
-        }
-    },
+  "asyncCommandResponseMap": {
+    "type": "object",
+    "additionalProperties": {
+      "anyOf": [{ "$ref": "#/commandResponse" }, { "type": "string" }]
+    }
+  },
 
-    "asyncStringMap": {
-        "type": "object",
-        "additionalProperties": { "type": "string" }
-    },
+  "asyncStringMap": {
+    "type": "object",
+    "additionalProperties": { "type": "string" }
+  },
 
-    "asyncVersionMap": {
-        "type": "object",
-        "additionalProperties": { "$ref": "#/versionMap" }
-    },
+  "asyncVersionMap": {
+    "type": "object",
+    "additionalProperties": { "$ref": "#/versionMap" }
+  },
 
-    "attitude": {
-        "title": "Attitude",
-        "description": "Attitude around the principal aircraft axes",
-        "type": "array",
-        "items": [
-            {
-                "title": "Roll angle",
-                "description": "Roll angle, in 1/10th of degrees",
-                "type": "integer",
-                "minimum": -900,
-                "exclusiveMaximum": 900
-            },
-            {
-                "title": "Pitch angle",
-                "description": "Pitch angle, in 1/10th of degrees",
-                "type": "integer",
-                "minimum": -9000,
-                "exclusiveMaximum": 9000
-            },
-            {
-                "title": "Yaw angle",
-                "description": "Yaw angle, in 1/10th of degrees",
-                "type": "integer",
-                "minimum": 0,
-                "exclusiveMaximum": 36000
-            }
-        ]
-    },
-
-    "batteryInfo": {
-        "title": "Battery information",
-        "description": "Information about the on-board battery of the UAV, if applicable",
-        "type": "array",
-        "items": [
-            {
-                "title": "Battery voltage",
-                "description": "The voltage of the battery, in 1/10th of volts",
-                "type": "integer",
-                "minimum": 0
-            },
-            {
-                "title": "State of charge (%)",
-                "description": "Percentage indicator of the state of charge of the battery (100% = full, 0% = empty, -1 = unknown)",
-                "type": "integer",
-                "minimum": -1,
-                "maximum": 100
-            },
-            {
-                "title": "Charging",
-                "description": "Whether the battery is charging",
-                "type": "boolean"
-            }
-        ]
-    },
-
-    "channelId": {
-        "title": "Channel ID",
-        "description": "Identifier of a single channel of a single device on a UAV",
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 64,
-        "pattern": "^[^/]+$"
-    },
-
-    "channelOperation": {
-        "title": "Operation",
-        "description": "Operation that can be performed on a channel",
-        "type": "string",
-        "enum": [
-            "read", "write"
-        ]
-    },
-
-    "channelType": {
-        "title": "Type",
-        "description": "Type of a channel",
-        "type": "string",
-        "enum": [
-            "audio", "boolean", "bytes", "cartesian", "color", "duration",
-            "gps", "number", "object", "string", "time", "video"
-        ]
-    },
-
-    "clockEpoch": {
-        "anyOf": [
-            {
-                "type": "string",
-                "format": "date-time"
-            },
-            {
-                "type": "string",
-                "enum": [ "unix" ]
-            }
-        ]
-    },
-
-    "clockId": {
-        "title": "Clock ID",
-        "description": "Identifier of a single clock",
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 64
-    },
-
-    "clockIdList": {
-        "title": "Clock IDs",
-        "description": "IDs of the clocks that the message refers to",
-        "type": "array",
-        "items": {
-            "$ref": "#/clockId"
-        },
-        "uniqueItems": true
-    },
-
-    "clockInfo": {
-        "title": "Clock info",
-        "description": "Information about a clock",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "#/clockId"
-            },
-            "epoch": {
-                "$ref": "#/clockEpoch"
-            },
-            "retrievedAt": {
-                "type": "number"
-            },
-            "running": {
-                "type": "boolean"
-            },
-            "ticksPerSecond": {
-                "type": "number",
-                "minimum": 0,
-                "exclusiveMinimum": true
-            },
-            "ticks": {
-                "type": "number"
-            }
-        },
-        "required": [ "id", "retrievedAt", "running", "ticks" ]
-    },
-
-    "colorRGB565": {
-        "title": "Color",
-        "description": "Color in RGB565 representation",
+  "attitude": {
+    "title": "Attitude",
+    "description": "Attitude around the principal aircraft axes",
+    "type": "array",
+    "items": [
+      {
+        "title": "Roll angle",
+        "description": "Roll angle, in 1/10th of degrees",
+        "type": "integer",
+        "minimum": -900,
+        "exclusiveMaximum": 900
+      },
+      {
+        "title": "Pitch angle",
+        "description": "Pitch angle, in 1/10th of degrees",
+        "type": "integer",
+        "minimum": -900,
+        "exclusiveMaximum": 900
+      },
+      {
+        "title": "Yaw angle",
+        "description": "Yaw angle, in 1/10th of degrees",
         "type": "integer",
         "minimum": 0,
-        "maximum": 65535
-    },
+        "exclusiveMaximum": 3600
+      }
+    ]
+  },
 
-    "commandExecutionStatus": {
-        "title": "Command execution status",
-        "description": "Execution status of a command executed on a UAV",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "#/receiptId"
-            },
-            "sent": {
-                "type": "number"
-            },
-            "acknowledged": {
-                "type": "number"
-            },
-            "updated": {
-                "type": "number"
-            },
-            "finished": {
-                "type": "number"
-            },
-            "progress": {
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 100
-            }
-        },
-        "required": [ "sent" ],
-        "additionalProperties": false
-    },
+  "batteryInfo": {
+    "title": "Battery information",
+    "description": "Information about the on-board battery of the UAV, if applicable",
+    "type": "array",
+    "items": [
+      {
+        "title": "Battery voltage",
+        "description": "The voltage of the battery, in 1/10th of volts",
+        "type": "integer",
+        "minimum": 0
+      },
+      {
+        "title": "State of charge (%)",
+        "description": "Percentage indicator of the state of charge of the battery (100% = full, 0% = empty, -1 = unknown)",
+        "type": "integer",
+        "minimum": -1,
+        "maximum": 100
+      },
+      {
+        "title": "Charging",
+        "description": "Whether the battery is charging",
+        "type": "boolean"
+      }
+    ]
+  },
 
-    "commandResponse": {
-        "title": "Command response",
-        "description": "Response given by a UAV to a command request",
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string"
-            },
-            "data": {},
-            "additionalProperties": false,
-            "required": [ "type", "data" ]
-        }
-    },
+  "channelId": {
+    "title": "Channel ID",
+    "description": "Identifier of a single channel of a single device on a UAV",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64,
+    "pattern": "^[^/]+$"
+  },
 
-    "connectionId": {
-        "title": "Connection ID",
-        "description": "Identifier of a single connection",
+  "channelOperation": {
+    "title": "Operation",
+    "description": "Operation that can be performed on a channel",
+    "type": "string",
+    "enum": ["read", "write"]
+  },
+
+  "channelType": {
+    "title": "Type",
+    "description": "Type of a channel",
+    "type": "string",
+    "enum": [
+      "audio",
+      "boolean",
+      "bytes",
+      "cartesian",
+      "color",
+      "duration",
+      "gps",
+      "number",
+      "object",
+      "string",
+      "time",
+      "video"
+    ]
+  },
+
+  "clockEpoch": {
+    "anyOf": [
+      {
         "type": "string",
-        "minLength": 1,
-        "maxLength": 64
-    },
-
-    "connectionIdList": {
-        "title": "Connection IDs",
-        "description": "IDs of the connections that the message refers to",
-        "type": "array",
-        "items": {
-            "$ref": "#/connectionId"
-        },
-        "uniqueItems": true
-    },
-
-    "connectionInfo": {
-        "title": "Connection info",
-        "description": "Information about a connection",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "#/connectionId"
-            },
-            "purpose": {
-                "$ref": "#/connectionPurpose"
-            },
-            "description": {
-                "type": "string"
-            },
-            "status": {
-                "$ref": "#/connectionStatus"
-            },
-            "timestamp": {
-                "type": "number"
-            }
-        },
-        "required": [ "id", "purpose", "status" ]
-    },
-
-    "connectionPurpose": {
-        "title": "Purpose",
-        "description": "Purpose of the connection",
+        "format": "date-time"
+      },
+      {
         "type": "string",
-        "enum": ["debug", "dock", "dgps", "gps", "time", "uavRadioLink", "other"]
-    },
+        "enum": ["unix"]
+      }
+    ]
+  },
 
-    "connectionStatus": {
-        "title": "Status",
-        "description": "Status of the connection",
-        "type": "string",
-        "enum": [
-            "disconnected", "connecting", "connected", "disconnecting",
-            "unknown"
-        ]
-    },
+  "clockId": {
+    "title": "Clock ID",
+    "description": "Identifier of a single clock",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64
+  },
 
-    "deviceClass": {
-        "title": "Class",
-        "description": "Class of a device",
-        "type": "string",
-        "enum": [
-            "accelerometer", "actuator", "altimeter", "battery", "camera",
-            "cpu", "cpuCore", "gps", "group", "gyroscope", "led",
-            "magnetometer", "microphone", "misc", "pyro", "radio", "rc",
-            "rotor", "sensor", "speaker"
-        ],
-        "default": "misc"
+  "clockIdList": {
+    "title": "Clock IDs",
+    "description": "IDs of the clocks that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/clockId"
     },
+    "uniqueItems": true
+  },
 
-    "deviceId": {
-        "title": "Device ID",
-        "description": "Identifier of a single device on a UAV",
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 64,
-        "pattern": "^[^/]+$"
+  "clockInfo": {
+    "title": "Clock info",
+    "description": "Information about a clock",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/clockId"
+      },
+      "epoch": {
+        "$ref": "#/clockEpoch"
+      },
+      "retrievedAt": {
+        "type": "number"
+      },
+      "running": {
+        "type": "boolean"
+      },
+      "ticksPerSecond": {
+        "type": "number",
+        "minimum": 0,
+        "exclusiveMinimum": true
+      },
+      "ticks": {
+        "type": "number"
+      }
     },
+    "required": ["id", "retrievedAt", "running", "ticks"]
+  },
 
-    "deviceTreeNode": {
-        "title": "Device tree node",
-        "description": "A single device tree node representing a UAV, a device or a channel",
-        "type": "object",
-        "properties": {
-            "type": {
-                "$ref": "#/deviceTreeNodeType"
-            },
-            "subType": {
-                "$ref": "#/channelType"
-            },
-            "class": {
-                "$ref": "#/deviceClass"
-            },
-            "children": {
-                "type": "object",
-                "additionalProperties": {
-                    "$ref": "#/deviceTreeNode"
-                }
-            },
-            "operations": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/channelOperation"
-                }
-            },
-            "unit": {
-                "title": "Unit",
-                "description": "Unit in which the value of a numeric channel is expressed",
-                "type": "string"
-            }
-        },
-        "required": [ "type" ],
-        "additionalProperties": false
+  "colorRGB565": {
+    "title": "Color",
+    "description": "Color in RGB565 representation",
+    "type": "integer",
+    "minimum": 0,
+    "maximum": 65535
+  },
+
+  "commandExecutionStatus": {
+    "title": "Command execution status",
+    "description": "Execution status of a command executed on a UAV",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/receiptId"
+      },
+      "sent": {
+        "type": "number"
+      },
+      "acknowledged": {
+        "type": "number"
+      },
+      "updated": {
+        "type": "number"
+      },
+      "finished": {
+        "type": "number"
+      },
+      "progress": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+      }
     },
+    "required": ["sent"],
+    "additionalProperties": false
+  },
 
-    "deviceTreeNodeType": {
-        "title": "Type",
-        "description": "Type of a device tree node",
-        "type": "string",
-        "enum": [
-            "root", "object", "device", "channel"
-        ]
-    },
-
-    "deviceTreePath": {
-        "title": "Device tree path",
-        "description": "An absolute device path that uniquely identifies a UAV, a device on a UAV or a channel of a device on a UAV",
-        "type": "string",
-        "minLength": 1,
-        "pattern": "^((/[^/]+)+|/)$"
-    },
-
-    "deviceTreePathList": {
-        "title": "Device tree paths",
-        "description": "Paths of the device tree entries that the message refers to",
-        "type": "array",
-        "items": {
-            "$ref": "#/deviceTreePath"
-        }
-    },
-
-    "dockIdList": {
-        "title": "Dock IDs",
-        "description": "IDs of the docking stations that the message refers to",
-        "type": "array",
-        "items": {
-            "$ref": "#/objectId"
-        },
-        "uniqueItems": true
-    },
-
-    "dockStatusInfo": {
-        "title": "Docking station status info",
-        "description": "Status information of a single docking station",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "#/objectId"
-            },
-            "position": {
-                "$ref": "#/gpsCoordinate"
-            },
-            "timestamp": {
-                "title": "Last updated at",
-                "description": "Timestamp that denotes when the status of the docking station was updated the last time",
-                "type": "number"
-            }
-        },
-        "required": ["id", "timestamp"]
-    },
-
-    "droneShowConfiguration": {
-        "title": "Drone show configuration",
-        "description": "Full configuration of a drone show",
-        "type": "object",
-        "properties": {
-            "start": {
-                "type": "object",
-                "properties": {
-                    "authorized": {
-                        "description": "Whether the server has received authorization from a human operator to start the show",
-                        "type": "boolean"
-                    },
-                    "time": {
-                        "description": "Timestamp when the drone show should start",
-                        "anyOf": [
-                            { "type": "number" },
-                            { "type": "null" }
-                        ]
-                    },
-                    "method": {
-                        "type": "string",
-                        "enum": ["rc", "auto"]
-                    },
-                    "uavIds": {
-                        "description": "Array containing the IDs of the UAVs that should be started automatically",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/objectId"
-                        }
-                    }
-                }
-            },
-            "mapping": {
-                "description": "Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory.",
-                "type": "array",
-                "items": {
-                    "anyOf": [
-                        { "$ref": "#/objectId" },
-                        { "type": "null" }
-                    ]
-                }
-            }
-        }
-    },
-
-    "droneLightsConfiguration": {
-        "title": "Drone lights configuration",
-        "description": "Full configuration of the behaviour of the LED lights on a drone during a drone show",
-        "type": "object",
-        "properties": {
-            "effect": {
-                "type": "string",
-                "description": "Type of the light effect."
-            },
-            "color": {
-                "type": "array",
-                "description": "Color of the light effect in RGB notations. Values in the array must be between 0 and 255, inclusive.",
-                "items": {
-                    "type": "number"
-                }
-            }
-        }
-    },
-
-    "error": {
+  "commandResponse": {
+    "title": "Command response",
+    "description": "Response given by a UAV to a command request",
+    "type": "object",
+    "properties": {
+      "type": {
         "type": "string"
-    },
-
-    "errorCodeList": {
-        "title": "List of errors",
-        "description": "List of currently active error codes for a single UAV",
-        "type": "array",
-        "items": {
-            "type": "integer"
-        }
-    },
-
-    "errorMap": {
-        "type": "object",
-        "additionalProperties": { "$ref": "#/error" }
-    },
-
-    "extensionId": {
-        "title": "Extension ID",
-        "description": "Identifier of a single extension",
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 64
-    },
-
-    "extensionIdList": {
-        "title": "Extension IDs",
-        "description": "IDs of the extensions that the message refers to",
-        "type": "array",
-        "items": {
-            "$ref": "#/extensionId"
-        },
-        "uniqueItems": true
-    },
-
-    "extensionInfo": {
-        "title": "Clock info",
-        "description": "Information about an extension",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "#/extensionId"
-            },
-            "loaded": {
-                "type": "boolean"
-            },
-            "name": {
-                "type": "string"
-            },
-            "description": {
-                "type": "string"
-            }
-        },
-        "required": [ "id", "loaded", "name" ]
-    },
-
-    "gpsCoordinate": {
-        "title": "GPS coordinate",
-        "description": "GPS coordinate of an object",
-        "type": "array",
-        "items": [
-          {
-            "title": "Latitude",
-            "description": "Latitude, in 1e-7 degrees",
-            "type": "integer",
-            "minimum": -900000000,
-            "maximum": 900000000
-          },
-          {
-            "title": "Longitude",
-            "description": "Longitude, in 1e-7 degrees",
-            "type": "integer",
-            "minimum": -1800000000,
-            "maximum": 1800000000
-          },
-          {
-            "title": "AMSL",
-            "description": "Altitude above mean sea level, in millimeters",
-            "type": [ "integer", "null" ]
-          },
-          {
-            "title": "AGL",
-            "description": "Altitude above ground level, in millimeters",
-            "type": [ "integer", "null" ]
-          }
-        ]
-    },
-
-    "gpsFix": {
-        "title": "GPS fix",
-        "description": "Basic information about the GPS fix",
-        "type": "array",
-        "items": [
-            {
-              "title": "GPS fix type",
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 7
-            }
-        ],
-        "additionalItems": {
-            "type": "number"
-        },
-        "minItems": 1,
-        "maxItems": 2
-    },
-
-    "license": {
-        "title": "License",
-        "description": "A license object that is activated on the server",
-        "type": "object",
-        "properties": {
-            "id": {
-                "title": "License ID",
-                "type": "string"
-            },
-            "licensee": {
-                "title": "Name of the license holder",
-                "type": "string"
-            },
-            "expiryDate": {
-                "title": "Expiry date",
-                "type": "string",
-                "format": "date"
-            },
-            "features": {
-                "title": "Additional features",
-                "type": "array",
-                "items": {
-                    "$ref": "#/licenseFeature"
-                }
-            },
-            "restrictions": {
-                "title": "Restrictions",
-                "type": "array",
-                "items": {
-                    "$ref": "#/licenseRestriction"
-                }
-            }
-        },
-        "required": ["id", "licensee"]
-    },
-
-    "licenseFeature": {
-        "title": "License feature",
-        "description": "An optional feature that is enabled by a license",
-        "type": "object",
-        "properties": {
-            "type": {
-                "title": "Feature type",
-                "type": "string"
-            },
-            "label": {
-                "title": "Description",
-                "type": "string"
-            },
-            "secondaryLabel": {
-                "title": "Additional info",
-                "type": "string"
-            },
-            "parameters": {
-                "type": "object"
-            }
-        },
-        "required": ["type"]
-    },
-
-    "licenseRestriction": {
-        "title": "License restrictions",
-        "description": "Restrictions imposed on the functionality of the server by a license",
-        "type": "object",
-        "properties": {
-            "type": {
-                "title": "Restriction type",
-                "type": "string"
-            },
-            "label": {
-                "title": "Description",
-                "type": "string"
-            },
-            "secondaryLabel": {
-                "title": "Additional info",
-                "type": "string"
-            },
-            "parameters": {
-                "type": "object"
-            }
-        },
-        "required": ["type"]
-    },
-
-    "logMessage": {
-        "title": "Log message",
-        "description": "A single log message sent from the server to the client",
-        "type": "object",
-        "properties": {
-            "message": {
-                "type": "string"
-            },
-            "timestamp": {
-                "type": "number"
-            },
-            "sender": {
-                "$ref": "#/objectId"
-            },
-            "severity": {
-                "$ref": "#/severity"
-            }
-        },
-        "required": ["message"]
-    },
-
-    "messageId": {
-        "title": "Message ID",
-        "description": "Identifier of the message",
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 36
-    },
-
-    "objectIdList": {
-        "title": "Object IDs",
-        "description": "IDs of the objects that the message refers to",
-        "type": "array",
-        "items": {
-            "$ref": "#/objectId"
-        },
-        "uniqueItems": true
-    },
-
-    "objectId": {
-        "title": "Object ID",
-        "description": "Identifier of a single object",
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 64,
-        "pattern": "^[^/]+$"
-    },
-
-    "objectType": {
-        "title": "Object type",
-        "description": "Type of an object tracked by the server",
-        "type": "string",
-        "examples": [
-            "beacon", "dock", "other", "uav", "weatherStation"
-        ]
-    },
-
-    "objectTypeFilter": {
-        "title": "Object types",
-        "description": "Types of objects that the user is interested in",
-        "type": "array",
-        "items": {
-            "$ref": "#/objectType"
-        },
-        "uniqueItems": true
-    },
-
-    "preflightCheckInfo": {
-        "title": "UAV preflight check info",
-        "description": "Preflight check information of a single UAV",
-        "type": "object",
-        "properties": {
-            "items": {
-                "title": "Preflight check items",
-                "type": "array",
-                "items": {
-                    "$ref": "#/preflightCheckItem"
-                }
-            },
-            "message": {
-                "title": "Preflight check summary",
-                "description": "Preflight check summary message",
-                "type": "string"
-            },
-            "result": {
-                "$ref": "#/preflightCheckResult"
-            }
-        },
-        "required": ["items", "result"]
-    },
-
-    "preflightCheckItem": {
-        "title": "A single item in a preflight checklist",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "#/preflightCheckItemId"
-            },
-            "label": {
-                "title": "Label of the preflight checklist item",
-                "type": "string"
-            },
-            "result": {
-                "$ref": "#/preflightCheckResult"
-            },
-            "message": {
-                "title": "Detailed message for the preflight checklist item",
-                "type": "string"
-            }
-        },
-        "required": ["id", "result"]
-    },
-
-    "preflightCheckItemId": {
-        "$ref": "#/objectId"
-    },
-
-    "preflightCheckResult": {
-        "title": "Preflight check result",
-        "description": "Result of the preflight check or a single item in a preflight checklist",
-        "type": "string",
-        "enum": ["off", "pass", "warning", "running", "softFailure", "failure", "error"]
-    },
-
-    "positionXYZ": {
-        "title": "Position (XYZ)",
-        "description": "Position in a local right-handed XYZ coordinate system",
-        "type": "array",
-        "items": [
-            {
-                "title": "X component",
-                "description": "X component of the vector, in mm",
-                "type": "integer"
-            },
-            {
-                "title": "Y component",
-                "description": "Y component of the vector, in mm",
-                "type": "integer"
-            },
-            {
-                "title": "Z component",
-                "description": "Z component of the vector, in mm",
-                "type": "integer"
-            }
-        ]
-    },
-
-    "receiptId": {
-        "title": "Receipt ID",
-        "description": "Identifier of the receipt",
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 64
-    },
-
-    "receiptIdList": {
-        "title": "Receipt IDs",
-        "description": "IDs of the receipts that the message refers to",
-        "type": "array",
-        "items": {
-            "$ref": "#/receiptId"
-        },
-        "uniqueItems": true
-    },
-
-    "receiptMap": {
-        "type": "object",
-        "additionalProperties": { "$ref": "#/receiptId" }
-    },
-
-    "severity": {
-        "title": "Severity",
-        "description": "Severity of the message",
-        "type": "string",
-        "enum": ["debug", "info", "warning", "error", "critical"]
-    },
-
-    "transportOptions": {
-        "title": "Transport options",
-        "description": "Additional preferences about how the message should be delivered to UAVs",
-        "type": "object",
-        "properties": {
-            "channel": {
-                "title": "Channel",
-                "description": "Index of the communication channel to use",
-                "type": "integer"
-            },
-            "broadcast": {
-                "title": "Broadcast allowed?",
-                "description": "Stores whether the server is allowed to use a broadcast message",
-                "type": "boolean"
-            }
-        }
-    },
-
-    "uavIdList": {
-        "title": "UAV IDs",
-        "description": "IDs of the UAVs that the message refers to",
-        "type": "array",
-        "items": {
-            "$ref": "#/objectId"
-        },
-        "uniqueItems": true
-    },
-
-    "uavStatusInfo": {
-        "title": "UAV status info",
-        "description": "Status information of a single UAV",
-        "type": "object",
-        "properties": {
-            "id": {
-                "$ref": "#/objectId"
-            },
-            "mode": {
-                "title": "Flight mode",
-                "description": "The flight mode of the UAV",
-                "type": "string"
-            },
-            "position": {
-                "$ref": "#/gpsCoordinate"
-            },
-            "positionXYZ": {
-                "$ref": "#/positionXYZ"
-            },
-            "gps": {
-                "$ref": "#/gpsFix"
-            },
-            "heading": {
-                "title": "Heading",
-                "description": "The heading of the UAV in the local tangent plane, in 1/10th of degrees",
-                "type": "integer",
-                "minimum": 0,
-                "exclusiveMaximum": 3600
-            },
-            "attitude": {
-                "$ref": "#/attitude"
-            },
-            "velocity": {
-                "$ref": "#/velocityNED"
-            },
-            "velocityXYZ": {
-                "$ref": "#/velocityXYZ"
-            },
-            "timestamp": {
-                "title": "Last updated at",
-                "description": "Timestamp that denotes when the status of the UAV was updated the last time",
-                "type": "number"
-            },
-            "battery": {
-                "$ref": "#/batteryInfo"
-            },
-            "light": {
-                "$ref": "#/colorRGB565"
-            },
-            "errors": {
-                "$ref": "#/errorCodeList"
-            },
-            "debug": {
-                "type": "string"
-            }
-        },
-        "required": ["id", "position", "timestamp"]
-    },
-
-    "velocityNED": {
-        "title": "Velocity (NED)",
-        "description": "Velocity in the NED coordinate system",
-        "type": "array",
-        "items": [
-            {
-                "title": "North component",
-                "description": "North component of the vector, in mm/s",
-                "type": "integer"
-            },
-            {
-                "title": "East component",
-                "description": "East component of the vector, in mm/s",
-                "type": "integer"
-            },
-            {
-                "title": "Down component",
-                "description": "Down component of the vector, in mm/s",
-                "type": "integer"
-            }
-        ]
-    },
-
-    "velocityXYZ": {
-        "title": "Velocity (XYZ)",
-        "description": "Velocity in a local right-handed XYZ coordinate system",
-        "type": "array",
-        "items": [
-            {
-                "title": "X component",
-                "description": "X component of the vector, in mm/s",
-                "type": "integer"
-            },
-            {
-                "title": "Y component",
-                "description": "Y component of the vector, in mm/s",
-                "type": "integer"
-            },
-            {
-                "title": "Z component",
-                "description": "Z component of the vector, in mm/s",
-                "type": "integer"
-            }
-        ]
-    },
-
-    "versionMap": {
-        "type": "object",
-        "description": "Object mapping string identifiers to version numbers in no particular format",
-        "additionalProperties": { "type": "string" }
-    },
-
-    "versionNumber": {
-        "title": "Version",
-        "description": "Version number in major.minor.patch format; minor and patch versions are optional",
-        "type": "string",
-        "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
-    },
-
-    "userName": {
-        "title": "Username",
-        "description": "Name of the user",
-        "type": "string",
-        "pattern": "^[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~]*(@[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~.]+)?$"
+      },
+      "data": {},
+      "additionalProperties": false,
+      "required": ["type", "data"]
     }
+  },
+
+  "connectionId": {
+    "title": "Connection ID",
+    "description": "Identifier of a single connection",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64
+  },
+
+  "connectionIdList": {
+    "title": "Connection IDs",
+    "description": "IDs of the connections that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/connectionId"
+    },
+    "uniqueItems": true
+  },
+
+  "connectionInfo": {
+    "title": "Connection info",
+    "description": "Information about a connection",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/connectionId"
+      },
+      "purpose": {
+        "$ref": "#/connectionPurpose"
+      },
+      "description": {
+        "type": "string"
+      },
+      "status": {
+        "$ref": "#/connectionStatus"
+      },
+      "timestamp": {
+        "type": "number"
+      }
+    },
+    "required": ["id", "purpose", "status"]
+  },
+
+  "connectionPurpose": {
+    "title": "Purpose",
+    "description": "Purpose of the connection",
+    "type": "string",
+    "enum": ["debug", "dock", "dgps", "gps", "time", "uavRadioLink", "other"]
+  },
+
+  "connectionStatus": {
+    "title": "Status",
+    "description": "Status of the connection",
+    "type": "string",
+    "enum": [
+      "disconnected",
+      "connecting",
+      "connected",
+      "disconnecting",
+      "unknown"
+    ]
+  },
+
+  "deviceClass": {
+    "title": "Class",
+    "description": "Class of a device",
+    "type": "string",
+    "enum": [
+      "accelerometer",
+      "actuator",
+      "altimeter",
+      "battery",
+      "camera",
+      "cpu",
+      "cpuCore",
+      "gps",
+      "group",
+      "gyroscope",
+      "led",
+      "magnetometer",
+      "microphone",
+      "misc",
+      "pyro",
+      "radio",
+      "rc",
+      "rotor",
+      "sensor",
+      "speaker"
+    ],
+    "default": "misc"
+  },
+
+  "deviceId": {
+    "title": "Device ID",
+    "description": "Identifier of a single device on a UAV",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64,
+    "pattern": "^[^/]+$"
+  },
+
+  "deviceTreeNode": {
+    "title": "Device tree node",
+    "description": "A single device tree node representing a UAV, a device or a channel",
+    "type": "object",
+    "properties": {
+      "type": {
+        "$ref": "#/deviceTreeNodeType"
+      },
+      "subType": {
+        "$ref": "#/channelType"
+      },
+      "class": {
+        "$ref": "#/deviceClass"
+      },
+      "children": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/deviceTreeNode"
+        }
+      },
+      "operations": {
+        "type": "array",
+        "items": {
+          "$ref": "#/channelOperation"
+        }
+      },
+      "unit": {
+        "title": "Unit",
+        "description": "Unit in which the value of a numeric channel is expressed",
+        "type": "string"
+      }
+    },
+    "required": ["type"],
+    "additionalProperties": false
+  },
+
+  "deviceTreeNodeType": {
+    "title": "Type",
+    "description": "Type of a device tree node",
+    "type": "string",
+    "enum": ["root", "object", "device", "channel"]
+  },
+
+  "deviceTreePath": {
+    "title": "Device tree path",
+    "description": "An absolute device path that uniquely identifies a UAV, a device on a UAV or a channel of a device on a UAV",
+    "type": "string",
+    "minLength": 1,
+    "pattern": "^((/[^/]+)+|/)$"
+  },
+
+  "deviceTreePathList": {
+    "title": "Device tree paths",
+    "description": "Paths of the device tree entries that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/deviceTreePath"
+    }
+  },
+
+  "dockIdList": {
+    "title": "Dock IDs",
+    "description": "IDs of the docking stations that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/objectId"
+    },
+    "uniqueItems": true
+  },
+
+  "dockStatusInfo": {
+    "title": "Docking station status info",
+    "description": "Status information of a single docking station",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/objectId"
+      },
+      "position": {
+        "$ref": "#/gpsCoordinate"
+      },
+      "timestamp": {
+        "title": "Last updated at",
+        "description": "Timestamp that denotes when the status of the docking station was updated the last time",
+        "type": "number"
+      }
+    },
+    "required": ["id", "timestamp"]
+  },
+
+  "droneShowConfiguration": {
+    "title": "Drone show configuration",
+    "description": "Full configuration of a drone show",
+    "type": "object",
+    "properties": {
+      "start": {
+        "type": "object",
+        "properties": {
+          "authorized": {
+            "description": "Whether the server has received authorization from a human operator to start the show",
+            "type": "boolean"
+          },
+          "time": {
+            "description": "Timestamp when the drone show should start",
+            "anyOf": [{ "type": "number" }, { "type": "null" }]
+          },
+          "method": {
+            "type": "string",
+            "enum": ["rc", "auto"]
+          },
+          "uavIds": {
+            "description": "Array containing the IDs of the UAVs that should be started automatically",
+            "type": "array",
+            "items": {
+              "$ref": "#/objectId"
+            }
+          }
+        }
+      },
+      "mapping": {
+        "description": "Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory.",
+        "type": "array",
+        "items": {
+          "anyOf": [{ "$ref": "#/objectId" }, { "type": "null" }]
+        }
+      }
+    }
+  },
+
+  "droneLightsConfiguration": {
+    "title": "Drone lights configuration",
+    "description": "Full configuration of the behaviour of the LED lights on a drone during a drone show",
+    "type": "object",
+    "properties": {
+      "effect": {
+        "type": "string",
+        "description": "Type of the light effect."
+      },
+      "color": {
+        "type": "array",
+        "description": "Color of the light effect in RGB notations. Values in the array must be between 0 and 255, inclusive.",
+        "items": {
+          "type": "number"
+        }
+      }
+    }
+  },
+
+  "error": {
+    "type": "string"
+  },
+
+  "errorCodeList": {
+    "title": "List of errors",
+    "description": "List of currently active error codes for a single UAV",
+    "type": "array",
+    "items": {
+      "type": "integer"
+    }
+  },
+
+  "errorMap": {
+    "type": "object",
+    "additionalProperties": { "$ref": "#/error" }
+  },
+
+  "extensionId": {
+    "title": "Extension ID",
+    "description": "Identifier of a single extension",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64
+  },
+
+  "extensionIdList": {
+    "title": "Extension IDs",
+    "description": "IDs of the extensions that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/extensionId"
+    },
+    "uniqueItems": true
+  },
+
+  "extensionInfo": {
+    "title": "Clock info",
+    "description": "Information about an extension",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/extensionId"
+      },
+      "loaded": {
+        "type": "boolean"
+      },
+      "name": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      }
+    },
+    "required": ["id", "loaded", "name"]
+  },
+
+  "gpsCoordinate": {
+    "title": "GPS coordinate",
+    "description": "GPS coordinate of an object",
+    "type": "array",
+    "items": [
+      {
+        "title": "Latitude",
+        "description": "Latitude, in 1e-7 degrees",
+        "type": "integer",
+        "minimum": -900000000,
+        "maximum": 900000000
+      },
+      {
+        "title": "Longitude",
+        "description": "Longitude, in 1e-7 degrees",
+        "type": "integer",
+        "minimum": -1800000000,
+        "maximum": 1800000000
+      },
+      {
+        "title": "AMSL",
+        "description": "Altitude above mean sea level, in millimeters",
+        "type": ["integer", "null"]
+      },
+      {
+        "title": "AGL",
+        "description": "Altitude above ground level, in millimeters",
+        "type": ["integer", "null"]
+      }
+    ]
+  },
+
+  "gpsFix": {
+    "title": "GPS fix",
+    "description": "Basic information about the GPS fix",
+    "type": "array",
+    "items": [
+      {
+        "title": "GPS fix type",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 7
+      }
+    ],
+    "additionalItems": {
+      "type": "number"
+    },
+    "minItems": 1,
+    "maxItems": 2
+  },
+
+  "license": {
+    "title": "License",
+    "description": "A license object that is activated on the server",
+    "type": "object",
+    "properties": {
+      "id": {
+        "title": "License ID",
+        "type": "string"
+      },
+      "licensee": {
+        "title": "Name of the license holder",
+        "type": "string"
+      },
+      "expiryDate": {
+        "title": "Expiry date",
+        "type": "string",
+        "format": "date"
+      },
+      "features": {
+        "title": "Additional features",
+        "type": "array",
+        "items": {
+          "$ref": "#/licenseFeature"
+        }
+      },
+      "restrictions": {
+        "title": "Restrictions",
+        "type": "array",
+        "items": {
+          "$ref": "#/licenseRestriction"
+        }
+      }
+    },
+    "required": ["id", "licensee"]
+  },
+
+  "licenseFeature": {
+    "title": "License feature",
+    "description": "An optional feature that is enabled by a license",
+    "type": "object",
+    "properties": {
+      "type": {
+        "title": "Feature type",
+        "type": "string"
+      },
+      "label": {
+        "title": "Description",
+        "type": "string"
+      },
+      "secondaryLabel": {
+        "title": "Additional info",
+        "type": "string"
+      },
+      "parameters": {
+        "type": "object"
+      }
+    },
+    "required": ["type"]
+  },
+
+  "licenseRestriction": {
+    "title": "License restrictions",
+    "description": "Restrictions imposed on the functionality of the server by a license",
+    "type": "object",
+    "properties": {
+      "type": {
+        "title": "Restriction type",
+        "type": "string"
+      },
+      "label": {
+        "title": "Description",
+        "type": "string"
+      },
+      "secondaryLabel": {
+        "title": "Additional info",
+        "type": "string"
+      },
+      "parameters": {
+        "type": "object"
+      }
+    },
+    "required": ["type"]
+  },
+
+  "logMessage": {
+    "title": "Log message",
+    "description": "A single log message sent from the server to the client",
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "number"
+      },
+      "sender": {
+        "$ref": "#/objectId"
+      },
+      "severity": {
+        "$ref": "#/severity"
+      }
+    },
+    "required": ["message"]
+  },
+
+  "messageId": {
+    "title": "Message ID",
+    "description": "Identifier of the message",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 36
+  },
+
+  "objectIdList": {
+    "title": "Object IDs",
+    "description": "IDs of the objects that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/objectId"
+    },
+    "uniqueItems": true
+  },
+
+  "objectId": {
+    "title": "Object ID",
+    "description": "Identifier of a single object",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64,
+    "pattern": "^[^/]+$"
+  },
+
+  "objectType": {
+    "title": "Object type",
+    "description": "Type of an object tracked by the server",
+    "type": "string",
+    "examples": ["beacon", "dock", "other", "uav", "weatherStation"]
+  },
+
+  "objectTypeFilter": {
+    "title": "Object types",
+    "description": "Types of objects that the user is interested in",
+    "type": "array",
+    "items": {
+      "$ref": "#/objectType"
+    },
+    "uniqueItems": true
+  },
+
+  "preflightCheckInfo": {
+    "title": "UAV preflight check info",
+    "description": "Preflight check information of a single UAV",
+    "type": "object",
+    "properties": {
+      "items": {
+        "title": "Preflight check items",
+        "type": "array",
+        "items": {
+          "$ref": "#/preflightCheckItem"
+        }
+      },
+      "message": {
+        "title": "Preflight check summary",
+        "description": "Preflight check summary message",
+        "type": "string"
+      },
+      "result": {
+        "$ref": "#/preflightCheckResult"
+      }
+    },
+    "required": ["items", "result"]
+  },
+
+  "preflightCheckItem": {
+    "title": "A single item in a preflight checklist",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/preflightCheckItemId"
+      },
+      "label": {
+        "title": "Label of the preflight checklist item",
+        "type": "string"
+      },
+      "result": {
+        "$ref": "#/preflightCheckResult"
+      },
+      "message": {
+        "title": "Detailed message for the preflight checklist item",
+        "type": "string"
+      }
+    },
+    "required": ["id", "result"]
+  },
+
+  "preflightCheckItemId": {
+    "$ref": "#/objectId"
+  },
+
+  "preflightCheckResult": {
+    "title": "Preflight check result",
+    "description": "Result of the preflight check or a single item in a preflight checklist",
+    "type": "string",
+    "enum": [
+      "off",
+      "pass",
+      "warning",
+      "running",
+      "softFailure",
+      "failure",
+      "error"
+    ]
+  },
+
+  "positionXYZ": {
+    "title": "Position (XYZ)",
+    "description": "Position in a local right-handed XYZ coordinate system",
+    "type": "array",
+    "items": [
+      {
+        "title": "X component",
+        "description": "X component of the vector, in mm",
+        "type": "integer"
+      },
+      {
+        "title": "Y component",
+        "description": "Y component of the vector, in mm",
+        "type": "integer"
+      },
+      {
+        "title": "Z component",
+        "description": "Z component of the vector, in mm",
+        "type": "integer"
+      }
+    ]
+  },
+
+  "receiptId": {
+    "title": "Receipt ID",
+    "description": "Identifier of the receipt",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64
+  },
+
+  "receiptIdList": {
+    "title": "Receipt IDs",
+    "description": "IDs of the receipts that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/receiptId"
+    },
+    "uniqueItems": true
+  },
+
+  "receiptMap": {
+    "type": "object",
+    "additionalProperties": { "$ref": "#/receiptId" }
+  },
+
+  "severity": {
+    "title": "Severity",
+    "description": "Severity of the message",
+    "type": "string",
+    "enum": ["debug", "info", "warning", "error", "critical"]
+  },
+
+  "transportOptions": {
+    "title": "Transport options",
+    "description": "Additional preferences about how the message should be delivered to UAVs",
+    "type": "object",
+    "properties": {
+      "channel": {
+        "title": "Channel",
+        "description": "Index of the communication channel to use",
+        "type": "integer"
+      },
+      "broadcast": {
+        "title": "Broadcast allowed?",
+        "description": "Stores whether the server is allowed to use a broadcast message",
+        "type": "boolean"
+      }
+    }
+  },
+
+  "uavIdList": {
+    "title": "UAV IDs",
+    "description": "IDs of the UAVs that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/objectId"
+    },
+    "uniqueItems": true
+  },
+
+  "uavStatusInfo": {
+    "title": "UAV status info",
+    "description": "Status information of a single UAV",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/objectId"
+      },
+      "mode": {
+        "title": "Flight mode",
+        "description": "The flight mode of the UAV",
+        "type": "string"
+      },
+      "position": {
+        "$ref": "#/gpsCoordinate"
+      },
+      "positionXYZ": {
+        "$ref": "#/positionXYZ"
+      },
+      "gps": {
+        "$ref": "#/gpsFix"
+      },
+      "heading": {
+        "title": "Heading",
+        "description": "The heading of the UAV in the local tangent plane, in 1/10th of degrees",
+        "type": "integer",
+        "minimum": 0,
+        "exclusiveMaximum": 3600
+      },
+      "attitude": {
+        "$ref": "#/attitude"
+      },
+      "velocity": {
+        "$ref": "#/velocityNED"
+      },
+      "velocityXYZ": {
+        "$ref": "#/velocityXYZ"
+      },
+      "timestamp": {
+        "title": "Last updated at",
+        "description": "Timestamp that denotes when the status of the UAV was updated the last time",
+        "type": "number"
+      },
+      "battery": {
+        "$ref": "#/batteryInfo"
+      },
+      "light": {
+        "$ref": "#/colorRGB565"
+      },
+      "errors": {
+        "$ref": "#/errorCodeList"
+      },
+      "debug": {
+        "type": "string"
+      }
+    },
+    "required": ["id", "position", "timestamp"]
+  },
+
+  "userName": {
+    "title": "Username",
+    "description": "Name of the user",
+    "type": "string",
+    "pattern": "^[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~]*(@[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~.]+)?$"
+  },
+
+  "velocityNED": {
+    "title": "Velocity (NED)",
+    "description": "Velocity in the NED coordinate system",
+    "type": "array",
+    "items": [
+      {
+        "title": "North component",
+        "description": "North component of the vector, in mm/s",
+        "type": "integer"
+      },
+      {
+        "title": "East component",
+        "description": "East component of the vector, in mm/s",
+        "type": "integer"
+      },
+      {
+        "title": "Down component",
+        "description": "Down component of the vector, in mm/s",
+        "type": "integer"
+      }
+    ]
+  },
+
+  "velocityXYZ": {
+    "title": "Velocity (XYZ)",
+    "description": "Velocity in a local right-handed XYZ coordinate system",
+    "type": "array",
+    "items": [
+      {
+        "title": "X component",
+        "description": "X component of the vector, in mm/s",
+        "type": "integer"
+      },
+      {
+        "title": "Y component",
+        "description": "Y component of the vector, in mm/s",
+        "type": "integer"
+      },
+      {
+        "title": "Z component",
+        "description": "Z component of the vector, in mm/s",
+        "type": "integer"
+      }
+    ]
+  },
+
+  "versionMap": {
+    "type": "object",
+    "description": "Object mapping string identifiers to version numbers in no particular format",
+    "additionalProperties": { "type": "string" }
+  },
+
+  "versionNumber": {
+    "title": "Version",
+    "description": "Version number in major.minor.patch format; minor and patch versions are optional",
+    "type": "string",
+    "pattern": "^[0-9]+(\\.[0-9]+){0,2}$"
+  },
+
+  "weather": {
+    "title": "Weather info",
+    "type": "object",
+    "properties": {
+      "stationId": {
+        "$ref": "#/objectId"
+      },
+      "position": {
+        "$ref": "#/gpsCoordinate"
+      },
+      "timestamp": {
+        "title": "Timestamp",
+        "description": "Timestamp that denotes the time the weather information applies to",
+        "type": "integer"
+      },
+      "code": {
+        "title": "Weather condition code",
+        "description": "Numeric weather condition code according to OpenWeatherMap conventions",
+        "type": "integer",
+        "minimum": 200,
+        "maximum": 804
+      },
+      "temperature": {
+        "title": "Temperature",
+        "description": "Temperature, in kelvin",
+        "type": "integer",
+        "minimum": 0
+      },
+      "feelsLike": {
+        "title": "Feels like",
+        "description": "Temperature, in kelvin, adjusted for human perception of weather",
+        "type": "integer",
+        "minimum": 0
+      },
+      "pressure": {
+        "title": "Pressure",
+        "description": "Atmospheric pressure on the sea level, in Pa",
+        "type": "integer"
+      },
+      "humidity": {
+        "title": "Humidity",
+        "description": "Humidity, in %",
+        "type": "integer"
+      },
+      "dewPoint": {
+        "title": "Dew point",
+        "description": "Atmospheric temperature in 1/10th kelvin below which water droplets begin to condense and dew can form",
+        "type": "integer",
+        "minimum": 0
+      },
+      "clouds": {
+        "title": "Cloudiness",
+        "description": "Cloudiness, in %",
+        "type": "integer"
+      },
+      "uvIndex": {
+        "title": "UV index",
+        "description": "UV index, 1/100 units; e.g. 89 --> 0.89",
+        "type": "integer"
+      },
+      "kpIndex": {
+        "title": "Planetary K-index",
+        "type": "integer"
+      },
+      "visibility": {
+        "title": "Visibility",
+        "description": "Average visibility, in metres",
+        "type": "integer"
+      },
+      "windDirection": {
+        "title": "Wind direction",
+        "description": "Meteorological wind direction, in 1/10th degrees clockwise from due North",
+        "type": "integer",
+        "minimum": 0,
+        "exclusiveMaximum": 3600
+      },
+      "windSpeed": {
+        "title": "Wind speed",
+        "description": "Wind speed, in centimetres per second",
+        "type": "integer"
+      }
+    },
+    "required": ["timestamp"]
+  },
+
+  "weatherStationIdList": {
+    "title": "Weather station IDs",
+    "description": "IDs of the weather stations that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/objectId"
+    },
+    "uniqueItems": true
+  }
 }

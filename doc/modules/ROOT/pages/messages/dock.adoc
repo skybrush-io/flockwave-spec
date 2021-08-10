@@ -52,11 +52,7 @@ _either_ in the `status` list or in the `error` map.
     "status": {
         "base": {
             "id": "base",
-            "position": {
-                "lat": 51.9976597,
-                "lon": -0.7406863,
-                "amsl": 93.765
-            },
+            "position": [519976597, -7406863, 93765],
             "timestamp": "2015-12-08T08:17:41.000Z"
         }
     },

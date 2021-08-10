@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "WTH-INF"
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/weather"
+      }
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

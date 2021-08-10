@@ -1,0 +1,148 @@
+= `WTT` — Weather station related messages
+
+Weather stations use a combination of instruments to provide basic measurements
+about the current weather and also to provide short-term forecasts. The messages
+listed in this section are specific to weather stations and do not apply to
+other object types.
+
+== `WTH-AT` - Current weather at a given geograpical coordinate.
+
+A client sends this request to the server to obtain information about the current
+weather at the given geographical coordinate. If there is no weather station at
+the given coordinate, the server MAY use data from the nearest weather station,
+interpolate information from multiple nearby weather stations, or turn to an
+externa service such as OpenWeatherMap to provide weather data at the given
+location.
+
+The response contains an object of type xref:types.adoc#_weather[`Weather`].
+Weather objects provide a `position` field; this may or may not be identical
+to the position in the request. When the position is identical, it indicates that
+the weather object was interpolated from nearby weather stations or that there
+was an exact match for the given coordinate. When the position is not identical,
+it indicates that the weather object was obtained from a single nearby weather
+station, and the position shows the coordinate of the weather station.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`position` |yes |xref:types.adoc#_gpscoordinate[`GPSCoordinate`] |The coordinate that the caller is interested in. Altitude information is typically ignored.
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`weather` |no |xref:types.adoc#_weather[`Weather`] |The current weather at the given coordinate. May be missing if there are no weather stations or providers known to the server.
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "WTH-AT",
+    "position": [519976597, -7406863]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+  "type": "WTH-AT",
+  "weather": {
+    "position": [519976597, -7406863],
+    "timestamp": 1628607017000,
+    "code": 500,
+    "sunrise": 1628609700000,
+    "sunset": 1628618640000,
+    "temperature": 2840,
+    "feelsLike": 2828,
+    "pressure": 101900,
+    "humidity": 62,
+    "dewPoint": 2771,
+    "uvIndeX": 89,
+    "clouds": 0,
+    "visibility": 10000,
+    "windSpeed": 600,
+    "windDirection": 3000
+  }
+}
+----
+
+== `WTH-INF` - Basic status information of one or more weather stations.
+
+A client sends this request to the server to obtain basic status information
+about one or more weather stations currently known to the server. The basic
+status information includes measurements about the _current_ weather
+conditions near the station.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of weather station IDs that the client is
+interested in
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "WTH-INF",
+    "ids": ["garden", "spam"]
+}
+----
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`status` |no |object of xref:types.adoc#_weather[`Weather`] |Object mapping weather station IDs to the corresponding
+weather information.
+
+|`error` |no |object |Object mapping weather station IDs to reasons why the
+corresponding weather information could not have been retrieved.
+|===
+
+All the weather station IDs that were specified in the request MUST appear
+_either_ in the `status` list or in the `error` map.
+
+*Example response*
+
+[source,json]
+----
+{
+  "type": "WTH-INF",
+  "status": {
+    "garden": {
+      "position": [519976597, -7406863],
+      "timestamp": 1628607017000,
+      "stationId": "garden",
+      "code": 500,
+      "sunrise": 1628609700000,
+      "sunset": 1628618640000,
+      "temperature": 2840,
+      "feelsLike": 2828,
+      "pressure": 101900,
+      "humidity": 62,
+      "dewPoint": 2771,
+      "uvIndeX": 89,
+      "clouds": 0,
+      "visibility": 10000,
+      "windSpeed": 600,
+      "windDirection": 3000
+    }
+  },
+  "error": {
+    "spam": "No such weather station."
+  }
+}
+----
