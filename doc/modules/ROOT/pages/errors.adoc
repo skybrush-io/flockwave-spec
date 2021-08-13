@@ -149,6 +149,11 @@ safety distance.
 on the type of the UAV, this can typically be resolved by adjusting some
 configuration parameters or configuration files on the UAV.
 
+|138 |RC CALIB |RC not calibrated. The remote controller of the drone is most
+likely not calibrated. Use this error code only for drones that require an RC
+calibration; toy drones or drones that do not need RC calibration typically do
+not need to use this error code.
+
 |188 |SIMERR |Simulated error. Use this error code to trigger a simulated RTH or
 loitering in the absence of any other error, for testing purposes.
 
