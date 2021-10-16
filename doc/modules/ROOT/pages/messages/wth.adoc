@@ -11,8 +11,8 @@ A client sends this request to the server to obtain information about the curren
 weather at the given geographical coordinate. If there is no weather station at
 the given coordinate, the server MAY use data from the nearest weather station,
 interpolate information from multiple nearby weather stations, or turn to an
-externa service such as OpenWeatherMap to provide weather data at the given
-location.
+external service such as https://openweathermap.org[OpenWeatherMap] to provide
+weather data at the given location.
 
 The response contains an object of type xref:types.adoc#_weather[`Weather`].
 Weather objects provide a `position` field; this may or may not be identical

@@ -1062,7 +1062,7 @@ weather stations or external weather APIs.
 The structure of this object is heavily influenced by the OpenWeatherMap
 one-call API response. Almost all of the fields are optional to account
 for use-cases when a weather station cannot provide one or more of the
-response fields; only the position and the timestamp is mandatory.
+response fields; only the position and the timestamp are mandatory.
 
 *Fields*
 
