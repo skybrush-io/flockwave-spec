@@ -145,6 +145,9 @@
     },
     {
       "$ref": "response_WTH-INF.json#/"
+    },
+    {
+      "$ref": "response_WTH-LIST.json#/"
     }
   ]
 }

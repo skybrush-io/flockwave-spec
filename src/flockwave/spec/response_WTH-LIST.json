@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "WTH-LIST"
+    },
+    "ids": {
+      "$ref": "definitions.json#/weatherStationIdList"
+    }
+  },
+  "required": ["type", "ids"],
+  "additionalProperties": false
+}

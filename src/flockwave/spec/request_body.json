@@ -148,6 +148,9 @@
     },
     {
       "$ref": "request_WTH-INF.json#/"
+    },
+    {
+      "$ref": "request_WTH-LIST.json#/"
     }
   ]
 }

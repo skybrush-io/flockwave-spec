@@ -146,3 +146,40 @@ _either_ in the `status` list or in the `error` map.
   }
 }
 ----
+
+== `WTH-LIST` — List of all the weather stations managed by the server
+
+A client sends this request to the server to obtain the list of all the
+weather stations and providers currently managed by the server.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of weather station IDs for all the weather
+stations that the server manages
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "WTH-LIST"
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "WTH-LIST",
+    "ids": ["gardan", "kpIndex:noaa"]
+}
+----
