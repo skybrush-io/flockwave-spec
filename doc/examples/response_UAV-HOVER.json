@@ -1,0 +1,13 @@
+{
+  "type": "UAV-HOVER",
+  "result": {
+    "1": true
+  },
+  "error": {
+    "31": "UAV is a fixed-wing aircraft.",
+    "spam": "No such UAV."
+  },
+  "receipt": {
+    "17": "0badcafedeadbeef"
+  }
+}

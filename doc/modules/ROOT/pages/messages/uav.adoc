@@ -228,6 +228,69 @@ the UAV.
 }
 ----
 
+== `UAV-HOVER` - Request position hold immediately
+
+A client sends this request to the server to request one or more UAVs to stop
+and hover in place in the air as soon as possible. Not applicable to fixed-wing
+UAVs that are not capable of hovering in place.
+
+The server responds with two lists: the first list contains the IDs of
+the UAVs where the command to hover in place was _sent_, and the second list
+contains the IDs where such a command was not delivered successfully. (Possible
+reasons for failure could be: invalid UAV ID, UAV is a fixed-wing aircraft and
+so on). The server MAY decide to include more detailed information about failed
+attempts in the response.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of UAV IDs to target with this
+message
+|`transport` |no |xref:types.adoc#_transportoptions[TransportOptions] |Object
+describing any additional preferences about how the messages should be delivered
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each UAV is mapped to a boolean denoting whether the operation was sent
+successfully to the UAV. If the UAV supports acknowledgments for this
+operation, the result will indicate whether the UAV has _acknowledged_ the
+operation. If the UAV does not support acknowledgments for this type of
+operation, the result will indicate whether the request has been _sent_ to
+the UAV.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "UAV-HOVER",
+    "ids": ["1", "17", "31", "spam"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "UAV-HOVER",
+    "result": {
+        "1": true,
+    },
+    "error": {
+        "31": "UAV does not support forced shutdown.",
+        "spam": "No such UAV."
+    },
+    "receipt": {
+        "17": "0badcafedeadbeef"
+    }
+}
+----
+
 == `UAV-INF` — Basic status information of one or more UAVs
 
 A client sends this request to the server to obtain basic status

@@ -111,6 +111,9 @@
       "$ref": "request_UAV-HALT.json#/"
     },
     {
+      "$ref": "request_UAV-HOVER.json#/"
+    },
+    {
       "$ref": "request_UAV-INF.json#/"
     },
     {
