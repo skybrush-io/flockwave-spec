@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "BCN-INF"
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/beaconStatusInfo"
+      }
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

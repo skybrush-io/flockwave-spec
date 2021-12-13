@@ -76,6 +76,36 @@
     ]
   },
 
+  "beaconIdList": {
+    "title": "Beacon IDs",
+    "description": "IDs of the beacons that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/objectId"
+    },
+    "uniqueItems": true
+  },
+
+  "beaconStatusInfo": {
+    "title": "Beacon status info",
+    "description": "Status information of a single beacon",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/objectId"
+      },
+      "position": {
+        "$ref": "#/gpsCoordinate"
+      },
+      "timestamp": {
+        "title": "Last updated at",
+        "description": "Timestamp that denotes when the status of the beacon was updated the last time",
+        "type": "number"
+      }
+    },
+    "required": ["id", "timestamp"]
+  },
+
   "channelId": {
     "title": "Channel ID",
     "description": "Identifier of a single channel of a single device on a UAV",

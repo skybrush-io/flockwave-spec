@@ -15,6 +15,9 @@
       "$ref": "request_AUTH-WHOAMI.json#/"
     },
     {
+      "$ref": "request_BCN-INF.json#/"
+    },
+    {
       "$ref": "request_CLK-INF.json#/"
     },
     {

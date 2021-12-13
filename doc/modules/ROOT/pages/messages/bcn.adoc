@@ -1,20 +1,20 @@
-= `DOCK` — Docking station related messages
+= `DOCK` — Beacon-related messages
 
-Docking stations are subtypes of objects and thus exist in the same namespace as
+Beacons are subtypes of objects and thus exist in the same namespace as
 all other objects in the server. The messages listed in this section are specific
-to docking stations and do not apply to other object types.
+to beacons and do not apply to other object types.
 
-== `DOCK-INF` - Basic status information of one or more docking stations
+== `BCN-INF` - Basic status information of one or more beacons
 
 A client sends this request to the server to obtain basic status
-information about one or more docking stations currently known to the server.
+information about one or more beacons currently known to the server.
 
 *Request fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`ids` |yes |list of strings |The list of dock IDs that the client is
+|`ids` |yes |list of strings |The list of beacon IDs that the client is
 interested in
 |===
 
@@ -23,14 +23,14 @@ interested in
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`status` |no |object of xref:types.adoc#_dockstatusinfo[`DockStatusInfo`] |Object mapping docking station IDs to the corresponding
+|`status` |no |object of xref:types.adoc#_beaconstatusinfo[`BeaconStatusInfo`] |Object mapping beacon IDs to the corresponding
 status information.
 
-|`error` |no |object |Object mapping docking station IDs to reasons why the
+|`error` |no |object |Object mapping beacon IDs to reasons why the
 corresponding status information could not have been retrieved.
 |===
 
-All the docking station IDs that were specified in the request MUST appear
+All the beacon IDs that were specified in the request MUST appear
 _either_ in the `status` list or in the `error` map.
 
 *Example request*
@@ -38,7 +38,7 @@ _either_ in the `status` list or in the `error` map.
 [source,json]
 ----
 {
-    "type": "DOCK-INF",
+    "type": "BCN-INF",
     "ids": ["base", "spam"]
 }
 ----
@@ -48,7 +48,7 @@ _either_ in the `status` list or in the `error` map.
 [source,json]
 ----
 {
-    "type": "DOCK-INF",
+    "type": "BCN-INF",
     "status": {
         "base": {
             "id": "base",
@@ -57,7 +57,7 @@ _either_ in the `status` list or in the `error` map.
         }
     },
     "error": {
-        "spam": "No such dock."
+        "spam": "No such beacon."
     }
 }
 ----

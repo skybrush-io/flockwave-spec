@@ -21,6 +21,9 @@
       "$ref": "response_AUTH-WHOAMI.json#/"
     },
     {
+      "$ref": "response_BCN-INF.json#/"
+    },
+    {
       "$ref": "response_CLK-INF.json#/"
     },
     {

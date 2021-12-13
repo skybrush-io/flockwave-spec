@@ -1,0 +1,13 @@
+{
+  "type": "BCN-INF",
+  "status": {
+    "base": {
+      "id": "base",
+      "position": [519976597, -7406863, 93765],
+      "timestamp": 1449562661000
+    }
+  },
+  "error": {
+    "spam": "No such beacon."
+  }
+}

@@ -131,6 +131,34 @@ in the range [0, 100]; omitted or negative if unknown
 [124, 100, false]
 ----
 
+== `BeaconStatusInfo`
+
+Monolithic object containing general status information about a single beacon.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|id |yes |string |The unique identifier of the beacon
+
+|position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the beacon
+
+|timestamp |yes |<<_timestamps,timestamp>> |Time when the last
+status update was received from the beacon
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "id": "base",
+    "position": [519976597, -7406863, 93765],
+    "timestamp": 1449562661000
+}
+----
+
 == `ChannelOperation`
 
 Enumeration type that describes the possible operations that may be
