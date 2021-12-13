@@ -1,4 +1,4 @@
-= `DOCK` — Beacon-related messages
+= `BCN` — Beacon-related messages
 
 Beacons are subtypes of objects and thus exist in the same namespace as
 all other objects in the server. The messages listed in this section are specific

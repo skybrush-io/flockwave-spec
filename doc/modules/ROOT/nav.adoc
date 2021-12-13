@@ -15,6 +15,7 @@
 ** xref:messages/sys.adoc[SYS — System information]
 ** xref:messages/uav.adoc[UAV — UAV-related messages]
 * xref:messages/optional.adoc[Optional message types]
+** xref:messages/bcn.adoc[BCN — Beacon-related messages]
 ** xref:messages/clk.adoc[CLK — Clock and timer-related messages]
 ** xref:messages/dock.adoc[DOCK — Docking station related messages]
 ** xref:messages/lcn.adoc[LCN — Licensing information]
