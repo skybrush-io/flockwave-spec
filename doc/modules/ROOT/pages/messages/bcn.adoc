@@ -53,7 +53,9 @@ _either_ in the `status` list or in the `error` map.
         "base": {
             "id": "base",
             "position": [519976597, -7406863, 93765],
-            "timestamp": "2015-12-08T08:17:41.000Z"
+            "timestamp": "2015-12-08T08:17:41.000Z",
+            "heading": 290,
+            "active": true
         }
     },
     "error": {

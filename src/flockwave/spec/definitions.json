@@ -94,6 +94,18 @@
       "id": {
         "$ref": "#/objectId"
       },
+      "active": {
+        "title": "Is active",
+        "type": "boolean",
+        "description": "Whether the beacon is currently active (operational). May be omitted for passive beacons or points of interest."
+      },
+      "heading": {
+        "title": "Heading",
+        "description": "The heading of the beacon in the local tangent plane, in 1/10th of degrees, if known",
+        "type": "integer",
+        "minimum": 0,
+        "exclusiveMaximum": 3600
+      },
       "position": {
         "$ref": "#/gpsCoordinate"
       },

@@ -142,7 +142,14 @@ Monolithic object containing general status information about a single beacon.
 |Name |Required? |Type |Description
 |id |yes |string |The unique identifier of the beacon
 
-|position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the beacon
+|position |no |<<_gpscoordinate,GPSCoordinate>> |The position of the beacon
+
+|heading |no |<<_angles,angle>> |The heading of the UAV, i.e. the
+direction the UAV is pointing, projected to the local tangent plane, if
+known.
+
+|active |no |boolean |Whether the beacon is active (operational). May be
+omitted for passive beacons or points of interest.
 
 |timestamp |yes |<<_timestamps,timestamp>> |Time when the last
 status update was received from the beacon
@@ -155,7 +162,9 @@ status update was received from the beacon
 {
     "id": "base",
     "position": [519976597, -7406863, 93765],
-    "timestamp": 1449562661000
+    "timestamp": 1449562661000,
+    "heading": 290,
+    "active": true
 }
 ----
 

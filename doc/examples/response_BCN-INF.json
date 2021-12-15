@@ -4,6 +4,8 @@
     "base": {
       "id": "base",
       "position": [519976597, -7406863, 93765],
+      "heading": 290,
+      "active": true,
       "timestamp": 1449562661000
     }
   },
