@@ -76,6 +76,23 @@
     ]
   },
 
+  "beaconBasicProperties": {
+    "title": "Beacon basic properties",
+    "description": "Basic information of a single beacon that is unlikely to change over time",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/objectId"
+      },
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "description": "The human-readable name of the beacon, shown on the UI"
+      }
+    },
+    "required": ["id", "name"]
+  },
+
   "beaconIdList": {
     "title": "Beacon IDs",
     "description": "IDs of the beacons that the message refers to",

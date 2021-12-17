@@ -63,3 +63,48 @@ _either_ in the `status` list or in the `error` map.
     }
 }
 ----
+
+== `BCN-PROPS` - Basic properties of one or more beacons
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of beacon IDs that the client is
+interested in
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each beacon ID is mapped to the basic properties of the beacon as a
+xref:types.adoc#beacon-basic-properties[BeaconBasicProperties] object.
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "BCN-PROPS",
+    "ids": ["base", "spam"]
+}
+----
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "BCN-PROPS",
+    "result": {
+        "base": {
+            "id": "base",
+            "name": "Main base"
+        }
+    },
+    "error": {
+        "spam": "No such beacon."
+    }
+}
+----

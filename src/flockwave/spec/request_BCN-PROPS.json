@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "BCN-PROPS"
+    },
+    "ids": {
+      "$ref": "definitions.json#/beaconIdList"
+    }
+  },
+  "required": ["type", "ids"]
+}

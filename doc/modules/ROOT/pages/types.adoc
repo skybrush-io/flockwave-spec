@@ -131,6 +131,31 @@ in the range [0, 100]; omitted or negative if unknown
 [124, 100, false]
 ----
 
+== `BeaconBasicProperties`
+
+Monolithic object containing basic information about a single beacon that is
+unlikely to change over time.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|id |yes |string |The unique identifier of the beacon
+
+|name |yes |string |The human-readable name of the beacon
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "id": "base",
+    "name": "Main base"
+}
+----
+
 == `BeaconStatusInfo`
 
 Monolithic object containing general status information about a single beacon.

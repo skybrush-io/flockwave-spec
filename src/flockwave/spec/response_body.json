@@ -24,6 +24,9 @@
       "$ref": "response_BCN-INF.json#/"
     },
     {
+      "$ref": "response_BCN-PROPS.json#/"
+    },
+    {
       "$ref": "response_CLK-INF.json#/"
     },
     {

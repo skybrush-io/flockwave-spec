@@ -1,0 +1,12 @@
+{
+  "type": "BCN-PROPS",
+  "result": {
+    "base": {
+      "id": "base",
+      "name": "Main base"
+    }
+  },
+  "error": {
+    "spam": "No such beacon."
+  }
+}

@@ -18,6 +18,9 @@
       "$ref": "request_BCN-INF.json#/"
     },
     {
+      "$ref": "request_BCN-PROPS.json#/"
+    },
+    {
       "$ref": "request_CLK-INF.json#/"
     },
     {
