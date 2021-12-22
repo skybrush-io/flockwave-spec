@@ -744,6 +744,29 @@
     "required": ["message"]
   },
 
+  "magneticVector": {
+    "title": "Magnetic vector",
+    "description": "Magnetic vector",
+    "type": "array",
+    "items": [
+      {
+        "title": "North",
+        "description": "North component, in nanoteslas",
+        "type": "integer"
+      },
+      {
+        "title": "East",
+        "description": "East component, in nanoteslas",
+        "type": "integer"
+      },
+      {
+        "title": "Down",
+        "description": "Down component, in nanoteslas",
+        "type": "integer"
+      }
+    ]
+  },
+
   "messageId": {
     "title": "Message ID",
     "description": "Identifier of the message",
@@ -1139,6 +1162,9 @@
         "type": "integer",
         "minimum": 0,
         "maximum": 9
+      },
+      "magneticVector": {
+        "$ref": "#/magneticVector"
       },
       "visibility": {
         "title": "Visibility",

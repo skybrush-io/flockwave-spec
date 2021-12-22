@@ -760,6 +760,15 @@ the server manages.
 }
 ----
 
+== `MagneticVector`
+
+This type represents a magnetic vector; typically the vector of Earth's magnetic
+field at a given location. The vector is represented in a North-East-Down
+coordinate system (positive axes point North, East and down, respectively), in
+nanoteslas.
+
+The object is stored as a list with three items.
+
 == `ObjectType`
 
 Enumeration type that describes the possible object types that the server
@@ -1143,6 +1152,7 @@ response fields; only the position and the timestamp are mandatory.
 |dewPoint |no |<<_temperatures,temperature>> |Dew point
 |uvIndex |no |integer |UV index, multiplied by 100 (e.g., 89 means 0.89)
 |kpIndex |no |integer |Planetary K-index
+|magneticVector |no |<<_magneticvector,MagneticVector>> |Earth's magnetic field, in nanoteslas
 |clouds |no |integer |Cloudiness, in %
 |visibility |no |integer |Visibility, in metres
 |windDirection |no |<<_angles,angle>> |Meteorological wind direction (i.e. where the wind blows from)
@@ -1169,6 +1179,7 @@ response fields; only the position and the timestamp are mandatory.
     "clouds": 0,
     "visibility": 10000,
     "windSpeed": 6000,
-    "windDirection": 3000
+    "windDirection": 3000,
+    "magneticField": [21451, 1989, 43823]
 }
 ----

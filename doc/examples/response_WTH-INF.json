@@ -17,7 +17,8 @@
       "clouds": 0,
       "visibility": 10000,
       "windSpeed": 6000,
-      "windDirection": 3000
+      "windDirection": 3000,
+      "magneticField": [21451, 1989, 43823]
     }
   },
   "error": {
