@@ -3,6 +3,7 @@ name = "flockwave-spec"
 version = "1.59.0"
 description = "JSON-Schema specification of the Flockwave protocol"
 authors = ["Tamas Nepusz <tamas@collmot.com>"]
+license = "GPL-3.0-or-later"
 packages = [
     { include = "flockwave", from = "src" }
 ]
@@ -15,7 +16,7 @@ jsonschema = {version = "^4.2.1", optional = true}
 jsonpointer = "^2.2"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.5"
+pytest = "^7.1.1"
 coverage = {extras = ["toml"], version = "^6.0"}
 pytest-cov = "^3.0.0"
 
@@ -25,6 +26,12 @@ cli = ["click", "jsonschema"]
 [[tool.poetry.source]]
 name = "collmot"
 url = "https://pypi.collmot.com/simple/"
+secondary = true
+
+[[tool.poetry.source]]
+name = "fury"
+url = "https://pypi.fury.io/skybrush/"
+secondary = true
 
 [tool.coverage.paths]
 source = ["src"]
