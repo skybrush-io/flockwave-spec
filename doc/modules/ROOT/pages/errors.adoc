@@ -106,6 +106,10 @@ for instance, the mission would take the UAV outside the current geofence zone.
 
 |70 |NO RADIO |The UAV is supposed to use a radio channel for communication, but
 it indicates that the channel is currently not available.
+
+|71 |FENCE |Geofence violation (out of flying zone). Use this error code only if
+the UAV is likely to stand idle on the ground; otherwise use code 201.
+
 |===
 
 == Errors (codes 128-191)
@@ -199,7 +203,10 @@ otherwise use code 66 or 134.
 |201 |FENCE |Geofence violation (out of flying zone). When leaving the
 designated flying zone, it is generally assumed that the UAV does not
 (and can not) know how to navigate back to the flying zone so it will
-attempt to land where it currently is.
+attempt to land where it currently is, or switch to RTH mode, assuming that
+the path from the current location to home is (mostly) in the permitted
+flying zone. Use this error code only if the UAV is likely to be airborne;
+otherwise use code 71.
 
 |202 |CLK |Internal clock error. This code should be used if one of the
 internal clocks of the UAV is not set properly. Use code 203 for
