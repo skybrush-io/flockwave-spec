@@ -1,12 +1,15 @@
 = Introduction
 
+This document describes *Flockwave*, the communication protocol used in the
+*Skybrush* ecosystem between the server component and the connected clients.
+
 *Flockwave* is a http://json.org/[JSON]-based communication protocol in
 https://collmot.com[CollMot Robotics]’s distributed UAV flock system that
 allows multiple ground control consoles (clients) and tailor-made third-party
 applications to monitor and control an airborne flock of UAVs via a central
 ground station (server).
 
-This document describes the key actors in the system and specifies the
+The document outlines the key actors in the system and specifies the
 communication protocol in detail. The document assumes familiarity with
 http://json.org/[JSON] and standard networking concepts such as TCP
 streams, the Hypertext Transfer Protocol (HTTP) and WebSockets. Details

@@ -1,5 +1,5 @@
-name: flockwave-spec
-title: Flockwave
+name: skybrush-protocol-spec
+title: Skybrush protocol spec
 version: 'latest'
 nav:
   - modules/ROOT/nav.adoc
