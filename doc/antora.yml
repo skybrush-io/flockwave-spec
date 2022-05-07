@@ -1,5 +1,5 @@
 name: skybrush-protocol-spec
-title: Skybrush protocol spec
+title: Skybrush protocol specification
 version: 'latest'
 nav:
   - modules/ROOT/nav.adoc
