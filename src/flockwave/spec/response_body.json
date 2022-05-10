@@ -141,6 +141,9 @@
       "$ref": "response_UAV-SIGNAL.json#/"
     },
     {
+      "$ref": "response_UAV-SLEEP.json#/"
+    },
+    {
       "$ref": "response_UAV-TAKEOFF.json#/"
     },
     {
@@ -148,6 +151,9 @@
     },
     {
       "$ref": "response_UAV-VER.json#/"
+    },
+    {
+      "$ref": "response_UAV-WAKEUP.json#/"
     },
     {
       "$ref": "response_WTH-AT.json#/"

@@ -1,0 +1,13 @@
+{
+  "type": "UAV-WAKEUP",
+  "result": {
+    "1": true
+  },
+  "error": {
+    "31": "UAV does not support sleep mode.",
+    "spam": "No such UAV."
+  },
+  "receipt": {
+    "17": "0badcafedeadbeef"
+  }
+}

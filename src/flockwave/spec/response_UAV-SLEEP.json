@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-SLEEP"
+    },
+    "result": {
+      "$ref": "definitions.json#/asyncBoolMap"
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    },
+    "receipt": {
+      "$ref": "definitions.json#/receiptMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

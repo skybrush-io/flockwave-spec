@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-WAKEUP"
+    },
+    "ids": {
+      "$ref": "definitions.json#/uavIdList"
+    },
+    "transport": {
+      "$ref": "definitions.json#/transportOptions"
+    }
+  },
+  "required": ["type", "ids"]
+}

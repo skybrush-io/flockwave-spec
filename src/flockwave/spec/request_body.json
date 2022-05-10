@@ -144,6 +144,9 @@
       "$ref": "request_UAV-SIGNAL.json#/"
     },
     {
+      "$ref": "request_UAV-SLEEP.json#/"
+    },
+    {
       "$ref": "request_UAV-TAKEOFF.json#/"
     },
     {
@@ -151,6 +154,9 @@
     },
     {
       "$ref": "request_UAV-VER.json#/"
+    },
+    {
+      "$ref": "request_UAV-WAKEUP.json#/"
     },
     {
       "$ref": "request_WTH-AT.json#/"
