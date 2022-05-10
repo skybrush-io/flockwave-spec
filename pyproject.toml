@@ -42,6 +42,7 @@ source = ["src"]
 
 [tool.coverage.report]
 show_missing = true
+exclude_lines = ["@abstractmethod", "@overload", "pragma: no cover"]
 
 [build-system]
 requires = ["poetry>=0.12"]
