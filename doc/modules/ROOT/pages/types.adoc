@@ -959,7 +959,7 @@ the UAVs. In particular, the transport options let the server know which
 communication channel the server should use if the UAVs are reachable over
 multiple communication channels (primary and secondary ones), and whether the
 server is allowed to use a broadcast message instead of addressing all the
-targeted UAVs one by one. THe broadcasting option should be used only if the
+targeted UAVs one by one. The broadcasting option should be used only if the
 sender is certain that it is safe to target all UAVs with the particular
 `UAV-...` message.
 
@@ -978,6 +978,9 @@ channel, 1 means the first backup channel and so on. Defaults to zero if omitted
 
 |broadcast |no |boolean |Whether the sender allows the server to use a broadcast
 message to reach all UAVs in range. Defaults to false if omitted.
+
+|ignoreIds |no |boolean |Whether to ignore the explicitly defined UAV IDs in the
+command in broadcast mode. See below for more details.
 |===
 
 *Example*
@@ -993,6 +996,34 @@ message to reach all UAVs in range. Defaults to false if omitted.
 The example above means that the first backup channel should be used and that
 broadcasting is allowed.
 
+=== Handling of `broadcast`, `ignoreIds` and UAV ID lists
+
+The interplay between the `broadcast` and the `ignoreIds` field in this object
+and a `uavIds` field in the corresponding command deserves a more detailed
+explanation. We assume that UAVs are typically reachable via one or more
+communication networks, and the server knows which network to use to reach a
+particular UAV. The rules are as follows:
+
+* When `broadcast` is missing or set to `false`, the messages sent by the server
+will be targeted to the UAVs explicitly listed in the `uavIds` field, and each
+such message will be unicast.Sending a command with an empty `uavIds` field thus
+generates no messages at all.
+
+* When `broadcast` is set to `true` and `ignoreIds` is `false` or missing, the
+server MUST go through the list of UAV IDs and find all the communication
+networks that contain at least one of the mentioned UAVs. The server MUST then
+send _one_ broadcast message per network. It MUST NOT send broadcast or unicast
+messages into communication networks that do not contain any of the UAVs in the
+`uavIds` field. Sending a command with an empty `uavIds` field thus generates
+no messages either.
+
+* When `broadcast` is set to `true` and `ignoreIds` is also set to `true`, the
+server MUST send _one_ broadcast message into all the communication networks
+that it uses to manage UAVs, irrespectively of whether it is aware of any
+UAVs in that network or not. Sending a command with an empty `uavIds` field will
+still generate one broadcast message per network. This can be used for remote
+power-on requests when the server does not know in advance how many UAVs there
+will be in each network.
 
 == `UAVStatusInfo`
 

@@ -943,6 +943,11 @@
         "title": "Broadcast allowed?",
         "description": "Stores whether the server is allowed to use a broadcast message",
         "type": "boolean"
+      },
+      "ignoreIds": {
+        "title": "Ignore IDs",
+        "description": "Whether to broadcast the message to all UAVs, ignoring the explicit UAV IDs in the command",
+        "type": "boolean"
       }
     }
   },
