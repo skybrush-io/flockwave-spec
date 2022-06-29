@@ -329,7 +329,16 @@
     "title": "Purpose",
     "description": "Purpose of the connection",
     "type": "string",
-    "enum": ["debug", "dock", "dgps", "gps", "time", "uavRadioLink", "other"]
+    "enum": [
+      "debug",
+      "dock",
+      "dgps",
+      "gps",
+      "time",
+      "uavRadioLink",
+      "mocap",
+      "other"
+    ]
   },
 
   "connectionStatus": {

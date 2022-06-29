@@ -436,6 +436,8 @@ docking station.
 
 `gps`:: A connection that receives data from a GPS device.
 
+`mocap`:: A connection to a motion capture system.
+
 `time`:: A connection whose purpose is to connect to a service or
 device that provides time-related information. Examples are connections
 to an NTP server or a MIDI timecode provider.
