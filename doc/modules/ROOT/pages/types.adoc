@@ -1008,8 +1008,8 @@ particular UAV. The rules are as follows:
 
 * When `broadcast` is missing or set to `false`, the messages sent by the server
 will be targeted to the UAVs explicitly listed in the `uavIds` field, and each
-such message will be unicast.Sending a command with an empty `uavIds` field thus
-generates no messages at all.
+such message will be unicast. Sending a command with an empty `uavIds` field
+thus generates no messages at all.
 
 * When `broadcast` is set to `true` and `ignoreIds` is `false` or missing, the
 server MUST go through the list of UAV IDs and find all the communication
