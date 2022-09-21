@@ -9,6 +9,7 @@ __all__ = ("FlockwaveErrorCode",)
 #: abbreviations
 _error_code_to_abbreviation = {
     0: "ok",
+    # Informational messages
     1: "disarm",
     2: "no log",
     3: "prearm",
@@ -18,6 +19,7 @@ _error_code_to_abbreviation = {
     7: "landed",
     8: "motors",
     63: "RTH",
+    # Warnings
     64: "storage",
     65: "RC lost",
     66: "lowbat",
@@ -26,6 +28,9 @@ _error_code_to_abbreviation = {
     69: "mission",
     70: "no radio",
     71: "fence",
+    72: "wind",
+    127: "warning",
+    # Errors
     128: "comm t/o",
     129: "ack t/o",
     130: "proto",
@@ -36,10 +41,13 @@ _error_code_to_abbreviation = {
     135: "target",
     136: "too far",
     137: "config",
+    138: "RC calib",
+    139: "wind",
     188: "simerr",
     189: "control",
     190: "sensor",
     191: "error",
+    # Critical errors
     192: "compat",
     193: "mag",
     194: "gyro",
@@ -65,6 +73,7 @@ _error_code_to_abbreviation = {
 #: Dictionary mapping Flockwave error codes to human-readable descriptions.
 _error_code_to_description = {
     0: "No error",
+    # Informational messages
     1: "Drone not armed yet",
     2: "Logging deactivated",
     3: "Prearm check in progress",
@@ -74,6 +83,7 @@ _error_code_to_description = {
     7: "Drone has landed successfully",
     8: "Motors are running while on ground",
     63: "Drone is returning home",
+    # Warnings
     64: "Low disk space",
     65: "RC lost",
     66: "Battery low",
@@ -82,6 +92,9 @@ _error_code_to_description = {
     69: "Mission configuration error or mission out of geofence",
     70: "Radio channel offline",
     71: "Drone is outside geofence on ground",
+    72: "Wind speed is high",
+    127: "Unspecified warning",
+    # Errors
     128: "Autopilot communication timeout",
     129: "Autopilot acknowledgment timeout",
     130: "Autopilot communication protocol error",
@@ -92,10 +105,13 @@ _error_code_to_description = {
     135: "Target not found",
     136: "Target is too far",
     137: "Configuration error",
+    138: "RC is not calibrated",
+    139: "Wind speed is too high",
     188: "Simulated error",
     189: "Error in control algorithm",
     190: "Unspecified sensor failure",
     191: "Unspecified error",
+    # Critical errors
     192: "Incompatible hardware or software",
     193: "Magnetometer error",
     194: "Gyroscope error",
@@ -143,6 +159,8 @@ class FlockwaveErrorCode(IntEnum):
     INVALID_MISSION_CONFIGURATION = 69
     RADIO_MISSING = 70
     GEOFENCE_VIOLATION_WARNING = 71
+    WIND_SPEED_WARNING = 72
+    UNSPECIFIED_WARNING = 127
 
     # Errors
     AUTOPILOT_COMM_TIMEOUT = 128
@@ -156,6 +174,7 @@ class FlockwaveErrorCode(IntEnum):
     TARGET_TOO_FAR = 136
     CONFIGURATION_ERROR = 137
     RC_NOT_CALIBRATED = 138
+    WIND_SPEED_ERROR = 139
     SIMULATED_ERROR = 188
     CONTROL_ALGORITHM_ERROR = 189
     SENSOR_FAILURE = 190

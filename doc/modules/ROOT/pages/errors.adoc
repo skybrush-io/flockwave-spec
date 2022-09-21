@@ -110,6 +110,14 @@ it indicates that the channel is currently not available.
 |71 |FENCE |Geofence violation (out of flying zone). Use this error code only if
 the UAV is likely to stand idle on the ground; otherwise use code 201.
 
+|72 |WIND |Wind speed is high. Use this error code if wind levels are high enough
+to lower the stability and decrease the flight envelope of your UAV but it is still
+able to navigate in all directions safely; at more severe wind levels use code 139.
+
+|127 |WARNING |Other, unspecified warning that does not present immediate danger
+to the normal operation of the UAV; for more severe unspecified error states
+use code 191.
+
 |===
 
 == Errors (codes 128-191)
@@ -158,6 +166,11 @@ likely not calibrated. Use this error code only for drones that require an RC
 calibration; toy drones or drones that do not need RC calibration typically do
 not need to use this error code.
 
+|139 |WIND |Wind speed is too high. Use this error code if the wind levels are
+too high to safely navigate in all directions and thus an immediate emergency
+action (e.g. "return to home" or "altitude decrease") is necessary to prevent
+reversing in headwind.
+
 |188 |SIMERR |Simulated error. Use this error code to trigger a simulated RTH or
 loitering in the absence of any other error, for testing purposes.
 
@@ -168,7 +181,8 @@ sensible input for the autopilot.
 |190 |SENSOR |Other, unspecified sensor failure that does not prevent RTH or
 loitering.
 
-|191 |ERROR |Other, unspecified error that does not prevent RTH or loitering.
+|191 |ERROR |Other, unspecified error that does not prevent RTH or loitering. For fatal unspecified errors use error code 255.
+
 |===
 
 == Critical errors (codes 192-255)
@@ -237,4 +251,5 @@ landing attempt.
 
 |255 |FATAL |Other, unspecified fatal error that triggers an immediate landing
 attempt.
+
 |===
