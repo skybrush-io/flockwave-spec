@@ -36,7 +36,7 @@ jobs:
         run: poetry install -E cli --no-interaction --no-root
 
       - name: Install project
-        run: poetry install --no-interaction
+        run: poetry install -E cli --no-interaction
 
       - name: Run tests
         run: poetry run pytest --cov=src --cov-report=xml -vv
