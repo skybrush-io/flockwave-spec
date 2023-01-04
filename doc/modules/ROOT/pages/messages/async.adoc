@@ -104,6 +104,36 @@ Exactly one of the `result` and the `error` keys MUST be present in the message.
 }
 ----
 
+[#async-st]
+== `ASYNC-ST` — Status information for an asynchronous operation
+
+A server sends this notification to a client to update the client about the
+progress of an asynchronous operation.
+
+*Notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`id` |yes |string |The list of receipt IDs that the message refers to
+
+|`progress` |yes |object |The progress of the asynchronous operation identified by the receipt ID
+|===
+
+*Example notification*
+
+[source,json]
+----
+{
+    "type": "ASYNC-ST",
+    "id": "0badcafedeadbeef",
+    "progress": {
+        "percentage": 80,
+        "status": "Almost ready :)"
+    }
+}
+----
+
 [#async-timeout]
 == `ASYNC-TIMEOUT` — Timeout notification for one or more asynchronous operations
 

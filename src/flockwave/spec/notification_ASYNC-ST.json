@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "ASYNC-ST"
+    },
+    "id": {
+      "$ref": "definitions.json#/receiptId"
+    },
+    "progress": {
+      "$ref": "definitions.json#/progress"
+    }
+  },
+  "required": ["type", "id", "progress"]
+}

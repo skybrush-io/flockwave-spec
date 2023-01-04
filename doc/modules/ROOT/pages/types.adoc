@@ -333,6 +333,8 @@ response was fully received by the server
 
 |progress |no |float |the progress of the execution of the command,
 expressed as an integer value between 0 and 100 (inclusive)
+
+|status |no |string |optional status text message
 |===
 
 *Example*
@@ -344,6 +346,7 @@ expressed as an integer value between 0 and 100 (inclusive)
     "acknowledged": 1459670842471,
     "updated": 1459670842811,
     "progress": 80,
+    "status": "Almost ready :)"
 }
 ----
 

@@ -260,9 +260,7 @@
         "type": "number"
       },
       "progress": {
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 100
+        "$ref": "#/progress"
       }
     },
     "required": ["sent"],
@@ -906,6 +904,23 @@
         "type": "integer"
       }
     ]
+  },
+
+  "progress": {
+    "title": "Progress information",
+    "description": "Progress of some operation being executed on a UAV",
+    "type": "object",
+    "properties": {
+      "percentage": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "status": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
   },
 
   "receiptId": {
