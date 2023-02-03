@@ -239,6 +239,13 @@ Note that only one notification will be sent even if there are multiple
 subscriptions of the client that matches the channel that was modified.
 However, it is possible to subscribe to the same path multiple times.
 
+The server MUST NOT accept nonexistent paths in the `paths` array by
+default. However, if the `lazy` request field is set to `true`, the
+server MUST accept nonexistent paths and subscribe the client to these
+paths when the paths come into existence later in the device tree. This
+allows a client to subscribe to channels from a UAV even when the server
+has not received telemetry status from the UAV yet.
+
 *Request fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
@@ -246,6 +253,8 @@ However, it is possible to subscribe to the same path multiple times.
 |Name |Required? |Type |Description
 |`paths` |yes |list of strings |The list of device or channel paths that
 the client is interested in
+|`lazy`  |no  |boolean |Whether the list is allowed to contain paths that do not
+exist yet.
 |===
 
 *Response fields*
@@ -266,7 +275,7 @@ the subscription failed for these paths.
 ----
 {
     "type": "DEV-SUB",
-    "paths": ["/1/battery/voltage", "/1/led", "/1/cpu/core3"]
+    "paths": ["/1/battery/voltage", "/1/led", "/1/cpu/core3"],
 }
 ----
 
