@@ -373,10 +373,12 @@
       "misc",
       "pyro",
       "radio",
+      "rangefinder",
       "rc",
       "rotor",
       "sensor",
-      "speaker"
+      "speaker",
+      "sprayer"
     ],
     "default": "misc"
   },
