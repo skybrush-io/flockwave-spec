@@ -74,6 +74,8 @@ UAV has not finished initializing and the UAV is not ready for takeoff yet.
 |6  |LANDING |Drone is landing.
 |7  |LANDED  |Drone has landed successfully.
 |8  |MOTORS  |Motors are running while the drone is on the ground.
+|9  |SLEEP   |Drone is in a low-power "sleep" state. Flight controller is most
+likely powered down, but it can be resumed remotely.
 |63 |RTH     |Drone is returning to its home position.
 |===
 
