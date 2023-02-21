@@ -43,7 +43,8 @@ def _get_json_object_from_resource(resource_path: str) -> Dict[str, Any]:
     Returns:
         the JSON object from the given resource
     """
-    return json.load(open_text(SCHEMA_PACKAGE, resource_path))
+    with open_text(SCHEMA_PACKAGE, resource_path) as fp:
+        return json.load(fp)
 
 
 @memoized
