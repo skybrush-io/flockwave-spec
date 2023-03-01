@@ -10,7 +10,7 @@ __all__ = ("FlockwaveErrorCode",)
 _error_code_to_abbreviation = {
     0: "ok",
     # Informational messages
-    1: "disarm",
+    1: "ground",
     2: "no log",
     3: "prearm",
     4: "init",
@@ -30,6 +30,7 @@ _error_code_to_abbreviation = {
     70: "no radio",
     71: "fence",
     72: "wind",
+    73: "disarm",
     127: "warning",
     # Errors
     128: "comm t/o",
@@ -75,7 +76,7 @@ _error_code_to_abbreviation = {
 _error_code_to_description = {
     0: "No error",
     # Informational messages
-    1: "Drone not armed yet",
+    1: "Drone is on the ground with motors off",
     2: "Logging deactivated",
     3: "Prearm check in progress",
     4: "Autopilot initializing",
@@ -95,6 +96,7 @@ _error_code_to_description = {
     70: "Radio channel offline",
     71: "Drone is outside geofence on ground",
     72: "Wind speed is high",
+    73: "Drone not armed yet",
     127: "Unspecified warning",
     # Errors
     128: "Autopilot communication timeout",
@@ -142,7 +144,7 @@ class FlockwaveErrorCode(IntEnum):
     NO_ERROR = 0
 
     # Informational messages
-    DISARMED = 1
+    ON_GROUND = 1
     LOGGING_DEACTIVATED = 2
     PREARM_CHECK_IN_PROGRESS = 3
     AUTOPILOT_INITIALIZING = 4
@@ -163,6 +165,7 @@ class FlockwaveErrorCode(IntEnum):
     RADIO_MISSING = 70
     GEOFENCE_VIOLATION_WARNING = 71
     WIND_SPEED_WARNING = 72
+    DISARMED = 73
     UNSPECIFIED_WARNING = 127
 
     # Errors

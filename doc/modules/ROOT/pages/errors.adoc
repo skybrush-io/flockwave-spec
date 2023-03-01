@@ -61,9 +61,9 @@ on user interfaces where space is at a premium.
 
 [width="100%",cols="10%,10%,80%",options="header",]
 |===
-|Code |Abbr |Description
-|1  |DISARM  |Drone not armed yet. This message is shown when the UAV is in a state that
-motor thrust is prevented by a hardware or software switch.
+|Code |Abbr  |Description
+|1  |GROUND  |Drone is on the ground. If no other error codes are set, this code
+alone means that the drone is ready to take off.
 |2  |NO LOG  |Logging deactivated. This message is shown when logging-capable UAVs
 are not able to write entries to their logs for some reason.
 |3  |PREARM  |Prearm check in progress. This message is shown when the UAV is performing
@@ -115,6 +115,9 @@ the UAV is likely to stand idle on the ground; otherwise use code 201.
 |72 |WIND |Wind speed is high. Use this error code if wind levels are high enough
 to lower the stability and decrease the flight envelope of your UAV but it is still
 able to navigate in all directions safely; at more severe wind levels use code 139.
+
+|73  |DISARM   |Drone not armed yet. This warning is shown when the UAV is in a
+state that motor thrust is prevented by a hardware or software switch.
 
 |127 |WARNING |Other, unspecified warning that does not present immediate danger
 to the normal operation of the UAV; for more severe unspecified error states
