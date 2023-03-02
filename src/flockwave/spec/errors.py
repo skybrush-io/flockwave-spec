@@ -45,6 +45,8 @@ _error_code_to_abbreviation = {
     137: "config",
     138: "RC calib",
     139: "wind",
+    140: "payload",
+    141: "proximity",
     188: "simerr",
     189: "control",
     190: "sensor",
@@ -111,6 +113,8 @@ _error_code_to_description = {
     137: "Configuration error",
     138: "RC is not calibrated",
     139: "Wind speed is too high",
+    140: "Payload error",
+    141: "Proximity sensor error",
     188: "Simulated error",
     189: "Error in control algorithm",
     190: "Unspecified sensor failure",
@@ -181,6 +185,8 @@ class FlockwaveErrorCode(IntEnum):
     CONFIGURATION_ERROR = 137
     RC_NOT_CALIBRATED = 138
     WIND_SPEED_ERROR = 139
+    PAYLOAD_ERROR = 140
+    PROXIMITY_ERROR = 141
     SIMULATED_ERROR = 188
     CONTROL_ALGORITHM_ERROR = 189
     SENSOR_FAILURE = 190

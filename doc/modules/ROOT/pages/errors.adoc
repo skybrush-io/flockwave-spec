@@ -176,6 +176,11 @@ too high to safely navigate in all directions and thus an immediate emergency
 action (e.g. "return to home" or "altitude decrease") is necessary to prevent
 reversing in headwind.
 
+|140 |PAYLOAD |Payload error. Use this error code for general payload-related
+error states.
+
+|141 |PROXIMITY |Proximity sensor error.
+
 |188 |SIMERR |Simulated error. Use this error code to trigger a simulated RTH or
 loitering in the absence of any other error, for testing purposes.
 
