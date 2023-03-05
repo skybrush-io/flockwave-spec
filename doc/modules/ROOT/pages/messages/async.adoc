@@ -4,6 +4,7 @@ The messages in this chapter are related to the handling of
 xref:async.adoc[asynchronous operations]; please read that chapter for more
 details.
 
+[#async-cancel]
 == `ASYNC-CANCEL` — Cancellation of an asynchronous operation
 
 A client sends this request to the server when it is not interested in the result
@@ -84,7 +85,7 @@ error.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`id` |yes |string |The list of receipt IDs that the message refers to
+|`id` |yes |string |The receipt ID that the message refers to
 
 |`result` |no |object |The result of the asynchronous operation identified by the receipt ID
 
@@ -104,20 +105,83 @@ Exactly one of the `result` and the `error` keys MUST be present in the message.
 }
 ----
 
+[#async-resume]
+== `ASYNC-RESUME` — Resume a suspended asynchronous operation
+
+A client sends this request to the server when it wishes to resume the
+execution of an asynchronous operation.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of receipt IDs of the operations that the client wishes to resume
+|`objects` |no |object |Mapping from receipt IDs to objects to post to the operations represented by the receipts
+|===
+
+*Example request*
+
+[source,json]
+----
+{
+    "type": "ASYNC-RESUME",
+    "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2", "beer"],
+    "objects": {
+        "0badcafedeadbeef:2": {
+            "spam": "ham",
+            "bacon": 42
+        }
+    }
+}
+----
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`success` |no |list of strings |The list of receipt IDs where the corresponding
+operation was successfully resumed
+
+|`error` |no |object |Object mapping receipt IDs to explanations about why
+resuming the operation failed for these receipt IDs.
+|===
+
+*Example response*
+
+[source,json]
+----
+{
+    "type": "ASYNC-CANCEL",
+    "success": [
+        "0badcafedeadbeef:1",
+        "0badcafedeadbeef:2"
+    ],
+    "error": {
+        "beer": "Invalid receipt ID"
+    }
+}
+----
+
 [#async-st]
 == `ASYNC-ST` — Status information for an asynchronous operation
 
 A server sends this notification to a client to update the client about the
-progress of an asynchronous operation.
+progress of an asynchronous operation or to inform the client that the
+execution of the operation has been suspended and is waiting for additional
+input from the client.
 
 *Notification fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`id` |yes |string |The list of receipt IDs that the message refers to
+|`id` |yes |string |The receipt ID that the message refers to
 
-|`progress` |yes |object |The progress of the asynchronous operation identified by the receipt ID
+|`progress` |yes |xref:types.adoc#progress[Progress] |The progress of the asynchronous operation identified by the receipt ID
+
+|`suspended` |no |boolean |Whether the operation is suspended and is waiting for input from the user
 |===
 
 *Example notification*
@@ -129,8 +193,9 @@ progress of an asynchronous operation.
     "id": "0badcafedeadbeef",
     "progress": {
         "percentage": 80,
-        "status": "Almost ready :)"
-    }
+        "status": "Almost ready, press any key"
+    },
+    "suspended": true
 }
 ----
 

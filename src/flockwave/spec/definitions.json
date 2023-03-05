@@ -920,6 +920,9 @@
       },
       "status": {
         "type": "string"
+      },
+      "object": {
+        "type": "object"
       }
     },
     "additionalProperties": false

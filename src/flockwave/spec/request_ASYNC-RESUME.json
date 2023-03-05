@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "ASYNC-RESUME"
+    },
+    "ids": {
+      "$ref": "definitions.json#/receiptIdList"
+    },
+    "objects": {
+      "type": "object"
+    }
+  },
+  "required": ["type", "ids"]
+}

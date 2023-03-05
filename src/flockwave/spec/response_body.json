@@ -12,6 +12,9 @@
       "$ref": "response_ASYNC-CANCEL.json#/"
     },
     {
+      "$ref": "response_ASYNC-RESUME.json#/"
+    },
+    {
       "$ref": "response_AUTH-INF.json#/"
     },
     {

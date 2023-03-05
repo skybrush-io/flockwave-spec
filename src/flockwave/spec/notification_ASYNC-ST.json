@@ -9,6 +9,10 @@
     },
     "progress": {
       "$ref": "definitions.json#/progress"
+    },
+    "suspended": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": ["type", "id", "progress"]

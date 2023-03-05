@@ -934,6 +934,47 @@ operator intervention.
 from reaching a conclusive result. This is usually indicative of a failure in
 the code or firmware of the UAV.
 
+[#progress]
+== `Progress`
+
+A `Progress` object stores the progress of an asynchronous operation that is
+being performed on the server or a remote object (such as a UAV) managed by
+the server. It is typically used in `ASYNC-ST` messages.
+
+The progress object consists of a percentage value (`null` if unknown or
+indeterminate), a human-readable message (`null` if not specified) and an
+optional machine-readable object that can be used for arbitrary purposes if
+there is a common understanding of the semantics of this object between the
+server and the client. For instance, a long-running RC calibration operation
+on a UAV may use this object to report the minimum and maximum values seen for
+each RC channel so far during the calibration process, which can be used by
+the client to provide visual feedback to the user.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|percentage |no |integer |Progress of the operation expressed as a percentage,
+between 0 and 100 (inclusive).
+
+|status |no |string |Human-readable status message that can be used on the UI
+to provide feedback to the user.
+
+|object |no |object |Arbitrary machine-readable object that can be used to
+transmit additional information to the client about the progress of the
+operation in a structured manner.
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "percentage": 80,
+    "status": "Almost ready, stay tuned..."
+}
+----
 
 == `Severity`
 

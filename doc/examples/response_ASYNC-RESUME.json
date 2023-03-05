@@ -1,5 +1,5 @@
 {
-  "type": "ASYNC-CANCEL",
+  "type": "ASYNC-RESUME",
   "success": ["0badcafedeadbeef:1", "0badcafedeadbeef:2"],
   "error": {
     "beer": "Invalid receipt ID"

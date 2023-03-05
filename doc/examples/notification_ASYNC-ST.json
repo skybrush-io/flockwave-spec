@@ -3,6 +3,7 @@
   "id": "0badcafedeadbeef",
   "progress": {
     "percentage": 80,
-    "status": "Almost ready :)"
-  }
+    "status": "Almost ready, press any key"
+  },
+  "suspended": true
 }

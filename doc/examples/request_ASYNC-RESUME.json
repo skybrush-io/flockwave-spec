@@ -1,0 +1,10 @@
+{
+  "type": "ASYNC-RESUME",
+  "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2", "beer"],
+  "objects": {
+    "0badcafedeadbeef:2": {
+      "spam": "ham",
+      "bacon": 42
+    }
+  }
+}

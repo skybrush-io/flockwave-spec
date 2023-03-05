@@ -56,6 +56,29 @@ the result of the operation in an xref:messages/async.adoc#async-resp[ASYNC-RESP
 notification. The notification will contain an `id` key that has the same value
 as the `receipt` in the initial response.
 
+When the operation is in progress on the server, the server MAY send notifications
+of type xref:messages/async.adoc#async-st[ASYNC-ST] to inform the client about
+the status of the operation. The notification contains a `progress` object
+with a progress value expressed as a percentage as well as a human-readable
+message that can be shown on the client side.
+
+For long-running operations that require _additional_ input from the user as
+the operation progresses, the server MAY suspend the execution of the operation
+while it is waiting for input. In case of a suspension, the server MUST send
+a notification of type xref:messages/async.adoc#async-st[ASYNC-ST] with its
+`suspended` key set to `true` to inform the client that additional input is
+needed. The client MUST send a message of type
+xref:messages/async.adoc#async-resume[ASYNC-RESUME] with the information
+requested by the server if the client wishes to proceed with the operation,
+or a message of type xref:messages/async.adoc#async-cancel[ASYNC-CANCEL]
+if the client is no longer interested in the result of the operation. Suspended
+operations remain in suspended state on the server until one of the following
+events happen:
+
+* The client cancels the operation with xref:messages/async.adoc#async-cancel[ASYNC-CANCEL]
+* The client resumes the operation with xref:messages/async.adoc#async-cancel[ASYNC-RESUME]
+* The client disconnects without responding
+
 In some cases, the server may also decide to abandon an asynchronous operation
 if it seems to take too long (which usually indicates a communication error
 between the server and the target, typically a UAV). In such cases, the server
