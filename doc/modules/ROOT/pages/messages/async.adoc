@@ -117,7 +117,7 @@ execution of an asynchronous operation.
 |===
 |Name |Required? |Type |Description
 |`ids` |yes |list of strings |The list of receipt IDs of the operations that the client wishes to resume
-|`objects` |no |object |Mapping from receipt IDs to objects to post to the operations represented by the receipts
+|`values` |no |object |Mapping from receipt IDs to objects to post to the operations represented by the receipts
 |===
 
 *Example request*
@@ -127,7 +127,7 @@ execution of an asynchronous operation.
 {
     "type": "ASYNC-RESUME",
     "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2", "beer"],
-    "objects": {
+    "values": {
         "0badcafedeadbeef:2": {
             "spam": "ham",
             "bacon": 42

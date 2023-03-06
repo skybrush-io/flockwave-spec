@@ -7,7 +7,7 @@
     "ids": {
       "$ref": "definitions.json#/receiptIdList"
     },
-    "objects": {
+    "values": {
       "type": "object"
     }
   },
