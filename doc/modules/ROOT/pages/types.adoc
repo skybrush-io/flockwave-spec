@@ -683,17 +683,19 @@ the altitude is not controlled.
 == `GPSCoordinate`
 
 This type represents a coordinate given by a GPS in the usual
-"latitude, longitude, altitude above mean sea level, altitude above
-ground level" format using the WGS84 reference system.
+"latitude, longitude, altitude above mean sea level" format using the WGS84
+reference system. Additionally, it supports the storage of corresponding
+relative altitudes, namely, "altitude above home" and "altitude above ground".
 
 Latitude and longitude should be specified with at least seven digits'
 precision if possible. (More than seven digits is usually not necessary
 because consumer GPS receivers are not that accurate). To avoid floating point
-inaccuracies, latitudes and longitudes are stored in 10^-7^ degrees, and altitudes
-are stored in millimeters as integers.
+inaccuracies, latitudes and longitudes are stored in 10^-7^ degrees, and all
+altitudes are stored in millimeters as integers.
 
-The object is stored as a list with four items. The third and fourth items
-(AMSL and AGL) may be null if they are not known. Trailing nulls may be omitted.
+The object is stored as a list with five items. The third, fourth and fifth
+items (AMSL, AHL and AGL, respectively) may be null if they are not known.
+Trailing nulls may be omitted.
 
 *Items*
 
@@ -703,7 +705,8 @@ The object is stored as a list with four items. The third and fourth items
 |0 |yes |float |The latitude, in 10^-7^ degrees, in the range [-90 × 10^7^, 90 × 10^7^)
 |1 |yes |float |The longitude, in 10^-7^ degrees, in the range [-180 × 10^7^,180 × 10^7^)
 |2 |no |float |The altitude, in millimeters, above mean sea level
-|3 |no |float |The altitude, in millimeters, above ground level
+|3 |no |float |The altitude, in millimeters, above home level
+|4 |no |float |The altitude, in millimeters, above ground level
 |===
 
 *Example*

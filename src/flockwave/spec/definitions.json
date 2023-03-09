@@ -622,6 +622,11 @@
         "type": ["integer", "null"]
       },
       {
+        "title": "AHL",
+        "description": "Altitude above home level, in millimeters",
+        "type": ["integer", "null"]
+      },
+      {
         "title": "AGL",
         "description": "Altitude above ground level, in millimeters",
         "type": ["integer", "null"]
