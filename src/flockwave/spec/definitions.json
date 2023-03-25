@@ -923,7 +923,7 @@
         "minimum": 0,
         "maximum": 100
       },
-      "status": {
+      "message": {
         "type": "string"
       },
       "object": {

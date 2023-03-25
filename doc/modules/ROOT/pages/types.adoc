@@ -961,7 +961,7 @@ the client to provide visual feedback to the user.
 |percentage |no |integer |Progress of the operation expressed as a percentage,
 between 0 and 100 (inclusive).
 
-|status |no |string |Human-readable status message that can be used on the UI
+|message |no |string |Human-readable status message that can be used on the UI
 to provide feedback to the user.
 
 |object |no |object |Arbitrary machine-readable object that can be used to
@@ -975,7 +975,7 @@ operation in a structured manner.
 ----
 {
     "percentage": 80,
-    "status": "Almost ready, stay tuned..."
+    "message": "Almost ready, stay tuned..."
 }
 ----
 
