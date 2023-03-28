@@ -30,15 +30,15 @@
         "title": "Roll angle",
         "description": "Roll angle, in 1/10th of degrees",
         "type": "integer",
-        "minimum": -900,
-        "exclusiveMaximum": 900
+        "minimum": -1800,
+        "exclusiveMaximum": 1800
       },
       {
         "title": "Pitch angle",
         "description": "Pitch angle, in 1/10th of degrees",
         "type": "integer",
-        "minimum": -900,
-        "exclusiveMaximum": 900
+        "minimum": -1800,
+        "exclusiveMaximum": 1800
       },
       {
         "title": "Yaw angle",
