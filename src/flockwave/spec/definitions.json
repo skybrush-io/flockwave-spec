@@ -644,13 +644,25 @@
         "type": "integer",
         "minimum": 0,
         "maximum": 7
+      },
+      {
+        "title": "Number of satellites",
+        "type": ["integer", "null"],
+        "minimum": 0
+      },
+      {
+        "title": "hAcc",
+        "description": "Horizontal accuracy, in millimeters",
+        "type": ["integer", "null"],
+        "minimum": 0
+      },
+      {
+        "title": "vAcc",
+        "description": "Vertical accuracy, in millimeters",
+        "type": ["integer", "null"],
+        "minimum": 0
       }
-    ],
-    "additionalItems": {
-      "type": "number"
-    },
-    "minItems": 1,
-    "maxItems": 2
+    ]
   },
 
   "license": {

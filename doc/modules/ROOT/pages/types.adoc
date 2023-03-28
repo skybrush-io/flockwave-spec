@@ -719,8 +719,8 @@ Trailing nulls may be omitted.
 == `GPSFix`
 
 This type represents a short summary of the current GPS fix achieved by a UAV.
-The value is a list consisting of one or two items. The first item of the list
-represents the type of the GPS fix according to the following table:
+The value is a list consisting of one or more (up to four) items. The first item
+of the list represents the type of the GPS fix according to the following table:
 
 [cols="1,9",options="header",]
 |===
@@ -737,6 +737,9 @@ represents the type of the GPS fix according to the following table:
 
 The second item of the list is optional and it may contain the number of GPS
 satellites that were used in the calculation.
+
+The third and fourth items of the list are optional and they may contain the
+horizontal and vertical accuracy, respectively, in millimeters.
 
 == `LogMessage`
 
