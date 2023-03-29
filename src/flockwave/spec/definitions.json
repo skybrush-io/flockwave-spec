@@ -631,9 +631,7 @@
         "description": "Altitude above ground level, in millimeters",
         "type": ["integer", "null"]
       }
-    ],
-    "minItems": 2,
-    "maxItems": 5
+    ]
   },
 
   "gpsFix": {
@@ -664,9 +662,7 @@
         "type": ["integer", "null"],
         "minimum": 0
       }
-    ],
-    "minItems": 1,
-    "maxItems": 4
+    ]
   },
 
   "license": {
