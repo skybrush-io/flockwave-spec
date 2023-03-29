@@ -647,20 +647,17 @@
       },
       {
         "title": "Number of satellites",
-        "type": ["integer", "null"],
-        "minimum": 0
+        "type": ["integer", "null"]
       },
       {
         "title": "hAcc",
         "description": "Horizontal accuracy, in millimeters",
-        "type": ["integer", "null"],
-        "minimum": 0
+        "type": ["integer", "null"]
       },
       {
         "title": "vAcc",
         "description": "Vertical accuracy, in millimeters",
-        "type": ["integer", "null"],
-        "minimum": 0
+        "type": ["integer", "null"]
       }
     ]
   },
