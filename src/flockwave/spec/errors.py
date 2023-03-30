@@ -31,6 +31,7 @@ _error_code_to_abbreviation = {
     71: "fence",
     72: "wind",
     73: "disarm",
+    74: "reboot",
     127: "warning",
     # Errors
     128: "comm t/o",
@@ -99,6 +100,7 @@ _error_code_to_description = {
     71: "Drone is outside geofence on ground",
     72: "Wind speed is high",
     73: "Drone not armed yet",
+    74: "Drone requires a reboot",
     127: "Unspecified warning",
     # Errors
     128: "Autopilot communication timeout",
@@ -170,6 +172,7 @@ class FlockwaveErrorCode(IntEnum):
     GEOFENCE_VIOLATION_WARNING = 71
     WIND_SPEED_WARNING = 72
     DISARMED = 73
+    REBOOT_REQUIRED = 74
     UNSPECIFIED_WARNING = 127
 
     # Errors

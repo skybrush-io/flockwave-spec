@@ -119,6 +119,10 @@ able to navigate in all directions safely; at more severe wind levels use code 1
 |73  |DISARM   |Drone not armed yet. This warning is shown when the UAV is in a
 state that motor thrust is prevented by a hardware or software switch.
 
+|74  |REBOOT   |Drone requires a reboot. This warning is shown after the UAV
+has performed an action (typically some low level calibration or parameter
+change) that requires a reboot and re-initialization.
+
 |127 |WARNING |Other, unspecified warning that does not present immediate danger
 to the normal operation of the UAV; for more severe unspecified error states
 use code 191.
