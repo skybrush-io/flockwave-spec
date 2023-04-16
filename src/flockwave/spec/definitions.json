@@ -517,6 +517,11 @@
         "items": {
           "anyOf": [{ "$ref": "#/objectId" }, { "type": "null" }]
         }
+      },
+      "duration": {
+        "description": "The total duration of the show, in seconds. Not mandatory.",
+        "type": "number",
+        "minimum": 0
       }
     }
   },
