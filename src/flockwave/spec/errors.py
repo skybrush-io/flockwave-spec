@@ -32,6 +32,7 @@ _error_code_to_abbreviation = {
     72: "wind",
     73: "disarm",
     74: "reboot",
+    75: "drift",
     127: "warning",
     # Errors
     128: "comm t/o",
@@ -101,6 +102,7 @@ _error_code_to_description = {
     72: "Wind speed is high",
     73: "Drone not armed yet",
     74: "Drone requires a reboot",
+    75: "Drift from desired position is large",
     127: "Unspecified warning",
     # Errors
     128: "Autopilot communication timeout",
@@ -173,6 +175,7 @@ class FlockwaveErrorCode(IntEnum):
     WIND_SPEED_WARNING = 72
     DISARMED = 73
     REBOOT_REQUIRED = 74
+    DRIFT_FROM_DESIRED_POSITION = 75
     UNSPECIFIED_WARNING = 127
 
     # Errors
