@@ -102,7 +102,7 @@ _error_code_to_description = {
     72: "Wind speed is high",
     73: "Drone not armed yet",
     74: "Drone requires a reboot",
-    75: "Drift from desired position is large",
+    75: "Unexpected drift from desired position",
     127: "Unspecified warning",
     # Errors
     128: "Autopilot communication timeout",

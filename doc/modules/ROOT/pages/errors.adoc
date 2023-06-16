@@ -123,8 +123,9 @@ state that motor thrust is prevented by a hardware or software switch.
 has performed an action (typically some low level calibration or parameter
 change) that requires a reboot and re-initialization.
 
-|75  |DRIFT   |Drift from desired position is large. This warning appears when
-the drone deviates from its desired trajectory more than normal operation allows.
+|75  |DRIFT   |Unexpected drift from desired position. This warning appears when
+the drone deviates from its desired trajectory more than what is allowed under
+normal operation conditions.
 
 |127 |WARNING |Other, unspecified warning that does not present immediate danger
 to the normal operation of the UAV; for more severe unspecified error states
