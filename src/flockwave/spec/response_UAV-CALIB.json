@@ -5,7 +5,7 @@
       "const": "UAV-CALIB"
     },
     "result": {
-      "$ref": "definitions.json#/asyncBoolMap"
+      "$ref": "definitions.json#/boolMap"
     },
     "error": {
       "$ref": "definitions.json#/errorMap"
@@ -15,5 +15,5 @@
     }
   },
   "required": ["type"],
-	"additionalProperties": false
+  "additionalProperties": false
 }

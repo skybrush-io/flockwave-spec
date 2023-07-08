@@ -5,7 +5,7 @@
       "const": "UAV-SLEEP"
     },
     "result": {
-      "$ref": "definitions.json#/asyncBoolMap"
+      "$ref": "definitions.json#/boolMap"
     },
     "error": {
       "$ref": "definitions.json#/errorMap"

@@ -2,16 +2,16 @@
   "type": "object",
   "properties": {
     "type": {
-      "const": "UAV-RTH"
+      "const": "LOG-DATA"
     },
     "result": {
-      "$ref": "definitions.json#/boolMap"
+      "$ref": "definitions.json#/flightLog"
     },
     "error": {
-      "$ref": "definitions.json#/errorMap"
+      "$ref": "definitions.json#/error"
     },
     "receipt": {
-      "$ref": "definitions.json#/receiptMap"
+      "$ref": "definitions.json#/receiptId"
     }
   },
   "required": ["type"],

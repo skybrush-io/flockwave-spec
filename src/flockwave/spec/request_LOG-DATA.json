@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "LOG-DATA"
+    },
+    "uavId": {
+      "$ref": "definitions.json#/objectId"
+    },
+    "logId": {
+      "$ref": "definitions.json#/flightLogId"
+    }
+  },
+  "required": ["type", "uavId", "logId"]
+}

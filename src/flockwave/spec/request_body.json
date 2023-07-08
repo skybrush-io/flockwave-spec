@@ -78,6 +78,12 @@
       "$ref": "request_LCN-INF.json#/"
     },
     {
+      "$ref": "request_LOG-DATA.json#/"
+    },
+    {
+      "$ref": "request_LOG-INF.json#/"
+    },
+    {
       "$ref": "request_OBJ-CMD.json#/"
     },
     {

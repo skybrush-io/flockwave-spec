@@ -1,22 +1,20 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"type": "string",
-			"const": "UAV-LAND"
-		},
-		"result": {
-			"$ref": "definitions.json#/asyncBoolMap"
-		},
-		"error": {
-			"$ref": "definitions.json#/errorMap"
-		},
-		"receipt": {
-			"$ref": "definitions.json#/receiptMap"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "UAV-LAND"
+    },
+    "result": {
+      "$ref": "definitions.json#/boolMap"
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    },
+    "receipt": {
+      "$ref": "definitions.json#/receiptMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "LOG-INF"
+    },
+    "ids": {
+      "$ref": "definitions.json#/uavIdList"
+    }
+  },
+  "required": ["type", "ids"]
+}

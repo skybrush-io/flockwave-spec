@@ -1,0 +1,26 @@
+{
+  "type": "LOG-INF",
+  "result": {
+    "1": [
+      {
+        "id": "1",
+        "timestamp": 1588763723147,
+        "size": 1345356,
+        "kind": "ardupilot"
+      },
+      {
+        "id": "7",
+        "timestamp": 1588763723147,
+        "size": 8191,
+        "kind": "ardupilot"
+      }
+    ]
+  },
+  "receipt": {
+    "17": "0badcafe-deadbeef:1"
+  },
+  "error": {
+    "31": "UAV does not support logging.",
+    "spam": "No such UAV."
+  }
+}

@@ -2,10 +2,13 @@
   "type": "object",
   "properties": {
     "type": {
-      "const": "UAV-RTH"
+      "const": "LOG-INF"
     },
     "result": {
-      "$ref": "definitions.json#/boolMap"
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/flightLogMetadataList"
+      }
     },
     "error": {
       "$ref": "definitions.json#/errorMap"

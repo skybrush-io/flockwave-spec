@@ -1,24 +1,9 @@
 {
-  "asyncBoolMap": {
-    "type": "object",
-    "additionalProperties": { "type": "boolean" }
-  },
-
   "asyncCommandResponseMap": {
     "type": "object",
     "additionalProperties": {
       "anyOf": [{ "$ref": "#/commandResponse" }, { "type": "string" }]
     }
-  },
-
-  "asyncStringMap": {
-    "type": "object",
-    "additionalProperties": { "type": "string" }
-  },
-
-  "asyncVersionMap": {
-    "type": "object",
-    "additionalProperties": { "$ref": "#/versionMap" }
   },
 
   "attitude": {
@@ -133,6 +118,11 @@
       }
     },
     "required": ["id", "timestamp"]
+  },
+
+  "boolMap": {
+    "type": "object",
+    "additionalProperties": { "type": "boolean" }
   },
 
   "channelId": {
@@ -602,6 +592,67 @@
     "required": ["id", "loaded", "name"]
   },
 
+  "flightLog": {
+    "title": "Flight log",
+    "description": "Contents of a flight log",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/flightLogId"
+      },
+      "timestamp": {
+        "type": "number"
+      },
+      "size": {
+        "type": "number"
+      },
+      "kind": {
+        "type": "string"
+      },
+      "body": {
+        "type": ["string", "object"]
+      }
+    },
+    "required": ["id", "kind", "body"]
+  },
+
+  "flightLogId": {
+    "title": "Flight log ID",
+    "description": "Identifier of a single flight log",
+    "type": "string",
+    "minLength": 1
+  },
+
+  "flightLogMetadata": {
+    "title": "Flight log metadata",
+    "description": "Metadata of a single flight log entry stored on a UAV",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/flightLogId"
+      },
+      "timestamp": {
+        "type": "number"
+      },
+      "size": {
+        "type": "number"
+      },
+      "kind": {
+        "type": "string"
+      }
+    },
+    "required": ["id", "kind"]
+  },
+
+  "flightLogMetadataList": {
+    "title": "Flight log metadata items",
+    "description": "List of the metadata of flight logs stored on a UAV",
+    "type": "array",
+    "items": {
+      "$ref": "#/flightLogMetadata"
+    }
+  },
+
   "gpsCoordinate": {
     "title": "GPS coordinate",
     "description": "GPS coordinate of an object",
@@ -975,6 +1026,11 @@
     "description": "Severity of the message",
     "type": "string",
     "enum": ["debug", "info", "warning", "error", "critical"]
+  },
+
+  "stringMap": {
+    "type": "object",
+    "additionalProperties": { "type": "string" }
   },
 
   "transportOptions": {
