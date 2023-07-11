@@ -147,9 +147,7 @@ def ref_resolver(uri: str) -> Dict[str, Any]:
     ``jsonschema`` and turned into a ``RefResoutionError``.
     """
     if uri.startswith(FLOCKWAVE_SPEC_PREFIX):
-        path = uri[len(FLOCKWAVE_SPEC_PREFIX) :]
-        if path.startswith("/"):
-            path = path[1:]
+        path = uri.removeprefix(FLOCKWAVE_SPEC_PREFIX).removeprefix("/")
         return _get_json_object_from_resource(path)
     else:
         raise NotImplementedError("remote URI lookups are disallowed")
