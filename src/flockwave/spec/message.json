@@ -1,74 +1,66 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "http://collmot.com/schemas/flockwave/1.0/message.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://collmot.com/schemas/flockwave/1.0/message.json",
 
-	"oneOf": [
-		{
-			"$ref": "#/definitions/standardMessage"
-		},
-		{
-			"$ref": "#/definitions/errorMessage"
-		}
-	],
+  "oneOf": [
+    {
+      "$ref": "#/definitions/standardMessage"
+    },
+    {
+      "$ref": "#/definitions/errorMessage"
+    }
+  ],
 
-	"definitions": {
-		"standardMessage": {
-			"type": "object",
+  "definitions": {
+    "standardMessage": {
+      "type": "object",
 
-			"properties": {
-				"$fw.version": {
-					"$ref": "definitions.json#/versionNumber"
-				},
-				"id": {
-					"$ref": "definitions.json#/messageId"
-				},
-				"refs": {
-					"$ref": "definitions.json#/messageId"
-				},
-				"body": {
-					"$ref": "message_body.json#/"
-				}
-			},
+      "properties": {
+        "$fw.version": {
+          "$ref": "definitions.json#/versionNumber"
+        },
+        "id": {
+          "$ref": "definitions.json#/messageId"
+        },
+        "refs": {
+          "$ref": "definitions.json#/messageId"
+        },
+        "body": {
+          "$ref": "message_body.json#"
+        }
+      },
 
-			"required": [
-				"$fw.version",
-				"id",
-				"body"
-			]
-		},
+      "required": ["$fw.version", "id", "body"]
+    },
 
-		"errorMessage": {
-			"type": "object",
+    "errorMessage": {
+      "type": "object",
 
-			"properties": {
-				"$fw.version": {
-					"$ref": "definitions.json#/versionNumber"
-				},
-				"id": {
-					"$ref": "definitions.json#/messageId"
-				},
-				"refs": {
-					"$ref": "definitions.json#/messageId"
-				},
-				"error": {
-					"type": "object",
-					"properties": {
-						"code": {
-							"type": "integer"
-						},
-						"message": {
-							"type": "string"
-						}
-					},
-					"minProperties": 1
-				}
-			},
+      "properties": {
+        "$fw.version": {
+          "$ref": "definitions.json#/versionNumber"
+        },
+        "id": {
+          "$ref": "definitions.json#/messageId"
+        },
+        "refs": {
+          "$ref": "definitions.json#/messageId"
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "minProperties": 1
+        }
+      },
 
-			"required": [
-				"$fw.version",
-				"id",
-				"error"
-			]
-		}
-	}
+      "required": ["$fw.version", "id", "error"]
+    }
+  }
 }
