@@ -11,16 +11,12 @@ import os
 import sys
 
 from jsonschema.exceptions import ValidationError
+from pathlib import Path
 from typing import Optional, Sequence
 
 from flockwave.spec.schema import get_message_body_schema, ref_resolver, Schema
 
 __all__ = ("validate",)
-
-
-SCRIPT_ROOT = os.path.abspath(
-    os.path.join(os.path.dirname(sys.modules[__name__].__file__), "..", "..", "..")
-)
 
 
 def check_validity(
@@ -60,7 +56,7 @@ def check_validity(
 
 @click.command()
 @click.argument("name", nargs=-1, type=click.Path(exists=True))
-def validate(name: Optional[Sequence[str]]) -> None:
+def validate(name: Optional[Sequence[str]] = None) -> None:
     """Validates the JSON message stored in the file with the given NAME to see
     if it is a valid Flockwave message. When omitted, the script will validate
     all ``.json`` files found in ``doc/examples``.
@@ -72,8 +68,13 @@ def validate(name: Optional[Sequence[str]]) -> None:
         schema, handlers={"http": ref_resolver}
     )
 
+    own_path = sys.modules[__name__].__file__
+    assert own_path is not None
+
+    SCRIPT_ROOT = Path(own_path).parent.parent.parent.parent.absolute()
+
     if not name:
-        examples_dir = os.path.join(SCRIPT_ROOT, "doc", "examples")
+        examples_dir = SCRIPT_ROOT / "doc" / "examples"
         name = sorted(
             os.path.join(examples_dir, fname)
             for fname in os.listdir(examples_dir)
