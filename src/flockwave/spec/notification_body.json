@@ -1,31 +1,27 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://collmot.com/schemas/flockwave/1.0/message_body.json",
+  "$id": "http://collmot.com/schemas/flockwave/1.0/notification_body.json",
   "oneOf": [
     {
-      "type": "null"
-    },
-
-    {
-      "$ref": "notification_ASYNC-RESP.json#/"
+      "$ref": "notification_ASYNC-RESP.json#"
     },
     {
-      "$ref": "notification_ASYNC-ST.json#/"
+      "$ref": "notification_ASYNC-ST.json#"
     },
     {
-      "$ref": "notification_ASYNC-TIMEOUT.json#/"
+      "$ref": "notification_ASYNC-TIMEOUT.json#"
     },
     {
-      "$ref": "notification_CONN-DEL.json#/"
+      "$ref": "notification_CONN-DEL.json#"
     },
     {
-      "$ref": "notification_OBJ-DEL.json#/"
+      "$ref": "notification_OBJ-DEL.json#"
     },
     {
-      "$ref": "notification_SYS-CLOSE.json#/"
+      "$ref": "notification_SYS-CLOSE.json#"
     },
     {
-      "$ref": "notification_SYS-MSG.json#/"
+      "$ref": "notification_SYS-MSG.json#"
     }
   ]
 }

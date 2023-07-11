@@ -1,23 +1,26 @@
 import jsonschema
 
-from flockwave.spec.schema import ref_resolver
+from typing import Any, Callable
+
+from flockwave.spec.schema import Schema
+from flockwave.spec.validator import create_validator_for_schema
 
 __all__ = ("create_schema_validator",)
 
 
-def create_schema_validator(schema, multi: bool = False):
-    resolver = jsonschema.RefResolver.from_schema(
-        schema, handlers={"http": ref_resolver}
-    )
+def create_schema_validator(
+    schema: Schema, multi: bool = False
+) -> Callable[[Any], bool]:
+    validator = create_validator_for_schema(schema)
 
-    def validator(obj):
+    def validator_func(obj: Any) -> bool:
         if multi and isinstance(obj, list):
-            return all(validator(item) for item in obj)
+            return all(validator_func(item) for item in obj)
         else:
             try:
-                jsonschema.validate(obj, schema, resolver=resolver)
+                validator.validate(obj)
                 return True
             except jsonschema.ValidationError:
                 return False
 
-    return validator
+    return validator_func

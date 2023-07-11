@@ -1,177 +1,177 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://collmot.com/schemas/flockwave/1.0/message_body.json",
+  "$id": "http://collmot.com/schemas/flockwave/1.0/response_body.json",
   "oneOf": [
     {
-      "$ref": "response_ACK-ACK.json#/"
+      "$ref": "response_ACK-ACK.json#"
     },
     {
-      "$ref": "response_ACK-NAK.json#/"
+      "$ref": "response_ACK-NAK.json#"
     },
     {
-      "$ref": "response_ASYNC-CANCEL.json#/"
+      "$ref": "response_ASYNC-CANCEL.json#"
     },
     {
-      "$ref": "response_ASYNC-RESUME.json#/"
+      "$ref": "response_ASYNC-RESUME.json#"
     },
     {
-      "$ref": "response_AUTH-INF.json#/"
+      "$ref": "response_AUTH-INF.json#"
     },
     {
-      "$ref": "response_AUTH-RESP.json#/"
+      "$ref": "response_AUTH-RESP.json#"
     },
     {
-      "$ref": "response_AUTH-WHOAMI.json#/"
+      "$ref": "response_AUTH-WHOAMI.json#"
     },
     {
-      "$ref": "response_BCN-INF.json#/"
+      "$ref": "response_BCN-INF.json#"
     },
     {
-      "$ref": "response_BCN-PROPS.json#/"
+      "$ref": "response_BCN-PROPS.json#"
     },
     {
-      "$ref": "response_CLK-INF.json#/"
+      "$ref": "response_CLK-INF.json#"
     },
     {
-      "$ref": "response_CLK-LIST.json#/"
+      "$ref": "response_CLK-LIST.json#"
     },
     {
-      "$ref": "response_CONN-INF.json#/"
+      "$ref": "response_CONN-INF.json#"
     },
     {
-      "$ref": "response_CONN-LIST.json#/"
+      "$ref": "response_CONN-LIST.json#"
     },
     {
-      "$ref": "response_DEV-INF.json#/"
+      "$ref": "response_DEV-INF.json#"
     },
     {
-      "$ref": "response_DEV-LIST.json#/"
+      "$ref": "response_DEV-LIST.json#"
     },
     {
-      "$ref": "response_DEV-LISTSUB.json#/"
+      "$ref": "response_DEV-LISTSUB.json#"
     },
     {
-      "$ref": "response_DEV-SUB.json#/"
+      "$ref": "response_DEV-SUB.json#"
     },
     {
-      "$ref": "response_DEV-UNSUB.json#/"
+      "$ref": "response_DEV-UNSUB.json#"
     },
     {
-      "$ref": "response_DOCK-INF.json#/"
+      "$ref": "response_DOCK-INF.json#"
     },
     {
-      "$ref": "response_EXT-CFG.json#/"
+      "$ref": "response_EXT-CFG.json#"
     },
     {
-      "$ref": "response_EXT-INF.json#/"
+      "$ref": "response_EXT-INF.json#"
     },
     {
-      "$ref": "response_EXT-LIST.json#/"
+      "$ref": "response_EXT-LIST.json#"
     },
     {
-      "$ref": "response_EXT-LOAD.json#/"
+      "$ref": "response_EXT-LOAD.json#"
     },
     {
-      "$ref": "response_EXT-RELOAD.json#/"
+      "$ref": "response_EXT-RELOAD.json#"
     },
     {
-      "$ref": "response_EXT-SETCFG.json#/"
+      "$ref": "response_EXT-SETCFG.json#"
     },
     {
-      "$ref": "response_EXT-UNLOAD.json#/"
+      "$ref": "response_EXT-UNLOAD.json#"
     },
     {
-      "$ref": "response_LCN-INF.json#/"
+      "$ref": "response_LCN-INF.json#"
     },
     {
-      "$ref": "response_LOG-DATA.json#/"
+      "$ref": "response_LOG-DATA.json#"
     },
     {
-      "$ref": "response_LOG-INF.json#/"
+      "$ref": "response_LOG-INF.json#"
     },
     {
-      "$ref": "response_OBJ-CMD.json#/"
+      "$ref": "response_OBJ-CMD.json#"
     },
     {
-      "$ref": "response_OBJ-LIST.json#/"
+      "$ref": "response_OBJ-LIST.json#"
     },
     {
-      "$ref": "response_PRM-GET.json#/"
+      "$ref": "response_PRM-GET.json#"
     },
     {
-      "$ref": "response_PRM-SET.json#/"
+      "$ref": "response_PRM-SET.json#"
     },
     {
-      "$ref": "response_SHOW-CFG.json#/"
+      "$ref": "response_SHOW-CFG.json#"
     },
     {
-      "$ref": "response_SHOW-LIGHTS.json#/"
+      "$ref": "response_SHOW-LIGHTS.json#"
     },
     {
-      "$ref": "response_SYS-TIME.json#/"
+      "$ref": "response_SYS-TIME.json#"
     },
     {
-      "$ref": "response_SYS-VER.json#/"
+      "$ref": "response_SYS-VER.json#"
     },
     {
-      "$ref": "response_UAV-CALIB.json#/"
+      "$ref": "response_UAV-CALIB.json#"
     },
     {
-      "$ref": "response_UAV-FLY.json#/"
+      "$ref": "response_UAV-FLY.json#"
     },
     {
-      "$ref": "response_UAV-HALT.json#/"
+      "$ref": "response_UAV-HALT.json#"
     },
     {
-      "$ref": "response_UAV-HOVER.json#/"
+      "$ref": "response_UAV-HOVER.json#"
     },
     {
-      "$ref": "response_UAV-INF.json#/"
+      "$ref": "response_UAV-INF.json#"
     },
     {
-      "$ref": "response_UAV-LAND.json#/"
+      "$ref": "response_UAV-LAND.json#"
     },
     {
-      "$ref": "response_UAV-LIST.json#/"
+      "$ref": "response_UAV-LIST.json#"
     },
     {
-      "$ref": "response_UAV-MOTOR.json#/"
+      "$ref": "response_UAV-MOTOR.json#"
     },
     {
-      "$ref": "response_UAV-PREFLT.json#/"
+      "$ref": "response_UAV-PREFLT.json#"
     },
     {
-      "$ref": "response_UAV-RST.json#/"
+      "$ref": "response_UAV-RST.json#"
     },
     {
-      "$ref": "response_UAV-RTH.json#/"
+      "$ref": "response_UAV-RTH.json#"
     },
     {
-      "$ref": "response_UAV-SIGNAL.json#/"
+      "$ref": "response_UAV-SIGNAL.json#"
     },
     {
-      "$ref": "response_UAV-SLEEP.json#/"
+      "$ref": "response_UAV-SLEEP.json#"
     },
     {
-      "$ref": "response_UAV-TAKEOFF.json#/"
+      "$ref": "response_UAV-TAKEOFF.json#"
     },
     {
-      "$ref": "response_UAV-TEST.json#/"
+      "$ref": "response_UAV-TEST.json#"
     },
     {
-      "$ref": "response_UAV-VER.json#/"
+      "$ref": "response_UAV-VER.json#"
     },
     {
-      "$ref": "response_UAV-WAKEUP.json#/"
+      "$ref": "response_UAV-WAKEUP.json#"
     },
     {
-      "$ref": "response_WTH-AT.json#/"
+      "$ref": "response_WTH-AT.json#"
     },
     {
-      "$ref": "response_WTH-INF.json#/"
+      "$ref": "response_WTH-INF.json#"
     },
     {
-      "$ref": "response_WTH-LIST.json#/"
+      "$ref": "response_WTH-LIST.json#"
     }
   ]
 }

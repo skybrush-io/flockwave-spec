@@ -2,9 +2,11 @@
 
 import json
 
+from deprecated import deprecated
 from enum import Enum
 from importlib.resources import open_text
 from jsonpointer import JsonPointer, resolve_pointer
+from jsonref import replace_refs
 from typing import Any, Dict, Optional, Union
 
 from .memoize import memoized
@@ -26,8 +28,8 @@ SCHEMA_PACKAGE = "flockwave.spec"
 FLOCKWAVE_SPEC_PREFIX = "http://collmot.com/schemas/flockwave/1.0"
 
 
-#: Type alias for schema objects
 Schema = Dict[str, Any]
+"""Type alias for schema objects"""
 
 
 @memoized
@@ -49,7 +51,8 @@ def _get_json_object_from_resource(resource_path: str) -> Dict[str, Any]:
 
 @memoized
 def _get_schema_from_resource(
-    resource_path: str, json_pointer: Optional[Union[str, JsonPointer]] = None
+    resource_path: str,
+    json_pointer: Optional[Union[str, JsonPointer]] = None,
 ) -> Schema:
     """Loads and parses a JSON schema from the given resource path.
 
@@ -61,6 +64,8 @@ def _get_schema_from_resource(
         json_pointer: JSON pointer to the part of the contents
             of the JSON file that contains the schema we are interested in.
             ``None`` means that the entire JSON file will be returned.
+        resolve_refs: whether JSON references should be resolved to the
+            files they refer to
 
     Returns:
         the JSON schema from the given resource
@@ -70,6 +75,18 @@ def _get_schema_from_resource(
         obj = json_pointer.get(obj)
     elif json_pointer is not None:
         obj = resolve_pointer(obj, json_pointer)
+
+    obj = replace_refs(
+        obj,
+        loader=_jsonref_loader,
+        jsonschema=True,
+        proxies=True,
+    )
+
+    # We need to trigger the resoolution of '$ref' references. In theory,
+    # we could use proxies=False but we were running into problems with that.
+    repr(obj)
+
     return obj  # type: ignore
 
 
@@ -77,8 +94,7 @@ def get_complex_object_schema(name: str) -> Schema:
     """Returns the JSON schema of a Flockwave complex object from its name.
 
     Parameters:
-        name (str): the name of a Flockwave complex object from the
-            specification
+        name: the name of a Flockwave complex object from the specification
 
     Returns:
         object: the JSON schema for the given Flockwave complex object
@@ -137,15 +153,29 @@ def get_request_body_schema() -> Schema:
     return _get_schema_from_resource("request_body.json")
 
 
-def ref_resolver(uri: str) -> Dict[str, Any]:
+def _jsonref_loader(uri: str):
     """Specialized URI resolver for Flockwave's JSON schema files.
 
     When the URI starts with ``http://collmot.com/schemas/flockwave/1.0``,
     it is assumed that the corresponding JSON file is present in the
     ``flockwave.spec`` package so it is looked up from there. In all
-    other cases, we raise an exception. This will be caught by
-    ``jsonschema`` and turned into a ``RefResoutionError``.
+    other cases, we raise an exception.
     """
+    if uri.startswith(FLOCKWAVE_SPEC_PREFIX):
+        path = uri.removeprefix(FLOCKWAVE_SPEC_PREFIX).removeprefix("/")
+        return _get_json_object_from_resource(path)
+    else:
+        raise RuntimeError("remote URI lookups are disallowed")
+
+
+@deprecated(
+    version="1.76.0",
+    reason=(
+        "This function is not needed any more; references in returned JSON "
+        "schemas are resolved automatically."
+    ),
+)
+def ref_resolver(uri: str) -> Dict[str, Any]:
     if uri.startswith(FLOCKWAVE_SPEC_PREFIX):
         path = uri.removeprefix(FLOCKWAVE_SPEC_PREFIX).removeprefix("/")
         return _get_json_object_from_resource(path)

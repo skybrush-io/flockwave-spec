@@ -1,110 +1,75 @@
-"""Command-line schema validator script.
+"""Functions related to the validation of messages against the Flockwave
+JSON schema.
 
-This script checks whether a given JSON file contains a valid Flockwave
-message.
+Requires the ``jsonschema`` and ``referencing`` modules. You can install these
+with the ``validation`` extra.
 """
 
-import click
-import json
-import jsonschema
-import os
-import sys
+from functools import lru_cache
+from jsonschema.protocols import Validator
+from jsonschema.validators import validator_for
+from referencing import Registry, Resource
+from referencing.exceptions import NoSuchResource
+from referencing.jsonschema import DRAFT7, ObjectSchema
+from typing import Optional
 
-from jsonschema.exceptions import ValidationError
-from pathlib import Path
-from typing import Optional, Sequence
+from flockwave.spec.schema import (
+    FLOCKWAVE_SPEC_PREFIX,
+    _get_json_object_from_resource,
+    Schema,
+)
 
-from flockwave.spec.schema import get_message_body_schema, ref_resolver, Schema
-
-__all__ = ("validate",)
+__all__ = ("create_validator_for_schema", "Validator")
 
 
-def check_validity(
-    filename: str,
-    schema: Schema,
-    resolver: Optional[jsonschema.RefResolver] = None,
-    allow_multiple: bool = True,
-) -> int:
-    """Check the validity of a JSON object found in a file-like object.
-
-    Parameters:
-        allow_multiple (bool): when ``True`` and the input file contains
-            an array, each item of the array will be validated against the
-            schema separately. When ``False``, the entire array will be
-            validated in such cases.
-        filename (object): the file containing the JSON object. Can be
-            anything that ``click.open_file()`` can handle.
-        schema (object): the JSON schema to validate the file contents
-            against
-        resolver (jsonschema.RefResolver or None): custom reference resolver
-            for the JSON schema, if needed.
-
-    Returns:
-        int: the number of objects that the input file contained
+@lru_cache
+def _get_reference_resolver_registry() -> Registry[ObjectSchema]:
+    """Returns a reference resolver registry that resolves URIs starting with
+    ``http://collmot.com/schemas/flockwave/1.0`` to local JSON files and
+    rejects all other external URIs.
     """
-    with click.open_file(filename, "rb") as fp:
-        objs = json.load(fp)
-
-    if not allow_multiple or not isinstance(objs, list):
-        objs = [objs]
-
-    for obj in objs:
-        jsonschema.validate(obj, schema, resolver=resolver)
-
-    return len(objs)
+    return Registry(retrieve=_retrieve_resource)
 
 
-@click.command()
-@click.argument("name", nargs=-1, type=click.Path(exists=True))
-def validate(name: Optional[Sequence[str]] = None) -> None:
-    """Validates the JSON message stored in the file with the given NAME to see
-    if it is a valid Flockwave message. When omitted, the script will validate
-    all ``.json`` files found in ``doc/examples``.
+def _retrieve_resource(uri: str) -> Resource:
+    """Specialized URI retriever for Flockwave's JSON schema files using the
+    new Registry-based method in the ``referencing`` library.
+
+    Should not be called directly.
+
+    When the URI starts with ``http://collmot.com/schemas/flockwave/1.0``,
+    it is assumed that the corresponding JSON file is present in the
+    ``flockwave.spec`` package so it is looked up from there.
+
+    Raises:
+        NoSuchResource: when the URI does not start with the prefix mentioned
+            above
     """
-    schema = get_message_body_schema()
-
-    # Create a resolver that resolves JSON schema references locally
-    resolver = jsonschema.RefResolver.from_schema(
-        schema, handlers={"http": ref_resolver}
-    )
-
-    own_path = sys.modules[__name__].__file__
-    assert own_path is not None
-
-    SCRIPT_ROOT = Path(own_path).parent.parent.parent.parent.absolute()
-
-    if not name:
-        examples_dir = SCRIPT_ROOT / "doc" / "examples"
-        name = sorted(
-            os.path.join(examples_dir, fname)
-            for fname in os.listdir(examples_dir)
-            if fname.endswith(".json")
-        )
-        compact_output = True
+    if uri.startswith(FLOCKWAVE_SPEC_PREFIX):
+        path = uri.removeprefix(FLOCKWAVE_SPEC_PREFIX).removeprefix("/")
+        return Resource.from_contents(
+            _get_json_object_from_resource(path), default_specification=DRAFT7
+        )  # type: ignore
     else:
-        compact_output = False
+        raise NoSuchResource(ref=uri)
 
-    for fn in name:
-        try:
-            num_objs = check_validity(fn, schema, resolver)
-        except ValidationError:
-            fn = click.format_filename(fn)
-            click.echo("{0} is not a valid Flockwave message.".format(fn))
-            click.echo("")
-            raise
 
-        if not compact_output:
-            fn = click.format_filename(fn)
-            if num_objs == 1:
-                click.echo("{0} is a valid Flockwave message.".format(fn))
-            elif num_objs > 1:
-                click.echo("{0} contains valid Flockwave messages.".format(fn))
-            else:
-                click.echo("{0} contains no objects at all.".format(fn))
+def create_validator_for_schema(
+    schema: Schema, *, registry: Optional[Registry] = None
+) -> Validator:
+    """Creates a validator for the given JSON schema object."""
+    validator_cls = validator_for(schema)
+    registry = registry or _get_reference_resolver_registry()
 
-    if compact_output:
-        click.echo("All tested messages were valid.")
+    # registry=... keyword argument is important here, otherwise it would be
+    # interpreted as an old-style RefResolver that is deprecated from
+    # jsonschema >= 4.18.0
+    return validator_cls(schema, registry=registry)
 
 
 if __name__ == "__main__":
+    # Legacy entry point, one should migrate to flockwave.spec.__main__
+    from .cli import validate
+
+    print("/!\\ This entry point is deprecated; use flockwave.spec.cli instead.")
     validate()
