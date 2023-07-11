@@ -71,17 +71,17 @@ def _get_schema_from_resource(
         the JSON schema from the given resource
     """
     obj = _get_json_object_from_resource(resource_path)
-    if isinstance(json_pointer, JsonPointer):
-        obj = json_pointer.get(obj)
-    elif json_pointer is not None:
-        obj = resolve_pointer(obj, json_pointer)
-
     obj = replace_refs(
         obj,
         loader=_jsonref_loader,
         jsonschema=True,
         proxies=True,
     )
+
+    if isinstance(json_pointer, JsonPointer):
+        obj = json_pointer.get(obj)
+    elif json_pointer is not None:
+        obj = resolve_pointer(obj, json_pointer)
 
     # We need to trigger the resoolution of '$ref' references. In theory,
     # we could use proxies=False but we were running into problems with that.
