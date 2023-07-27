@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "EXT-CFG"
-		},
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EXT-CFG"
+    },
     "ids": {
-			"$ref": "definitions.json#/extensionIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+      "$ref": "definitions.json#/extensionIdList"
+    }
+  },
+  "required": ["type", "ids"]
 }

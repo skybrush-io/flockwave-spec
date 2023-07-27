@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "EXT-LOAD"
-		},
-		"ids": {
-			"$ref": "definitions.json#/extensionIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EXT-LOAD"
+    },
+    "ids": {
+      "$ref": "definitions.json#/extensionIdList"
+    }
+  },
+  "required": ["type", "ids"]
 }

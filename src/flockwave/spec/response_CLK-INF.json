@@ -1,21 +1,19 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "CLK-INF"
-		},
-		"status": {
-			"type": "object",
-			"additionalProperties": {
-				"$ref": "definitions.json#/clockInfo"
-			}
-		},
-		"error": {
-			"$ref": "definitions.json#/errorMap"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "CLK-INF"
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/clockInfo"
+      }
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

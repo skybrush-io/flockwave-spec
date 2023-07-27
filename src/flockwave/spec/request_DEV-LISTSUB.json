@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "DEV-LISTSUB"
-		},
-        "pathFilter": {
-			"$ref": "definitions.json#/deviceTreePathList"
-		}
-	},
-	"required": [
-		"type", "pathFilter"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "DEV-LISTSUB"
+    },
+    "pathFilter": {
+      "$ref": "definitions.json#/deviceTreePathList"
+    }
+  },
+  "required": ["type", "pathFilter"]
 }

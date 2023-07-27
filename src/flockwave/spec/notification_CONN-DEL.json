@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "CONN-DEL"
-		},
-		"ids": {
-			"$ref": "definitions.json#/connectionIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "CONN-DEL"
+    },
+    "ids": {
+      "$ref": "definitions.json#/connectionIdList"
+    }
+  },
+  "required": ["type", "ids"]
 }

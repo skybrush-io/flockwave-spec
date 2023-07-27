@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "ASYNC-TIMEOUT"
-		},
-		"ids": {
-			"$ref": "definitions.json#/receiptIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "ASYNC-TIMEOUT"
+    },
+    "ids": {
+      "$ref": "definitions.json#/receiptIdList"
+    }
+  },
+  "required": ["type", "ids"]
 }

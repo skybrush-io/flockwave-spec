@@ -1,15 +1,13 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "LCN-INF"
-		},
-		"license": {
-			"$ref": "definitions.json#/license"
-		}
-	},
-	"required": [
-		"type", "license"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "LCN-INF"
+    },
+    "license": {
+      "$ref": "definitions.json#/license"
+    }
+  },
+  "required": ["type", "license"],
+  "additionalProperties": false
 }

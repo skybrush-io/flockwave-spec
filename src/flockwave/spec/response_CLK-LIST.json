@@ -1,15 +1,13 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "CLK-LIST"
-		},
-		"ids": {
-			"$ref": "definitions.json#/clockIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "CLK-LIST"
+    },
+    "ids": {
+      "$ref": "definitions.json#/clockIdList"
+    }
+  },
+  "required": ["type", "ids"],
+  "additionalProperties": false
 }

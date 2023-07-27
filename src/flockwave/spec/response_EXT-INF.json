@@ -1,21 +1,19 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "EXT-INF"
-		},
-		"status": {
-			"type": "object",
-			"additionalProperties": {
-				"$ref": "definitions.json#/extensionInfo"
-			}
-		},
-		"error": {
-			"$ref": "definitions.json#/errorMap"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EXT-INF"
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/extensionInfo"
+      }
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

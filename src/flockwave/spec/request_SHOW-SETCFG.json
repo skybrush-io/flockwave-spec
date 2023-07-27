@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "SHOW-SETCFG"
-		},
-		"configuration": {
-			"$ref": "definitions.json#/droneShowConfiguration"
-		}
-	},
-	"required": [
-		"type", "configuration"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-SETCFG"
+    },
+    "configuration": {
+      "$ref": "definitions.json#/droneShowConfiguration"
+    }
+  },
+  "required": ["type", "configuration"]
 }

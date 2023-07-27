@@ -1,17 +1,15 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "EXT-SETCFG"
-		},
-		"ids": {
-			"type": "object",
-			"additionalProperties": {
-				"type": "object"
-			}
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EXT-SETCFG"
+    },
+    "ids": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  },
+  "required": ["type", "ids"]
 }

@@ -1,18 +1,16 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "ASYNC-RESP"
-		},
-		"id": {
-			"$ref": "definitions.json#/receiptId"
-		},
-		"error": {
-			"$ref": "definitions.json#/error"
-		},
-		"result": {}
-	},
-	"required": [
-		"type", "id"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "ASYNC-RESP"
+    },
+    "id": {
+      "$ref": "definitions.json#/receiptId"
+    },
+    "error": {
+      "$ref": "definitions.json#/error"
+    },
+    "result": {}
+  },
+  "required": ["type", "id"]
 }

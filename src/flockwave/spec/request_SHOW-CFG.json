@@ -1,12 +1,10 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "SHOW-CFG"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-CFG"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

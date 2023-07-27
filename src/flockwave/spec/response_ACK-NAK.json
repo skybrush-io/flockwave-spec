@@ -1,15 +1,13 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "ACK-NAK"
-		},
-		"reason": {
-			"type": "string"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "ACK-NAK"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

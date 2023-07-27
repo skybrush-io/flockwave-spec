@@ -1,12 +1,10 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "AUTH-WHOAMI"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "AUTH-WHOAMI"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

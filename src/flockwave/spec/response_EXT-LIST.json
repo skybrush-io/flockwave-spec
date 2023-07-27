@@ -1,18 +1,16 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "EXT-LIST"
-		},
-		"loaded": {
-			"$ref": "definitions.json#/extensionIdList"
-		},
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EXT-LIST"
+    },
+    "loaded": {
+      "$ref": "definitions.json#/extensionIdList"
+    },
     "available": {
-			"$ref": "definitions.json#/extensionIdList"
-		}
-	},
-	"required": [
-		"type", "loaded", "available"
-	],
-	"additionalProperties": false
+      "$ref": "definitions.json#/extensionIdList"
+    }
+  },
+  "required": ["type", "loaded", "available"],
+  "additionalProperties": false
 }

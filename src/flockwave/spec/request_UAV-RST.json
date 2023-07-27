@@ -1,22 +1,20 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "UAV-RST"
-		},
-		"ids": {
-			"$ref": "definitions.json#/uavIdList"
-		},
-		"component": {
-			"title": "Component",
-			"description": "The component to reboot",
-			"type": "string"
-		},
-		"transport": {
-			"$ref": "definitions.json#/transportOptions"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-RST"
+    },
+    "ids": {
+      "$ref": "definitions.json#/uavIdList"
+    },
+    "component": {
+      "title": "Component",
+      "description": "The component to reboot",
+      "type": "string"
+    },
+    "transport": {
+      "$ref": "definitions.json#/transportOptions"
+    }
+  },
+  "required": ["type", "ids"]
 }

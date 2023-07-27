@@ -1,27 +1,25 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "UAV-SIGNAL"
-		},
-		"ids": {
-			"$ref": "definitions.json#/uavIdList"
-		},
-		"signals": {
-			"type": "array",
-			"items": {
-				"type": "string"
-			}
-		},
-		"duration": {
-			"type": "number",
-			"minimum": 0
-		},
-		"transport": {
-			"$ref": "definitions.json#/transportOptions"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-SIGNAL"
+    },
+    "ids": {
+      "$ref": "definitions.json#/uavIdList"
+    },
+    "signals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0
+    },
+    "transport": {
+      "$ref": "definitions.json#/transportOptions"
+    }
+  },
+  "required": ["type", "ids"]
 }

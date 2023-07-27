@@ -1,20 +1,18 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "AUTH-INF"
-		},
-		"methods": {
-			"type": "array",
-			"items": {
-				"type": "string"
-			}
-		},
-		"required": {
-			"type": "boolean"
-		}
-	},
-	"required": [
-		"type", "required", "methods"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "AUTH-INF"
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required": {
+      "type": "boolean"
+    }
+  },
+  "required": ["type", "required", "methods"]
 }

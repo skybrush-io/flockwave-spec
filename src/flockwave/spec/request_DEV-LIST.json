@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "DEV-LIST"
-		},
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "DEV-LIST"
+    },
     "ids": {
-			"$ref": "definitions.json#/objectIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+      "$ref": "definitions.json#/objectIdList"
+    }
+  },
+  "required": ["type", "ids"]
 }

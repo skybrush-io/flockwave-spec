@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "DOCK-INF"
-		},
-		"ids": {
-			"$ref": "definitions.json#/dockIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "DOCK-INF"
+    },
+    "ids": {
+      "$ref": "definitions.json#/dockIdList"
+    }
+  },
+  "required": ["type", "ids"]
 }

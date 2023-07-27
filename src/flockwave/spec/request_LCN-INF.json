@@ -1,11 +1,9 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "LCN-INF"
-		}
-	},
-	"required": [
-		"type"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "LCN-INF"
+    }
+  },
+  "required": ["type"]
 }

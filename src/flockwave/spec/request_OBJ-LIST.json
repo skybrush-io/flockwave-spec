@@ -1,13 +1,13 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "OBJ-LIST"
-		},
-		"filter": {
-			"$ref": "definitions.json#/objectTypeFilter"
-		}
-	},
-	"required": ["type"],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "OBJ-LIST"
+    },
+    "filter": {
+      "$ref": "definitions.json#/objectTypeFilter"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

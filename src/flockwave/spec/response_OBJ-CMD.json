@@ -1,21 +1,19 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "OBJ-CMD"
-		},
-		"receipt": {
-			"$ref": "definitions.json#/receiptMap"
-		},
-		"error": {
-			"$ref": "definitions.json#/errorMap"
-		},
-		"result": {
-			"$ref": "definitions.json#/asyncCommandResponseMap"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "OBJ-CMD"
+    },
+    "receipt": {
+      "$ref": "definitions.json#/receiptMap"
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    },
+    "result": {
+      "$ref": "definitions.json#/asyncCommandResponseMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

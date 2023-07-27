@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "UAV-VER"
-		},
-		"ids": {
-			"$ref": "definitions.json#/uavIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-VER"
+    },
+    "ids": {
+      "$ref": "definitions.json#/uavIdList"
+    }
+  },
+  "required": ["type", "ids"]
 }

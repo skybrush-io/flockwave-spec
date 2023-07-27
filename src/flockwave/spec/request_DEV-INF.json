@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "DEV-INF"
-		},
-		"paths": {
-			"$ref": "definitions.json#/deviceTreePathList"
-		}
-	},
-	"required": [
-		"type", "paths"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "DEV-INF"
+    },
+    "paths": {
+      "$ref": "definitions.json#/deviceTreePathList"
+    }
+  },
+  "required": ["type", "paths"]
 }

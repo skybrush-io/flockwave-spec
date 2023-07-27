@@ -1,21 +1,19 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "DEV-LIST"
-		},
-		"devices": {
-			"type": "object",
-			"additionalProperties": {
-				"$ref": "definitions.json#/deviceTreeNode"
-			}
-		},
-		"error": {
-			"$ref": "definitions.json#/errorMap"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "DEV-LIST"
+    },
+    "devices": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/deviceTreeNode"
+      }
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

@@ -1,23 +1,21 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "SYS-VER"
-		},
-		"name": {
-			"type": "string"
-		},
-		"software": {
-			"type": "string"
-		},
-		"version": {
-			"$ref": "definitions.json#/versionNumber"
-		},
-		"revision": {
-			"type": "string"
-		}
-	},
-	"required": [
-		"type", "software", "version"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SYS-VER"
+    },
+    "name": {
+      "type": "string"
+    },
+    "software": {
+      "type": "string"
+    },
+    "version": {
+      "$ref": "definitions.json#/versionNumber"
+    },
+    "revision": {
+      "type": "string"
+    }
+  },
+  "required": ["type", "software", "version"]
 }

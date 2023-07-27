@@ -1,21 +1,19 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "EXT-UNLOAD"
-		},
-		"status": {
-			"type": "object",
-			"additionalProperties": {
-				"type": "object"
-			}
-		},
-		"error": {
-			"$ref": "definitions.json#/errorMap"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EXT-UNLOAD"
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

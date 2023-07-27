@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "EXT-RELOAD"
-		},
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EXT-RELOAD"
+    },
     "ids": {
-			"$ref": "definitions.json#/extensionIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+      "$ref": "definitions.json#/extensionIdList"
+    }
+  },
+  "required": ["type", "ids"]
 }

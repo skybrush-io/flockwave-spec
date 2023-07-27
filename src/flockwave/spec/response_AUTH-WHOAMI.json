@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "AUTH-WHOAMI"
-		},
-		"user": {
-			"$ref": "definitions.json#/userName"
-		}
-	},
-	"required": [
-		"type", "user"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "AUTH-WHOAMI"
+    },
+    "user": {
+      "$ref": "definitions.json#/userName"
+    }
+  },
+  "required": ["type", "user"]
 }

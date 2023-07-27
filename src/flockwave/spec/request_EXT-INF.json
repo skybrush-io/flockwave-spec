@@ -1,14 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "EXT-INF"
-		},
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EXT-INF"
+    },
     "ids": {
-			"$ref": "definitions.json#/extensionIdList"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+      "$ref": "definitions.json#/extensionIdList"
+    }
+  },
+  "required": ["type", "ids"]
 }

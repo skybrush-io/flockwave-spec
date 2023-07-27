@@ -1,12 +1,10 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "SHOW-LIGHTS"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-LIGHTS"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

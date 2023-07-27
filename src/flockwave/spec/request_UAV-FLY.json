@@ -1,17 +1,15 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "UAV-FLY"
-		},
-		"ids": {
-			"$ref": "definitions.json#/uavIdList"
-		},
-		"target": {
-			"$ref": "definitions.json#/gpsCoordinate"
-		}
-	},
-	"required": [
-		"type", "ids", "target"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-FLY"
+    },
+    "ids": {
+      "$ref": "definitions.json#/uavIdList"
+    },
+    "target": {
+      "$ref": "definitions.json#/gpsCoordinate"
+    }
+  },
+  "required": ["type", "ids", "target"]
 }

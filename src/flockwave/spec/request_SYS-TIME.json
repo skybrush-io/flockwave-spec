@@ -1,15 +1,13 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "SYS-TIME"
-		},
-		"adjustment": {
-			"type": "number"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SYS-TIME"
+    },
+    "adjustment": {
+      "type": "number"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

@@ -1,17 +1,15 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "UAV-TAKEOFF"
-		},
-		"ids": {
-			"$ref": "definitions.json#/uavIdList"
-		},
-		"transport": {
-			"$ref": "definitions.json#/transportOptions"
-		}
-	},
-	"required": [
-		"type", "ids"
-	]
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-TAKEOFF"
+    },
+    "ids": {
+      "$ref": "definitions.json#/uavIdList"
+    },
+    "transport": {
+      "$ref": "definitions.json#/transportOptions"
+    }
+  },
+  "required": ["type", "ids"]
 }

@@ -1,19 +1,17 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "DEV-INF"
-		},
-		"values": {
-			"type": "object",
-			"additionalProperties": true
-		},
-		"error": {
-			"$ref": "definitions.json#/errorMap"
-		}
-	},
-	"required": [
-		"type"
-	],
-	"additionalProperties": false
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "DEV-INF"
+    },
+    "values": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
 }

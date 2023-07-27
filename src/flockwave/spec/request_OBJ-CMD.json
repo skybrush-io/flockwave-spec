@@ -1,12 +1,12 @@
 {
-	"type": "object",
-	"properties": {
-		"type": {
-			"const": "OBJ-CMD"
-		},
-		"ids": {
-			"$ref": "definitions.json#/objectIdList"
-		},
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "OBJ-CMD"
+    },
+    "ids": {
+      "$ref": "definitions.json#/objectIdList"
+    },
     "command": {
       "title": "Command",
       "description": "The command to send",
@@ -22,8 +22,6 @@
       "description": "Keyword arguments of the command",
       "type": "object"
     }
-	},
-	"required": [
-		"type", "ids", "command"
-	]
+  },
+  "required": ["type", "ids", "command"]
 }
