@@ -10,6 +10,7 @@
     "title": "Attitude",
     "description": "Attitude around the principal aircraft axes",
     "type": "array",
+    "minItems": 3,
     "items": [
       {
         "title": "Roll angle",
@@ -39,6 +40,7 @@
     "title": "Battery information",
     "description": "Information about the on-board battery of the UAV, if applicable",
     "type": "array",
+    "minItems": 1,
     "items": [
       {
         "title": "Battery voltage",
@@ -657,6 +659,7 @@
     "title": "GPS coordinate",
     "description": "GPS coordinate of an object",
     "type": "array",
+    "minItems": 2,
     "items": [
       {
         "title": "Latitude",
@@ -694,6 +697,7 @@
     "title": "GPS fix",
     "description": "Basic information about the GPS fix",
     "type": "array",
+    "minItems": 1,
     "items": [
       {
         "title": "GPS fix type",
@@ -959,6 +963,7 @@
     "title": "Position (XYZ)",
     "description": "Position in a local right-handed XYZ coordinate system",
     "type": "array",
+    "minItems": 3,
     "items": [
       {
         "title": "X component",
@@ -1122,7 +1127,7 @@
         "type": "string"
       }
     },
-    "required": ["id", "position", "timestamp"]
+    "required": ["id", "timestamp"]
   },
 
   "userName": {
@@ -1136,6 +1141,7 @@
     "title": "Velocity (NED)",
     "description": "Velocity in the NED coordinate system",
     "type": "array",
+    "minItems": 3,
     "items": [
       {
         "title": "North component",
@@ -1159,6 +1165,7 @@
     "title": "Velocity (XYZ)",
     "description": "Velocity in a local right-handed XYZ coordinate system",
     "type": "array",
+    "minItems": 3,
     "items": [
       {
         "title": "X component",

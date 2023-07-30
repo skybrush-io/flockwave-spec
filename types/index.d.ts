@@ -200,10 +200,10 @@ export type Name = string;
 export type Name1 = string;
 /**
  * GPS coordinate of an object
+ *
+ * @minItems 2
  */
 export type GPSCoordinate =
-  | []
-  | [Latitude]
   | [Latitude, Longitude]
   | [Latitude, Longitude, AMSL]
   | [Latitude, Longitude, AMSL, AHL]
@@ -440,8 +440,10 @@ export type FlightLogMetadataItems = FlightLogMetadata[];
 export type FlightMode = string;
 /**
  * Position in a local right-handed XYZ coordinate system
+ *
+ * @minItems 3
  */
-export type PositionXYZ = [] | [XComponent] | [XComponent, YComponent] | [XComponent, YComponent, ZComponent];
+export type PositionXYZ = [XComponent, YComponent, ZComponent];
 /**
  * X component of the vector, in mm
  */
@@ -456,9 +458,10 @@ export type YComponent = number;
 export type ZComponent = number;
 /**
  * Basic information about the GPS fix
+ *
+ * @minItems 1
  */
 export type GPSFix =
-  | []
   | [GPSFixType]
   | [GPSFixType, NumberOfSatellites]
   | [GPSFixType, NumberOfSatellites, HAcc]
@@ -479,8 +482,10 @@ export type VAcc = number | null;
 export type Heading1 = number;
 /**
  * Attitude around the principal aircraft axes
+ *
+ * @minItems 3
  */
-export type Attitude = [] | [RollAngle] | [RollAngle, PitchAngle] | [RollAngle, PitchAngle, YawAngle];
+export type Attitude = [RollAngle, PitchAngle, YawAngle];
 /**
  * Roll angle, in 1/10th of degrees
  */
@@ -495,12 +500,10 @@ export type PitchAngle = number;
 export type YawAngle = number;
 /**
  * Velocity in the NED coordinate system
+ *
+ * @minItems 3
  */
-export type VelocityNED =
-  | []
-  | [NorthComponent]
-  | [NorthComponent, EastComponent]
-  | [NorthComponent, EastComponent, DownComponent];
+export type VelocityNED = [NorthComponent, EastComponent, DownComponent];
 /**
  * North component of the vector, in mm/s
  */
@@ -515,8 +518,10 @@ export type EastComponent = number;
 export type DownComponent = number;
 /**
  * Velocity in a local right-handed XYZ coordinate system
+ *
+ * @minItems 3
  */
-export type VelocityXYZ = [] | [XComponent1] | [XComponent1, YComponent1] | [XComponent1, YComponent1, ZComponent1];
+export type VelocityXYZ = [XComponent1, YComponent1, ZComponent1];
 /**
  * X component of the vector, in mm/s
  */
@@ -535,9 +540,10 @@ export type ZComponent1 = number;
 export type LastUpdatedAt2 = number;
 /**
  * Information about the on-board battery of the UAV, if applicable
+ *
+ * @minItems 1
  */
 export type BatteryInformation =
-  | []
   | [BatteryVoltage]
   | [BatteryVoltage, StateOfCharge]
   | [BatteryVoltage, StateOfCharge, Charging];
@@ -1498,7 +1504,7 @@ export interface Response_UAVINF {
 export interface UAVStatusInfo {
   id: ObjectID;
   mode?: FlightMode;
-  position: GPSCoordinate;
+  position?: GPSCoordinate;
   positionXYZ?: PositionXYZ;
   gps?: GPSFix;
   heading?: Heading1;
