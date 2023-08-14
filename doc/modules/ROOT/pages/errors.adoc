@@ -61,23 +61,23 @@ on user interfaces where space is at a premium.
 
 [width="100%",cols="10%,10%,80%",options="header",]
 |===
-|Code |Abbr   |Description
-|1  |GROUND   |Drone is on the ground. If no other error codes are set, this code
+|Code |Abbr  |Description
+|1  |GROUND  |Drone is on the ground. If no other error codes are set, this code
 alone means that the drone is ready to take off.
-|2  |NO LOG   |Logging deactivated. This message is shown when logging-capable UAVs
+|2  |NO LOG  |Logging deactivated. This message is shown when logging-capable UAVs
 are not able to write entries to their logs for some reason.
-|3  |PREARM   |Prearm check in progress. This message is shown when the UAV is performing
+|3  |PREARM  |Prearm check in progress. This message is shown when the UAV is performing
 prearm checks and is not ready for takeoff yet.
-|4  |INIT     |Autopilot initializing. This message is shown when the autopilot of the
+|4  |INIT    |Autopilot initializing. This message is shown when the autopilot of the
 UAV has not finished initializing and the UAV is not ready for takeoff yet.
-|5  |TAKEOFF  |Drone is taking off.
-|6  |LANDING  |Drone is landing.
-|7  |LANDED   |Drone has landed successfully.
-|8  |MOTORS   |Motors are running while the drone is on the ground.
-|9  |SLEEP    |Drone is in a low-power "sleep" state. Flight controller is most
+|5  |TAKEOFF |Drone is taking off.
+|6  |LANDING |Drone is landing.
+|7  |LANDED  |Drone has landed successfully.
+|8  |MOTORS  |Motors are running while the drone is on the ground.
+|9  |SLEEP   |Drone is in a low-power "sleep" state. Flight controller is most
 likely powered down, but it can be resumed remotely.
-|10 |SUSPENDED|The high-level flight control of the drone is suspended temporarily.
-|63 |RTH      |Drone is returning to its home position.
+|10 |PAUSED  |The high-level flight control of the drone is suspended temporarily.
+|63 |RTH     |Drone is returning to its home position.
 |===
 
 == Warnings (codes 64-127)

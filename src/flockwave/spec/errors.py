@@ -19,7 +19,7 @@ _error_code_to_abbreviation = {
     7: "landed",
     8: "motors",
     9: "sleep",
-    10: "suspended",
+    10: "paused",
     63: "RTH",
     # Warnings
     64: "storage",
