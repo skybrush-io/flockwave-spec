@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "AUTH-RESP"
+    },
+    "data": {
+      "title": "Data",
+      "description": "Data to send to the client that is to be used in the next step of multi-step authentication methods",
+      "type": "string"
+    }
+  },
+  "required": ["type", "data"],
+  "additionalProperties": false
+}

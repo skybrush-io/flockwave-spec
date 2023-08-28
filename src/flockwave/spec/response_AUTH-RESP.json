@@ -1,42 +1,10 @@
 {
   "oneOf": [
     {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "AUTH-RESP"
-        },
-        "data": {
-          "title": "Data",
-          "description": "Data to send to the client that is to be used in the next step of multi-step authentication methods",
-          "type": "string"
-        }
-      },
-      "required": ["type", "data"],
-      "additionalProperties": false
+      "$ref": "response_AUTH-RESP_Single-Step.json#"
     },
     {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "AUTH-RESP"
-        },
-        "result": {
-          "title": "Result",
-          "description": "Result of the authentication",
-          "type": "boolean"
-        },
-        "reason": {
-          "title": "Failure reason",
-          "description": "Explains why the authentication attempt failed",
-          "type": "string"
-        },
-        "user": {
-          "$ref": "definitions.json#/userName"
-        }
-      },
-      "required": ["type", "result"],
-      "additionalProperties": false
+      "$ref": "response_AUTH-RESP_Multi-Step.json#"
     }
   ]
 }

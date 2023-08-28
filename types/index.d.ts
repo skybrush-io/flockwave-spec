@@ -262,18 +262,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_ASYNCCANCEL
   | Response_ASYNCRESUME
   | Response_AUTHINF
-  | (
-      | {
-          type: "AUTH-RESP";
-          data: Data1;
-        }
-      | {
-          type: "AUTH-RESP";
-          result: Result;
-          reason?: FailureReason;
-          user?: Username;
-        }
-    )
+  | (Response_AUTHRESP_SingleStep | Response_AUTHRESP_MultiStep)
   | Response_AUTHWHOAMI
   | Response_BCNINF
   | Response_BCNPROPS
@@ -326,10 +315,6 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_WTHINF
   | Response_WTHLIST;
 /**
- * Data to send to the client that is to be used in the next step of multi-step authentication methods
- */
-export type Data1 = string;
-/**
  * Result of the authentication
  */
 export type Result = boolean;
@@ -341,6 +326,10 @@ export type FailureReason = string;
  * Name of the user
  */
 export type Username = string;
+/**
+ * Data to send to the client that is to be used in the next step of multi-step authentication methods
+ */
+export type Data1 = string;
 /**
  * Whether the beacon is currently active (operational). May be omitted for passive beacons or points of interest.
  */
@@ -1123,6 +1112,16 @@ export interface Response_AUTHINF {
   methods: string[];
   required: boolean;
   [k: string]: unknown;
+}
+export interface Response_AUTHRESP_SingleStep {
+  type: "AUTH-RESP";
+  result: Result;
+  reason?: FailureReason;
+  user?: Username;
+}
+export interface Response_AUTHRESP_MultiStep {
+  type: "AUTH-RESP";
+  data: Data1;
 }
 export interface Response_AUTHWHOAMI {
   type: "AUTH-WHOAMI";

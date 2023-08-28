@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "AUTH-RESP"
+    },
+    "result": {
+      "title": "Result",
+      "description": "Result of the authentication",
+      "type": "boolean"
+    },
+    "reason": {
+      "title": "Failure reason",
+      "description": "Explains why the authentication attempt failed",
+      "type": "string"
+    },
+    "user": {
+      "$ref": "definitions.json#/userName"
+    }
+  },
+  "required": ["type", "result"],
+  "additionalProperties": false
+}
