@@ -24,3 +24,15 @@ search = "__version_info__ = {current_version}"
 [[before_commit]]
 name = "Run tests"
 cmd = "poetry run pytest && pre-commit run --all-files"
+
+[[before_commit]]
+name = "Build the TypeScript definitions"
+cmd = "npm run build"
+
+# [[file]]
+# src = "package.json"
+# search = '"version" = "{current_version}"'
+
+[[before_commit]]
+name = "Update package.json and package-lock.json"
+cmd = "npm version --no-git-tag-version {new_version}"
