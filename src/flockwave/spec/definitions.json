@@ -1056,21 +1056,21 @@
     "properties": {
       "stationId": {
         "title": "Station ID",
-        "type": "number"
+        "type": ["number", "null"]
       },
       "descriptor": {
         "title": "Antenna descriptor",
-        "type": "string"
+        "type": ["string", "null"]
       },
       "serialNumber": {
         "title": "Serial number",
-        "type": "string"
+        "type": ["string", "null"]
       },
       "position": {
-        "$ref": "#/gpsCoordinate"
+        "$ref": ["#/gpsCoordinate", "null"]
       },
       "positionECEF": {
-        "$ref": "#/ecefCoordinate"
+        "$ref": ["#/ecefCoordinate", "null"]
       }
     }
   },
@@ -1181,7 +1181,7 @@
         "title": "Message set",
         "description": "RTK message set to use",
         "type": "string",
-        "enum": ["msm2", "msm4"]
+        "enum": ["msm4", "msm7"]
       },
       "position": {
         "$ref": "#/gpsCoordinate"

@@ -1,8 +1,4 @@
 {
-  "ids": [
-      "COM3-0",
-      "COM3-1",
-      "my-fixed-station"
-  ],
-  "type": "RTK-LIST"
+    "type": "RTK-LIST",
+    "ids": ["COM3-0", "COM3-1", "my-fixed-station"]
 }
