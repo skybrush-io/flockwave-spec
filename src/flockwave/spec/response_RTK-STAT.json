@@ -14,7 +14,10 @@
       }
     },
     "cnr": {
-      "$ref": "definitions.json#/rtkSatelliteCNRs"
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/rtkSatelliteCNRs"
+      }
     },
     "survey": {
       "$ref": "definitions.json#/rtkSurveyStatus"

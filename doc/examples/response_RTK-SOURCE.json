@@ -1,4 +1,4 @@
 {
-  "id": "my-fixed-station",
-  "type": "RTK-SOURCE"
+  "type": "RTK-SOURCE",
+  "id": "my-fixed-station"
 }

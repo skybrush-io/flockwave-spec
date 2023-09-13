@@ -1067,10 +1067,16 @@
         "type": ["string", "null"]
       },
       "position": {
-        "$ref": ["#/gpsCoordinate", "null"]
+        "oneOf": [
+          {"type": "null"},
+          {"$ref": "#/gpsCoordinate"}
+        ]
       },
       "positionECEF": {
-        "$ref": ["#/ecefCoordinate", "null"]
+        "oneOf": [
+          {"type": "null"},
+          {"$ref": "#/ecefCoordinate"}
+        ]
       }
     }
   },
@@ -1212,15 +1218,10 @@
       },
       "flags": {
         "title": "Survey flags",
-        "description": "RTK survey status flags",
-        "type": {
-          "flags": {
-            "unknown": 0,
-            "supported": 1,
-            "active": 2,
-            "valid": 4
-          }
-        }
+        "description": "RTK survey status flags (0: unknown, 1: supported, 2: active, 4: valid)",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 7
       }
     }
   },

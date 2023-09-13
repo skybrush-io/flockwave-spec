@@ -9,5 +9,6 @@
       "description": "The ID of the RTK source used"
     }
   },
-  "required": ["type", "id"]
+  "required": ["type", "id"],
+  "additionalProperties": false
 }
