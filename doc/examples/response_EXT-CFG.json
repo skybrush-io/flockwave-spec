@@ -1,14 +1,14 @@
 {
-    "type": "EXT-CFG",
-    "status": {
-        "system_clock": {},
-        "ssdp": {
-            "multicast_group": "239.255.255.250",
-            "port": 1900,
-            "label": "My awesome server"
-        }
-    },
-    "error": {
-        "beer": "No such extension. Unfortunately."
+  "type": "EXT-CFG",
+  "status": {
+    "system_clock": {},
+    "ssdp": {
+      "multicast_group": "239.255.255.250",
+      "port": 1900,
+      "label": "My awesome server"
     }
+  },
+  "error": {
+    "beer": "No such extension. Unfortunately."
+  }
 }

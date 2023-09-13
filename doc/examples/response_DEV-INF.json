@@ -1,12 +1,12 @@
 {
-    "type": "DEV-INF",
-    "values": {
-        "/1/battery/voltage": 13.4,
-        "/1/led": {
-            "on": true
-        }
-    },
-    "error": {
-        "/1/cpu/core3": "Path does not exist"
+  "type": "DEV-INF",
+  "values": {
+    "/1/battery/voltage": 13.4,
+    "/1/led": {
+      "on": true
     }
+  },
+  "error": {
+    "/1/cpu/core3": "Path does not exist"
+  }
 }

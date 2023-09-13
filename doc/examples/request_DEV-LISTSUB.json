@@ -1,4 +1,4 @@
 {
-    "type": "DEV-LISTSUB",
-    "pathFilter": ["/1", "/2"]
+  "type": "DEV-LISTSUB",
+  "pathFilter": ["/1", "/2"]
 }

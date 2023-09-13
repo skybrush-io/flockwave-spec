@@ -1,5 +1,5 @@
 {
-    "type": "PRM-GET",
-    "ids": ["1", "17", "31", "spam"],
-    "name": "EK2_ALT_SOURCE"
+  "type": "PRM-GET",
+  "ids": ["1", "17", "31", "spam"],
+  "name": "EK2_ALT_SOURCE"
 }

@@ -1,4 +1,4 @@
 {
-    "type": "CLK-LIST",
-    "ids": ["gps", "mtc", "system"]
+  "type": "CLK-LIST",
+  "ids": ["gps", "mtc", "system"]
 }

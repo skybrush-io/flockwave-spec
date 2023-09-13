@@ -1,10 +1,7 @@
 {
-    "type": "DEV-SUB",
-    "success": [
-        "/1/battery/voltage",
-        "/1/led"
-    ],
-    "error": {
-        "/1/cpu/core3": "Path does not exist"
-    }
+  "type": "DEV-SUB",
+  "success": ["/1/battery/voltage", "/1/led"],
+  "error": {
+    "/1/cpu/core3": "Path does not exist"
+  }
 }

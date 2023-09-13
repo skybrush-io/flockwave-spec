@@ -1,4 +1,4 @@
 {
-    "type": "CONN-DEL",
-    "ids": ["dgps"]
+  "type": "CONN-DEL",
+  "ids": ["dgps"]
 }

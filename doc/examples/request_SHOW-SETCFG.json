@@ -1,12 +1,12 @@
 {
-    "type": "SHOW-SETCFG",
-    "configuration": {
-        "start": {
-            "time": 1581881192,
-            "method": "auto",
-            "uavIds": ["01", "42"]
-        },
-        "mapping": ["01", "02", null, "05", "42"],
-		"duration": 294
-    }
+  "type": "SHOW-SETCFG",
+  "configuration": {
+    "start": {
+      "time": 1581881192,
+      "method": "auto",
+      "uavIds": ["01", "42"]
+    },
+    "mapping": ["01", "02", null, "05", "42"],
+    "duration": 294
+  }
 }

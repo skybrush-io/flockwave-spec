@@ -1,4 +1,4 @@
 {
-    "type": "ASYNC-CANCEL",
-    "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2", "beer"]
+  "type": "ASYNC-CANCEL",
+  "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2", "beer"]
 }

@@ -1,4 +1,4 @@
 {
-    "type": "CONN-INF",
-    "ids": ["xbee", "dgps", "beer_can"]
+  "type": "CONN-INF",
+  "ids": ["xbee", "dgps", "beer_can"]
 }

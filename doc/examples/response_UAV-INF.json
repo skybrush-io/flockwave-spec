@@ -1,24 +1,24 @@
 {
-    "type": "UAV-INF",
-    "status": {
-        "1": {
-            "id": "1",
-            "mode": "pos",
-            "position": [519976597, -7406863, 93765],
-            "positionXYZ": [0, 0, 0],
-            "gps": [3, 17],
-            "heading": 900,
-            "attitude": [0, 0, 900],
-            "velocity": [2000, 2000, -1000],
-            "velocityXYZ": [2000, 2000, 1000],
-            "timestamp": 1449562661000,
-            "debug": "0BADCAFE",
-            "errors": [17, 41],
-            "light": 2016,
-            "battery": [124]
-        }
-    },
-    "error": {
-        "spam": "No such UAV."
+  "type": "UAV-INF",
+  "status": {
+    "1": {
+      "id": "1",
+      "mode": "pos",
+      "position": [519976597, -7406863, 93765],
+      "positionXYZ": [0, 0, 0],
+      "gps": [3, 17],
+      "heading": 900,
+      "attitude": [0, 0, 900],
+      "velocity": [2000, 2000, -1000],
+      "velocityXYZ": [2000, 2000, 1000],
+      "timestamp": 1449562661000,
+      "debug": "0BADCAFE",
+      "errors": [17, 41],
+      "light": 2016,
+      "battery": [124]
     }
+  },
+  "error": {
+    "spam": "No such UAV."
+  }
 }

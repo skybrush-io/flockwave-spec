@@ -1,8 +1,8 @@
 {
-    "type": "UAV-RTH",
-    "ids": ["1", "17", "31", "spam"],
-    "transport": {
-        "channel": 1,
-        "broadcast": true
-    }
+  "type": "UAV-RTH",
+  "ids": ["1", "17", "31", "spam"],
+  "transport": {
+    "channel": 1,
+    "broadcast": true
+  }
 }

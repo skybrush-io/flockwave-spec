@@ -1,8 +1,4 @@
 {
-    "type": "CLK-INF",
-    "ids": [
-        "gps",
-        "mtc",
-        "beer_can"
-    ]
+  "type": "CLK-INF",
+  "ids": ["gps", "mtc", "beer_can"]
 }

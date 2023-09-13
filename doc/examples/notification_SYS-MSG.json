@@ -1,7 +1,9 @@
 {
-    "type": "SYS-MSG",
-    "items": [{
-        "severity": "info",
-        "message": "Free cookies in the lobby!"
-    }]
+  "type": "SYS-MSG",
+  "items": [
+    {
+      "severity": "info",
+      "message": "Free cookies in the lobby!"
+    }
+  ]
 }

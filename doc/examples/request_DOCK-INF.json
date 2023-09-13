@@ -1,4 +1,4 @@
 {
-    "type": "DOCK-INF",
-    "ids": ["base", "spam"]
+  "type": "DOCK-INF",
+  "ids": ["base", "spam"]
 }

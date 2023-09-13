@@ -1,4 +1,4 @@
 {
-    "type": "UAV-HALT",
-    "ids": ["1", "17", "31", "spam"]
+  "type": "UAV-HALT",
+  "ids": ["1", "17", "31", "spam"]
 }

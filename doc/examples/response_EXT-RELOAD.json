@@ -1,9 +1,9 @@
 {
-    "type": "EXT-RELOAD",
-    "status": {
-        "ssdp": {}
-    },
-  	"error": {
-  		"beer": "No such extension. Unfortunately."
-  	}
+  "type": "EXT-RELOAD",
+  "status": {
+    "ssdp": {}
+  },
+  "error": {
+    "beer": "No such extension. Unfortunately."
+  }
 }

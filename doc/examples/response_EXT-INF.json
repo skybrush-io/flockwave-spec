@@ -1,18 +1,18 @@
 {
-    "type": "EXT-INF",
-    "status": {
-        "system_clock": {
-            "id": "system_clock",
-            "name": "System clock",
-            "loaded": true
-        },
-        "ssdp": {
-            "id": "ssdp",
-            "name": "SSDP discovery service",
-            "loaded": false
-        }
+  "type": "EXT-INF",
+  "status": {
+    "system_clock": {
+      "id": "system_clock",
+      "name": "System clock",
+      "loaded": true
     },
-    "error": {
-        "beer": "No such extension. Unfortunately."
+    "ssdp": {
+      "id": "ssdp",
+      "name": "SSDP discovery service",
+      "loaded": false
     }
+  },
+  "error": {
+    "beer": "No such extension. Unfortunately."
+  }
 }

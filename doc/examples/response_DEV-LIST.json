@@ -1,44 +1,44 @@
 {
-    "type": "DEV-LIST",
-    "devices": {
-      "1": {
-        "type": "object",
-        "children": {
-          "battery": {
-            "type": "device",
-            "children": {
-              "voltage": {
-                "type": "channel",
-                "subType": "number",
-                "operations": ["read"],
-                "unit": "V"
-              },
-              "manufacturerId": {
-                "type": "channel",
-                "subType": "string",
-                "operations": ["read"]
-              }
+  "type": "DEV-LIST",
+  "devices": {
+    "1": {
+      "type": "object",
+      "children": {
+        "battery": {
+          "type": "device",
+          "children": {
+            "voltage": {
+              "type": "channel",
+              "subType": "number",
+              "operations": ["read"],
+              "unit": "V"
+            },
+            "manufacturerId": {
+              "type": "channel",
+              "subType": "string",
+              "operations": ["read"]
             }
-          },
-          "led": {
-            "type": "device",
-            "children": {
-              "on": {
-                "type": "channel",
-                "subType": "boolean",
-                "operations": ["read", "write"]
-              }
-            }
-          },
-          "reset": {
-            "type": "channel",
-            "subType": "boolean",
-            "operations": ["write"]
           }
+        },
+        "led": {
+          "type": "device",
+          "children": {
+            "on": {
+              "type": "channel",
+              "subType": "boolean",
+              "operations": ["read", "write"]
+            }
+          }
+        },
+        "reset": {
+          "type": "channel",
+          "subType": "boolean",
+          "operations": ["write"]
         }
       }
-    },
-    "error": {
-        "spam": "No such UAV."
     }
+  },
+  "error": {
+    "spam": "No such UAV."
+  }
 }

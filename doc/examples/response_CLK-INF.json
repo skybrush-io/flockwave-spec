@@ -1,22 +1,22 @@
 {
-    "type": "CLK-INF",
-    "status": {
-        "mtc": {
-            "id": "mtc",
-            "ticks": 4221,
-            "retrievedAt": 1462890801000,
-            "ticksPerSecond": 30,
-            "running": true
-        },
-        "gps": {
-            "id": "gps",
-            "ticks": 1462891061.824093,
-            "retrievedAt":1462890801000,
-            "epoch": "unix",
-            "running": true
-        }
+  "type": "CLK-INF",
+  "status": {
+    "mtc": {
+      "id": "mtc",
+      "ticks": 4221,
+      "retrievedAt": 1462890801000,
+      "ticksPerSecond": 30,
+      "running": true
     },
-    "error": {
-        "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
+    "gps": {
+      "id": "gps",
+      "ticks": 1462891061.824093,
+      "retrievedAt": 1462890801000,
+      "epoch": "unix",
+      "running": true
     }
+  },
+  "error": {
+    "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
+  }
 }

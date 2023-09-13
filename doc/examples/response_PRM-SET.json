@@ -1,13 +1,13 @@
 {
-    "type": "PRM-SET",
-    "result": {
-        "1": true
-    },
-    "receipt": {
-        "17": "0badcafe-deadbeef:1"
-    },
-    "error": {
-        "31": "No such parameter.",
-        "spam": "No such object."
-    }
+  "type": "PRM-SET",
+  "result": {
+    "1": true
+  },
+  "receipt": {
+    "17": "0badcafe-deadbeef:1"
+  },
+  "error": {
+    "31": "No such parameter.",
+    "spam": "No such object."
+  }
 }

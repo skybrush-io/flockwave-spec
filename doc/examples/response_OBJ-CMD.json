@@ -3,11 +3,11 @@
   "result": {
     "1": "brewing"
   },
-	"receipt": {
-	   "17": "0badcafedeadbeef"
-	},
-	"error": {
-		"31": "Command execution not supported.",
-		"spam": "No such UAV."
-	}
+  "receipt": {
+    "17": "0badcafedeadbeef"
+  },
+  "error": {
+    "31": "Command execution not supported.",
+    "spam": "No such UAV."
+  }
 }

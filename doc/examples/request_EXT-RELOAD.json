@@ -1,4 +1,4 @@
 {
-    "type": "EXT-RELOAD",
-    "ids": ["ssdp", "beer"]
+  "type": "EXT-RELOAD",
+  "ids": ["ssdp", "beer"]
 }

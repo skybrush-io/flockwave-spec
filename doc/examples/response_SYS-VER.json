@@ -1,6 +1,6 @@
 {
-    "type": "SYS-VER",
-    "name": "CollMot test server",
-    "software": "flockwave-server",
-    "version": "1.0"
+  "type": "SYS-VER",
+  "name": "CollMot test server",
+  "software": "flockwave-server",
+  "version": "1.0"
 }

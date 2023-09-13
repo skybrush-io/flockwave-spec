@@ -1,6 +1,6 @@
 {
-    "type": "PRM-SET",
-    "ids": ["1", "17", "31", "spam"],
-    "name": "EK2_ALT_SOURCE",
-    "value": 2
+  "type": "PRM-SET",
+  "ids": ["1", "17", "31", "spam"],
+  "name": "EK2_ALT_SOURCE",
+  "value": 2
 }

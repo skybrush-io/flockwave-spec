@@ -1,4 +1,4 @@
 {
-    "type": "EXT-UNLOAD",
-    "ids": ["ssdp", "beer"]
+  "type": "EXT-UNLOAD",
+  "ids": ["ssdp", "beer"]
 }

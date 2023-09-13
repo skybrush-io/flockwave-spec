@@ -1,13 +1,13 @@
 {
-    "type": "UAV-LAND",
-    "result": {
-        "1": true
-    },
-    "error": {
-        "31": "UAV is a beacon.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
+  "type": "UAV-LAND",
+  "result": {
+    "1": true
+  },
+  "error": {
+    "31": "UAV is a beacon.",
+    "spam": "No such UAV."
+  },
+  "receipt": {
+    "17": "0badcafedeadbeef"
+  }
 }

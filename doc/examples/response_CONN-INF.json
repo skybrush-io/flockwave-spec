@@ -1,21 +1,21 @@
 {
-    "type": "CONN-INF",
-    "status": {
-        "xbee": {
-            "id": "xbee",
-            "purpose": "uavRadioLink",
-            "description": "Upstream XBee radio link",
-            "status": "connected",
-            "timestamp": 1450114278000
-        },
-        "dgps": {
-            "id": "dgps",
-            "purpose": "dgps",
-            "description": "DGPS data from BUTE0",
-            "status": "connecting"
-        }
+  "type": "CONN-INF",
+  "status": {
+    "xbee": {
+      "id": "xbee",
+      "purpose": "uavRadioLink",
+      "description": "Upstream XBee radio link",
+      "status": "connected",
+      "timestamp": 1450114278000
     },
-    "error": {
-        "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
+    "dgps": {
+      "id": "dgps",
+      "purpose": "dgps",
+      "description": "DGPS data from BUTE0",
+      "status": "connecting"
     }
+  },
+  "error": {
+    "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
+  }
 }

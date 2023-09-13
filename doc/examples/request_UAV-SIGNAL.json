@@ -1,6 +1,6 @@
 {
-    "type": "UAV-SIGNAL",
-    "ids": ["1", "17", "31", "spam"],
-    "signals": ["sound", "light"],
-    "duration": 5000
+  "type": "UAV-SIGNAL",
+  "ids": ["1", "17", "31", "spam"],
+  "signals": ["sound", "light"],
+  "duration": 5000
 }
