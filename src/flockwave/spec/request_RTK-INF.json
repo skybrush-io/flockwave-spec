@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "RTK-INF"
+    },
+    "ids": {
+      "$ref": "definitions.json#/rtkPresetIdList"
+    }
+  },
+  "required": ["type", "ids"]
+}

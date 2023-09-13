@@ -1,0 +1,12 @@
+{
+  "preset": {
+      "COM3-0": {
+          "title": "My RTK base (COM3) (115200 baud)",
+          "format": "auto",
+          "sources": [
+              "serial:COM3?baud=115200"
+          ]
+      }
+  },
+  "type": "RTK-INF"
+}

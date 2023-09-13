@@ -537,6 +537,29 @@
     }
   },
 
+  "ecefCoordinate": {
+    "title": "ECEF coordinate",
+    "description": "Earth-centered Earth-fixed coordinate of an object",
+    "type": "array",
+    "items": [
+      {
+        "title": "X",
+        "description": "X coordinate in meters",
+        "type": "number"
+      },
+      {
+        "title": "Y",
+        "description": "Y coordinate in meters",
+        "type": "number"
+      },
+      {
+        "title": "Z",
+        "description": "Z coordinate in meters",
+        "type": "number"
+      }
+    ]
+  },
+
   "error": {
     "type": "string"
   },
@@ -1024,6 +1047,182 @@
   "receiptMap": {
     "type": "object",
     "additionalProperties": { "$ref": "#/receiptId" }
+  },
+
+  "rtkAntennaInfo": {
+    "title": "RTK antenna info",
+    "description": "Information about an RTK antenna",
+    "type": "object",
+    "properties": {
+      "stationId": {
+        "title": "Station ID",
+        "type": "number"
+      },
+      "descriptor": {
+        "title": "Antenna descriptor",
+        "type": "string"
+      },
+      "serialNumber": {
+        "title": "Serial number",
+        "type": "string"
+      },
+      "position": {
+        "$ref": "#/gpsCoordinate"
+      },
+      "positionECEF": {
+        "$ref": "#/ecefCoordinate"
+      }
+    }
+  },
+
+  "rtkMessageObservation": {
+    "title": "RTK message observation",
+    "description": "RTK message observation age and size",
+    "type": "array",
+    "items": [
+      {
+        "title": "Age",
+        "description": "The age of the last observation in milliseconds",
+        "type": "integer"
+      },
+      {
+        "title": "Size",
+        "description": "Size of the observation in bits per second",
+        "type": "number"
+      }
+    ]
+  },
+
+  "rtkMessageObservations": {
+    "title": "RTK message observations",
+    "description": "RTK message observations indexed by their type",
+    "type": "object",
+    "additionalProperties": {
+      "$ref": "#/rtkMessageObservation"
+    }
+  },
+
+  "rtkPresetId": {
+    "title": "RTK Preset ID",
+    "description": "Identifier of an RTK preset",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64
+  },
+
+  "rtkPresetIdList": {
+    "title": "RTK Preset IDs",
+    "description": "IDs of the RTK presets that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/rtkPresetId"
+    },
+    "uniqueItems": true
+  },  
+
+  "rtkPresetInfo": {
+    "title": "RTK preset info",
+    "description": "Information about an RTK preset",
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title",
+        "description": "A human-readable title of the preset",        
+        "type": "string"
+      },
+      "format": {
+        "title": "Message format",
+        "description": "Format of the GPS messages arriving in this configuration",
+        "type": "string",
+        "enum": ["auto", "rtcm2", "rtcm3", "ubx"]
+      },
+      "sources": {
+        "title": "Sources",
+        "description": "List of source connections where this preset collects messages from",
+        "type": "array",
+        "items": {
+          "$ref": "#/rtkPresetSource"
+        }
+      }
+    },
+    "required": ["title", "format", "sources"]
+  },
+
+  "rtkPresetSource": {
+    "title": "RTK preset source",
+    "description": "Identifier of an RTK source connection",
+    "type": "string",
+    "minLength": 1
+  },
+
+  "rtkSatelliteCNRs": {
+    "title": "RTK Satellite CNRs",
+    "description": "RTK satellite carrier-to-noise ratios",
+    "type": "object",
+    "additionalProperties": {"type": "number"}
+  },
+
+  "rtkSurveySettings": {
+    "title": "RTK survey settings",
+    "description": "RTK survey settings",
+    "type": "object",
+    "properties": {
+      "duration": {
+        "title": "Survey duration",
+        "description": "Minimum duration of RTK survey",
+        "type": "number"
+      },
+      "accurary": {
+        "title": "Survey accuracy",
+        "description": "Expected RTK survey position accuracy in meters",
+        "type": "number"
+      },
+      "messageSet": {
+        "title": "Message set",
+        "description": "RTK message set to use",
+        "type": "string",
+        "enum": ["msm2", "msm4"]
+      },
+      "position": {
+        "$ref": "#/gpsCoordinate"
+      },
+      "gnssTypes": {
+        "title": "GNSS types",
+        "desciption": "GNSS types to use for RTK corrections",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["gps", "glonass", "galileo", "sbas", "qzss", "beidou", "irnss"]
+        }
+      }
+    },
+    "required": ["duration", "accuracy", "messageSet"]
+  },
+
+
+  "rtkSurveyStatus": {
+    "title": "RTK survey status",
+    "description": "RTK survey accuracy and flags",
+    "type": "object",
+    "properties": {
+      "accurary": {
+        "title": "Survey accuracy",
+        "description": "RTK survey position accuracy in meters",
+        "type": "number"
+      },
+      "flags": {
+        "title": "Survey flags",
+        "description": "RTK survey status flags",
+        "type": {
+          "flags": {
+            "unknown": 0,
+            "supported": 1,
+            "active": 2,
+            "valid": 4
+          }
+        }
+      }
+    }
   },
 
   "severity": {

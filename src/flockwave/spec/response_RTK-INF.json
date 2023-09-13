@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "RTK-INF"
+    },
+    "preset": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/rtkPresetInfo"
+      }
+    }
+  },
+  "required": ["type", "preset"],
+  "additionalProperties": false
+}

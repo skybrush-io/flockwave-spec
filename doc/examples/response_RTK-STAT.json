@@ -1,0 +1,16 @@
+{
+    "antenna": {
+        "stationId": null,
+        "descriptor": null,
+        "serialNumber": null,
+        "position": null,
+        "positionECEF": null
+    },
+    "messages": {},
+    "cnr": {},
+    "survey": {
+        "accuracy": 0,
+        "flags": 0
+    },
+    "type": "RTK-STAT"
+}

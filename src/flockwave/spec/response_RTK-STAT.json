@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "RTK-STAT"
+    },
+    "antenna": {
+      "$ref": "definitions.json#/rtkAntennaInfo"
+    },
+    "messages": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/rtkMessageObservations"
+      }
+    },
+    "cnr": {
+      "$ref": "definitions.json#/rtkSatelliteCNRs"
+    },
+    "survey": {
+      "$ref": "definitions.json#/rtkSurveyStatus"
+    }
+  },
+  "required": ["antenna", "messages", "cnr", "survey"],
+  "additionalProperties": false
+}

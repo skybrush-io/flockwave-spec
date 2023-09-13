@@ -96,6 +96,21 @@
       "$ref": "request_PRM-SET.json#"
     },
     {
+      "$ref": "request_RTK-INF.json#"
+    },
+    {
+      "$ref": "request_RTK-LIST.json#"
+    },
+    {
+      "$ref": "request_RTK-SOURCE.json#"
+    },
+    {
+      "$ref": "request_RTK-STAT.json#"
+    },
+    {
+      "$ref": "request_RTK-SURVEY.json#"
+    },
+    {
       "$ref": "request_SHOW-CFG.json#"
     },
     {

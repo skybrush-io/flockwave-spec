@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "RTK-SOURCE"
+    },
+    "id": {
+      "type": "string",
+      "description": "The ID of the RTK source to use"
+    }
+  },
+  "required": ["type"]
+}

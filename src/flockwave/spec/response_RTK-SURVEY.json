@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "RTK-SURVEY"
+    },
+    "settings": {
+      "$ref": "definitions.json#/rtkSurveySettings"
+    },
+    "reason": {
+      "title": "Failure reason",
+      "description": "Explains why RTK survey initiation failed",
+      "type": "string"
+    }
+  },
+  "required": ["type", "settings"],
+  "additionalProperties": false
+}

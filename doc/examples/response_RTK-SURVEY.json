@@ -1,0 +1,8 @@
+{
+  "settings": {
+      "duration": 60,
+      "accuracy": 1,
+      "messageSet": "MSM7"
+  },
+  "type": "RTK-SURVEY"
+}
