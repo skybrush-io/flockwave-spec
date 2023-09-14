@@ -39,10 +39,7 @@ notification.
 
 [source,json]
 ----
-{
-    "type": "ASYNC-CANCEL",
-    "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2", "beer"]
-}
+include::example$request_ASYNC-CANCEL.json[]
 ----
 
 *Response fields*
@@ -61,16 +58,7 @@ the cancellation failed for these receipt IDs.
 
 [source,json]
 ----
-{
-    "type": "ASYNC-CANCEL",
-    "success": [
-        "0badcafedeadbeef:1",
-        "0badcafedeadbeef:2"
-    ],
-    "error": {
-        "beer": "Invalid receipt ID"
-    }
-}
+include::example$response_ASYNC-CANCEL.json[]
 ----
 
 [#async-resp]
@@ -98,11 +86,7 @@ Exactly one of the `result` and the `error` keys MUST be present in the message.
 
 [source,json]
 ----
-{
-    "type": "ASYNC-RESP",
-    "id": "0badcafedeadbeef",
-    "result": 1234
-}
+include::example$notification_ASYNC-RESP.json[]
 ----
 
 [#async-resume]
@@ -124,16 +108,7 @@ execution of an asynchronous operation.
 
 [source,json]
 ----
-{
-    "type": "ASYNC-RESUME",
-    "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2", "beer"],
-    "values": {
-        "0badcafedeadbeef:2": {
-            "spam": "ham",
-            "bacon": 42
-        }
-    }
-}
+include::example$request_ASYNC-RESUME.json[]
 ----
 
 *Response fields*
@@ -152,16 +127,7 @@ resuming the operation failed for these receipt IDs.
 
 [source,json]
 ----
-{
-    "type": "ASYNC-CANCEL",
-    "success": [
-        "0badcafedeadbeef:1",
-        "0badcafedeadbeef:2"
-    ],
-    "error": {
-        "beer": "Invalid receipt ID"
-    }
-}
+include::example$response_ASYNC-RESUME.json[]
 ----
 
 [#async-st]
@@ -188,15 +154,7 @@ input from the client.
 
 [source,json]
 ----
-{
-    "type": "ASYNC-ST",
-    "id": "0badcafedeadbeef",
-    "progress": {
-        "percentage": 80,
-        "message": "Almost ready, press any key"
-    },
-    "suspended": true
-}
+include::example$notification_ASYNC-ST.json[]
 ----
 
 [#async-timeout]
@@ -217,8 +175,5 @@ initiated earlier by the client has timed out.
 
 [source,json]
 ----
-{
-    "type": "ASYNC-TIMEOUT",
-    "ids": ["0badcafedeadbeef:1", "0badcafedeadbeef:2"]
-}
+include::example$notification_ASYNC-TIMEOUT.json[]
 ----

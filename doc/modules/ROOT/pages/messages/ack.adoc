@@ -18,9 +18,7 @@ This response has no fields.
 
 [source,json]
 ----
-{
-    "type": "ACK-ACK"
-}
+include::example$response_ACK-ACK.json[]
 ----
 
 [#ack-nak]
@@ -43,8 +41,5 @@ negative acknowledgment.
 
 [source,json]
 ----
-{
-    "type": "ACK-NAK",
-    "reason": "I'm sorry, Dave, I'm afraid I can't do that."
-}
+include::example$response_ACK-NAK.json[]
 ----
