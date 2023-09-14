@@ -113,7 +113,7 @@ battery on a UAV.
 
 The object is stored as a list with one mandatory and two optional items.
 
-*Fields*
+*Items*
 
 [cols="2,1,1,6",options="header",]
 |===
@@ -619,6 +619,43 @@ status update was received from the docking station
 }
 ----
 
+
+== `ECEFCoordinate`
+
+This type represents a coordinate given by a GPS in the
+"Earth-centered Earth-fixed" format using the geocentric WGS84
+reference system, where:
+
+    * The origin is the center of mass of the Earth.
+    * The X axis is in the plane of the equator, passing through the origin 
+      and extending from 180° longitude (negative) to the prime meridian (positive);
+    * The Y axis is also in the plane of the equator, passing through 
+      extending from 90°W longitude (negative) to 90°E longitude (positive)
+    * The Z axis is the line between the North and South Poles, 
+      with positive values increasing northward.
+
+All three coordinates (`X`, `Y`, and `Z`) are stored in meters.
+
+The object is stored as a list with three items.
+
+*Items*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Index |Required? |Type |Description
+|0 |yes |float |The `X` coordinate in meters
+|1 |yes |float |The `Y` coordinate in meters
+|2 |yes |float |The `Z` coordinate in meters
+|===
+
+*Example*
+
+[source,json]
+----
+[4120339, 1418747, 4641838]
+----
+
+
 == `ErrorList`
 
 This type is simply an array of numbers, where each number represents a
@@ -813,7 +850,7 @@ to the UAV. The Z axis points upwards.
 
 The object is stored as a list with three mandatory items.
 
-*Fields*
+*Items*
 
 [cols="1,1,1,7",options="header",]
 |===
@@ -981,6 +1018,169 @@ operation in a structured manner.
     "message": "Almost ready, stay tuned..."
 }
 ----
+
+
+[#rtk-antenna-info]
+== `RTKAntennaInfo`
+
+The `RTKAntennaInfo` object holds information about the current RTK antenna.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|stationId |yes |integer |The station ID of the antenna, or null if not known
+|descriptor |yes |string |The antenna descriptor, or null if not known
+|serialNumber |yes |string |The serial number of the antenna, or null if not known
+|position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the
+RTK antenna, in GPS coordinates, or null if not known
+|positionECEF |yes |<<_ecefcoordinate,ECEFCoordinate>> |The position of
+the RTK antenna, in ECEF coordinates, or null if not known
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "stationId": "my-station",
+    "descriptor": "TODO",
+    "serialNumber": "TODO",
+    "position": [519976597, -7406863, 93765],
+    "positionECEF": [4120339, 1418747, 4641838]
+}
+----
+
+
+[#rtk-message-observations]
+== `RTKMessageObservations`
+
+The `RTKMessageObservations` object contains statistical information about 
+RTK messages broadcast by the RTK base station. 
+
+The object is indexed by the message types sent by the RTK base. 
+
+*Items*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Index |Required? |Type |Description
+|0 |yes |int |The age of the last observation, in integer milliseconds
+|1 |yes |int |The average bitrate of the message stream in the last 10 seconds, in bits per second
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "rtcm3/1007": [123, 456],
+    "rtcm3/1019": [1234, 5678]
+}
+----
+
+
+[#rtk-preset-info]
+== `RTKConfigurationPreset`
+
+An `RTKConfigurationPreset` object holds an RTK configuration preset consisting of one or
+more RTK data sources and an optional packet filter to be executed on every received packet.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|title |yes |string |A human-readable title of the preset
+
+|format |yes |string |Format of the GPS messages arriving in this configuration
+(supported formats: "rtcm2", "rtcm3", "ubx", and "auto" for auto detection)
+
+|sources |yes |list of string|List of source connections where this preset collects messages from
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "title": "My RTK base (COM3) (115200 baud)",
+    "format": "auto",
+    "sources": ["serial:COM3?baud=115200"]
+}
+----
+
+
+[#rtk-survey-settings]
+== `RTKSurveySettings`
+
+The `RTKSurveySettings` object contains status of the current RTK base station
+self-survey procedure.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|duration |yes |float |The minimum duration of the survey to perform
+|accuracy |yes |float |The accuracy of the survey in meters
+|messageSet |yes |string | The message set to use / used ('msm4' or 'msm7')
+|position |no |<<_gpscoordinate,GPSCoordinate>> |The RTK base station antenna position in GPS coordinates
+|gnssTypes |no |list of strings | The GNSS types to use (choose from "gps", "glonass", 
+"galileo", "sbas", "qzss", "beidou", "irnss")
+
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "duration": 60,
+    "accuracy": 0.99,
+    "messageSet": "msm7",
+    "position": [47000, 19000, 10000],
+    "gnssTypes": ["gps", "glonass"]
+}
+----
+
+
+[#rtk-survey-status]
+== `RTKSurveyStatus`
+
+The `RTKSurveyStatus` object contains status of the current RTK base station
+self-survey procedure.
+
+*Fields*
+
+[cols="2,1,1,6a",options="header",]
+|===
+|Index |Required? |Type |Description
+|0 |yes |float |Accuracy of the antenna position during the survey in meters
+|1 |yes |integer |RTK survey status flags:
+
+[cols="1,5"]
+!===
+! 0 ! unknwon
+! 1 ! supported
+! 2 ! active
+! 4 ! valid
+
+!===
+
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "accuracy": 0.99,
+    "flags": 7
+}
+----
+
 
 == `Severity`
 
