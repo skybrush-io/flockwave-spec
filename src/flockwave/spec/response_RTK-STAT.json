@@ -10,13 +10,13 @@
     "messages": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "definitions.json#/rtkMessageObservations"
+        "$ref": "definitions.json#/rtkMessageObservation"
       }
     },
     "cnr": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "definitions.json#/rtkSatelliteCNRs"
+        "$ref": "definitions.json#/rtkSatelliteCNR"
       }
     },
     "survey": {

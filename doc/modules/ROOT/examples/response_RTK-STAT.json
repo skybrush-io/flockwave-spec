@@ -1,13 +1,36 @@
 {
   "antenna": {
-    "stationId": null,
-    "descriptor": null,
-    "serialNumber": null,
-    "position": null,
-    "positionECEF": null
+    "stationId": 100,
+    "descriptor": "ADVNULLANTENNA",
+    "serialNumber": "12345678",
+    "position": [
+      461214567,
+      154376573,
+      252860,
+      null
+    ],
+    "positionECEF": [
+      4268987000,
+      1178894000,
+      4574798000
+    ]
   },
-  "messages": {},
-  "cnr": {},
+  "messages": {
+    "rtcm3/1087": [
+      484,
+      2248
+    ],
+    "rtcm3/1097": [
+      484,
+      2336
+    ]
+  },
+  "cnr": {
+    "G05": 41.625,
+    "G12": 40.3125,
+    "G13": 54.375,
+    "G14": 55.5625    
+  },
   "survey": {
     "accuracy": 0,
     "flags": 0

@@ -1099,15 +1099,6 @@
     ]
   },
 
-  "rtkMessageObservations": {
-    "title": "RTK message observations",
-    "description": "RTK message observations indexed by their type",
-    "type": "object",
-    "additionalProperties": {
-      "$ref": "#/rtkMessageObservation"
-    }
-  },
-
   "rtkPresetId": {
     "title": "RTK Preset ID",
     "description": "Identifier of an RTK preset",
@@ -1161,11 +1152,10 @@
     "minLength": 1
   },
 
-  "rtkSatelliteCNRs": {
-    "title": "RTK Satellite CNRs",
-    "description": "RTK satellite carrier-to-noise ratios",
-    "type": "object",
-    "additionalProperties": {"type": "number"}
+  "rtkSatelliteCNR": {
+    "title": "RTK Satellite CNR",
+    "description": "RTK satellite carrier-to-noise ratio in dB",
+    "type": "number"
   },
 
   "rtkSurveySettings": {
