@@ -6,5 +6,8 @@
       "sources": ["serial:COM3?baud=115200"]
     }
   },
+  "error": {
+    "COM3-1": "No such RTK preset"
+  },
   "type": "RTK-INF"
 }

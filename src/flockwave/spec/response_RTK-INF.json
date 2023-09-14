@@ -9,6 +9,9 @@
       "additionalProperties": {
         "$ref": "definitions.json#/rtkPresetInfo"
       }
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
     }
   },
   "required": ["type", "preset"],
