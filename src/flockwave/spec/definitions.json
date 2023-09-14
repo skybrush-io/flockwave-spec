@@ -544,17 +544,17 @@
     "items": [
       {
         "title": "X",
-        "description": "X coordinate in meters",
+        "description": "X coordinate in millimeters",
         "type": "number"
       },
       {
         "title": "Y",
-        "description": "Y coordinate in meters",
+        "description": "Y coordinate in millimeters",
         "type": "number"
       },
       {
         "title": "Z",
-        "description": "Z coordinate in meters",
+        "description": "Z coordinate in millimeters",
         "type": "number"
       }
     ]

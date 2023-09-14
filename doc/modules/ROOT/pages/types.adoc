@@ -634,7 +634,7 @@ reference system, where:
     * The Z axis is the line between the North and South Poles, 
       with positive values increasing northward.
 
-All three coordinates (`X`, `Y`, and `Z`) are stored in meters.
+All three coordinates (`X`, `Y`, and `Z`) are stored in millimeters.
 
 The object is stored as a list with three items.
 
@@ -643,9 +643,9 @@ The object is stored as a list with three items.
 [cols="1,1,1,7",options="header",]
 |===
 |Index |Required? |Type |Description
-|0 |yes |float |The `X` coordinate in meters
-|1 |yes |float |The `Y` coordinate in meters
-|2 |yes |float |The `Z` coordinate in meters
+|0 |yes |float |The `X` coordinate in millimeters
+|1 |yes |float |The `Y` coordinate in millimeters
+|2 |yes |float |The `Z` coordinate in millimeters
 |===
 
 *Example*
@@ -1044,11 +1044,11 @@ the RTK antenna, in ECEF coordinates, or null if not known
 [source,json]
 ----
 {
-    "stationId": "my-station",
-    "descriptor": "TODO",
-    "serialNumber": "TODO",
+    "stationId": "100",
+    "descriptor": "ADVNULLANTENNA",
+    "serialNumber": "12345678",
     "position": [519976597, -7406863, 93765],
-    "positionECEF": [4120339, 1418747, 4641838]
+    "positionECEF": [4120339623, 1418747456, 4641838123]
 }
 ----
 
