@@ -56,7 +56,7 @@ def check_validity(
 def validate(name: Optional[Sequence[str]] = None) -> None:
     """Validates the JSON message stored in the file with the given NAME to see
     if it is a valid Flockwave message. When omitted, the script will validate
-    all ``.json`` files found in ``doc/examples``.
+    all ``.json`` files found in ``doc/modules/ROOT/examples``.
     """
     own_path = sys.modules[__name__].__file__
     assert own_path is not None
@@ -64,7 +64,7 @@ def validate(name: Optional[Sequence[str]] = None) -> None:
     SCRIPT_ROOT = Path(own_path).parent.parent.parent.parent.absolute()
 
     if not name:
-        examples_dir = SCRIPT_ROOT / "doc" / "examples"
+        examples_dir = SCRIPT_ROOT / "doc" / "modules" / "ROOT" / "examples"
         name = sorted(
             os.path.join(examples_dir, fname)
             for fname in os.listdir(examples_dir)

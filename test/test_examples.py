@@ -16,7 +16,7 @@ from .fixtures import create_schema_validator
 this_file = sys.modules[__name__].__file__
 assert this_file is not None
 
-examples_dir = Path().parent.parent / "doc" / "examples"
+examples_dir = Path().parent.parent / "doc" / "modules" / "ROOT" / "examples"
 request_filenames = [x.name for x in examples_dir.glob("request_*.json")]
 response_filenames = [x.name for x in examples_dir.glob("response_*.json")]
 notification_filenames = [x.name for x in examples_dir.glob("notification_*.json")]
