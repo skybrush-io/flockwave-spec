@@ -131,14 +131,14 @@ xref:types.adoc#rtk-survey-status[`RTKSurveyStatus`] complex type.
 
 [source,json]
 ----
-include::example$request_RTK-STATUS.json[]
+include::example$request_RTK-STAT.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-include::example$response_RTK-STATUS.json[]
+include::example$response_RTK-STAT.json[]
 ----
 
 
