@@ -111,11 +111,11 @@ This request has no fields.
 |Name |Required? |Type |Description
 |`antenna` |yes |object |Object holding information about the current RTK antenna.
 The structure of this object is described by the
-xref:types.adoc#rtk-antenna-info[`RTKAntennaInfo`] complex type.
+xref:types.adoc#rtk-antenna-info[`AntennaInformation`] complex type.
 
 |`messages` |yes |object |Object holding statistical information about RTK messages 
 sent. The structure of this object is described by the
-xref:types.adoc#rtk-message-observations[`RTKMessageObservations`] complex type.
+xref:types.adoc#rtk-message-observations[`MessageObservations`] complex type.
 
 |`cnr` |yes |object |Object holding information about the satellite carrier-to-noise 
 ratios. The object is indexed by the names of the seen satellites and each value 
@@ -123,7 +123,7 @@ contains the corresponding latest carrier-to-noise value in decibels (dB).
 
 |`survey` |yes |object |Object holding information about the status of the current 
 RTK survey procedure. The structure of this object is described by the
-xref:types.adoc#rtk-survey-status[`RTKSurveyStatus`] complex type.
+xref:types.adoc#rtk-survey-status[`SurveyStatus`] complex type.
 
 |===
 

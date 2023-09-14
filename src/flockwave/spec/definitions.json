@@ -1,4 +1,36 @@
 {
+  "antennaInformation": {
+    "title": "RTK antenna info",
+    "description": "Information about an RTK antenna",
+    "type": "object",
+    "properties": {
+      "stationId": {
+        "title": "Station ID",
+        "type": ["number", "null"]
+      },
+      "descriptor": {
+        "title": "Antenna descriptor",
+        "type": ["string", "null"]
+      },
+      "serialNumber": {
+        "title": "Serial number",
+        "type": ["string", "null"]
+      },
+      "position": {
+        "oneOf": [
+          {"type": "null"},
+          {"$ref": "#/gpsCoordinate"}
+        ]
+      },
+      "positionECEF": {
+        "oneOf": [
+          {"type": "null"},
+          {"$ref": "#/ecefCoordinate"}
+        ]
+      }
+    }
+  },
+
   "asyncCommandResponseMap": {
     "type": "object",
     "additionalProperties": {
@@ -881,6 +913,24 @@
     "maxLength": 36
   },
 
+  "MessageObservations": {
+    "title": "RTK message observations",
+    "description": "RTK message observation statistics",
+    "type": "array",
+    "items": [
+      {
+        "title": "Age",
+        "description": "The age of the last observation in milliseconds",
+        "type": "integer"
+      },
+      {
+        "title": "Size",
+        "description": "Size of the observation in bits per second",
+        "type": "number"
+      }
+    ]
+  },
+
   "objectIdList": {
     "title": "Object IDs",
     "description": "IDs of the objects that the message refers to",
@@ -1049,76 +1099,8 @@
     "additionalProperties": { "$ref": "#/receiptId" }
   },
 
-  "rtkAntennaInfo": {
-    "title": "RTK antenna info",
-    "description": "Information about an RTK antenna",
-    "type": "object",
-    "properties": {
-      "stationId": {
-        "title": "Station ID",
-        "type": ["number", "null"]
-      },
-      "descriptor": {
-        "title": "Antenna descriptor",
-        "type": ["string", "null"]
-      },
-      "serialNumber": {
-        "title": "Serial number",
-        "type": ["string", "null"]
-      },
-      "position": {
-        "oneOf": [
-          {"type": "null"},
-          {"$ref": "#/gpsCoordinate"}
-        ]
-      },
-      "positionECEF": {
-        "oneOf": [
-          {"type": "null"},
-          {"$ref": "#/ecefCoordinate"}
-        ]
-      }
-    }
-  },
-
-  "rtkMessageObservation": {
-    "title": "RTK message observation",
-    "description": "RTK message observation age and size",
-    "type": "array",
-    "items": [
-      {
-        "title": "Age",
-        "description": "The age of the last observation in milliseconds",
-        "type": "integer"
-      },
-      {
-        "title": "Size",
-        "description": "Size of the observation in bits per second",
-        "type": "number"
-      }
-    ]
-  },
-
-  "rtkPresetId": {
-    "title": "RTK Preset ID",
-    "description": "Identifier of an RTK preset",
-    "type": "string",
-    "minLength": 1,
-    "maxLength": 64
-  },
-
-  "rtkPresetIdList": {
-    "title": "RTK Preset IDs",
-    "description": "IDs of the RTK presets that the message refers to",
-    "type": "array",
-    "items": {
-      "$ref": "#/rtkPresetId"
-    },
-    "uniqueItems": true
-  },  
-
-  "rtkPresetInfo": {
-    "title": "RTK preset info",
+  "rtkConfigurationPreset": {
+    "title": "RTK configuration preset",
     "description": "Information about an RTK preset",
     "type": "object",
     "properties": {
@@ -1145,17 +1127,29 @@
     "required": ["title", "format", "sources"]
   },
 
+  "rtkPresetId": {
+    "title": "RTK Preset ID",
+    "description": "Identifier of an RTK preset",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 64
+  },
+
+  "rtkPresetIdList": {
+    "title": "RTK Preset IDs",
+    "description": "IDs of the RTK presets that the message refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/rtkPresetId"
+    },
+    "uniqueItems": true
+  },  
+
   "rtkPresetSource": {
     "title": "RTK preset source",
     "description": "Identifier of an RTK source connection",
     "type": "string",
     "minLength": 1
-  },
-
-  "rtkSatelliteCNR": {
-    "title": "RTK Satellite CNR",
-    "description": "RTK satellite carrier-to-noise ratio in dB",
-    "type": "number"
   },
 
   "rtkSurveySettings": {
@@ -1195,8 +1189,13 @@
     "required": ["duration", "accuracy", "messageSet"]
   },
 
+  "satelliteCNRs": {
+    "title": "RTK Satellite CNRs",
+    "description": "RTK satellite carrier-to-noise ratios in dB",
+    "type": "number"
+  },
 
-  "rtkSurveyStatus": {
+  "surveyStatus": {
     "title": "RTK survey status",
     "description": "RTK survey accuracy and flags",
     "type": "object",

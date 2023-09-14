@@ -5,22 +5,22 @@
       "const": "RTK-STAT"
     },
     "antenna": {
-      "$ref": "definitions.json#/rtkAntennaInfo"
+      "$ref": "definitions.json#/antennaInformation"
     },
     "messages": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "definitions.json#/rtkMessageObservation"
+        "$ref": "definitions.json#/MessageObservations"
       }
     },
     "cnr": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "definitions.json#/rtkSatelliteCNR"
+        "$ref": "definitions.json#/satelliteCNRs"
       }
     },
     "survey": {
-      "$ref": "definitions.json#/rtkSurveyStatus"
+      "$ref": "definitions.json#/surveyStatus"
     }
   },
   "required": ["antenna", "messages", "cnr", "survey"],

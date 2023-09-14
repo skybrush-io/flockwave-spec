@@ -75,6 +75,40 @@ unsigned integer in order to avoid floating point related inaccuracies
 (see discussion about xref:appendix/floating-point.adoc[floating-point
 inacccuracies]).
 
+
+[#rtk-antenna-info]
+== `AntennaInformation`
+
+The `AntennaInformation` object holds information about the current RTK antenna.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|stationId |yes |integer |The station ID of the antenna, or null if not known
+|descriptor |yes |string |The antenna descriptor, or null if not known
+|serialNumber |yes |string |The serial number of the antenna, or null if not known
+|position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the
+RTK antenna, in GPS coordinates, or null if not known
+|positionECEF |yes |<<_ecefcoordinate,ECEFCoordinate>> |The position of
+the RTK antenna, in ECEF coordinates, or null if not known
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "stationId": "100",
+    "descriptor": "ADVNULLANTENNA",
+    "serialNumber": "12345678",
+    "position": [519976597, -7406863, 93765],
+    "positionECEF": [4120339623, 1418747456, 4641838123]
+}
+----
+
+
 == `Attitude`
 
 An `Attitude` object describes the orientation of a UAV using the
@@ -841,6 +875,35 @@ does not know a particular object type, it should simply return an empty list
 when the user queries about objects of an unknown type. This allows server
 extensions to register custom object types later on.
 
+
+[#rtk-message-observations]
+== `MessageObservations`
+
+The `MessageObservations` object contains statistical information about 
+RTK messages broadcast by the RTK base station. 
+
+The object is indexed by the message types sent by the RTK base. 
+
+*Items*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Index |Required? |Type |Description
+|0 |yes |int |The age of the last observation, in integer milliseconds
+|1 |yes |int |The average bitrate of the message stream in the last 10 seconds, in bits per second
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "rtcm3/1007": [123, 456],
+    "rtcm3/1019": [1234, 5678]
+}
+----
+
+
 == `PositionXYZ`
 
 This type represents the position of an airborne object (typically a
@@ -1020,67 +1083,6 @@ operation in a structured manner.
 ----
 
 
-[#rtk-antenna-info]
-== `RTKAntennaInfo`
-
-The `RTKAntennaInfo` object holds information about the current RTK antenna.
-
-*Fields*
-
-[width="100%",cols="15%,10%,25%,50%",options="header",]
-|===
-|Name |Required? |Type |Description
-|stationId |yes |integer |The station ID of the antenna, or null if not known
-|descriptor |yes |string |The antenna descriptor, or null if not known
-|serialNumber |yes |string |The serial number of the antenna, or null if not known
-|position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the
-RTK antenna, in GPS coordinates, or null if not known
-|positionECEF |yes |<<_ecefcoordinate,ECEFCoordinate>> |The position of
-the RTK antenna, in ECEF coordinates, or null if not known
-|===
-
-*Example*
-
-[source,json]
-----
-{
-    "stationId": "100",
-    "descriptor": "ADVNULLANTENNA",
-    "serialNumber": "12345678",
-    "position": [519976597, -7406863, 93765],
-    "positionECEF": [4120339623, 1418747456, 4641838123]
-}
-----
-
-
-[#rtk-message-observations]
-== `RTKMessageObservations`
-
-The `RTKMessageObservations` object contains statistical information about 
-RTK messages broadcast by the RTK base station. 
-
-The object is indexed by the message types sent by the RTK base. 
-
-*Items*
-
-[cols="1,1,1,7",options="header",]
-|===
-|Index |Required? |Type |Description
-|0 |yes |int |The age of the last observation, in integer milliseconds
-|1 |yes |int |The average bitrate of the message stream in the last 10 seconds, in bits per second
-|===
-
-*Example*
-
-[source,json]
-----
-{
-    "rtcm3/1007": [123, 456],
-    "rtcm3/1019": [1234, 5678]
-}
-----
-
-
 [#rtk-preset-info]
 == `RTKConfigurationPreset`
 
@@ -1146,10 +1148,28 @@ self-survey procedure.
 ----
 
 
-[#rtk-survey-status]
-== `RTKSurveyStatus`
+== `Severity`
 
-The `RTKSurveyStatus` object contains status of the current RTK base station
+Enumeration type that describes the severity level of a human-readable message
+that the server sends to the client.
+
+Currently the following values are defined:
+
+`debug`:: Debug messages that are of interest to developers only.
+
+`info`:: Informational messages.
+
+`warning`:: Warning messages.
+
+`error`:: Error messages.
+
+`critical`:: Critical errors that require immediate attention.
+
+
+[#rtk-survey-status]
+== `SurveyStatus`
+
+The `SurveyStatus` object contains status of the current RTK base station
 self-survey procedure.
 
 *Fields*
@@ -1180,24 +1200,6 @@ self-survey procedure.
     "flags": 7
 }
 ----
-
-
-== `Severity`
-
-Enumeration type that describes the severity level of a human-readable message
-that the server sends to the client.
-
-Currently the following values are defined:
-
-`debug`:: Debug messages that are of interest to developers only.
-
-`info`:: Informational messages.
-
-`warning`:: Warning messages.
-
-`error`:: Error messages.
-
-`critical`:: Critical errors that require immediate attention.
 
 
 == `TransportOptions`
