@@ -13,6 +13,7 @@
 ** xref:messages/ext.adoc[EXT — Management of extension modules]
 ** xref:messages/obj.adoc[OBJ - Generic object-related messages]
 ** xref:messages/sys.adoc[SYS — System information]
+** xref:messages/rtk.adoc[RTK — Real Time KInematics related messages]
 ** xref:messages/uav.adoc[UAV — UAV-related messages]
 * xref:messages/optional.adoc[Optional message types]
 ** xref:messages/bcn.adoc[BCN — Beacon-related messages]
