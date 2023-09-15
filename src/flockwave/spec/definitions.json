@@ -1174,7 +1174,7 @@
         "enum": ["msm4", "msm7"]
       },
       "position": {
-        "$ref": "#/gpsCoordinate"
+        "$ref": "#/ecefCoordinate"
       },
       "gnssTypes": {
         "title": "GNSS types",

@@ -1128,7 +1128,7 @@ self-survey procedure.
 |duration |yes |float |The minimum duration of the survey to perform
 |accuracy |yes |float |The accuracy of the survey in meters
 |messageSet |yes |string | The message set to use / used ('msm4' or 'msm7')
-|position |no |<<_gpscoordinate,GPSCoordinate>> |The RTK base station antenna position in GPS coordinates
+|position |no |<<_ecefcoordinate,ECEFCoordinate>> |The RTK base station antenna position in ECEF coordinates
 |gnssTypes |no |list of strings | The GNSS types to use (choose from "gps", "glonass", 
 "galileo", "sbas", "qzss", "beidou", "irnss")
 
