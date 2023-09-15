@@ -77,9 +77,7 @@ This request has no fields.
 
 [source,json]
 ----
-{
-    "type": "AUTH-INF"
-}
+include::examples$request_AUTH-INF.json[]
 ----
 
 *Example response*
