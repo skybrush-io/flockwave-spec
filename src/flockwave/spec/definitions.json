@@ -573,6 +573,7 @@
     "title": "ECEF coordinate",
     "description": "Earth-centered Earth-fixed coordinate of an object",
     "type": "array",
+    "minItems": 3,
     "items": [
       {
         "title": "X",
@@ -917,6 +918,7 @@
     "title": "RTK message observations",
     "description": "RTK message observation statistics",
     "type": "array",
+    "minItems": 2,
     "items": [
       {
         "title": "Age",
@@ -1106,7 +1108,7 @@
     "properties": {
       "title": {
         "title": "Title",
-        "description": "A human-readable title of the preset",        
+        "description": "A human-readable title of the preset",
         "type": "string"
       },
       "format": {
@@ -1143,7 +1145,7 @@
       "$ref": "#/rtkPresetId"
     },
     "uniqueItems": true
-  },  
+  },
 
   "rtkPresetSource": {
     "title": "RTK preset source",
@@ -1162,7 +1164,7 @@
         "description": "Minimum duration of RTK survey",
         "type": "number"
       },
-      "accurary": {
+      "accuracy": {
         "title": "Survey accuracy",
         "description": "Expected RTK survey position accuracy in meters",
         "type": "number"
@@ -1200,7 +1202,7 @@
     "description": "RTK survey accuracy and flags",
     "type": "object",
     "properties": {
-      "accurary": {
+      "accuracy": {
         "title": "Survey accuracy",
         "description": "RTK survey position accuracy in meters",
         "type": "number"
@@ -1212,7 +1214,8 @@
         "minimum": 0,
         "maximum": 7
       }
-    }
+    },
+    "required": ["accuracy", "flags"]
   },
 
   "severity": {

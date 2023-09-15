@@ -590,7 +590,7 @@ forbidden for other types of nodes. Its value may be used by Flockwave
 clients to represent the device in a different way on the UI or to hide
 certain types of devices.
 
-|children |no |object of <<_evicetreenode,`DeviceTreeNode`>> |Object
+|children |no |object of <<_devicetreenode,`DeviceTreeNode`>> |Object
 mapping names of child nodes to their descriptions
 
 |operations |no |list of <<_channeloperation,`ChannelOperation`>> |The
@@ -942,7 +942,7 @@ Monolithic object containing information about the preflight checklist of a UAV.
 |result |yes |<<_preflightcheckresult,PreflightCheckResult>> |The result of the preflight check
 
 |items |yes |array of <<_preflightcheckitem,PreflightCheckItem>> |List of preflight check items,
-containing information aobut the individual checks that were performed onboard
+containing information about the individual checks that were performed onboard
 and the corresponding results.
 
 |message |no |string |Custom message to show next to the result of the preflight
@@ -1129,8 +1129,8 @@ self-survey procedure.
 |accuracy |yes |float |The accuracy of the survey in meters
 |messageSet |yes |string | The message set to use / used ('msm4' or 'msm7')
 |position |no |<<_ecefcoordinate,ECEFCoordinate>> |The RTK base station antenna position in ECEF coordinates
-|gnssTypes |no |list of strings | The GNSS types to use (choose from "gps", "glonass", 
-"galileo", "sbas", "qzss", "beidou", "irnss")
+|gnssTypes |no |list of <<_gnsstype,GNSSType>> | The GNSS types to use
+(choose from "gps", "glonass", "galileo", "sbas", "qzss", "beidou", "irnss")
 
 |===
 
@@ -1176,9 +1176,9 @@ self-survey procedure.
 
 [cols="2,1,1,6a",options="header",]
 |===
-|Index |Required? |Type |Description
-|0 |yes |float |Accuracy of the antenna position during the survey in meters
-|1 |yes |integer |RTK survey status flags:
+|Name |Required? |Type |Description
+|accuracy |yes |float |Accuracy of the antenna position during the survey in meters
+|flags |yes |integer |RTK survey status flags:
 
 [cols="1,5"]
 !===
