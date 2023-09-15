@@ -37,10 +37,7 @@ _either_ in the `status` list or in the `error` map.
 
 [source,json]
 ----
-{
-    "type": "BCN-INF",
-    "ids": ["base", "spam"]
-}
+include::example$request_BCN-INF.json[]
 ----
 
 *Example response*
@@ -85,26 +82,12 @@ xref:types.adoc#beacon-basic-properties[BeaconBasicProperties] object.
 
 [source,json]
 ----
-{
-    "type": "BCN-PROPS",
-    "ids": ["base", "spam"]
-}
+include::example$request_BCN-PROPS.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "BCN-PROPS",
-    "result": {
-        "base": {
-            "id": "base",
-            "name": "Main base"
-        }
-    },
-    "error": {
-        "spam": "No such beacon."
-    }
-}
+include::example$response_BCN-PROPS.json[]
 ----
