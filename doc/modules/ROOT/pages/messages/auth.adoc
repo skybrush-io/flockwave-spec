@@ -232,9 +232,7 @@ current connection is unauthenticated.
 
 [source,json]
 ----
-{
-    "type": "AUTH-WHOAMI"
-}
+include::example$request_AUTH-WHOAMI.json[]
 ----
 
 *Example response*
