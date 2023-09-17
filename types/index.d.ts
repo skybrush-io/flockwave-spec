@@ -87,6 +87,11 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_OBJLIST
   | Request_PRMGET
   | Request_PRMSET
+  | Request_RTKINF
+  | Request_RTKLIST
+  | Request_RTKSOURCE
+  | Request_RTKSTAT
+  | Request_RTKSURVEY
   | Request_SHOWCFG
   | Request_SHOWSETCFG
   | Request_SHOWLIGHTS
@@ -199,6 +204,45 @@ export type Name = string;
  */
 export type Name1 = string;
 /**
+ * Identifier of an RTK preset
+ */
+export type RTKPresetID = string;
+/**
+ * IDs of the RTK presets that the message refers to
+ */
+export type RTKPresetIDs = RTKPresetID[];
+/**
+ * Minimum duration of RTK survey
+ */
+export type SurveyDuration = number;
+/**
+ * Expected RTK survey position accuracy in meters
+ */
+export type SurveyAccuracy = number;
+/**
+ * RTK message set to use
+ */
+export type MessageSet = "msm4" | "msm7";
+/**
+ * Earth-centered Earth-fixed coordinate of an object
+ *
+ * @minItems 3
+ */
+export type ECEFCoordinate = [X, Y, Z];
+/**
+ * X coordinate in millimeters
+ */
+export type X = number;
+/**
+ * Y coordinate in millimeters
+ */
+export type Y = number;
+/**
+ * Z coordinate in millimeters
+ */
+export type Z = number;
+export type GNSSTypes = ("gps" | "glonass" | "galileo" | "sbas" | "qzss" | "beidou" | "irnss")[];
+/**
  * GPS coordinate of an object
  *
  * @minItems 2
@@ -290,6 +334,11 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_OBJLIST
   | Response_PRMGET
   | Response_PRMSET
+  | Response_RTKINF
+  | Response_RTKLIST
+  | Response_RTKSOURCE
+  | Response_RTKSTAT
+  | Response_RTKSURVEY
   | Response_SHOWCFG
   | Response_SHOWLIGHTS
   | Response_SYSTIME
@@ -423,6 +472,55 @@ export type Restrictions = LicenseRestrictions[];
  * List of the metadata of flight logs stored on a UAV
  */
 export type FlightLogMetadataItems = FlightLogMetadata[];
+/**
+ * A human-readable title of the preset
+ */
+export type Title = string;
+/**
+ * Format of the GPS messages arriving in this configuration
+ */
+export type MessageFormat = "auto" | "rtcm2" | "rtcm3" | "ubx";
+/**
+ * Identifier of an RTK source connection
+ */
+export type RTKPresetSource = string;
+/**
+ * List of source connections where this preset collects messages from
+ */
+export type Sources = RTKPresetSource[];
+export type StationID = number | null;
+export type AntennaDescriptor = string | null;
+export type SerialNumber = string | null;
+/**
+ * RTK message observation statistics
+ *
+ * @minItems 2
+ */
+export type RTKMessageObservations = [Age, Size];
+/**
+ * The age of the last observation in milliseconds
+ */
+export type Age = number;
+/**
+ * Size of the observation in bits per second
+ */
+export type Size = number;
+/**
+ * RTK satellite carrier-to-noise ratios in dB
+ */
+export type RTKSatelliteCNRs = number;
+/**
+ * RTK survey position accuracy in meters
+ */
+export type SurveyAccuracy1 = number;
+/**
+ * RTK survey status flags (0: unknown, 1: supported, 2: active, 4: valid)
+ */
+export type SurveyFlags = number;
+/**
+ * Explains why RTK survey initiation failed
+ */
+export type FailureReason1 = string;
 /**
  * The flight mode of the UAV
  */
@@ -886,6 +984,41 @@ export interface Request_PRMSET {
  * The value of the parameter
  */
 export interface Value {
+  [k: string]: unknown;
+}
+export interface Request_RTKINF {
+  type: "RTK-INF";
+  ids: RTKPresetIDs;
+  [k: string]: unknown;
+}
+export interface Request_RTKLIST {
+  type: "RTK-LIST";
+}
+export interface Request_RTKSOURCE {
+  type: "RTK-SOURCE";
+  /**
+   * The ID of the RTK source to use
+   */
+  id?: string;
+  [k: string]: unknown;
+}
+export interface Request_RTKSTAT {
+  type: "RTK-STAT";
+}
+export interface Request_RTKSURVEY {
+  type: "RTK-SURVEY";
+  settings?: RTKSurveySettings;
+  [k: string]: unknown;
+}
+/**
+ * RTK survey settings
+ */
+export interface RTKSurveySettings {
+  duration: SurveyDuration;
+  accuracy: SurveyAccuracy;
+  messageSet: MessageSet;
+  position?: ECEFCoordinate;
+  gnssTypes?: GNSSTypes;
   [k: string]: unknown;
 }
 export interface Request_SHOWCFG {
@@ -1442,6 +1575,68 @@ export interface Response_PRMSET {
 }
 export interface BoolMap {
   [k: string]: boolean;
+}
+export interface Response_RTKINF {
+  type: "RTK-INF";
+  preset: {
+    [k: string]: RTKConfigurationPreset;
+  };
+  error?: ErrorMap;
+}
+/**
+ * Information about an RTK preset
+ */
+export interface RTKConfigurationPreset {
+  title: Title;
+  format: MessageFormat;
+  sources: Sources;
+  [k: string]: unknown;
+}
+export interface Response_RTKLIST {
+  type: "RTK-LIST";
+  ids: RTKPresetIDs;
+}
+export interface Response_RTKSOURCE {
+  type: "RTK-SOURCE";
+  /**
+   * The ID of the RTK source used
+   */
+  id: string;
+}
+export interface Response_RTKSTAT {
+  type?: "RTK-STAT";
+  antenna: RTKAntennaInfo;
+  messages: {
+    [k: string]: RTKMessageObservations;
+  };
+  cnr: {
+    [k: string]: RTKSatelliteCNRs;
+  };
+  survey: RTKSurveyStatus;
+}
+/**
+ * Information about an RTK antenna
+ */
+export interface RTKAntennaInfo {
+  stationId?: StationID;
+  descriptor?: AntennaDescriptor;
+  serialNumber?: SerialNumber;
+  position?: null | GPSCoordinate;
+  positionECEF?: null | ECEFCoordinate;
+  [k: string]: unknown;
+}
+/**
+ * RTK survey accuracy and flags
+ */
+export interface RTKSurveyStatus {
+  accuracy: SurveyAccuracy1;
+  flags: SurveyFlags;
+  [k: string]: unknown;
+}
+export interface Response_RTKSURVEY {
+  type: "RTK-SURVEY";
+  settings: RTKSurveySettings;
+  reason?: FailureReason1;
 }
 export interface Response_SHOWCFG {
   type: "SHOW-CFG";
