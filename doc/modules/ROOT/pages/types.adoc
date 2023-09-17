@@ -660,11 +660,11 @@ This type represents a coordinate given by a GPS in the Earth-centered,
 Earth-fixed coordinate frame, where:
 
     * The origin is the center of mass of the Earth.
-    * The X axis is in the plane of the equator, passing through the origin 
+    * The X axis is in the plane of the equator, passing through the origin
       and extending from 180° longitude (negative) to the prime meridian (positive);
-    * The Y axis is also in the plane of the equator, passing through 
+    * The Y axis is also in the plane of the equator, passing through
       extending from 90°W longitude (negative) to 90°E longitude (positive)
-    * The Z axis is the line between the North and South Poles, 
+    * The Z axis is the line between the North and South Poles,
       with positive values increasing northward.
 
 All three coordinates (`X`, `Y`, and `Z`) are stored in millimeters.
@@ -878,10 +878,10 @@ extensions to register custom object types later on.
 [#rtk-message-observations]
 == `MessageObservations`
 
-The `MessageObservations` object contains statistical information about 
-RTK messages broadcast by the RTK base station. 
+The `MessageObservations` object contains statistical information about
+RTK messages broadcast by the RTK base station.
 
-The object is indexed by the message types sent by the RTK base. 
+The object is indexed by the message types sent by the RTK base.
 
 *Items*
 

@@ -1,17 +1,17 @@
 = `RTK` — Real Time Kinematics related messages
 
-Flockwave servers may manage Real Time Kinematics (RTK) corrections; 
-these corrections may be received from an RTK-capable GNSS based 
-station, can be displayed on the user interface in a Flockwave client 
+Flockwave servers may manage Real Time Kinematics (RTK) corrections;
+these corrections may be received from an RTK-capable GNSS based
+station, can be displayed on the user interface in a Flockwave client
 or may be broadcast to UAVs in the range of the Flockwave server for
 enahncing GNSS positioning accuracy.
 
-RTK based stations need to be configured before use with either a 
-fixed known position or with initiating an auto survey to measure its 
+RTK based stations need to be configured before use with either a
+fixed known position or with initiating an auto survey to measure its
 own location accurately. Base stations will start to send correction
-signals to UAVs only when they have acquired a known position. 
+signals to UAVs only when they have acquired a known position.
 
-RTK base stations are identified by unique string identifiers (just 
+RTK base stations are identified by unique string identifiers (just
 like objects or connections). These may include RTK presets from a
 remote NTRIP source or local base stations connected through e.g. a
 serial port.
@@ -113,15 +113,15 @@ This request has no fields.
 The structure of this object is described by the
 xref:types.adoc#rtk-antenna-info[`AntennaInformation`] complex type.
 
-|`messages` |yes |object |Object holding statistical information about RTK messages 
+|`messages` |yes |object |Object holding statistical information about RTK messages
 sent. The structure of this object is described by the
 xref:types.adoc#rtk-message-observations[`MessageObservations`] complex type.
 
-|`cnr` |yes |object |Object holding information about the satellite carrier-to-noise 
-ratios. The object is indexed by the names of the seen satellites and each value 
+|`cnr` |yes |object |Object holding information about the satellite carrier-to-noise
+ratios. The object is indexed by the names of the seen satellites and each value
 contains the corresponding latest carrier-to-noise value in decibels (dB).
 
-|`survey` |yes |object |Object holding information about the status of the current 
+|`survey` |yes |object |Object holding information about the status of the current
 RTK survey procedure. The structure of this object is described by the
 xref:types.adoc#rtk-survey-status[`SurveyStatus`] complex type.
 
@@ -145,7 +145,7 @@ include::example$response_RTK-STAT.json[]
 == `RTK-SOURCE` — Select an RTK source managed by the server
 
 A client sends this request to the server to select an RTK preset
-that will be used as the active RTK base station that sends RTK corrections 
+that will be used as the active RTK base station that sends RTK corrections
 to the UAVs through the server.
 
 *Request fields*
@@ -217,4 +217,3 @@ include::example$request_RTK-SURVEY.json[]
 ----
 include::example$response_RTK-SURVEY.json[]
 ----
-
