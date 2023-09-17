@@ -182,8 +182,7 @@ include::example$response_RTK-SOURCE.json[]
 == `RTK-SURVEY` — Start an RTK survey with the currently used RTK base station
 
 A client sends this request to the server to instruct the currently selected
-RTK base station to either to start an RTK auto-survey to measure its own position, 
-or to set its position explicitely.
+RTK base station to either to start an RTK auto-survey to measure its own position, or to set its position explicitly.
 
 *Request fields*
 
