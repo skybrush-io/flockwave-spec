@@ -656,9 +656,8 @@ status update was received from the docking station
 
 == `ECEFCoordinate`
 
-This type represents a coordinate given by a GPS in the
-"Earth-centered Earth-fixed" format using the geocentric WGS84
-reference system, where:
+This type represents a coordinate given by a GPS in the Earth-centered,
+Earth-fixed coordinate frame, where:
 
     * The origin is the center of mass of the Earth.
     * The X axis is in the plane of the equator, passing through the origin 
@@ -1142,7 +1141,7 @@ self-survey procedure.
     "duration": 60,
     "accuracy": 0.99,
     "messageSet": "msm7",
-    "position": [47000, 19000, 10000],
+    "position": [4120339623, 1418747456, 4641838123],
     "gnssTypes": ["gps", "glonass"]
 }
 ----
