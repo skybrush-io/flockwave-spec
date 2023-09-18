@@ -590,7 +590,7 @@ forbidden for other types of nodes. Its value may be used by Flockwave
 clients to represent the device in a different way on the UI or to hide
 certain types of devices.
 
-|children |no |object of <<_evicetreenode,`DeviceTreeNode`>> |Object
+|children |no |object of <<_devicetreenode,`DeviceTreeNode`>> |Object
 mapping names of child nodes to their descriptions
 
 |operations |no |list of <<_channeloperation,`ChannelOperation`>> |The
@@ -656,16 +656,15 @@ status update was received from the docking station
 
 == `ECEFCoordinate`
 
-This type represents a coordinate given by a GPS in the
-"Earth-centered Earth-fixed" format using the geocentric WGS84
-reference system, where:
+This type represents a coordinate given by a GPS in the Earth-centered,
+Earth-fixed coordinate frame, where:
 
     * The origin is the center of mass of the Earth.
-    * The X axis is in the plane of the equator, passing through the origin 
+    * The X axis is in the plane of the equator, passing through the origin
       and extending from 180° longitude (negative) to the prime meridian (positive);
-    * The Y axis is also in the plane of the equator, passing through 
+    * The Y axis is also in the plane of the equator, passing through
       extending from 90°W longitude (negative) to 90°E longitude (positive)
-    * The Z axis is the line between the North and South Poles, 
+    * The Z axis is the line between the North and South Poles,
       with positive values increasing northward.
 
 All three coordinates (`X`, `Y`, and `Z`) are stored in millimeters.
@@ -879,10 +878,10 @@ extensions to register custom object types later on.
 [#rtk-message-observations]
 == `MessageObservations`
 
-The `MessageObservations` object contains statistical information about 
-RTK messages broadcast by the RTK base station. 
+The `MessageObservations` object contains statistical information about
+RTK messages broadcast by the RTK base station.
 
-The object is indexed by the message types sent by the RTK base. 
+The object is indexed by the message types sent by the RTK base.
 
 *Items*
 
@@ -942,7 +941,7 @@ Monolithic object containing information about the preflight checklist of a UAV.
 |result |yes |<<_preflightcheckresult,PreflightCheckResult>> |The result of the preflight check
 
 |items |yes |array of <<_preflightcheckitem,PreflightCheckItem>> |List of preflight check items,
-containing information aobut the individual checks that were performed onboard
+containing information about the individual checks that were performed onboard
 and the corresponding results.
 
 |message |no |string |Custom message to show next to the result of the preflight
@@ -1129,8 +1128,8 @@ self-survey procedure.
 |accuracy |yes |float |The accuracy of the survey in meters
 |messageSet |yes |string | The message set to use / used ('msm4' or 'msm7')
 |position |no |<<_ecefcoordinate,ECEFCoordinate>> |The RTK base station antenna position in ECEF coordinates
-|gnssTypes |no |list of strings | The GNSS types to use (choose from "gps", "glonass", 
-"galileo", "sbas", "qzss", "beidou", "irnss")
+|gnssTypes |no |list of <<_gnsstype,GNSSType>> | The GNSS types to use
+(choose from "gps", "glonass", "galileo", "sbas", "qzss", "beidou", "irnss")
 
 |===
 
@@ -1142,7 +1141,7 @@ self-survey procedure.
     "duration": 60,
     "accuracy": 0.99,
     "messageSet": "msm7",
-    "position": [47000, 19000, 10000],
+    "position": [4120339623, 1418747456, 4641838123],
     "gnssTypes": ["gps", "glonass"]
 }
 ----
@@ -1176,9 +1175,9 @@ self-survey procedure.
 
 [cols="2,1,1,6a",options="header",]
 |===
-|Index |Required? |Type |Description
-|0 |yes |float |Accuracy of the antenna position during the survey in meters
-|1 |yes |integer |RTK survey status flags:
+|Name |Required? |Type |Description
+|accuracy |yes |float |Accuracy of the antenna position during the survey in meters
+|flags |yes |integer |RTK survey status flags:
 
 [cols="1,5"]
 !===
