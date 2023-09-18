@@ -17,10 +17,7 @@ connection was removed from the server.
 
 [source,json]
 ----
-{
-    "type": "CONN-DEL",
-    "ids": ["dgps"]
-}
+include::example$notification_CONN-DEL.json[]
 ----
 
 == `CONN-INF` — Basic status information of one or more connections
@@ -63,37 +60,14 @@ present.
 
 [source,json]
 ----
-{
-    "type": "CONN-INF",
-    "ids": ["xbee", "dgps", "beer_can"]
-}
+include::example$request_CONN-INF.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "CONN-INF",
-    "status": {
-        "xbee": {
-            "id": "xbee",
-            "purpose": "uavRadioLink",
-            "description": "Upstream XBee radio link",
-            "status": "connected",
-            "timestamp": "2015-12-14T17:31:18.000Z"
-        },
-        "dgps": {
-            "id": "dgps",
-            "purpose": "dgps",
-            "description": "DGPS data from BUTE0",
-            "status": "connecting"
-        }
-    },
-    "error": {
-        "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
-    }
-}
+include::example$response_CONN-INF.json[]
 ----
 
 == `CONN-LIST` — List of all the connections managed by the server
@@ -120,17 +94,12 @@ connections that the server manages
 
 [source,json]
 ----
-{
-    "type": "CONN-LIST"
-}
+include::example$request_CONN-LIST.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "CONN-LIST",
-    "ids": ["dgps", "xbee"]
-}
+include::example$response_CONN-LIST.json[]
 ----

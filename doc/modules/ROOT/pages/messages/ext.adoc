@@ -19,34 +19,14 @@ error code.
 
 [source,json]
 ----
-{
-    "type": "EXT-CFG",
-    "ids": [
-        "beer",
-        "ssdp",
-        "system_clock"
-    ]
-}
+include::example$request_EXT-CFG.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "EXT-CFG",
-    "status": {
-        "system_clock": {},
-        "ssdp": {
-            "multicast_group": "239.255.255.250",
-            "port": 1900,
-            "label": "My awesome server"
-        }
-    },
-    "error": {
-        "beer": "No such extension. Unfortunately."
-    }
-}
+include::example$response_EXT-CFG.json[]
 ----
 
 == `EXT-INF` - Retrieve details about an extension
@@ -57,38 +37,14 @@ error code.
 
 [source,json]
 ----
-{
-    "type": "EXT-INF",
-    "ids": [
-        "beer",
-        "ssdp",
-        "system_clock"
-    ]
-}
+include::example$request_EXT-INF.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "EXT-INF",
-    "status": {
-        "system_clock": {
-            "id": "system_clock",
-            "name": "System clock",
-            "loaded": true
-        },
-        "ssdp": {
-            "id": "ssdp",
-            "name": "SSDP discovery service",
-            "loaded": false
-        }
-    },
-    "error": {
-        "beer": "No such extension. Unfortunately."
-    }
-}
+include::example$response_EXT-INF.json[]
 ----
 
 == `EXT-LIST` — List of loaded and unloaded extensions
@@ -116,20 +72,14 @@ This request has no fields.
 
 [source,json]
 ----
-{
-    "type": "EXT-LIST",
-}
+include::example$request_EXT-LIST.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "EXT-LIST",
-    "loaded": ["foo", "bar"],
-    "available": ["frob"]
-}
+include::example$response_EXT-LIST.json[]
 ----
 
 == `EXT-LOAD` - Load an extension
@@ -140,25 +90,14 @@ This request has no fields.
 
 [source,json]
 ----
-{
-    "type": "EXT-LOAD",
-    "ids": ["ssdp", "beer"]
-}
+include::example$request_EXT-LOAD.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "EXT-LOAD",
-    "status": {
-        "ssdp": {}
-    },
-    "error": {
-        "beer": "No such extension. Unfortunately."
-    }
-}
+include::example$response_EXT-LOAD.json[]
 ----
 
 == `EXT-RELOAD` - Reload an extension
@@ -169,25 +108,14 @@ This request has no fields.
 
 [source,json]
 ----
-{
-    "type": "EXT-RELOAD",
-    "ids": ["ssdp", "beer"]
-}
+include::example$request_EXT-RELOAD.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "EXT-RELOAD",
-    "status": {
-        "ssdp": {}
-    },
-    "error": {
-        "beer": "No such extension. Unfortunately."
-    }
-}
+include::example$response_EXT-RELOAD.json[]
 ----
 
 == `EXT-SETCFG` - Set the current configuration of extensions
@@ -198,34 +126,14 @@ This request has no fields.
 
 [source,json]
 ----
-{
-    "type": "EXT-SETCFG",
-    "ids": {
-        "ssdp": {
-            "multicast_group": "239.255.255.250",
-            "port": 1900,
-            "label": "My awesome server"
-        },
-        "beer": {
-            "type": "IPA"
-        }
-    }
-}
+include::example$request_EXT-SETCFG.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "EXT-SETCFG",
-    "status": {
-        "ssdp": {}
-    },
-    "error": {
-        "beer": "No such extension. Unfortunately."
-    }
-}
+include::example$response_EXT-SETCFG.json[]
 ----
 
 == `EXT-UNLOAD` - Unload an extension
@@ -236,23 +144,12 @@ This request has no fields.
 
 [source,json]
 ----
-{
-    "type": "EXT-UNLOAD",
-    "ids": ["ssdp", "beer"]
-}
+include::example$request_EXT-UNLOAD.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "EXT-UNLOAD",
-    "status": {
-        "ssdp": {}
-    },
-    "error": {
-        "beer": "No such extension. Unfortunately."
-    }
-}
+include::example$response_EXT-UNLOAD.json[]
 ----

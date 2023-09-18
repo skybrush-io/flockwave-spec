@@ -82,40 +82,14 @@ _either_ as keys in the `status` object or in the `error` map.
 
 [source,json]
 ----
-{
-    "type": "CLK-INF",
-    "ids": [
-        "gps", "mtc", "beer_can"
-    ]
-}
+include::example$request_CLK-INF.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "CLK-INF",
-    "status": {
-        "gps": {
-            "id": "gps",
-            "ticks": 1462891061.824093,
-            "retrievedAt": 1462890801000,
-            "epoch": "unix",
-            "running": true
-        },
-        "mtc": {
-            "id": "mtc",
-            "ticks": 4221,
-            "retrievedAt": 1462890801000,
-            "ticksPerSecond": 30,
-            "running": true
-        }
-    },
-    "error": {
-        "beer_can": "Sorry, no alcoholic beverages are allowed on the premises."
-    }
-}
+include::example$response_CLK-INF.json[]
 ----
 
 == `CLK-LIST` — List of all the clocks and timers managed by the server
@@ -140,17 +114,12 @@ that the server manages
 
 [source,json]
 ----
-{
-    "type": "CLK-LIST"
-}
+include::example$request_CLK-LIST.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "CLK-LIST",
-    "ids": ["gps", "system", "mtc"]
-}
+include::example$response_CLK-LIST.json[]
 ----

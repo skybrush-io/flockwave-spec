@@ -42,36 +42,14 @@ station, and the position shows the coordinate of the weather station.
 
 [source,json]
 ----
-{
-    "type": "WTH-AT",
-    "position": [519976597, -7406863]
-}
+include::example$request_WTH-AT.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-  "type": "WTH-AT",
-  "weather": {
-    "position": [519976597, -7406863],
-    "timestamp": 1628607017000,
-    "code": 500,
-    "sunrise": 1628609700000,
-    "sunset": 1628618640000,
-    "temperature": 2840,
-    "feelsLike": 2828,
-    "pressure": 101900,
-    "humidity": 62,
-    "dewPoint": 2771,
-    "uvIndex": 89,
-    "clouds": 0,
-    "visibility": 10000,
-    "windSpeed": 6000,
-    "windDirection": 3000
-  }
-}
+include::example$response_WTH-AT.json[]
 ----
 
 == `WTH-INF` - Basic status information of one or more weather stations.
@@ -94,10 +72,7 @@ interested in
 
 [source,json]
 ----
-{
-    "type": "WTH-INF",
-    "ids": ["garden", "spam"]
-}
+include::example$request_WTH-INF.json[]
 ----
 
 *Response fields*
@@ -119,32 +94,7 @@ _either_ in the `status` list or in the `error` map.
 
 [source,json]
 ----
-{
-  "type": "WTH-INF",
-  "status": {
-    "garden": {
-      "position": [519976597, -7406863],
-      "timestamp": 1628607017000,
-      "stationId": "garden",
-      "code": 500,
-      "sunrise": 1628609700000,
-      "sunset": 1628618640000,
-      "temperature": 2840,
-      "feelsLike": 2828,
-      "pressure": 101900,
-      "humidity": 62,
-      "dewPoint": 2771,
-      "uvIndex": 89,
-      "clouds": 0,
-      "visibility": 10000,
-      "windSpeed": 6000,
-      "windDirection": 3000
-    }
-  },
-  "error": {
-    "spam": "No such weather station."
-  }
-}
+include::example$response_WTH-INF.json[]
 ----
 
 == `WTH-LIST` — List of all the weather stations managed by the server
@@ -169,17 +119,12 @@ stations that the server manages
 
 [source,json]
 ----
-{
-    "type": "WTH-LIST"
-}
+include::example$request_WTH-LIST.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "WTH-LIST",
-    "ids": ["gardan", "kpIndex:noaa"]
-}
+include::example$response_WTH-LIST.json[]
 ----

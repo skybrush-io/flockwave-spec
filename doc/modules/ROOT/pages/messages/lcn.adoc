@@ -23,40 +23,14 @@ without a license.
 
 [source,json]
 ----
-{
-    "type": "LCN-INF"
-}
+include::example$request_LCN-INF.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "LCN-INF",
-    "license": {
-        "id": "license-123",
-        "licensee": "Inspector Flying Fox of the Yard",
-        "expiryDate": "2021-05-01",
-        "restrictions": [
-            {
-                "id": "mac",
-                "label": "Restricted to MAC address",
-                "secondaryLabel": "04:17:AB:43:BE:EF",
-                "parameters": {
-                    "addresses": ["04:17:AB:43:BE:EF"]
-                }
-            }
-        ],
-        "features": [
-            {
-                "id": "some-extra-feature",
-                "label": "spam spam spam",
-                "secondaryLabel": "Lovely spam! Wonderful spam!"
-            }
-        ]
-    }
-}
+include::example$response_LCN-INF.json[]
 ----
 
 == Custom types

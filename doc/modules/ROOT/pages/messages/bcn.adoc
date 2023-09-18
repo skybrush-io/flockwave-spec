@@ -44,21 +44,7 @@ include::example$request_BCN-INF.json[]
 
 [source,json]
 ----
-{
-    "type": "BCN-INF",
-    "status": {
-        "base": {
-            "id": "base",
-            "position": [519976597, -7406863, 93765],
-            "timestamp": "2015-12-08T08:17:41.000Z",
-            "heading": 290,
-            "active": true
-        }
-    },
-    "error": {
-        "spam": "No such beacon."
-    }
-}
+include::example$response_BCN-INF.json[]
 ----
 
 == `BCN-PROPS` - Basic properties of one or more beacons

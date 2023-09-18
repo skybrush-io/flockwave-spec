@@ -84,11 +84,7 @@ include::example$request_AUTH-INF.json[]
 
 [source,json]
 ----
-{
-    "type": "AUTH-INF",
-    "methods": ["basic", "jwt"],
-    "required": true
-}
+include::example$response_AUTH-INF.json[]
 ----
 
 [#auth-req]

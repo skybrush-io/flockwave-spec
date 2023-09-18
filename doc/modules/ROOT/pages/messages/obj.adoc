@@ -57,30 +57,14 @@ object.
 
 [source,json]
 ----
-{
-    "type": "OBJ-CMD",
-    "ids": ["1", "17", "31", "spam"],
-    "command": "algo"
-}
+include::example$request_OBJ-CMD.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "OBJ-CMD",
-    "result": {
-        "1": "brewing"
-    },
-    "receipt": {
-        "17": "0badcafe-deadbeef:1"
-    },
-    "error": {
-        "31": "Command execution not supported.",
-        "spam": "No such object."
-    }
-}
+include::example$response_OBJ-CMD.json[]
 ----
 
 *Example notification with Markdown, delivered asynchronously*
@@ -117,10 +101,7 @@ due to inactivity.
 
 [source,json]
 ----
-{
-    "type": "OBJ-DEL",
-    "ids": ["dock-01"]
-}
+include::example$notification_OBJ-DEL.json[]
 ----
 
 == `OBJ-LIST` — List of objects known by the server
@@ -165,8 +146,5 @@ any explicit updates from them.
 
 [source,json]
 ----
-{
-    "type": "OBJ-LIST",
-    "ids": ["1", "17", "31"]
-}
+include::example$response_OBJ-LIST.json[]
 ----
