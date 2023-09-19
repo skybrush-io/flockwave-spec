@@ -28,30 +28,14 @@ allowed, depending on the target object.
 
 [source,json]
 ----
-{
-    "type": "PRM-GET",
-    "ids": ["1", "17", "31", "spam"],
-    "name": "EK2_ALT_SOURCE"
-}
+include::example$request_PRM-GET.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "PRM-GET",
-    "result": {
-        "1": 2
-    },
-    "receipt": {
-        "17": "0badcafe-deadbeef:1"
-    },
-    "error": {
-        "31": "No such parameter.",
-        "spam": "No such object."
-    }
-}
+include::example$response_PRM-GET.json[]
 ----
 
 [#prm-set]
@@ -82,29 +66,12 @@ set successfully on the target object.
 
 [source,json]
 ----
-{
-    "type": "PRM-SET",
-    "ids": ["1", "17", "31", "spam"],
-    "name": "EK2_ALT_SOURCE",
-    "value": 2
-}
+include::example$request_PRM-SET.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "PRM-SET",
-    "result": {
-        "1": true
-    },
-    "receipt": {
-        "17": "0badcafe-deadbeef:1"
-    },
-    "error": {
-        "31": "No such parameter.",
-        "spam": "No such object."
-    }
-}
+include::example$response_PRM-SET.json[]
 ----

@@ -28,10 +28,7 @@ connection.
 
 [source,json]
 ----
-{
-    "type": "SYS-CLOSE",
-    "reason": "Maximum number of concurrent connections exceeded"
-}
+include::example$notification_SYS-CLOSE.json[]
 ----
 
 == `SYS-MSG` - Send arbitrary human-readable messages to the client
@@ -48,13 +45,7 @@ connection.
 
 [source,json]
 ----
-{
-    "type": "SYS-MSG",
-    "items": [{
-        "severity": "info",
-        "message": "Free cookies in the lobby!"
-    }]
-}
+include::example$notification_SYS-MSG.json[]
 ----
 
 == `SYS-PING` — Check whether a connection is alive
@@ -87,9 +78,7 @@ xref:messages/ack.adoc#_ack_ack_positive_acknowledgment[`ACK-ACK`] instead.
 
 [source,json]
 ----
-{
-    "type": "SYS-PING"
-}
+include::example$request_SYS-PING.json[]
 ----
 
 == `SYS-TIME` - Retrieve or adjust the server clock
@@ -130,19 +119,14 @@ once again.
 
 [source,json]
 ----
-{
-    "type": "SYS-TIME"
-}
+include::example$request_SYS-TIME.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "SYS-TIME",
-    "timestamp": 1588763723147
-}
+include::example$response_SYS-TIME.json[]
 ----
 
 == `SYS-VER` — Version number of the server
@@ -179,20 +163,12 @@ omitted.
 
 [source,json]
 ----
-{
-    "type": "SYS-VER"
-}
+include::example$request_SYS-VER.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "SYS-VER",
-    "name": "CollMot test server",
-    "software": "flockwave-server",
-    "version": "1.0",
-    "revision": "1.0+git:e2a0dc5"
-}
+include::example$response_SYS-VER.json[]
 ----

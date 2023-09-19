@@ -77,20 +77,14 @@ This request has no fields.
 
 [source,json]
 ----
-{
-    "type": "AUTH-INF"
-}
+include::example$request_AUTH-INF.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "AUTH-INF",
-    "methods": ["basic", "jwt"],
-    "required": true
-}
+include::example$response_AUTH-INF.json[]
 ----
 
 [#auth-req]
@@ -234,9 +228,7 @@ current connection is unauthenticated.
 
 [source,json]
 ----
-{
-    "type": "AUTH-WHOAMI"
-}
+include::example$request_AUTH-WHOAMI.json[]
 ----
 
 *Example response*

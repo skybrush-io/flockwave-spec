@@ -10,28 +10,14 @@
 
 [source,json]
 ----
-{
-    "type": "SHOW-CFG"
-}
+include::example$request_SHOW-CFG.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "SHOW-CFG",
-    "configuration": {
-        "start": {
-            "authorized": false,
-            "time": 1581881192,
-            "method": "auto",
-            "uavIds": ["01", "42"]
-        },
-        "mapping": ["01", "02", null, "05", "42"],
-        "duration": 294
-    }
-}
+include::example$response_SHOW-CFG.json[]
 ----
 
 #TODO: document this#
@@ -44,22 +30,14 @@
 
 [source,json]
 ----
-{
-    "type": "SHOW-LIGHTS"
-}
+include::example$request_SHOW-LIGHTS.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "SHOW-LIGHTS",
-    "configuration": {
-        "color": [0, 128, 255],
-        "effect": "solid"
-    }
-}
+include::example$response_SHOW-LIGHTS.json[]
 ----
 
 == `SHOW-SETCFG` - Set the current configuration of the drone show
@@ -70,26 +48,14 @@
 
 [source,json]
 ----
-{
-    "type": "SHOW-SETCFG",
-    "configuration": {
-        "start": {
-            "time": 1581881192,
-            "method": "auto",
-            "uavIds": ["01", "42"]
-        },
-        "mapping": ["01", "02", null, "05", "42"]
-    }
-}
+include::example$request_SHOW-SETCFG.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "ACK-ACK"
-}
+include::example$response_ACK-ACK.json[]
 ----
 
 == `SHOW-SETLIGHTS` - Set the behaviour of the LED lights on the show drones
@@ -100,20 +66,12 @@
 
 [source,json]
 ----
-{
-    "type": "SHOW-SETLIGHTS",
-    "configuration": {
-        "color": [255, 128, 0],
-        "effect": "solid"
-    }
-}
+include::example$request_SHOW-SETLIGHTS.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "ACK-ACK"
-}
+include::example$response_ACK-ACK.json[]
 ----

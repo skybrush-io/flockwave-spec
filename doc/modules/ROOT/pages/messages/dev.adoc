@@ -48,28 +48,14 @@ present.
 
 [source,json]
 ----
-{
-    "type": "DEV-INF",
-    "paths": ["/1/battery/voltage", "/1/led", "/1/cpu/core3"]
-}
+include::example$request_DEV-INF.json[]
 ----
 
 *Example response or notification*
 
 [source,json]
 ----
-{
-    "type": "DEV-INF",
-    "values": {
-        "/1/battery/voltage": 13.4,
-        "/1/led": {
-            "on": true
-        }
-    },
-    "error": {
-        "/1/cpu/core3": "Path does not exist"
-    }
-}
+include::example$response_DEV-INF.json[]
 ----
 
 == `DEV-LIST` — List of devices and channels
@@ -107,60 +93,14 @@ in the `status` list or in the `error` map.
 
 [source,json]
 ----
-{
-    "type": "DEV-LIST",
-    "ids": ["1", "spam"]
-}
+include::example$request_DEV-LIST.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "DEV-LIST",
-    "devices": {
-      "1": {
-        "type": "uav",
-        "children": {
-          "battery": {
-            "type": "device",
-            "children": {
-              "voltage": {
-                "type": "channel",
-                "subType": "number",
-                "operations": ["read"],
-                "unit": "V"
-              },
-              "manufacturerId": {
-                "type": "channel",
-                "subType": "string",
-                "operations": ["read"]
-              }
-            }
-          },
-          "led": {
-            "type": "device",
-            "children": {
-              "on": {
-                "type": "channel",
-                "subType": "boolean",
-                "operations": ["read", "write"]
-              }
-            }
-          },
-          "reset": {
-            "type": "channel",
-            "subType": "boolean",
-            "operations": ["write"]
-          }
-        }
-      }
-    },
-    "error": {
-        "spam": "No such object."
-    }
-}
+include::example$response_DEV-LIST.json[]
 ----
 
 == `DEV-LISTSUB` — List device tree subscriptions
@@ -206,23 +146,14 @@ tree.].
 
 [source,json]
 ----
-{
-    "type": "DEV-LISTSUB",
-    "pathFilter": ["/1", "/2"]
-}
+include::example$request_DEV-LISTSUB.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "DEV-LISTSUB",
-    "paths": [
-        "/1/battery/voltage",
-        "/1/led"
-    ]
-}
+include::example$response_DEV-LISTSUB.json[]
 ----
 
 == `DEV-SUB` — Subscribe to a part of a device tree
@@ -273,26 +204,14 @@ the subscription failed for these paths.
 
 [source,json]
 ----
-{
-    "type": "DEV-SUB",
-    "paths": ["/1/battery/voltage", "/1/led", "/1/cpu/core3"],
-}
+include::example$request_DEV-SUB.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "DEV-SUB",
-    "success": [
-        "/1/battery/voltage",
-        "/1/led"
-    ],
-    "error": {
-        "/1/cpu/core3": "Path does not exist"
-    }
-}
+include::example$response_DEV-SUB.json[]
 ----
 
 == `DEV-UNSUB` — Unsubscribe from a part of a device tree
@@ -346,26 +265,12 @@ the subscription failed for these paths.
 
 [source,json]
 ----
-{
-    "type": "DEV-UNSUB",
-    "paths": ["/1/battery", "/1/led", "/1/cpu/core3", "/2/battery"],
-    "includeSubtrees": true
-}
+include::example$request_DEV-UNSUB.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "DEV-UNSUB",
-    "success": [
-        "/1/battery/voltage",
-        "/1/led"
-    ],
-    "error": {
-        "/1/cpu/core3": "Path does not exist",
-        "/2/battery": "Not subscribed to this path"
-    }
-}
+include::example$response_DEV-UNSUB.json[]
 ----

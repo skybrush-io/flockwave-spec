@@ -47,31 +47,14 @@ _successful_.
 
 [source,json]
 ----
-{
-    "type": "UAV-CALIB",
-    "ids": ["1", "17", "31", "spam"],
-    "component": "baro",
-    "parameters": {}
-}
+include::example$request_UAV-CALIB.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-CALIB",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "Component not supported.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-CALIB.json[]
 ----
 
 == `UAV-FLY` — Fly to a specific GPS coordinate
@@ -128,34 +111,14 @@ the UAV.
 
 [source,json]
 ----
-{
-    "type": "UAV-FLY",
-    "ids": ["1", "17", "31", "spam"],
-    "target": {
-      "lat": 51.9976597,
-      "lon": -0.7406863,
-      "amsl": 93.765
-    }
-}
+include::example$request_UAV-FLY.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-FLY",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV does not support flying to waypoints.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-FLY.json[]
 ----
 
 == `UAV-HALT` — Initiate immediate shutdown
@@ -201,29 +164,14 @@ the UAV.
 
 [source,json]
 ----
-{
-    "type": "UAV-HALT",
-    "ids": ["1", "17", "31", "spam"]
-}
+include::example$request_UAV-HALT.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-HALT",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV does not support forced shutdown.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-HALT.json[]
 ----
 
 == `UAV-HOVER` - Request position hold immediately
@@ -264,29 +212,14 @@ the UAV.
 
 [source,json]
 ----
-{
-    "type": "UAV-HOVER",
-    "ids": ["1", "17", "31", "spam"]
-}
+include::example$request_UAV-HOVER.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-HOVER",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV does not support forced shutdown.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-HOVER.json[]
 ----
 
 [#uav-inf]
@@ -328,35 +261,14 @@ as a notification, only the `status` field SHOULD be present.
 
 [source,json]
 ----
-{
-    "type": "UAV-INF",
-    "ids": ["1", "spam"]
-}
+include::example$request_UAV-INF.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-INF",
-    "status": {
-        "1": {
-            "id": "1",
-            "mode": "pos",
-            "position": [519976597, -7406863, 93765],
-            "heading": 90,
-            "attitude": [0, 0, 900],
-            "velocity": [2000, 2000, -1000],
-            "timestamp": "2015-12-08T08:17:41.000Z",
-            "debug": "MEJBRENBRkU=",
-            "error": [42]
-        }
-    },
-    "error": {
-        "spam": "No such UAV."
-    }
-}
+include::example$response_UAV-INF.json[]
 ----
 
 [#uav-land]
@@ -400,29 +312,14 @@ the UAV.
 
 [source,json]
 ----
-{
-    "type": "UAV-LAND",
-    "ids": ["1", "17", "31", "spam"]
-}
+include::example$request_UAV-LAND.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-LAND",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV is a beacon.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-LAND.json[]
 ----
 
 == `UAV-LIST` — List of all the UAVs known by the server
@@ -454,19 +351,14 @@ This request has no fields.
 
 [source,json]
 ----
-{
-    "type": "UAV-LIST"
-}
+include::example$request_UAV-LIST.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-LIST",
-    "ids": ["1", "17", "31"]
-}
+include::example$response_UAV-LIST.json[]
 ----
 
 == `UAV-MOTOR` — Send request to turn motors on (without taking off) or off
@@ -508,31 +400,14 @@ the UAV.
 
 [source,json]
 ----
-{
-    "type": "UAV-MOTOR",
-    "ids": ["1", "17", "31", "spam"],
-    "start": false,
-    "force": true
-}
+include::example$request_UAV-MOTOR.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-MOTOR",
-    "result": {
-        "1": true
-    },
-    "error": {
-        "31": "UAV does not support forced motor shutdown.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-MOTOR.json[]
 ----
 
 
@@ -570,49 +445,14 @@ as a notification, only the `status` field SHOULD be present.
 
 [source,json]
 ----
-{
-    "type": "UAV-PREFLT",
-    "ids": ["1", "spam"]
-}
+include::example$request_UAV-PREFLT.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-PREFLT",
-    "status": {
-        "1": {
-            "message": "Compass inconsistency",
-            "result": "failure",
-            "items": [{
-                "id": "compass",
-                "label": "Compass",
-                "result": "failure",
-                "message": "Compass inconsistency detected"
-            }, {
-                "id": "imu",
-                "label": "IMU",
-                "result": "pass",
-                "message": "IMU subsystem healthy"
-            }, {
-                "id": "gps",
-                "label": "GPS",
-                "result": "pass",
-                "message": "3D GPS fix"
-            }, {
-                "id": "Home",
-                "label": "Home position",
-                "result": "warning",
-                "message": "Home position not set yet"
-            }]
-        }
-    },
-    "error": {
-        "spam": "No such UAV."
-    }
-}
+include::example$response_UAV-PREFLT.json[]
 ----
 
 
@@ -660,30 +500,14 @@ the UAV.
 
 [source,json]
 ----
-{
-    "type": "UAV-RST",
-    "ids": ["1", "17", "31", "spam"],
-    "component": "autopilot"
-}
+include::example$request_UAV-RST.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-RST",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV does not support rebooting.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-RST.json[]
 ----
 
 == `UAV-RTH` — Initiate return to home position
@@ -729,33 +553,14 @@ the UAV.
 
 [source,json]
 ----
-{
-    "type": "UAV-RTH",
-    "ids": ["1", "17", "31", "spam"],
-    "transport": {
-        "channel": 1,
-        "broadcast": true
-    }
-}
+include::example$request_UAV-RTH.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-RTH",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV is a beacon.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-RTH.json[]
 ----
 
 == `UAV-SIGNAL` - Emit light or audio signals
@@ -805,31 +610,14 @@ the UAV.
 
 [source,json]
 ----
-{
-    "type": "UAV-SIGNAL",
-    "ids": ["1", "17", "31", "spam"],
-    "signals": ["sound", "light"],
-    "duration": 5000
-}
+include::example$request_UAV-SIGNAL.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-SIGNAL",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV is a beacon.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-SIGNAL.json[]
 ----
 
 [#uav-sleep]
@@ -878,29 +666,14 @@ the result may indicate whether the request has been _sent_ to the UAV instead.
 
 [source,json]
 ----
-{
-    "type": "UAV-SLEEP",
-    "ids": ["1", "17", "31", "spam"]
-}
+include::example$request_UAV-SLEEP.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-SLEEP",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV does not support sleep mode.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-SLEEP.json[]
 ----
 
 == `UAV-TAKEOFF` — Initiate unsupervised take-off
@@ -944,29 +717,14 @@ the UAV.
 
 [source,json]
 ----
-{
-    "type": "UAV-TAKEOFF",
-    "ids": ["1", "17", "31", "spam"]
-}
+include::example$request_UAV-TAKEOFF.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-TAKEOFF",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV is a beacon.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-TAKEOFF.json[]
 ----
 
 == `UAV-TEST` - Test a component of one or more UAVs
@@ -1010,31 +768,14 @@ observe the motors to check whether they are spinning in the right direction.
 
 [source,json]
 ----
-{
-    "type": "UAV-TEST",
-    "ids": ["1", "17", "31", "spam"],
-    "component": "motor",
-    "parameters": {}
-}
+include::example$request_UAV-TEST.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-TEST",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "Component not supported.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-TEST.json[]
 ----
 
 == `UAV-VER` — Query version number of components
@@ -1066,31 +807,14 @@ each UAV is mapped to another object mapping component names to version numbers.
 
 [source,json]
 ----
-{
-    "type": "UAV-VER",
-    "ids": ["1", "17", "spam"]
-}
+include::example$request_UAV-VER.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-VER",
-    "result": {
-        "1": {
-            "firmware": "2.4.17",
-            "hardware": "1.3"
-        }
-    },
-    "error": {
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-VER.json[]
 ----
 
 == `UAV-WAKEUP` — Recall the UAV from a low-power state to normal operational state.
@@ -1136,27 +860,12 @@ the result may indicate whether the request has been _sent_ to the UAV instead.
 
 [source,json]
 ----
-{
-    "type": "UAV-WAKEUP",
-    "ids": ["1", "17", "31", "spam"]
-}
+include::example$request_UAV-WAKEUP.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "UAV-WAKEUP",
-    "result": {
-        "1": true,
-    },
-    "error": {
-        "31": "UAV does not support sleep mode.",
-        "spam": "No such UAV."
-    },
-    "receipt": {
-        "17": "0badcafedeadbeef"
-    }
-}
+include::example$response_UAV-WAKEUP.json[]
 ----

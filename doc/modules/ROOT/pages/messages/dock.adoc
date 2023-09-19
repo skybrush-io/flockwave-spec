@@ -37,27 +37,12 @@ _either_ in the `status` list or in the `error` map.
 
 [source,json]
 ----
-{
-    "type": "DOCK-INF",
-    "ids": ["base", "spam"]
-}
+include::example$request_DOCK-INF.json[]
 ----
 
 *Example response*
 
 [source,json]
 ----
-{
-    "type": "DOCK-INF",
-    "status": {
-        "base": {
-            "id": "base",
-            "position": [519976597, -7406863, 93765],
-            "timestamp": "2015-12-08T08:17:41.000Z"
-        }
-    },
-    "error": {
-        "spam": "No such dock."
-    }
-}
+include::example$response_DOCK-INF.json[]
 ----
