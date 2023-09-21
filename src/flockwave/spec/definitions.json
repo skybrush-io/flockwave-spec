@@ -518,6 +518,10 @@
             "description": "Whether the server has received authorization from a human operator to start the show",
             "type": "boolean"
           },
+          "clock": {
+            "desciption": "Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp",
+            "anyOf": [{ "type": "string" }, { "type": "null" }]
+          },
           "time": {
             "description": "Timestamp when the drone show should start",
             "anyOf": [{ "type": "number" }, { "type": "null" }]
