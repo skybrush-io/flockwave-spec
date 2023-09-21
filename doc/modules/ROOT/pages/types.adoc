@@ -757,6 +757,35 @@ possible error condition. See xref:errors.adoc[Error codes] for a
 detailed listing of all the error codes that are currently defined in
 the Flockwave protocol.
 
+== `ExtensionInfo`
+
+This type contains detailed information about an extension. It is used by
+the server's response to the `EXT-INF` command.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|id | yes | string | Identifier of a single extension.
+|loaded| yes | boolean | Identifies whether the extension is loaded or not. 
+|name| yes | string | The name of the extension.
+|description|no | string | Description of the extension.
+|===
+
+*Example*
+
+[source, json]
+----
+{
+    "id": "ssdp",
+    "loaded": true,
+    "name": "Simple Service Discovery Protocol",
+    "description" : "Used for advertisement and discovery of network services."
+}
+----
+
+
 == `FlightMode`
 
 Enumeration type that describes the typical flight modes of a UAV. The list of
