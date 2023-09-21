@@ -1,10 +1,29 @@
 = `SHOW` — Management and execution of drone shows
 
-#TODO: document this#
+The messages in this section are used to get or set the configuration of
+both the drone show and the LED lights on the drones.
 
 == `SHOW-CFG` - Retrieve the current configuration of the drone show
 
-#TODO: document me!#
+A client sends this request to the server to obtain information about 
+the configuration of the drone show.
+
+The server response contains an object of type xref:types.adoc#_droneshowconfiguration[`DroneShowConfiguration`],
+which can contain information about whether the show is authorized to start, the timestamp when the drone
+show should start, with what method the show should start, which UAVs shall be started automatically,
+the total duration of the show and a mapping of show-specific indices to the corresponding UAV IDs, if known.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`configuration` | yes |xref:types.adoc#_droneshowconfiguration[`DroneShowConfiguration`] object| Full configuration of a drone show
+|===
 
 *Example request*
 
@@ -20,11 +39,28 @@ include::example$request_SHOW-CFG.json[]
 include::example$response_SHOW-CFG.json[]
 ----
 
-#TODO: document this#
-
 == `SHOW-LIGHTS` - Retrieve the current configuration of the behaviour of the LED lights on the show drones
 
-#TODO: document me!#
+A client sends this request to the server to obtain information about 
+the configuration of the behaviour of the LED lights on drones participating in the show.
+
+The server response contains an object of type xref:types.adoc#_dronelightsconfiguration[`DroneLightsConfiguration`],
+which can contain information about the type and the color of the light effect used. The type of the light effect
+can either be `off` or `solid`. The former means that the GCS is not controlling the LED lights on the drones, while
+the latter means that the GCS is asking the show drones to use a solid LED light. 
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`configuration` | yes |xref:types.adoc#_dronelightsconfiguration[`DroneLightsConfiguration`] object|
+Full configuration of the behaviour of the LED lights on a drone during a drone show
+|===
 
 *Example request*
 
@@ -42,7 +78,22 @@ include::example$response_SHOW-LIGHTS.json[]
 
 == `SHOW-SETCFG` - Set the current configuration of the drone show
 
-#TODO: document me!#
+A client sends this request to the server to set the configuration of
+the drone show.
+
+The server responds either with an `ACK-ACK` or `ACK-NACK` message.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`configuration` | yes |xref:types.adoc#_droneshowconfiguration[`DroneShowConfiguration`] object| Full configuration of a drone show
+|===
+
+*Response fields*
+
+This request has no fields.
 
 *Example request*
 
@@ -60,7 +111,23 @@ include::example$response_ACK-ACK.json[]
 
 == `SHOW-SETLIGHTS` - Set the behaviour of the LED lights on the show drones
 
-#TODO: document me!#
+A client sends this request to the server to set the LED lights behaviour on
+the drones participating in the show.
+
+The server responds either with an `ACK-ACK` or `ACK-NACK` message.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`configuration` | yes |xref:types.adoc#_dronelightsconfiguration[`DroneLightsConfiguration`] object|
+Full configuration of the behaviour of the LED lights on a drone during a drone show
+|===
+
+*Response fields*
+
+This request has no fields.
 
 *Example request*
 
