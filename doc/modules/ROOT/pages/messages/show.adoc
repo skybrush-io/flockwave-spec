@@ -22,7 +22,7 @@ This request has no fields.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`configuration` | yes |xref:types.adoc#_droneshowconfiguration[`DroneShowConfiguration`] object| Full configuration of a drone show
+|`configuration` | yes | Object of type xref:types.adoc#_droneshowconfiguration[`DroneShowConfiguration`]| Full configuration of a drone show
 |===
 
 *Example request*
@@ -58,7 +58,7 @@ This request has no fields.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`configuration` | yes |xref:types.adoc#_dronelightsconfiguration[`DroneLightsConfiguration`] object|
+|`configuration` | yes |Object of type xref:types.adoc#_dronelightsconfiguration[`DroneLightsConfiguration`]|
 Full configuration of the behaviour of the LED lights on a drone during a drone show
 |===
 
@@ -88,7 +88,7 @@ The server responds either with an `ACK-ACK` or `ACK-NACK` message.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`configuration` | yes |xref:types.adoc#_droneshowconfiguration[`DroneShowConfiguration`] object| Full configuration of a drone show
+|`configuration` | yes |Object of type xref:types.adoc#_droneshowconfiguration[`DroneShowConfiguration`]| Full configuration of a drone show
 |===
 
 *Response fields*
@@ -121,7 +121,7 @@ The server responds either with an `ACK-ACK` or `ACK-NACK` message.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`configuration` | yes |xref:types.adoc#_dronelightsconfiguration[`DroneLightsConfiguration`] object|
+|`configuration` | yes |Object of type xref:types.adoc#_dronelightsconfiguration[`DroneLightsConfiguration`]|
 Full configuration of the behaviour of the LED lights on a drone during a drone show
 |===
 

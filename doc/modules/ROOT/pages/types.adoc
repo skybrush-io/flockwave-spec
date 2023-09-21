@@ -760,7 +760,7 @@ the Flockwave protocol.
 == `ExtensionInfo`
 
 This type contains detailed information about an extension. It is used by
-the server's response to the `EXT-INF` command.
+the server's response to the `EXT-INF` client request.
 
 *Fields*
 
