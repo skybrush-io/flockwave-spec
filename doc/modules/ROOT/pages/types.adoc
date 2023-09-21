@@ -653,6 +653,67 @@ status update was received from the docking station
 }
 ----
 
+== `DroneLightsConfiguration`
+
+LED light related configuration object for drone shows. The object is used by the
+`SHOW-LIGHTS` and the `SHOW-SETLIGHTS` commands to get or set the configuration
+for the LED lights on drones.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|effect |no | string | Type of the light effect. Can be either `off` 
+(GCS is not controlling the LED lights on the drones) or `solid` 
+(GCS is asking the drones to use a solid LED light).
+
+|color |no | list of integers |
+Color of the light effect in RGB notations. Values in the array must be between 0 and 255, inclusive.
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "effect": "solid",
+    "color": [0, 18, 255],
+}
+----
+
+== `DroneShowConfiguration`
+
+Configuration object for the drone show. It is used by the `SHOW-CFG` and 
+the `SHOW-SETCFG` commands to get or set the configuration for the drone show.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|start |no | <<_startconditions,StartConditions>> |
+Object that contains the conditions regarding the start of the show
+|mapping|no | list of strings |
+Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory. 
+|duration|no |float | The total duration of the show, in seconds. Not mandatory.
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "start": {
+        "authorized": false,
+        "time": 1581881192,
+        "method": "auto",
+        "uavIds": ["01", "42"]
+    },
+    "mapping": ["01", "02", null, "05", "42"],
+    "duration": 294
+}
+----
 
 == `ECEFCoordinate`
 
@@ -1164,6 +1225,42 @@ Currently the following values are defined:
 
 `critical`:: Critical errors that require immediate attention.
 
+== `StartConditions`
+
+Object that contains the conditions regarding the start of the show.
+
+It is a field of <<_droneshowconfiguration,DroneShowConfiguration>>, and the data type
+is therefore supported by the `SHOW-CFG` and `SHOW-SETCFG` commands.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|authorized|no | boolean | Whether the server has received authorization from a human operator to start the show
+|time|no | <<_timestamps,timestamp>> | Timestamp when the drone show should start 
+|method|no | <<_startmethod,StartMethod>> | Method of starting the show. Can be either `rc` or `auto`.
+|uavIds|no | list of strings | Array containing the IDs of the UAVs that should be started automatically.
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "authorized": true,
+    "time": 1449562661000,
+    "method": "rc",
+    "uavIds": ["1","17","31"]
+}
+----
+== StartMethod
+
+Enumeration type that describes the method of how the drone show should be started.
+
+`rc`:: Remote controlled. This means that the human operator starts the show manually.
+
+`auto`:: The drone show is started automatically. 
 
 [#rtk-survey-status]
 == `SurveyStatus`
