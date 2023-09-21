@@ -13,7 +13,27 @@ error code.
 
 == `EXT-CFG` - Retrieve the current configuration of extensions
 
-#TODO: document me!#
+A client sends this request to the server to obtain information about the configuration
+of extensions with IDs specified in the request.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` | yes | list of strings| The list of extension IDs whose configuration the client requests.
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`status` | no |object | Object that contains the configuration for each
+requested extension ID.
+|`error` | no | object | Object mapping extension IDs to error messages 
+about why the request failed for these IDs.
+|===
 
 *Example request*
 
@@ -31,7 +51,28 @@ include::example$response_EXT-CFG.json[]
 
 == `EXT-INF` - Retrieve details about an extension
 
-#TODO: document me!#
+A client sends this request to the server to obtain the details
+of the extensions with IDs specified in the request.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` | yes | list of strings| The list of extension IDs whose details the client requests.
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`status` | no |object | Object that contains the available information
+for each requested extension ID. The structure of this object is described
+by the xref:types.adoc#_extensioninfo[`ExtensionInfo`] complex type.
+|`error` | no | object | Object mapping extension IDs to error messages 
+about why the request failed for these IDs.
+|===
 
 *Example request*
 
@@ -84,7 +125,27 @@ include::example$response_EXT-LIST.json[]
 
 == `EXT-LOAD` - Load an extension
 
-#TODO: document me!#
+A client sends this request to the server to load the extensions with IDs specified
+in the request.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` | yes | list of strings| The list of extension IDs which the client requests to load.
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`status` | no |object | Object that contains empty objects for
+each requested extension that was successfully loaded.
+|`error` | no | object | Object mapping extension IDs to error messages 
+about why the request failed for these IDs.
+|===
 
 *Example request*
 
@@ -102,7 +163,27 @@ include::example$response_EXT-LOAD.json[]
 
 == `EXT-RELOAD` - Reload an extension
 
-#TODO: document me!#
+A client sends this request to the server to reload the extensions with IDs specified
+in the request.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` | yes | list of strings| The list of extension IDs which the client requests to reload.
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`status` | no |object | Object that contains empty objects for
+each requested extension that was successfully reloaded.
+|`error` | no | object | Object mapping extension IDs to error messages 
+about why the request failed for these IDs.
+|===
 
 *Example request*
 
@@ -120,7 +201,31 @@ include::example$response_EXT-RELOAD.json[]
 
 == `EXT-SETCFG` - Set the current configuration of extensions
 
-#TODO: document me!#
+A client sends this request to the server to set the desired configuration
+for extensions with IDs specified in the request.
+
+It should be noted, that the new configuration values do NOT take effect
+until the affected extensions are reloaded.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` | yes |object | Object that specifies new configuration values
+for each extension identified by their respective IDs.
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`status` | no |object | Object that contains empty objects for
+each requested extension that was successfully configured.
+|`error` | no | object | Object mapping extension IDs to error messages 
+about why the request failed for these IDs.
+|===
 
 *Example request*
 
@@ -138,7 +243,27 @@ include::example$response_EXT-SETCFG.json[]
 
 == `EXT-UNLOAD` - Unload an extension
 
-#TODO: document me!#
+A client sends this request to the server to unload the extensions with IDs specified
+in the request.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` | yes | list of strings| The list of extension IDs which the client requests to unload.
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`status` | no |object | Object that contains empty objects for
+each requested extension that was successfully unloaded.
+|`error` | no | object | Object mapping extension IDs to error messages 
+about why the request failed for these IDs.
+|===
 
 *Example request*
 
