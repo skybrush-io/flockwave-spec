@@ -9,9 +9,8 @@ A client sends this request to the server to obtain information about
 the configuration of the drone show.
 
 The server response contains an object of type xref:types.adoc#_droneshowconfiguration[`DroneShowConfiguration`],
-which can contain information about whether the show is authorized to start, the timestamp when the drone
-show should start, with what method the show should start, which UAVs shall be started automatically,
-the total duration of the show and a mapping of show-specific indices to the corresponding UAV IDs, if known.
+which for example can contain information about whether the show is authorized to start, the timestamp when the
+drone show should start, the identifier of the clock that the start time refers to and more.
 
 *Request fields*
 

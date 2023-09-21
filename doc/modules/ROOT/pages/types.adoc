@@ -1259,7 +1259,7 @@ Currently the following values are defined:
 Object that contains the conditions regarding the start of the show.
 
 It is a field of <<_droneshowconfiguration,DroneShowConfiguration>>, and the data type
-is therefore supported by the `SHOW-CFG` and `SHOW-SETCFG` commands.
+is therefore used by the `SHOW-CFG` and `SHOW-SETCFG` commands.
 
 *Fields*
 
@@ -1267,6 +1267,7 @@ is therefore supported by the `SHOW-CFG` and `SHOW-SETCFG` commands.
 |===
 |Name |Required? |Type |Description
 |authorized|no | boolean | Whether the server has received authorization from a human operator to start the show
+|clock| no | string or null| Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp
 |time|no | <<_timestamps,timestamp>> | Timestamp when the drone show should start 
 |method|no | <<_startmethod,StartMethod>> | Method of starting the show. Can be either `rc` or `auto`.
 |uavIds|no | list of strings | Array containing the IDs of the UAVs that should be started automatically.
@@ -1278,6 +1279,7 @@ is therefore supported by the `SHOW-CFG` and `SHOW-SETCFG` commands.
 ----
 {
     "authorized": true,
+    "clock": null,
     "time": 1449562661000,
     "method": "rc",
     "uavIds": ["1","17","31"]
