@@ -6,27 +6,21 @@
     "properties": {
       "stationId": {
         "title": "Station ID",
-        "type": ["number", "null"]
+        "type": "number"
       },
       "descriptor": {
         "title": "Antenna descriptor",
-        "type": ["string", "null"]
+        "type": "string"
       },
       "serialNumber": {
         "title": "Serial number",
-        "type": ["string", "null"]
+        "type": "string"
       },
       "position": {
-        "oneOf": [
-          {"type": "null"},
-          {"$ref": "#/gpsCoordinate"}
-        ]
+        "$ref": "#/gpsCoordinate"
       },
       "positionECEF": {
-        "oneOf": [
-          {"type": "null"},
-          {"$ref": "#/ecefCoordinate"}
-        ]
+        "$ref": "#/ecefCoordinate"
       }
     }
   },
@@ -520,7 +514,7 @@
           },
           "clock": {
             "desciption": "Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp",
-            "anyOf": [{ "type": "string" }, { "type": "null" }]
+            "anyOf": [{ "$ref": "#/clockId" }, { "type": "null" }]
           },
           "time": {
             "description": "Timestamp when the drone show should start",
@@ -1188,7 +1182,15 @@
         "type": "array",
         "items": {
           "type": "string",
-          "enum": ["gps", "glonass", "galileo", "sbas", "qzss", "beidou", "irnss"]
+          "enum": [
+            "gps",
+            "glonass",
+            "galileo",
+            "sbas",
+            "qzss",
+            "beidou",
+            "irnss"
+          ]
         }
       }
     },

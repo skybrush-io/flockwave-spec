@@ -86,12 +86,12 @@ The `AntennaInformation` object holds information about the current RTK antenna.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|stationId |yes |integer |The station ID of the antenna, or null if not known
-|descriptor |yes |string |The antenna descriptor, or null if not known
-|serialNumber |yes |string |The serial number of the antenna, or null if not known
-|position |yes |<<_gpscoordinate,GPSCoordinate>> |The position of the
+|stationId |no |integer |The station ID of the antenna, or null if not known
+|descriptor |no |string |The antenna descriptor, or null if not known
+|serialNumber |no |string |The serial number of the antenna, or null if not known
+|position |no |<<_gpscoordinate,GPSCoordinate>> |The position of the
 RTK antenna, in GPS coordinates, or null if not known
-|positionECEF |yes |<<_ecefcoordinate,ECEFCoordinate>> |The position of
+|positionECEF |no |<<_ecefcoordinate,ECEFCoordinate>> |The position of
 the RTK antenna, in ECEF coordinates, or null if not known
 |===
 
