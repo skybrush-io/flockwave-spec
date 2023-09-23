@@ -664,8 +664,8 @@ for the LED lights on drones.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|effect |no | string | Type of the light effect. Can be either `off` 
-(GCS is not controlling the LED lights on the drones) or `solid` 
+|effect |no | string | Type of the light effect. Can be either `off`
+(GCS is not controlling the LED lights on the drones) or `solid`
 (GCS is asking the drones to use a solid LED light).
 
 |color |no | list of integers |
@@ -684,7 +684,7 @@ Color of the light effect in RGB notations. Values in the array must be between 
 
 == `DroneShowConfiguration`
 
-Configuration object for the drone show. It is used by the `SHOW-CFG` and 
+Configuration object for the drone show. It is used by the `SHOW-CFG` and
 the `SHOW-SETCFG` commands to get or set the configuration for the drone show.
 
 *Fields*
@@ -695,7 +695,7 @@ the `SHOW-SETCFG` commands to get or set the configuration for the drone show.
 |start |no | <<_startconditions,StartConditions>> |
 Object that contains the conditions regarding the start of the show
 |mapping|no | list of strings |
-Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory. 
+Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory.
 |duration|no |float | The total duration of the show, in seconds. Not mandatory.
 |===
 
@@ -768,7 +768,7 @@ the server's response to the `EXT-INF` client request.
 |===
 |Name |Required? |Type |Description
 |id | yes | string | Identifier of a single extension.
-|loaded| yes | boolean | Identifies whether the extension is loaded or not. 
+|loaded| yes | boolean | Identifies whether the extension is loaded or not.
 |name| yes | string | The name of the extension.
 |description|no | string | Description of the extension.
 |===
@@ -1268,7 +1268,7 @@ is therefore used by the `SHOW-CFG` and `SHOW-SETCFG` commands.
 |Name |Required? |Type |Description
 |authorized|no | boolean | Whether the server has received authorization from a human operator to start the show
 |clock| no | string or null| Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp
-|time|no | <<_timestamps,timestamp>> | Timestamp when the drone show should start 
+|time|no | <<_timestamps,timestamp>> | Timestamp when the drone show should start
 |method|no | <<_startmethod,StartMethod>> | Method of starting the show. Can be either `rc` or `auto`.
 |uavIds|no | list of strings | Array containing the IDs of the UAVs that should be started automatically.
 |===
@@ -1291,7 +1291,7 @@ Enumeration type that describes the method of how the drone show should be start
 
 `rc`:: Remote controlled. This means that the human operator starts the show manually.
 
-`auto`:: The drone show is started automatically. 
+`auto`:: The drone show is started automatically.
 
 [#rtk-survey-status]
 == `SurveyStatus`

@@ -31,7 +31,7 @@ of extensions with IDs specified in the request.
 |Name |Required? |Type |Description
 |`status` | no |object | Object that contains the configuration for each
 requested extension ID.
-|`error` | no | object | Object mapping extension IDs to error messages 
+|`error` | no | object | Object mapping extension IDs to error messages
 about why the request failed for these IDs.
 |===
 
@@ -70,7 +70,7 @@ of the extensions with IDs specified in the request.
 |`status` | no |object | Object that contains the available information
 for each requested extension ID. The structure of this object is described
 by the xref:types.adoc#_extensioninfo[`ExtensionInfo`] complex type.
-|`error` | no | object | Object mapping extension IDs to error messages 
+|`error` | no | object | Object mapping extension IDs to error messages
 about why the request failed for these IDs.
 |===
 
@@ -143,7 +143,7 @@ in the request.
 |Name |Required? |Type |Description
 |`status` | no |object | Object that contains empty objects for
 each requested extension that was successfully loaded.
-|`error` | no | object | Object mapping extension IDs to error messages 
+|`error` | no | object | Object mapping extension IDs to error messages
 about why the request failed for these IDs.
 |===
 
@@ -181,7 +181,7 @@ in the request.
 |Name |Required? |Type |Description
 |`status` | no |object | Object that contains empty objects for
 each requested extension that was successfully reloaded.
-|`error` | no | object | Object mapping extension IDs to error messages 
+|`error` | no | object | Object mapping extension IDs to error messages
 about why the request failed for these IDs.
 |===
 
@@ -223,7 +223,7 @@ for each extension identified by their respective IDs.
 |Name |Required? |Type |Description
 |`status` | no |object | Object that contains empty objects for
 each requested extension that was successfully configured.
-|`error` | no | object | Object mapping extension IDs to error messages 
+|`error` | no | object | Object mapping extension IDs to error messages
 about why the request failed for these IDs.
 |===
 
@@ -261,7 +261,7 @@ in the request.
 |Name |Required? |Type |Description
 |`status` | no |object | Object that contains empty objects for
 each requested extension that was successfully unloaded.
-|`error` | no | object | Object mapping extension IDs to error messages 
+|`error` | no | object | Object mapping extension IDs to error messages
 about why the request failed for these IDs.
 |===
 

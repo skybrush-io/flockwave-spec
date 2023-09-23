@@ -5,7 +5,7 @@ both the drone show and the LED lights on the drones.
 
 == `SHOW-CFG` - Retrieve the current configuration of the drone show
 
-A client sends this request to the server to obtain information about 
+A client sends this request to the server to obtain information about
 the configuration of the drone show.
 
 The server response contains an object of type xref:types.adoc#_droneshowconfiguration[`DroneShowConfiguration`],
@@ -40,13 +40,13 @@ include::example$response_SHOW-CFG.json[]
 
 == `SHOW-LIGHTS` - Retrieve the current configuration of the behaviour of the LED lights on the show drones
 
-A client sends this request to the server to obtain information about 
+A client sends this request to the server to obtain information about
 the configuration of the behaviour of the LED lights on drones participating in the show.
 
 The server response contains an object of type xref:types.adoc#_dronelightsconfiguration[`DroneLightsConfiguration`],
 which can contain information about the type and the color of the light effect used. The type of the light effect
 can either be `off` or `solid`. The former means that the GCS is not controlling the LED lights on the drones, while
-the latter means that the GCS is asking the show drones to use a solid LED light. 
+the latter means that the GCS is asking the show drones to use a solid LED light.
 
 *Request fields*
 
