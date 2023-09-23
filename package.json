@@ -1,6 +1,6 @@
 {
   "name": "flockwave-spec",
-  "version": "1.79.0",
+  "version": "1.79.1",
   "description": "JSON-Schema specification of the Flockwave protocol",
   "main": "./types/index.d.ts",
   "scripts": {

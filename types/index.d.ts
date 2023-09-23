@@ -488,9 +488,9 @@ export type RTKPresetSource = string;
  * List of source connections where this preset collects messages from
  */
 export type Sources = RTKPresetSource[];
-export type StationID = number | null;
-export type AntennaDescriptor = string | null;
-export type SerialNumber = string | null;
+export type StationID = number;
+export type AntennaDescriptor = string;
+export type SerialNumber = string;
 /**
  * RTK message observation statistics
  *
@@ -1038,6 +1038,7 @@ export interface DroneShowConfiguration {
      * Whether the server has received authorization from a human operator to start the show
      */
     authorized?: boolean;
+    clock?: ClockID | null;
     /**
      * Timestamp when the drone show should start
      */
@@ -1621,8 +1622,8 @@ export interface RTKAntennaInfo {
   stationId?: StationID;
   descriptor?: AntennaDescriptor;
   serialNumber?: SerialNumber;
-  position?: null | GPSCoordinate;
-  positionECEF?: null | ECEFCoordinate;
+  position?: GPSCoordinate;
+  positionECEF?: ECEFCoordinate;
   [k: string]: unknown;
 }
 /**
