@@ -4,7 +4,7 @@ import json
 
 from deprecated import deprecated
 from enum import Enum
-from importlib.resources import files
+from importlib.resources import open_text
 from jsonpointer import JsonPointer, resolve_pointer
 from jsonref import replace_refs
 from typing import Any, Dict, Optional, Union
@@ -45,7 +45,7 @@ def _get_json_object_from_resource(resource_path: str) -> Dict[str, Any]:
     Returns:
         the JSON object from the given resource
     """
-    with files(SCHEMA_PACKAGE).joinpath(resource_path).open("r") as fp:
+    with open_text(SCHEMA_PACKAGE, resource_path) as fp:
         return json.load(fp)
 
 
