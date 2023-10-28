@@ -651,6 +651,10 @@ export type Charging = boolean;
  */
 export type Color = number;
 /**
+ * Received signal strength indicator, for each of the channels the UAV is accessible on
+ */
+export type RSSI = number[];
+/**
  * List of currently active error codes for a single UAV
  */
 export type ListOfErrors = number[];
@@ -1709,6 +1713,7 @@ export interface UAVStatusInfo {
   timestamp: LastUpdatedAt2;
   battery?: BatteryInformation;
   light?: Color;
+  rssi?: RSSI;
   errors?: ListOfErrors;
   debug?: string;
   [k: string]: unknown;
