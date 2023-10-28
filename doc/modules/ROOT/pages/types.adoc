@@ -329,7 +329,6 @@ be larger than zero. When omitted, it is assumed to be equal to 1.
 }
 ----
 
-[#colorrgb565]
 == `ColorRGB565`
 
 A `ColorRGB565` object is essentially a single integer in the range 0 to 65535
@@ -1171,7 +1170,6 @@ operation in a structured manner.
 }
 ----
 
-[#rssi]
 == `RSSI`
 
 An `RSSI` object is an array of integers, each holding the received signal
