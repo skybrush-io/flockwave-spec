@@ -15,7 +15,8 @@
       "debug": "0BADCAFE",
       "errors": [17, 41],
       "light": 2016,
-      "battery": [124]
+      "battery": [124],
+      "rssi": [80]
     }
   },
   "error": {

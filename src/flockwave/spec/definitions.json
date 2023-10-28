@@ -1099,6 +1099,17 @@
     "additionalProperties": { "$ref": "#/receiptId" }
   },
 
+  "rssi": {
+    "title": "RSSI",
+    "description": "Received signal strength indicator, for each of the channels the UAV is accessible on",
+    "type": "array",
+    "items": {
+      "type": "integer",
+      "minimum": -1,
+      "maximum": 100
+    }
+  },
+
   "rtkConfigurationPreset": {
     "title": "RTK configuration preset",
     "description": "Information about an RTK preset",
@@ -1317,6 +1328,9 @@
       },
       "light": {
         "$ref": "#/colorRGB565"
+      },
+      "rssi": {
+        "$ref": "#/rssi"
       },
       "errors": {
         "$ref": "#/errorCodeList"

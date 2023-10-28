@@ -1171,6 +1171,18 @@ operation in a structured manner.
 }
 ----
 
+[#rssi]
+== `RSSI`
+
+An `RSSI` object is an array of integers, each holding the received signal
+strength indicator from a single channel of the UAV that it is accessible on.
+Most UAVs are accessible on a single channel or a primary and a redundant
+secondary channel only, so this object typically holds one or two integers.
+
+Received signal strength is expressed on an abstract, unitless scale from 0
+to 100. Percentages may be used directly if the UAV can provide an RSSI reading
+that is already mapped into a percent scale. -1 is also a valid value,
+interpreted as "no RSSI reading available".
 
 [#rtk-preset-info]
 == `RTKConfigurationPreset`
@@ -1429,7 +1441,7 @@ UAV, in a local right-handed flat Earth coordinate system
 
 |gps |no |<<_gpsfix,GPSFix>> |Basic information about the GPS fix of the UAV
 
-|heading |no |<<_angles,angle>> |The heading of the UAV, i.e. the
+|heading |no |<<_angles,angle>> |The heading of the UAV, i.e. the
 direction the UAV is pointing, projected to the local tangent plane, if
 known.
 
@@ -1449,6 +1461,9 @@ state of the battery on the UAV.
 
 |light |no |<<_colorrgb565,ColorRGB565>> |Information about the
 color of the light attached to the UAV, assuming that it has a primary light.
+
+|rssi |no |<<_rssi,RSSI>> |The received signal strength from the UAV,
+for each of the communication channels it is accessible on.
 
 |errors |no |<<_errorlist,ErrorList>> |The list of error codes
 currently applicable for the UAV. When omitted, it means that there are
@@ -1473,6 +1488,7 @@ the algorithm running on the UAV (if applicable).
     "velocity": [2000, 2000, -1000],
     "velocityXYZ": [2000, 2000, 1000],
     "timestamp": 1449562661000,
+    "rssi": [80],
     "debug": "MEJBRENBRkU=",
     "light": 2016,
     "errors": [42]
