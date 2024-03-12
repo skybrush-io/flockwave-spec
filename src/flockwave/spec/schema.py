@@ -83,7 +83,7 @@ def _get_schema_from_resource(
     elif json_pointer is not None:
         obj = resolve_pointer(obj, json_pointer)
 
-    # We need to trigger the resoolution of '$ref' references. In theory,
+    # We need to trigger the resolution of '$ref' references. In theory,
     # we could use proxies=False but we were running into problems with that.
     repr(obj)
 
