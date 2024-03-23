@@ -80,6 +80,9 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_EXTRELOAD
   | Request_EXTSETCFG
   | Request_EXTUNLOAD
+  | Request_FWTARGETINF
+  | Request_FWTARGETLIST
+  | Request_FWUPDATE
   | Request_LCNINF
   | Request_LOGDATA
   | Request_LOGINF
@@ -171,6 +174,14 @@ export type ExtensionID = string;
  * IDs of the extensions that the message refers to
  */
 export type ExtensionIDs = ExtensionID[];
+/**
+ * Identifier of a single firmware update target
+ */
+export type FirmwareUpdateTargetID = string;
+/**
+ * IDs of the firmware update targets that a request refers to
+ */
+export type FirmwareUpdateTargetIDs = FirmwareUpdateTargetID[];
 /**
  * Identifier of a single flight log
  */
@@ -327,6 +338,9 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_EXTRELOAD
   | Response_EXTSETCFG
   | Response_EXTUNLOAD
+  | Response_FWTARGETINF
+  | Response_FWTARGETLIST
+  | Response_FWUPDATE
   | Response_LCNINF
   | Response_LOGDATA
   | Response_LOGINF
@@ -938,6 +952,23 @@ export interface Request_EXTUNLOAD {
   ids: ExtensionIDs;
   [k: string]: unknown;
 }
+export interface Request_FWTARGETINF {
+  type: "FW-TARGET-INF";
+  ids: FirmwareUpdateTargetIDs;
+  [k: string]: unknown;
+}
+export interface Request_FWTARGETLIST {
+  type: "FW-TARGET-LIST";
+  supportedBy?: FirmwareUpdateTargetIDs;
+  [k: string]: unknown;
+}
+export interface Request_FWUPDATE {
+  type: "FW-UPDATE";
+  ids: ObjectIDs;
+  target: FirmwareUpdateTargetID;
+  blob: string;
+  [k: string]: unknown;
+}
 export interface Request_LCNINF {
   type: "LCN-INF";
   [k: string]: unknown;
@@ -1475,6 +1506,31 @@ export interface Response_EXTUNLOAD {
     };
   };
   error?: ErrorMap;
+}
+export interface Response_FWTARGETINF {
+  type: "FW-TARGET-INF";
+  result?: {
+    [k: string]: FirmwareUpdateTarget;
+  };
+  error?: ErrorMap;
+}
+/**
+ * A component of an object that can be targeted with a firmware update
+ */
+export interface FirmwareUpdateTarget {
+  id: FirmwareUpdateTargetID;
+  name: string;
+  [k: string]: unknown;
+}
+export interface Response_FWTARGETLIST {
+  type: "FW-TARGET-LIST";
+  ids: FirmwareUpdateTargetIDs;
+}
+export interface Response_FWUPDATE {
+  type: "FW-UPDATE";
+  receipt?: ReceiptMap;
+  error?: ErrorMap;
+  result?: AsyncCommandResponseMap;
 }
 export interface Response_LCNINF {
   type: "LCN-INF";
