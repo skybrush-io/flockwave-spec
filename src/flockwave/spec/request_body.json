@@ -81,7 +81,7 @@
       "$ref": "request_FW-TARGET-LIST.json#"
     },
     {
-      "$ref": "request_FW-UPDATE.json#"
+      "$ref": "request_FW-UPLOAD.json#"
     },
     {
       "$ref": "request_LCN-INF.json#"

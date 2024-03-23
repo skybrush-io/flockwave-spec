@@ -1,5 +1,5 @@
 {
-  "type": "FW-UPDATE",
+  "type": "FW-UPLOAD",
   "receipt": {
     "1": "0badcafedeadbeef"
   },

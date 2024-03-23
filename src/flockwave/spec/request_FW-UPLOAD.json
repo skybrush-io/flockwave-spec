@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "type": {
-      "const": "FW-UPDATE"
+      "const": "FW-UPLOAD"
     },
     "ids": {
       "$ref": "definitions.json#/objectIdList"

@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "type": {
-      "const": "FW-UPDATE"
+      "const": "FW-UPLOAD"
     },
     "receipt": {
       "$ref": "definitions.json#/receiptMap"

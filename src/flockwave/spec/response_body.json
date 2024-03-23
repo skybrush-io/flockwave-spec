@@ -87,7 +87,7 @@
       "$ref": "response_FW-TARGET-LIST.json#"
     },
     {
-      "$ref": "response_FW-UPDATE.json#"
+      "$ref": "response_FW-UPLOAD.json#"
     },
     {
       "$ref": "response_LCN-INF.json#"
