@@ -82,7 +82,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_EXTUNLOAD
   | Request_FWTARGETINF
   | Request_FWTARGETLIST
-  | Request_FWUPDATE
+  | Request_FWUPLOAD
   | Request_LCNINF
   | Request_LOGDATA
   | Request_LOGINF
@@ -340,7 +340,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_EXTUNLOAD
   | Response_FWTARGETINF
   | Response_FWTARGETLIST
-  | Response_FWUPDATE
+  | Response_FWUPLOAD
   | Response_LCNINF
   | Response_LOGDATA
   | Response_LOGINF
@@ -962,8 +962,8 @@ export interface Request_FWTARGETLIST {
   supportedBy?: FirmwareUpdateTargetIDs;
   [k: string]: unknown;
 }
-export interface Request_FWUPDATE {
-  type: "FW-UPDATE";
+export interface Request_FWUPLOAD {
+  type: "FW-UPLOAD";
   ids: ObjectIDs;
   target: FirmwareUpdateTargetID;
   blob: string;
@@ -1526,8 +1526,8 @@ export interface Response_FWTARGETLIST {
   type: "FW-TARGET-LIST";
   ids: FirmwareUpdateTargetIDs;
 }
-export interface Response_FWUPDATE {
-  type: "FW-UPDATE";
+export interface Response_FWUPLOAD {
+  type: "FW-UPLOAD";
   receipt?: ReceiptMap;
   error?: ErrorMap;
   result?: AsyncCommandResponseMap;
