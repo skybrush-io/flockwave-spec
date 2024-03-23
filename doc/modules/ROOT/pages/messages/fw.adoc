@@ -1,0 +1,130 @@
+= `FW` — Firmware updates and dynamic code upload
+
+The messages in this section are used to orchestrate remote firmware updates to
+software or hardware components of objects.
+
+Extensions that provide support for firmware updates can register firmware
+update targets in the server. Each firmware update target corresponds to an
+abstract endpoint on objects of a given class where firmware upload requests
+can be targeted to. Objects can declare which firmweare update targets they
+support, and clients can send requests containing a list of object IDs,
+a firmware update target ID and a binary blob in order to start a firmware
+update on an object. It is the responsibility of the server to conduct the
+firmware update in the background and report the status of the operation back
+to clients.
+
+[#fw-target-inf]
+== `FW-TARGET-INF` — Basic information about firmware update targets
+
+A client sends this request to the server to obtain basic information about
+a firmware update target based on its ID.
+
+*Request fields*
+
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of firmware update target IDs that the client is
+interested in
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`result` |no |object of xref:types.adoc#_firmwareupdatetarget[`FirmwareUpdateTarget`] |Object
+mapping firmware update target IDs to the corresponding objects.
+
+|`error` |no |object |Object mapping firmware update target IDs to reasons why the
+corresponding objectcould not have been retrieved.
+|===
+
+All the firmware update target IDs that were specified in the request MUST
+appear _either_ in the `result` list or in the `error` list.
+
+*Example request*
+
+[source,json]
+----
+include::example$request_FW-TARGET-INF.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_FW-TARGET-INF.json[]
+----
+
+[#fw-target-list]
+== `FW-TARGET-LIST` — List of firmware update targets known to the server
+
+A client sends this request to the server to obtain the list of firmware update
+targets known to the server, optionally filtered to those that are supported
+by _all_ objects in a list.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`supportedBy` |no |list of strings |List of object IDs; when specified, only those firmware update targets will be returned that are supported by all the objects in this list
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of firmware update target IDs that match the query
+|===
+
+*Example request*
+
+[source,json]
+----
+include::example$request_FW-TARGET-LIST.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_FW-TARGET-LIST.json[]
+----
+
+[#fw-upload]
+== `FW-UPLOAD` — Upload a binary firmware blob to an object
+
+A client sends this request to the server to start a process to update the
+firmware of some component of an object.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |List of object IDs that should be targeted with the update.
+|`target` |yes |ID of a xref:types.adoc#_firmwareupdatetarget[`FirmwareUpdateTarget`] |Identifier of the firmware update target to send the update to.
+|`blob` |string |Base64-encoded representation of the binary blob to upload to the target.
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each object ID is mapped to a boolean denoting whether the firmware was uploaded
+successfully to the object.
+
+*Example request*
+
+[source,json]
+----
+include::example$request_FW-UPLOAD.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_FW-UPLOAD.json[]
+----

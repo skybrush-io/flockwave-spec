@@ -1,0 +1,4 @@
+{
+  "type": "FW-TARGET-INF",
+  "ids": ["io.skybrush.server.virtual_uavs.firmware", "no-such-target"]
+}

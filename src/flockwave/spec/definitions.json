@@ -648,6 +648,38 @@
     "required": ["id", "loaded", "name"]
   },
 
+  "firmwareUpdateTarget": {
+    "title": "Firmware update target",
+    "description": "A component of an object that can be targeted with a firmware update",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "#/firmwareUpdateTargetId"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "required": ["id", "name"]
+  },
+
+  "firmwareUpdateTargetId": {
+    "title": "Firmware update target ID",
+    "description": "Identifier of a single firmware update target",
+    "type": "string",
+    "minLength": 1
+  },
+
+  "firmwareUpdateTargetIdList": {
+    "title": "Firmware update target IDs",
+    "description": "IDs of the firmware update targets that a request refers to",
+    "type": "array",
+    "items": {
+      "$ref": "#/firmwareUpdateTargetId"
+    },
+    "uniqueItems": true
+  },
+
   "flightLog": {
     "title": "Flight log",
     "description": "Contents of a flight log",
@@ -912,7 +944,7 @@
     "maxLength": 36
   },
 
-  "MessageObservations": {
+  "messageObservations": {
     "title": "RTK message observations",
     "description": "RTK message observation statistics",
     "type": "array",

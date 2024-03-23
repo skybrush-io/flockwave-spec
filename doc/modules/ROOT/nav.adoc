@@ -19,6 +19,7 @@
 ** xref:messages/bcn.adoc[BCN — Beacon-related messages]
 ** xref:messages/clk.adoc[CLK — Clock and timer-related messages]
 ** xref:messages/dock.adoc[DOCK — Docking station related messages]
+** xref:messages/fw.adoc[FW — Firmware updates and dynamic code upload]
 ** xref:messages/lcn.adoc[LCN — Licensing information]
 ** xref:messages/prm.adoc[PRM — Retrieving and setting parameters]
 ** xref:messages/show.adoc[SHOW — Management and execution of drone shows]

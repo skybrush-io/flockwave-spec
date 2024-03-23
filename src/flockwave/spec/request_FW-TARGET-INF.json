@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "FW-TARGET-INF"
+    },
+    "ids": {
+      "$ref": "definitions.json#/firmwareUpdateTargetIdList"
+    }
+  },
+  "required": ["type", "ids"]
+}

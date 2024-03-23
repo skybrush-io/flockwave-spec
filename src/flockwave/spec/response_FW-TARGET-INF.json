@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "FW-TARGET-INF"
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/firmwareUpdateTarget"
+      }
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

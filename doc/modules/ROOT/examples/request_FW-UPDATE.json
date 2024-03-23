@@ -1,0 +1,6 @@
+{
+  "type": "FW-UPDATE",
+  "ids": ["1", "17"],
+  "target": "io.skybrush.server.virtual_uav.firmware",
+  "blob": "Tm9ib2R5IGV4cGVjdHMgdGhlIFNwYW5pc2ggaW5xdWlzaXRpb24h"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "FW-UPDATE"
+    },
+    "receipt": {
+      "$ref": "definitions.json#/receiptMap"
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    },
+    "result": {
+      "$ref": "definitions.json#/asyncCommandResponseMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

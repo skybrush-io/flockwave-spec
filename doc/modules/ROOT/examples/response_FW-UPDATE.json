@@ -1,0 +1,9 @@
+{
+  "type": "FW-UPDATE",
+  "receipt": {
+    "1": "0badcafedeadbeef"
+  },
+  "error": {
+    "17": "This firmware update target is not supported."
+  }
+}

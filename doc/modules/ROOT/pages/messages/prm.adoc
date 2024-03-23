@@ -39,7 +39,7 @@ include::example$response_PRM-GET.json[]
 ----
 
 [#prm-set]
-== `PRM-SET` - Set the value of a parameter on a target object
+== `PRM-SET` — Set the value of a parameter on a target object
 
 A client sends this request to the server to request the server to set the
 value of a parameter on one or more target objects.

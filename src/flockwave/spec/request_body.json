@@ -75,6 +75,15 @@
       "$ref": "request_EXT-UNLOAD.json#"
     },
     {
+      "$ref": "request_FW-TARGET-INF.json#"
+    },
+    {
+      "$ref": "request_FW-TARGET-LIST.json#"
+    },
+    {
+      "$ref": "request_FW-UPDATE.json#"
+    },
+    {
       "$ref": "request_LCN-INF.json#"
     },
     {

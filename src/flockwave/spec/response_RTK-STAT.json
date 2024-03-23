@@ -10,7 +10,7 @@
     "messages": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "definitions.json#/MessageObservations"
+        "$ref": "definitions.json#/messageObservations"
       }
     },
     "cnr": {

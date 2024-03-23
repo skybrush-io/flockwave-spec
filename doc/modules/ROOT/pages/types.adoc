@@ -839,6 +839,40 @@ the altitude is not controlled.
 
 `unknown`:: The UAV is in an unknown control mode.
 
+== `FirmwareUpdateTarget`
+
+This type represents an abstract component (sofrware or hardware) of an object
+that can be targeted with a firmware update operation. Firmware update targets
+can be registered and unregistered in the server and each object can report
+the list of firmware targets that it supports. An object may have multiple
+firmware update targets or may have none; for instance, a UAV consisting of an
+autopilot and a telemetry module can provide two firmware update targets if the
+firmware can be updated on both components remotely.
+
+The firmware of a component of an object may be updated by sending a firmware
+update request to the server, indicating the object, the firmware update target
+and the firmware itself; the server will then take care of orchestrating the
+replacement of the firmware on the object.
+
+*Items*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Name |Required? |Type |Description
+|`id` |yes |string |The unique identifier of the firmware update target
+|`name` |yes |string |A human-readable name of the firmware update target
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "id": "io.skybrush.server.virtual_uavs.firmware",
+    "name": "Firmware for virtual UAVs"
+}
+----
+
 == `GPSCoordinate`
 
 This type represents a coordinate given by a GPS in the usual

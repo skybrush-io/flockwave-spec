@@ -1,0 +1,4 @@
+{
+  "type": "UAV-LIST",
+  "ids": ["io.skybrush.server.virtual_uavs.firmware"]
+}

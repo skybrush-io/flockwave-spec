@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "FW-UPDATE"
+    },
+    "ids": {
+      "$ref": "definitions.json#/objectIdList"
+    },
+    "target": {
+      "$ref": "definitions.json#/firmwareUpdateTargetId"
+    },
+    "blob": {
+      "type": "string"
+    }
+  },
+  "required": ["type", "ids", "target", "blob"]
+}
