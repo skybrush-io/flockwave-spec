@@ -19,7 +19,9 @@ assert this_file is not None
 examples_dir = Path().parent.parent / "doc" / "modules" / "ROOT" / "examples"
 request_filenames = [x.name for x in examples_dir.glob("request_*.json")]
 response_filenames = [x.name for x in examples_dir.glob("response_*.json")]
-notification_filenames = [x.name for x in examples_dir.glob("notification_*.json")]
+notification_filenames = [
+    x.name for x in examples_dir.glob("notification_*.json")
+]
 
 
 @fixture(scope="module")
@@ -60,5 +62,7 @@ def test_example_response_is_valid(example_response, is_valid_response):
     assert is_valid_response(example_response)
 
 
-def test_example_notification_is_valid(example_notification, is_valid_notification):
+def test_example_notification_is_valid(
+    example_notification, is_valid_notification
+):
     assert is_valid_notification(example_notification)

@@ -71,5 +71,7 @@ if __name__ == "__main__":
     # Legacy entry point, one should migrate to flockwave.spec.__main__
     from .cli import validate
 
-    print("/!\\ This entry point is deprecated; use flockwave.spec.cli instead.")
+    print(
+        "/!\\ This entry point is deprecated; use flockwave.spec.cli instead."
+    )
     validate()

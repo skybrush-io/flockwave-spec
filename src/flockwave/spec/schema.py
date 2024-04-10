@@ -125,7 +125,7 @@ def get_enum_from_schema(name: str, class_name: Optional[str] = None) -> Enum:
         class_name = class_name or name.capitalize()
         return Enum(class_name, schema["enum"])
     else:
-        raise TypeError("{0!r} cannot be converted into a Python enum".format(name))
+        raise TypeError(f"{name!r} cannot be converted into a Python enum")
 
 
 def get_message_schema() -> Schema:

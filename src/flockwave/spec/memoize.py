@@ -42,8 +42,7 @@ def memoized(
     allow_named: Optional[bool] = None,
     hashable: bool = True,
     cache: Optional[Cache[Any, T]] = None,
-) -> Callable[[], T]:
-    ...
+) -> Callable[[], T]: ...
 
 
 @overload
@@ -53,8 +52,7 @@ def memoized(
     allow_named: Optional[bool] = None,
     hashable: bool = True,
     cache: Optional[Cache[Any, T]] = None,
-) -> Callable[..., T]:
-    ...
+) -> Callable[..., T]: ...
 
 
 @overload
@@ -64,8 +62,7 @@ def memoized(
     allow_named: Optional[bool] = None,
     hashable: bool = True,
     cache: Optional[Cache[Any, T]] = None,
-) -> Callable[[Callable[..., T]], Callable[..., T]]:
-    ...
+) -> Callable[[Callable[..., T]], Callable[..., T]]: ...
 
 
 def memoized(
@@ -109,7 +106,8 @@ def memoized(
 
     sig = signature(func)
     has_defaults = any(
-        param.default is not Parameter.empty for param in sig.parameters.values()
+        param.default is not Parameter.empty
+        for param in sig.parameters.values()
     )
 
     if allow_named is None:
@@ -136,7 +134,8 @@ def memoized(
     if (
         nargs > 1
         or any(
-            param.kind is Parameter.VAR_POSITIONAL for param in sig.parameters.values()
+            param.kind is Parameter.VAR_POSITIONAL
+            for param in sig.parameters.values()
         )
         or has_defaults
         or not hashable
