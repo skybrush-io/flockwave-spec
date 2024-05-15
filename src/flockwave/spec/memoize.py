@@ -106,8 +106,7 @@ def memoized(
 
     sig = signature(func)
     has_defaults = any(
-        param.default is not Parameter.empty
-        for param in sig.parameters.values()
+        param.default is not Parameter.empty for param in sig.parameters.values()
     )
 
     if allow_named is None:
@@ -134,8 +133,7 @@ def memoized(
     if (
         nargs > 1
         or any(
-            param.kind is Parameter.VAR_POSITIONAL
-            for param in sig.parameters.values()
+            param.kind is Parameter.VAR_POSITIONAL for param in sig.parameters.values()
         )
         or has_defaults
         or not hashable
