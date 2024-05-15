@@ -20,6 +20,7 @@ _error_code_to_abbreviation = {
     8: "motors",
     9: "sleep",
     10: "paused",
+    11: "slow",
     63: "RTH",
     # Warnings
     64: "storage",
@@ -91,6 +92,7 @@ _error_code_to_description = {
     8: "Motors are running while on ground",
     9: "Drone is in sleep mode",
     10: "Flight control is suspended",
+    11: "Flight control is in slow mode",
     63: "Drone is returning home",
     # Warnings
     64: "Low disk space",
@@ -164,6 +166,7 @@ class FlockwaveErrorCode(IntEnum):
     MOTORS_RUNNING_WHILE_ON_GROUND = 8
     SLEEPING = 9
     FLIGHT_CONTROL_SUSPENDED = 10
+    FLIGHT_CONTROL_SLOW_MODE = 11
     RETURN_TO_HOME = 63
 
     # Warnings

@@ -77,6 +77,8 @@ UAV has not finished initializing and the UAV is not ready for takeoff yet.
 |9  |SLEEP   |Drone is in a low-power "sleep" state. Flight controller is most
 likely powered down, but it can be resumed remotely.
 |10 |PAUSED  |The high-level flight control of the drone is suspended temporarily.
+|11 |SLOW    |Slow flight mode is activated in the high-level flight control of the
+drone temporarily.
 |63 |RTH     |Drone is returning to its home position.
 |===
 
