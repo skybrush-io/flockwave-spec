@@ -166,7 +166,7 @@ class FlockwaveErrorCode(IntEnum):
     MOTORS_RUNNING_WHILE_ON_GROUND = 8
     SLEEPING = 9
     FLIGHT_CONTROL_SUSPENDED = 10
-    FLIGHT_CONTROL_SLOW_MODE = 11
+    SLOW_MODE = 11
     RETURN_TO_HOME = 63
 
     # Warnings
