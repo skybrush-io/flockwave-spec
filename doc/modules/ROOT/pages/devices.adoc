@@ -43,7 +43,7 @@ channels:
 ** _Status LED_ (sub-device)
 *** Is the LED turned on? (Boolean channel, read/write)
 ** _RGBW LED strip_ (sub-device)
-*** Duty cycle of red (R) channel (numeric channel, read/write)
+*** Duty cycle of red \(R) channel (numeric channel, read/write)
 *** Duty cycle of green (G) channel (numeric channel, read/write)
 *** Duty cycle of blue (B) channel (numeric channel, read/write)
 *** Duty cycle of white (W) channel (numeric channel, read/write)
