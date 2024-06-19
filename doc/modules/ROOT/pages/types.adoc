@@ -1520,10 +1520,11 @@ the algorithm running on the UAV (if applicable).
     "velocity": [2000, 2000, -1000],
     "velocityXYZ": [2000, 2000, 1000],
     "timestamp": 1449562661000,
-    "rssi": [80],
-    "debug": "MEJBRENBRkU=",
+    "battery": [118, 69, false],
     "light": 2016,
-    "errors": [42]
+    "rssi": [80],
+    "errors": [42],
+    "debug": "MEJBRENBRkU="
 }
 ----
 
