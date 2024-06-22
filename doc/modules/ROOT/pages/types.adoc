@@ -868,7 +868,7 @@ replacement of the firmware on the object.
 [source,json]
 ----
 {
-    "id": "io.skybrush.server.virtual_uavs.firmware",
+    "id": "io.skybrush.server.virtual_uav.firmware",
     "name": "Firmware for virtual UAVs"
 }
 ----

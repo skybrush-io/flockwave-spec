@@ -5,7 +5,7 @@
       "const": "FW-TARGET-LIST"
     },
     "supportedBy": {
-      "$ref": "definitions.json#/firmwareUpdateTargetIdList"
+      "$ref": "definitions.json#/objectIdList"
     }
   },
   "required": ["type"]

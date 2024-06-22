@@ -6,7 +6,7 @@ software or hardware components of objects.
 Extensions that provide support for firmware updates can register firmware
 update targets in the server. Each firmware update target corresponds to an
 abstract endpoint on objects of a given class where firmware upload requests
-can be targeted to. Objects can declare which firmweare update targets they
+can be targeted to. Objects can declare which firmware update targets they
 support, and clients can send requests containing a list of object IDs,
 a firmware update target ID and a binary blob in order to start a firmware
 update on an object. It is the responsibility of the server to conduct the
@@ -106,7 +106,7 @@ firmware of some component of an object.
 |Name |Required? |Type |Description
 |`ids` |yes |list of strings |List of object IDs that should be targeted with the update.
 |`target` |yes |ID of a xref:types.adoc#_firmwareupdatetarget[`FirmwareUpdateTarget`] |Identifier of the firmware update target to send the update to.
-|`blob` |string |Base64-encoded representation of the binary blob to upload to the target.
+|`blob` |yes |string |Base64-encoded representation of the binary blob to upload to the target.
 |===
 
 *Response fields*

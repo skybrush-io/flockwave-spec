@@ -959,7 +959,7 @@ export interface Request_FWTARGETINF {
 }
 export interface Request_FWTARGETLIST {
   type: "FW-TARGET-LIST";
-  supportedBy?: FirmwareUpdateTargetIDs;
+  supportedBy?: ObjectIDs;
   [k: string]: unknown;
 }
 export interface Request_FWUPLOAD {

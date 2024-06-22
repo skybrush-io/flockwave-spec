@@ -1,8 +1,8 @@
 {
   "type": "FW-TARGET-INF",
   "result": {
-    "io.skybrush.server.virtual_uavs.firmware": {
-      "id": "io.skybrush.server.virtual_uavs.firmware",
+    "io.skybrush.server.virtual_uav.firmware": {
+      "id": "io.skybrush.server.virtual_uav.firmware",
       "name": "Firmware for virtual UAVs"
     }
   },
