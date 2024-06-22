@@ -6,7 +6,7 @@ software or hardware components of objects.
 Extensions that provide support for firmware updates can register firmware
 update targets in the server. Each firmware update target corresponds to an
 abstract endpoint on objects of a given class where firmware upload requests
-can be targeted to. Objects can declare which firmweare update targets they
+can be targeted to. Objects can declare which firmware update targets they
 support, and clients can send requests containing a list of object IDs,
 a firmware update target ID and a binary blob in order to start a firmware
 update on an object. It is the responsibility of the server to conduct the
