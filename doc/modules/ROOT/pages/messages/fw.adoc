@@ -13,6 +13,43 @@ update on an object. It is the responsibility of the server to conduct the
 firmware update in the background and report the status of the operation back
 to clients.
 
+[#fw-object-list]
+== `FW-OBJECT-LIST` — List of firmware update objects known to the server
+
+A client sends this request to the server to obtain the list of firmware
+updatable objects known to the server, optionally filtered to those that
+support _all_ targets in a list.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`supports` |no |list of strings |List of target IDs; when specified, only those firmware updatable objects will be returned that support all the targets in this list
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids` |yes |list of strings |The list of firmware updatable object IDs that match the query
+|===
+
+*Example request*
+
+[source,json]
+----
+include::example$request_FW-OBJECT-LIST.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_FW-OBJECT-LIST.json[]
+----
+
 [#fw-target-inf]
 == `FW-TARGET-INF` — Basic information about firmware update targets
 

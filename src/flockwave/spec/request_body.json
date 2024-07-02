@@ -75,6 +75,9 @@
       "$ref": "request_EXT-UNLOAD.json#"
     },
     {
+      "$ref": "request_FW-OBJECT-LIST.json#"
+    },
+    {
       "$ref": "request_FW-TARGET-INF.json#"
     },
     {

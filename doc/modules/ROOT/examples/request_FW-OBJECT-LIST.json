@@ -1,0 +1,4 @@
+{
+  "type": "FW-OBJECT-LIST",
+  "supports": ["io.skybrush.server.virtual_uav.firmware"]
+}

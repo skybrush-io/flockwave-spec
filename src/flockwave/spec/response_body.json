@@ -81,6 +81,9 @@
       "$ref": "response_EXT-UNLOAD.json#"
     },
     {
+      "$ref": "response_FW-OBJECT-LIST.json#"
+    },
+    {
       "$ref": "response_FW-TARGET-INF.json#"
     },
     {

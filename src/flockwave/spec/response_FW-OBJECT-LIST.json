@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "FW-OBJECT-LIST"
+    },
+    "ids": {
+      "$ref": "definitions.json#/objectIdList"
+    }
+  },
+  "required": ["type", "ids"],
+  "additionalProperties": false
+}
