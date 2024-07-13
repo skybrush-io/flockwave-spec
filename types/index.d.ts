@@ -80,6 +80,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_EXTRELOAD
   | Request_EXTSETCFG
   | Request_EXTUNLOAD
+  | Request_FWOBJECTLIST
   | Request_FWTARGETINF
   | Request_FWTARGETLIST
   | Request_FWUPLOAD
@@ -338,6 +339,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_EXTRELOAD
   | Response_EXTSETCFG
   | Response_EXTUNLOAD
+  | Response_FWOBJECTLIST
   | Response_FWTARGETINF
   | Response_FWTARGETLIST
   | Response_FWUPLOAD
@@ -952,6 +954,11 @@ export interface Request_EXTUNLOAD {
   ids: ExtensionIDs;
   [k: string]: unknown;
 }
+export interface Request_FWOBJECTLIST {
+  type: "FW-OBJECT-LIST";
+  supports?: FirmwareUpdateTargetIDs;
+  [k: string]: unknown;
+}
 export interface Request_FWTARGETINF {
   type: "FW-TARGET-INF";
   ids: FirmwareUpdateTargetIDs;
@@ -1506,6 +1513,10 @@ export interface Response_EXTUNLOAD {
     };
   };
   error?: ErrorMap;
+}
+export interface Response_FWOBJECTLIST {
+  type: "FW-OBJECT-LIST";
+  ids: ObjectIDs;
 }
 export interface Response_FWTARGETINF {
   type: "FW-TARGET-INF";
