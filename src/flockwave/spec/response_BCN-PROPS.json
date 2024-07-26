@@ -11,7 +11,10 @@
       "$ref": "definitions.json#/errorMap"
     },
     "result": {
-      "$ref": "definitions.json#/asyncCommandResponseMap"
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/beaconBasicProperties"
+      }
     }
   },
   "required": ["type"],

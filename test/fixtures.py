@@ -1,4 +1,4 @@
-import jsonschema
+import fastjsonschema
 
 from typing import Any, Callable
 
@@ -18,9 +18,9 @@ def create_schema_validator(
             return all(validator_func(item) for item in obj)
         else:
             try:
-                validator.validate(obj)
+                validator(obj)
                 return True
-            except jsonschema.ValidationError:
+            except fastjsonschema.JsonSchemaValueException:
                 return False
 
     return validator_func

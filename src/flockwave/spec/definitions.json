@@ -293,10 +293,10 @@
       "type": {
         "type": "string"
       },
-      "data": {},
-      "additionalProperties": false,
-      "required": ["type", "data"]
-    }
+      "data": {}
+    },
+    "additionalProperties": false,
+    "required": ["type", "data"]
   },
 
   "connectionId": {
@@ -425,10 +425,7 @@
         "$ref": "#/deviceClass"
       },
       "children": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/deviceTreeNode"
-        }
+        "type": "object"
       },
       "operations": {
         "type": "array",
@@ -1378,7 +1375,7 @@
     "title": "Username",
     "description": "Name of the user",
     "type": "string",
-    "pattern": "^[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~]*(@[-A-Za-z0-9!#$%&'*+/=?\\^_`{|}~.]+)?$"
+    "pattern": "^[-A-Za-z0-9!#%&'*+/=?\\^_`{|}~]*(@[-A-Za-z0-9!#%&'*+/=?\\^_`{|}~.]+)?$"
   },
 
   "velocityNED": {
