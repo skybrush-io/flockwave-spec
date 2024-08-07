@@ -9,13 +9,12 @@ import json
 import os
 import sys
 
-from jsonschema.exceptions import ValidationError
 from pathlib import Path
 from typing import Optional, Sequence
 
 from flockwave.spec.schema import get_message_body_schema
 
-from .validator import create_validator_for_schema, Validator
+from .validator import create_validator_for_schema, Validator, ValidationError
 
 
 def check_validity(
@@ -46,7 +45,7 @@ def check_validity(
         objs = [objs]
 
     for obj in objs:
-        validator.validate(obj)
+        validator(obj)
 
     return len(objs)
 

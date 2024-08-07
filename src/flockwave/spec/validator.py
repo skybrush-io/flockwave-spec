@@ -7,25 +7,35 @@ with the ``validation`` extra.
 
 import fastjsonschema
 
-from typing import Any, Callable, cast
+from typing import Any, Callable
 
 from flockwave.spec.schema import Schema
 
-__all__ = ("create_validator_for_schema", "Validator")
+__all__ = ("create_validator_for_schema", "ValidationError", "Validator")
 
 
 Validator = Callable[[Any], None]
+"""Type specification for validator functions returned by the module."""
+
+
+class ValidationError(RuntimeError):
+    """Exception thrown when an object fails to validate against a JSON schema."""
+
+    pass
 
 
 def create_validator_for_schema(schema: Schema) -> Validator:
     """Creates a validator for the given JSON schema object."""
-    validator = fastjsonschema.compile(schema)
-    return cast(Validator, validator)
+    code = fastjsonschema.compile_to_code(schema)
+    with open("/tmp/dummy.py", "w") as fp:
+        fp.write(code)
 
+    inner_validator = fastjsonschema.compile(schema)
 
-if __name__ == "__main__":
-    # Legacy entry point, one should migrate to flockwave.spec.__main__
-    from .cli import validate
+    def validator(obj: Any) -> None:
+        try:
+            inner_validator(obj)  # type: ignore
+        except fastjsonschema.JsonSchemaValueException as ex:
+            raise ValidationError(str(ex)) from None
 
-    print("/!\\ This entry point is deprecated; use flockwave.spec.cli instead.")
-    validate()
+    return validator

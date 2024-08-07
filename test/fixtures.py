@@ -3,7 +3,7 @@ import fastjsonschema
 from typing import Any, Callable
 
 from flockwave.spec.schema import Schema
-from flockwave.spec.validator import create_validator_for_schema
+from flockwave.spec.validator import create_validator_for_schema, ValidationError
 
 __all__ = ("create_schema_validator",)
 
@@ -20,7 +20,7 @@ def create_schema_validator(
             try:
                 validator(obj)
                 return True
-            except fastjsonschema.JsonSchemaValueException:
+            except ValidationError:
                 return False
 
     return validator_func
