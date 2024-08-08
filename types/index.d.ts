@@ -408,6 +408,10 @@ export type Heading = number;
  */
 export type LastUpdatedAt = number;
 /**
+ * The human-readable name of the beacon, shown on the UI
+ */
+export type Name2 = string;
+/**
  * Purpose of the connection
  */
 export type Purpose = "debug" | "dock" | "dgps" | "gps" | "time" | "uavRadioLink" | "mocap" | "other";
@@ -1326,22 +1330,19 @@ export interface Response_BCNPROPS {
   type: "BCN-PROPS";
   receipt?: ReceiptMap;
   error?: ErrorMap;
-  result?: AsyncCommandResponseMap;
+  result?: {
+    [k: string]: BeaconBasicProperties;
+  };
 }
 export interface ReceiptMap {
   [k: string]: ReceiptID;
 }
-export interface AsyncCommandResponseMap {
-  [k: string]: CommandResponse | string;
-}
 /**
- * Response given by a UAV to a command request
+ * Basic information of a single beacon that is unlikely to change over time
  */
-export interface CommandResponse {
-  type?: string;
-  data?: unknown;
-  additionalProperties?: never;
-  required?: ["type", "data"];
+export interface BeaconBasicProperties {
+  id: ObjectID;
+  name: Name2;
   [k: string]: unknown;
 }
 export interface Response_CLKINF {
@@ -1412,7 +1413,7 @@ export interface DeviceTreeNode {
   subType?: Type1;
   class?: Class;
   children?: {
-    [k: string]: DeviceTreeNode;
+    [k: string]: unknown;
   };
   operations?: Operation[];
   unit?: Unit;
@@ -1542,6 +1543,16 @@ export interface Response_FWUPLOAD {
   receipt?: ReceiptMap;
   error?: ErrorMap;
   result?: AsyncCommandResponseMap;
+}
+export interface AsyncCommandResponseMap {
+  [k: string]: CommandResponse | string;
+}
+/**
+ * Response given by a UAV to a command request
+ */
+export interface CommandResponse {
+  type: string;
+  data: unknown;
 }
 export interface Response_LCNINF {
   type: "LCN-INF";
