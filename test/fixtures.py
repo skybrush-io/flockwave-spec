@@ -1,5 +1,3 @@
-import fastjsonschema
-
 from typing import Any, Callable
 
 from flockwave.spec.schema import Schema

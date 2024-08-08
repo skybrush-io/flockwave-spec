@@ -1,8 +1,8 @@
 """Functions related to the validation of messages against the Flockwave
 JSON schema.
 
-Requires the ``jsonschema`` and ``referencing`` modules. You can install these
-with the ``validation`` extra.
+Requires the ``fsatjsonschema`` module. You can install this with the
+``validation`` extra.
 """
 
 import fastjsonschema
@@ -26,15 +26,11 @@ class ValidationError(RuntimeError):
 
 def create_validator_for_schema(schema: Schema) -> Validator:
     """Creates a validator for the given JSON schema object."""
-    code = fastjsonschema.compile_to_code(schema)
-    with open("/tmp/dummy.py", "w") as fp:
-        fp.write(code)
-
-    inner_validator = fastjsonschema.compile(schema)
+    inner_validator: Validator = fastjsonschema.compile(schema)
 
     def validator(obj: Any) -> None:
         try:
-            inner_validator(obj)  # type: ignore
+            inner_validator(obj)
         except fastjsonschema.JsonSchemaValueException as ex:
             raise ValidationError(str(ex)) from None
 
