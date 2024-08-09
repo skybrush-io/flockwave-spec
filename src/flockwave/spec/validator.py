@@ -26,7 +26,7 @@ class ValidationError(RuntimeError):
 
 def create_validator_for_schema(schema: Schema) -> Validator:
     """Creates a validator for the given JSON schema object."""
-    inner_validator: Validator = fastjsonschema.compile(schema)
+    inner_validator: Validator = fastjsonschema.compile(schema)  # type: ignore
 
     def validator(obj: Any) -> None:
         try:
