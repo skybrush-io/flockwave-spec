@@ -1222,12 +1222,27 @@ interpreted as "no RSSI reading available".
 An `RTKConfigurationPreset` object holds an RTK configuration preset consisting of one or
 more RTK data sources and an optional packet filter to be executed on every received packet.
 
+RTK configuration presets may be of one of three types:
+
+* *Built-in* presets are supplied by the configuration of the server and may not
+  be modified or removed by the user.
+
+* *Dynamic* presets are created by the server automatically based on the hardware
+  configuration. For instance, USB serial ports may have one corresponding
+  preset that assumes that an RTK base station is attached to the port. These
+  presets may not be modified or removed by the user either.
+
+* *User* presets are created by the user manually and may be modified, added or
+  removed on-demand.
+
 *Fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
 |title |yes |string |A human-readable title of the preset
+
+|type |no |string |Type of the RTK preset (built-in, dynamic, user)
 
 |format |yes |string |Format of the GPS messages arriving in this configuration
 (supported formats: "rtcm2", "rtcm3", "ubx", and "auto" for auto detection)

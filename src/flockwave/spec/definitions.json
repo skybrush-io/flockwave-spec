@@ -1149,6 +1149,12 @@
         "description": "A human-readable title of the preset",
         "type": "string"
       },
+      "type": {
+        "title": "Type",
+        "description": "The type of the preset (built-in, created automatically or added by the user)",
+        "type": "string",
+        "enum": ["builtin", "dynamic", "user"]
+      },
       "format": {
         "title": "Message format",
         "description": "Format of the GPS messages arriving in this configuration",
