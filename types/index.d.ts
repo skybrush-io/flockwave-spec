@@ -497,6 +497,10 @@ export type FlightLogMetadataItems = FlightLogMetadata[];
  */
 export type Title = string;
 /**
+ * The type of the preset (built-in, created automatically or added by the user)
+ */
+export type Type2 = "builtin" | "dynamic" | "user";
+/**
  * Format of the GPS messages arriving in this configuration
  */
 export type MessageFormat = "auto" | "rtcm2" | "rtcm3" | "ubx";
@@ -1671,6 +1675,7 @@ export interface Response_RTKINF {
  */
 export interface RTKConfigurationPreset {
   title: Title;
+  type?: Type2;
   format: MessageFormat;
   sources: Sources;
   [k: string]: unknown;
