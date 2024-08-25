@@ -1697,6 +1697,9 @@ export interface Response_RTKSTAT {
   messages: {
     [k: string]: RTKMessageObservations;
   };
+  messages_tx: {
+    [k: string]: RTKMessageObservations;
+  };
   cnr: {
     [k: string]: RTKSatelliteCNRs;
   };

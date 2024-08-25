@@ -114,7 +114,11 @@ The structure of this object is described by the
 xref:types.adoc#rtk-antenna-info[`AntennaInformation`] complex type.
 
 |`messages` |yes |object |Object holding statistical information about RTK messages
-sent. The structure of this object is described by the
+received from the RTK antenna. The structure of this object is described by the
+xref:types.adoc#rtk-message-observations[`MessageObservations`] complex type.
+
+|`messages_tx` |yes |object |Object holding statistical information about RTK messages
+forwarded to UAVs. The structure of this object is described by the
 xref:types.adoc#rtk-message-observations[`MessageObservations`] complex type.
 
 |`cnr` |yes |object |Object holding information about the satellite carrier-to-noise

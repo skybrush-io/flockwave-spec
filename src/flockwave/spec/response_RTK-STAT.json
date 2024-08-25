@@ -13,6 +13,12 @@
         "$ref": "definitions.json#/messageObservations"
       }
     },
+    "messages_tx": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "definitions.json#/messageObservations"
+      }
+    },
     "cnr": {
       "type": "object",
       "additionalProperties": {
@@ -23,6 +29,6 @@
       "$ref": "definitions.json#/surveyStatus"
     }
   },
-  "required": ["antenna", "messages", "cnr", "survey"],
+  "required": ["antenna", "messages", "messages_tx", "cnr", "survey"],
   "additionalProperties": false
 }
