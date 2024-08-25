@@ -29,6 +29,6 @@
       "$ref": "definitions.json#/surveyStatus"
     }
   },
-  "required": ["antenna", "messages", "messages_tx", "cnr", "survey"],
+  "required": ["antenna", "messages", "cnr", "survey"],
   "additionalProperties": false
 }

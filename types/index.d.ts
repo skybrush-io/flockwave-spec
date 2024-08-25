@@ -1697,7 +1697,7 @@ export interface Response_RTKSTAT {
   messages: {
     [k: string]: RTKMessageObservations;
   };
-  messages_tx: {
+  messages_tx?: {
     [k: string]: RTKMessageObservations;
   };
   cnr: {
