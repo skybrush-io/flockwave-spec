@@ -1,6 +1,6 @@
 {
   "name": "@skybrush/flockwave-spec",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "JSON-Schema specification of the Flockwave protocol",
   "homepage": "https://github.com/skybrush-io/flockwave-spec#readme",
   "bugs": {
