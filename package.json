@@ -1,22 +1,29 @@
 {
-  "name": "flockwave-spec",
+  "name": "@skybrush/flockwave-spec",
   "version": "2.0.0",
   "description": "JSON-Schema specification of the Flockwave protocol",
-  "main": "./types/index.d.ts",
-  "scripts": {
-    "build": "json2ts --cwd='./src/flockwave/spec' --input ./src/flockwave/spec/message.json --output ./types/index.d.ts"
+  "homepage": "https://github.com/skybrush-io/flockwave-spec#readme",
+  "bugs": {
+    "url": "https://github.com/skybrush-io/flockwave-spec/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/skybrush-io/flockwave-spec.git"
   },
-  "author": "Tamas Nepusz <tamas@collmot.com>",
   "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/skybrush-io/flockwave-spec/issues"
+  "author": "Tamas Nepusz <tamas@collmot.com>",
+  "types": "./types/index.d.ts",
+  "files": [
+    "./types/index.d.ts"
+  ],
+  "scripts": {
+    "build": "json2ts --cwd='./src/flockwave/spec' --input ./src/flockwave/spec/message.json --output ./types/index.d.ts",
+    "prepare": "npm run build"
   },
-  "homepage": "https://github.com/skybrush-io/flockwave-spec#readme",
   "devDependencies": {
     "json-schema-to-typescript": "^13.0.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.collmot.com"
   }
 }
