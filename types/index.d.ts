@@ -101,6 +101,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_SHOWLIGHTS
   | Request_SHOWSETLIGHTS
   | Request_SYSPING
+  | Request_SYSPORTS
   | Request_SYSTIME
   | Request_SYSVER
   | Request_UAVCALIB
@@ -357,6 +358,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_RTKSURVEY
   | Response_SHOWCFG
   | Response_SHOWLIGHTS
+  | Response_SYSPORTS
   | Response_SYSTIME
   | Response_SYSVER
   | Response_UAVCALIB
@@ -1136,6 +1138,9 @@ export interface Request_SYSPING {
   type: "SYS-PING";
   [k: string]: unknown;
 }
+export interface Request_SYSPORTS {
+  type: "SYS-PORTS";
+}
 export interface Request_SYSTIME {
   type: "SYS-TIME";
   adjustment?: number;
@@ -1738,6 +1743,17 @@ export interface Response_SHOWLIGHTS {
   type: "SHOW-LIGHTS";
   configuration: DroneLightsConfiguration;
   [k: string]: unknown;
+}
+export interface Response_SYSPORTS {
+  type: "SYS-PORTS";
+  ports: ServicePortMap;
+  [k: string]: unknown;
+}
+/**
+ * Mapping of services offered by the server to the corresponding ports
+ */
+export interface ServicePortMap {
+  [k: string]: number;
 }
 export interface Response_SYSTIME {
   type: "SYS-TIME";
