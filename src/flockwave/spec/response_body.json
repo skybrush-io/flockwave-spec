@@ -135,6 +135,9 @@
       "$ref": "response_SHOW-LIGHTS.json#"
     },
     {
+      "$ref": "response_SYS-PORTS.json#"
+    },
+    {
       "$ref": "response_SYS-TIME.json#"
     },
     {

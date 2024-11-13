@@ -1249,6 +1249,13 @@
     "type": "number"
   },
 
+  "servicePortMap": {
+    "title": "Service port map",
+    "description": "Mapping of services offered by the server to the corresponding ports",
+    "type": "object",
+    "additionalProperties": { "type": "number" }
+  },
+
   "surveyStatus": {
     "title": "RTK survey status",
     "description": "RTK survey accuracy and flags",

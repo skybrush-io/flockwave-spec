@@ -1,0 +1,9 @@
+{
+  "type": "SYS-PORTS",
+  "ports": {
+    "http": 5000,
+    "ssdp": 1900,
+    "tcp": 5001,
+    "udp": 5001
+  }
+}

@@ -138,6 +138,9 @@
       "$ref": "request_SYS-PING.json#"
     },
     {
+      "$ref": "request_SYS-PORTS.json#"
+    },
+    {
       "$ref": "request_SYS-TIME.json#"
     },
     {

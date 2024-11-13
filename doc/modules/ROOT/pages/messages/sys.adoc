@@ -81,6 +81,44 @@ xref:messages/ack.adoc#_ack_ack_positive_acknowledgment[`ACK-ACK`] instead.
 include::example$request_SYS-PING.json[]
 ----
 
+== `SYS-PORTS` - Return the mapping of registered services on the server to the corresponding ports
+
+A client sends a request of this type to the server in order to retrieve the
+mapping from services and communication channels offered by the server to the
+corresponding TCP or UDP port numbers. There is no formal specification for the
+service names yes, but the reference implementation of the server uses service
+IDs as follows: `tcp` for the TCP-based communication channel, `udp` for the
+UDP-based communication channel, `ssdp` for the Simple Service Discovery
+Protocol (used by clients to discover the existence of the server) and `http` for
+a HTTP-based user interface and a WebSockets channel.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ports` |yes |object |An object mapping names of registered services to the corresponding TCP or UDP port numbers.
+|===
+
+*Example request*
+
+[source,json]
+----
+include::example$request_SYS-PORTS.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_SYS-PORTS.json[]
+----
+
+
 == `SYS-TIME` - Retrieve or adjust the server clock
 
 A client sends a request of this type to the server to obtain an accurate

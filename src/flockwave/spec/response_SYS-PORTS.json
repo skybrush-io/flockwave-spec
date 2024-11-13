@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SYS-PORTS"
+    },
+    "ports": {
+      "$ref": "definitions.json#/servicePortMap"
+    }
+  },
+  "required": ["type", "ports"]
+}
