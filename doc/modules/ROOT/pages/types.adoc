@@ -691,7 +691,7 @@ the `SHOW-SETCFG` commands to get or set the configuration for the drone show.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|start |no | <<_startconditions,StartConditions>> |
+|start |yes | <<_startconditions,StartConditions>> |
 Object that contains the conditions regarding the start of the show
 |mapping|no | list of strings |
 Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory.
@@ -1325,11 +1325,11 @@ is therefore used by the `SHOW-CFG` and `SHOW-SETCFG` commands.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|authorized|no | boolean | Whether the server has received authorization from a human operator to start the show
-|clock| no | string or null| Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp
-|time|no | <<_timestamps,timestamp>> | Timestamp when the drone show should start
-|method|no | <<_startmethod,StartMethod>> | Method of starting the show. Can be either `rc` or `auto`.
-|uavIds|no | list of strings | Array containing the IDs of the UAVs that should be started automatically.
+|authorized|yes | boolean | Whether the server has received authorization from a human operator to start the show
+|clock|yes | string or null| Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp
+|time|yes | <<_timestamps,timestamp>> | Timestamp when the drone show should start
+|method|yes | <<_startmethod,StartMethod>> | Method of starting the show. Can be either `rc` or `auto`.
+|uavIds|yes | list of strings | Array containing the IDs of the UAVs that should be started automatically.
 |===
 
 *Example*
@@ -1344,7 +1344,8 @@ is therefore used by the `SHOW-CFG` and `SHOW-SETCFG` commands.
     "uavIds": ["1","17","31"]
 }
 ----
-== StartMethod
+
+== `StartMethod`
 
 Enumeration type that describes the method of how the drone show should be started.
 
