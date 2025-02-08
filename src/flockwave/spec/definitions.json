@@ -528,7 +528,8 @@
               "$ref": "#/objectId"
             }
           }
-        }
+        },
+        "required": ["authorized", "clock", "time", "method", "uavIds"]
       },
       "mapping": {
         "description": "Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory.",
@@ -542,7 +543,8 @@
         "type": "number",
         "minimum": 0
       }
-    }
+    },
+    "required": ["start"]
   },
 
   "droneLightsConfiguration": {

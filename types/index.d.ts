@@ -1085,21 +1085,21 @@ export interface Request_SHOWSETCFG {
  * Full configuration of a drone show
  */
 export interface DroneShowConfiguration {
-  start?: {
+  start: {
     /**
      * Whether the server has received authorization from a human operator to start the show
      */
-    authorized?: boolean;
-    clock?: ClockID | null;
+    authorized: boolean;
+    clock: ClockID | null;
     /**
      * Timestamp when the drone show should start
      */
-    time?: number | null;
-    method?: "rc" | "auto";
+    time: number | null;
+    method: "rc" | "auto";
     /**
      * Array containing the IDs of the UAVs that should be started automatically
      */
-    uavIds?: ObjectID[];
+    uavIds: ObjectID[];
     [k: string]: unknown;
   };
   /**

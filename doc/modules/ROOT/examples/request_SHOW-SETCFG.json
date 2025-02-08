@@ -2,6 +2,8 @@
   "type": "SHOW-SETCFG",
   "configuration": {
     "start": {
+      "authorized": true,
+      "clock": null,
       "time": 1581881192,
       "method": "auto",
       "uavIds": ["01", "42"]
