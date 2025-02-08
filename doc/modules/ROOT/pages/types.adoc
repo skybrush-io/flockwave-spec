@@ -140,6 +140,34 @@ range [-1800, 1800)
 [0, 0, 900]
 ----
 
+== `AuthorizationScope`
+
+An `AuthorizationScope` object specifies the scope of the authorization to
+start a drone show. This type should be interpreted in conjunction with the
+<<_startconditions,StartConditions>> object.
+
+The scope may be one of the following values:
+
+`none`:: The show is not authorized to start.
+
+`live`:: The show is authorized to start in a live setting, with all safety
+features enabled.
+
+`rehearsal`:: The show is authorized to start in a rehearsal setting, with
+some or all of the safety features disabled for testing purposes. This should
+be used only if the flight takes place in a controlled environment, far from
+the audience.
+
+`lights`:: The show is authorized to start with lights only; the UAVs
+participating in the show are not allowed to start their motors.
+
+Earlier versions of this specification did not contain the `AuthorizationScope`
+enum and <<_startconditions,StartConditions>> did not contain a field of this
+type either. For sake of backwards compatibility, the `authorizationScope` field
+in <<_startconditions,StartConditions>> is therefore optional. When it is not
+provided, its value is assumed to be `none` if the authorization is not granted
+and `live` if the authorization is granted.
+
 == `BatteryInfo`
 
 A `BatteryInfo` object holds information about the state of an on-board
@@ -1326,6 +1354,7 @@ is therefore used by the `SHOW-CFG` and `SHOW-SETCFG` commands.
 |===
 |Name |Required? |Type |Description
 |authorized|yes | boolean | Whether the server has received authorization from a human operator to start the show
+|authorizationScope|no | <<_authorizationscope,AuthorizationScope>> | Scope of the authorization. Not mandatory for sake of backward compatibility with older versions. When the scope is missing, it is assumed to be `"live"` if the authorization is granted and `"none"` if it is not.
 |clock|yes | string or null| Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp
 |time|yes | <<_timestamps,timestamp>> | Timestamp when the drone show should start
 |method|yes | <<_startmethod,StartMethod>> | Method of starting the show. Can be either `rc` or `auto`.
@@ -1338,6 +1367,7 @@ is therefore used by the `SHOW-CFG` and `SHOW-SETCFG` commands.
 ----
 {
     "authorized": true,
+    "authorizationScope": "lights",
     "clock": null,
     "time": 1449562661000,
     "method": "rc",

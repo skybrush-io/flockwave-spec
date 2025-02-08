@@ -256,6 +256,10 @@ export type Y = number;
 export type Z = number;
 export type GNSSTypes = ("gps" | "glonass" | "galileo" | "sbas" | "qzss" | "beidou" | "irnss")[];
 /**
+ * Scope of the show authorization
+ */
+export type AuthorizationScope = "none" | "live" | "rehearsal" | "lights";
+/**
  * GPS coordinate of an object
  *
  * @minItems 2
@@ -1101,10 +1105,7 @@ export interface StartConditions {
    * Whether the server has received authorization from a human operator to start the show
    */
   authorized: boolean;
-  /**
-   * Scope of the authorization
-   */
-  authorizationScope?: "local" | "global";
+  authorizationScope?: AuthorizationScope;
   clock: ClockID | null;
   /**
    * Timestamp when the drone show should start

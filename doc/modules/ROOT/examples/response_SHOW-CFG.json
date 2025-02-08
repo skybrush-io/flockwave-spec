@@ -3,6 +3,7 @@
   "configuration": {
     "start": {
       "authorized": false,
+      "authorizationScope": "lights",
       "clock": null,
       "time": 1581881192,
       "method": "auto",

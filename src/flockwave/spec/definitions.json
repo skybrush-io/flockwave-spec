@@ -62,6 +62,13 @@
     ]
   },
 
+  "authorizationScope": {
+    "title": "Authorization scope",
+    "description": "Scope of the show authorization",
+    "type": "string",
+    "enum": ["none", "live", "rehearsal", "lights"]
+  },
+
   "batteryInfo": {
     "title": "Battery information",
     "description": "Information about the on-board battery of the UAV, if applicable",
@@ -1268,9 +1275,7 @@
         "type": "boolean"
       },
       "authorizationScope": {
-        "description": "Scope of the authorization",
-        "type": "string",
-        "enum": ["local", "global"]
+        "$ref": "#/authorizationScope"
       },
       "clock": {
         "desciption": "Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp",
