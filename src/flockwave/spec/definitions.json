@@ -503,33 +503,7 @@
     "type": "object",
     "properties": {
       "start": {
-        "type": "object",
-        "properties": {
-          "authorized": {
-            "description": "Whether the server has received authorization from a human operator to start the show",
-            "type": "boolean"
-          },
-          "clock": {
-            "desciption": "Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp",
-            "anyOf": [{ "$ref": "#/clockId" }, { "type": "null" }]
-          },
-          "time": {
-            "description": "Timestamp when the drone show should start",
-            "anyOf": [{ "type": "number" }, { "type": "null" }]
-          },
-          "method": {
-            "type": "string",
-            "enum": ["rc", "auto"]
-          },
-          "uavIds": {
-            "description": "Array containing the IDs of the UAVs that should be started automatically",
-            "type": "array",
-            "items": {
-              "$ref": "#/objectId"
-            }
-          }
-        },
-        "required": ["authorized", "clock", "time", "method", "uavIds"]
+        "$ref": "#/startConditions"
       },
       "mapping": {
         "description": "Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory.",
@@ -1284,6 +1258,41 @@
     "description": "Severity of the message",
     "type": "string",
     "enum": ["debug", "info", "warning", "error", "critical"]
+  },
+
+  "startConditions": {
+    "type": "object",
+    "properties": {
+      "authorized": {
+        "description": "Whether the server has received authorization from a human operator to start the show",
+        "type": "boolean"
+      },
+      "authorizationScope": {
+        "description": "Scope of the authorization",
+        "type": "string",
+        "enum": ["local", "global"]
+      },
+      "clock": {
+        "desciption": "Identifier of the clock that the start time refers to; null means that the start time is a UNIX timestamp",
+        "anyOf": [{ "$ref": "#/clockId" }, { "type": "null" }]
+      },
+      "time": {
+        "description": "Timestamp when the drone show should start",
+        "anyOf": [{ "type": "number" }, { "type": "null" }]
+      },
+      "method": {
+        "type": "string",
+        "enum": ["rc", "auto"]
+      },
+      "uavIds": {
+        "description": "Array containing the IDs of the UAVs that should be started automatically",
+        "type": "array",
+        "items": {
+          "$ref": "#/objectId"
+        }
+      }
+    },
+    "required": ["authorized", "clock", "time", "method", "uavIds"]
   },
 
   "stringMap": {

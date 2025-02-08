@@ -1085,23 +1085,7 @@ export interface Request_SHOWSETCFG {
  * Full configuration of a drone show
  */
 export interface DroneShowConfiguration {
-  start: {
-    /**
-     * Whether the server has received authorization from a human operator to start the show
-     */
-    authorized: boolean;
-    clock: ClockID | null;
-    /**
-     * Timestamp when the drone show should start
-     */
-    time: number | null;
-    method: "rc" | "auto";
-    /**
-     * Array containing the IDs of the UAVs that should be started automatically
-     */
-    uavIds: ObjectID[];
-    [k: string]: unknown;
-  };
+  start: StartConditions;
   /**
    * Mapping of show-specific indices to the corresponding UAV IDs, if known. Not mandatory.
    */
@@ -1110,6 +1094,27 @@ export interface DroneShowConfiguration {
    * The total duration of the show, in seconds. Not mandatory.
    */
   duration?: number;
+  [k: string]: unknown;
+}
+export interface StartConditions {
+  /**
+   * Whether the server has received authorization from a human operator to start the show
+   */
+  authorized: boolean;
+  /**
+   * Scope of the authorization
+   */
+  authorizationScope?: "local" | "global";
+  clock: ClockID | null;
+  /**
+   * Timestamp when the drone show should start
+   */
+  time: number | null;
+  method: "rc" | "auto";
+  /**
+   * Array containing the IDs of the UAVs that should be started automatically
+   */
+  uavIds: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_SHOWLIGHTS {
