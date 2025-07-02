@@ -2,7 +2,6 @@
 
 import json
 
-from deprecated import deprecated
 from enum import Enum
 from importlib.resources import open_text
 from jsonpointer import JsonPointer, resolve_pointer
@@ -19,7 +18,6 @@ __all__ = (
     "get_request_body_schema",
     "get_response_body_schema",
     "get_complex_object_schema",
-    "ref_resolver",
     "Schema",
 )
 
@@ -166,18 +164,3 @@ def _jsonref_loader(uri: str):
         return _get_json_object_from_resource(path)
     else:
         raise RuntimeError("remote URI lookups are disallowed")
-
-
-@deprecated(
-    version="1.76.0",
-    reason=(
-        "This function is not needed any more; references in returned JSON "
-        "schemas are resolved automatically."
-    ),
-)
-def ref_resolver(uri: str) -> Dict[str, Any]:
-    if uri.startswith(FLOCKWAVE_SPEC_PREFIX):
-        path = uri.removeprefix(FLOCKWAVE_SPEC_PREFIX).removeprefix("/")
-        return _get_json_object_from_resource(path)
-    else:
-        raise NotImplementedError("remote URI lookups are disallowed")

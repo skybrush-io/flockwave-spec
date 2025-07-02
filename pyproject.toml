@@ -13,7 +13,6 @@ click = { version = "^8.1.4", optional = true }
 fastjsonschema = { version = "^2.20.0", optional = true }
 jsonpointer = "^3.0"
 jsonref = "^1.1.0"
-deprecated = "^1.2.14"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.1.0"
