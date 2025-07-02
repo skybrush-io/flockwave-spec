@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flockwave-spec"
-version = "2.3.0"
+version = "2.3.1"
 description = "JSON-Schema specification of the Flockwave protocol"
 authors = ["Tamas Nepusz <tamas@collmot.com>"]
 license = "GPL-3.0-or-later"
