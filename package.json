@@ -21,7 +21,7 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
-    "json-schema-to-typescript": "^13.0.2"
+    "json-schema-to-typescript": "^15.0.1"
   },
   "publishConfig": {
     "registry": "https://npm.collmot.com"
