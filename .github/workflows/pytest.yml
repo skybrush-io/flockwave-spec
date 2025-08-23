@@ -7,40 +7,24 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.9', '3.10', '3.11', '3.12']
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python
         id: setup-python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: abatilo/actions-poetry@v2
-
-      - name: Setup a local virtual environment
-        run: |
-          poetry config virtualenvs.create true --local
-          poetry config virtualenvs.in-project true --local
-
-      - name: Load cached virtualenv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v3
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
 
       - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install -E cli --no-interaction --no-root
-
-      - name: Install project
-        run: poetry install -E cli --no-interaction
+        run: uv sync
 
       - name: Run tests
-        run: poetry run pytest --cov=src --cov-report=xml -vv
+        run: uv run pytest --cov=src --cov-report=xml -vv
 
       - name: Upload coverage
         uses: codecov/codecov-action@v4
