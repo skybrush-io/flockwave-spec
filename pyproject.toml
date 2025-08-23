@@ -19,8 +19,6 @@ dev = [
   "pytest-cov>=5.0.0",
 ]
 
-# include = ["src/flockwave/spec/*.json"]
-
 [tool.ruff]
 lint.ignore = ["B905", "C901", "E402", "E501"]
 lint.select = ["B", "C", "E", "F", "W"]
