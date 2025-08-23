@@ -1,45 +1,38 @@
-[tool.poetry]
+[project]
 name = "flockwave-spec"
 version = "2.3.1"
 description = "JSON-Schema specification of the Flockwave protocol"
-authors = ["Tamas Nepusz <tamas@collmot.com>"]
+authors = [{ name = "Tamas Nepusz", email = "tamas@collmot.com" }]
 license = "GPL-3.0-or-later"
-packages = [{ include = "flockwave", from = "src" }]
-include = ["src/flockwave/spec/*.json"]
+requires-python = ">=3.10"
+dependencies = ["jsonpointer>=3.0", "jsonref>=1.1.0"]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-click = { version = "^8.1.4", optional = true }
-fastjsonschema = { version = "^2.20.0", optional = true }
-jsonpointer = "^3.0"
-jsonref = "^1.1.0"
+[project.optional-dependencies]
+validation = ["fastjsonschema>=2.20.0"]
+cli = ["click>=8.1.4", "flockwave-spec[validation]"]
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.1.0"
-coverage = { extras = ["toml"], version = "^7.2.7" }
-pytest-cov = "^5.0.0"
+[dependency-groups]
+dev = [
+  "flockwave-spec[validation]",
+  "pytest>=8.1.0",
+  "coverage[toml]>=7.2.7",
+  "pytest-cov>=5.0.0",
+]
 
-[tool.poetry.extras]
-validation = ["fastjsonschema", "referencing"]
-cli = ["click", "fastjsonschema", "referencing"]
-
-[[tool.poetry.source]]
-name = "PyPI"
-priority = "primary"
-
-[[tool.poetry.source]]
-name = "collmot"
-url = "https://pypi.collmot.com/simple/"
-priority = "explicit"
-
-[[tool.poetry.source]]
-name = "fury"
-url = "https://pypi.fury.io/skybrush/"
-priority = "supplemental"
+# include = ["src/flockwave/spec/*.json"]
 
 [tool.ruff]
 lint.ignore = ["B905", "C901", "E402", "E501"]
 lint.select = ["B", "C", "E", "F", "W"]
+
+[tool.uv.build-backend]
+module-name = "flockwave"
+namespace = true
+
+[[tool.uv.index]]
+name = "fury"
+url = "https://pypi.fury.io/skybrush/"
+publish-url = "https://pypi.fury.io/skybrush/"
 
 [tool.coverage.paths]
 source = ["src"]
@@ -53,5 +46,5 @@ show_missing = true
 exclude_lines = ["@abstractmethod", "@overload", "pragma: no cover"]
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.8"]
+build-backend = "uv_build"
