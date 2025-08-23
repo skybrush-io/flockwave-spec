@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "PRM-SET-MANY"
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "failed": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["success"]
+      }
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    },
+    "receipt": {
+      "$ref": "definitions.json#/receiptMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}

@@ -108,6 +108,9 @@
       "$ref": "request_PRM-SET.json#"
     },
     {
+      "$ref": "request_PRM-SET-MANY.json#"
+    },
+    {
       "$ref": "request_RTK-INF.json#"
     },
     {

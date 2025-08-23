@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "PRM-SET-MANY"
+    },
+    "ids": {
+      "$ref": "definitions.json#/objectIdList"
+    },
+    "parameters": {
+      "$ref": "definitions.json#/parameterMap"
+    }
+  },
+  "required": ["type", "ids", "parameters"]
+}

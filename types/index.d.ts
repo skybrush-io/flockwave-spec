@@ -91,6 +91,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_OBJLIST
   | Request_PRMGET
   | Request_PRMSET
+  | Request_PRMSETMANY
   | Request_RTKINF
   | Request_RTKLIST
   | Request_RTKSOURCE
@@ -355,6 +356,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_OBJLIST
   | Response_PRMGET
   | Response_PRMSET
+  | Response_PRMSETMANY
   | Response_RTKINF
   | Response_RTKLIST
   | Response_RTKSOURCE
@@ -1042,6 +1044,18 @@ export interface Request_PRMSET {
 export interface Value {
   [k: string]: unknown;
 }
+export interface Request_PRMSETMANY {
+  type: "PRM-SET-MANY";
+  ids: ObjectIDs;
+  parameters: ParameterMap;
+  [k: string]: unknown;
+}
+/**
+ * Mapping from parameter names to the corresponding values
+ */
+export interface ParameterMap {
+  [k: string]: unknown;
+}
 export interface Request_RTKINF {
   type: "RTK-INF";
   ids: RTKPresetIDs;
@@ -1673,6 +1687,18 @@ export interface Response_PRMSET {
 }
 export interface BoolMap {
   [k: string]: boolean;
+}
+export interface Response_PRMSETMANY {
+  type: "PRM-SET-MANY";
+  result?: {
+    [k: string]: {
+      success: boolean;
+      failed?: string[];
+      [k: string]: unknown;
+    };
+  };
+  error?: ErrorMap;
+  receipt?: ReceiptMap;
 }
 export interface Response_RTKINF {
   type: "RTK-INF";

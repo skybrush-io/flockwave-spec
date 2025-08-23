@@ -114,6 +114,9 @@
       "$ref": "response_PRM-SET.json#"
     },
     {
+      "$ref": "response_PRM-SET-MANY.json#"
+    },
+    {
       "$ref": "response_RTK-INF.json#"
     },
     {

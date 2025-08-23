@@ -979,6 +979,12 @@
     "uniqueItems": true
   },
 
+  "parameterMap": {
+    "title": "Parameter map",
+    "description": "Mapping from parameter names to the corresponding values",
+    "type": "object"
+  },
+
   "preflightCheckInfo": {
     "title": "UAV preflight check info",
     "description": "Preflight check information of a single UAV",

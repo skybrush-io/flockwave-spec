@@ -1,0 +1,8 @@
+{
+  "type": "PRM-SET-MANY",
+  "ids": ["1", "17", "31", "spam"],
+  "parameters": {
+    "EK2_ALT_SOURCE": 2,
+    "FENCE_ACTION": 0
+  }
+}

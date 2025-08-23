@@ -1,0 +1,16 @@
+{
+  "type": "PRM-SET-MANY",
+  "result": {
+    "1": {
+      "success": true,
+      "failed": []
+    }
+  },
+  "receipt": {
+    "17": "0badcafe-deadbeef:1",
+    "31": "0badcafe-deadbeef:2"
+  },
+  "error": {
+    "spam": "No such object."
+  }
+}

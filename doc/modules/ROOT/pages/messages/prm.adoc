@@ -75,3 +75,47 @@ include::example$request_PRM-SET.json[]
 ----
 include::example$response_PRM-SET.json[]
 ----
+
+[#prm-set-many]
+== `PRM-SET-MANY` — Set the value of multiple parameters on a target object
+
+A client sends this request to the server to request the server to set the
+value of multiple parameters on one or more target objects.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`ids`  |yes |list of strings |The list of object IDs where the parameter value
+should be set
+
+|`parameters`  |yes |object |The parameters to set, as a map of parameter names
+to their new values
+|===
+
+*Response fields*
+
+The response is a xref:async.adoc#multi-async-response[multi-object async response];
+each target ID is mapped to an object with a `success` key that is set to
+true if the all the parameters were set successfully and false otherwise.
+Optionally, the object may contain a `failed` key listing the names of the
+parameters that were _not_ set successfully on the target object, if this
+information can be determined unambiguously.
+
+It is an error to send a response where `success` is set to true and the
+`failed` list is not empty.
+
+*Example request*
+
+[source,json]
+----
+include::example$request_PRM-SET-MANY.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_PRM-SET-MANY.json[]
+----
