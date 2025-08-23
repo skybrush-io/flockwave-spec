@@ -11,10 +11,6 @@
       "title": "Name",
       "description": "The name of the parameter",
       "type": "string"
-    },
-    "value": {
-      "title": "Value",
-      "description": "The value of the parameter"
     }
   },
   "required": ["type", "ids", "name", "value"]

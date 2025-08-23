@@ -1035,13 +1035,6 @@ export interface Request_PRMSET {
   type: "PRM-SET";
   ids: ObjectIDs;
   name: Name1;
-  value: Value;
-  [k: string]: unknown;
-}
-/**
- * The value of the parameter
- */
-export interface Value {
   [k: string]: unknown;
 }
 export interface Request_PRMSETMANY {
