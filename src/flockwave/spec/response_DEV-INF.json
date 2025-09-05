@@ -12,6 +12,6 @@
       "$ref": "definitions.json#/errorMap"
     }
   },
-  "required": ["type"],
+  "required": ["type", "values"],
   "additionalProperties": false
 }
