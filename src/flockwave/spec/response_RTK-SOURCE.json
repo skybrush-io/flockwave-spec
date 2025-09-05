@@ -5,7 +5,7 @@
       "const": "RTK-SOURCE"
     },
     "id": {
-      "type": "string",
+      "type": ["string", "null"],
       "description": "The ID of the RTK source used"
     }
   },

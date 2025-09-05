@@ -146,18 +146,21 @@ include::example$response_RTK-STAT.json[]
 ----
 
 
-== `RTK-SOURCE` — Select an RTK source managed by the server
+== `RTK-SOURCE` — Query or select an RTK source managed by the server
 
-A client sends this request to the server to select an RTK preset
-that will be used as the active RTK base station that sends RTK corrections
-to the UAVs through the server.
+A client sends this request to the server to either query the current RTK
+preset or to select an RTK preset that will be used as the active RTK base
+station that sends RTK corrections to the UAVs through the server.
+
+The response will be another `RTK-SOURCE` packet when querying the current
+RTK source, or an `ACK-ACK` when setting the RTK source.
 
 *Request fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`id` |yes |string |The ID of the RTK preset to use
+|`id` |no |string |The ID of the RTK preset to use; omitted when querying the preset, `null` when clearing the currently selected preset
 |===
 
 *Response fields*
@@ -165,7 +168,7 @@ to the UAVs through the server.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`id` |yes |string |The ID of the RTK preset selected as RTK base
+|`id` |yes |string |The ID of the RTK preset selected as RTK base; `null` if no preset is selected
 |===
 
 *Example request*
