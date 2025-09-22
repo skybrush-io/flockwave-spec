@@ -1062,7 +1062,7 @@ export interface Request_RTKSOURCE {
   /**
    * The ID of the RTK source to use
    */
-  id?: string;
+  id?: string | null;
   [k: string]: unknown;
 }
 export interface Request_RTKSTAT {
@@ -1415,7 +1415,7 @@ export interface Response_CONNLIST {
 }
 export interface Response_DEVINF {
   type: "DEV-INF";
-  values?: {
+  values: {
     [k: string]: unknown;
   };
   error?: ErrorMap;
@@ -1719,7 +1719,7 @@ export interface Response_RTKSOURCE {
   /**
    * The ID of the RTK source used
    */
-  id: string;
+  id: string | null;
 }
 export interface Response_RTKSTAT {
   type?: "RTK-STAT";
