@@ -1,5 +1,5 @@
 {
-  "oneOf": [
+  "anyOf": [
     {
       "$ref": "response_AUTH-RESP_Single-Step.json#"
     },

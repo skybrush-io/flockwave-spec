@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://collmot.com/schemas/flockwave/1.0/message.json",
 
-  "oneOf": [
+  "anyOf": [
     {
       "$ref": "#/definitions/standardMessage"
     },
