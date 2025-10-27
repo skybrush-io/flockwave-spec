@@ -153,11 +153,6 @@ notation, with uppercase hexadecimal characters, although clients MAY interpret
 MAC addresses in other formats (e.g., dashed notation or lowercase hexadecimal
 characters).
 
-`disk`:: restricts the usage of the license to machines having internal hard
-drives or solid state drives with certain serial numbers. The parameters object
-MUST contain a key named `serialNumbers` whose value is a list of serial numbers
-for the hard drives or SSD drives that the license is bound to.
-
 `drones`:: puts an upper limit on the number of drones that the server can
 handle simultaneously. The parameters object MUST contain a key named `maxCount`
 that contains the maximum number of drones that the server can handle.
