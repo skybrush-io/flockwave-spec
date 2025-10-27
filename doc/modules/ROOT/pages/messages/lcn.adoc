@@ -44,7 +44,7 @@ A `License` object represents a license installed on the server. Licenses
 MUST have a vendor-defined ID that can be used to identify the license
 unambiguously; vendors MUST make sure not to re-use old license IDs when
 generating new licenses. The license MUST also have a corresponding licensee
-name, an optional expiry date, and an optional list of additional restrictions
+name, an optional version number, an optional expiry date, and an optional list of additional restrictions
 and extra features.
 
 *Fields*
@@ -54,6 +54,8 @@ and extra features.
 |Name |Required? |Type |Description
 |id |yes |string |the unique identifier of the license. An empty string if the
 server operates without a license.
+
+|version |no |integer |the version of the license. If missing, version 1 is assumed.
 
 |licensee |yes |string |the name of the licensee
 
@@ -72,6 +74,7 @@ to the license, if any. Defaults to an empty array.
 ----
 {
     "id": "license-123",
+    "version": 1,
     "licensee": "Inspector Flying Fox of the Yard",
     "expiryDate": "2021-05-01",
     "restrictions": [
@@ -136,8 +139,7 @@ as follows:
 
 * restricting the usage of the license only to machines with certain MAC addresses
 
-* restricting the usage of the license only to machines having internal hard
-  drives with certain serial numbers
+* restricting the usage of the license only to machines having a certain hardware ID
 
 * limiting the number of UAVs that can be handled by the server simultaneously
 

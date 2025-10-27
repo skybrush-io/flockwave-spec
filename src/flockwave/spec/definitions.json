@@ -797,6 +797,11 @@
         "title": "License ID",
         "type": "string"
       },
+      "version": {
+        "title": "License version",
+        "type": "integer",
+        "minimum": 1
+      },
       "licensee": {
         "title": "Name of the license holder",
         "type": "string"
