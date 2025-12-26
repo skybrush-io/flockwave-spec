@@ -159,6 +159,9 @@
       "$ref": "response_UAV-HOVER.json#"
     },
     {
+      "$ref": "response_UAV-LOITER.json#"
+    },
+    {
       "$ref": "response_UAV-INF.json#"
     },
     {

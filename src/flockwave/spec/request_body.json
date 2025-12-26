@@ -162,6 +162,9 @@
       "$ref": "request_UAV-HOVER.json#"
     },
     {
+      "$ref": "request_UAV-LOITER.json#"
+    },
+    {
       "$ref": "request_UAV-INF.json#"
     },
     {
