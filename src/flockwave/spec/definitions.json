@@ -1234,7 +1234,7 @@
         }
       }
     },
-    "required": ["duration", "accuracy", "messageSet"]
+    "required": ["duration", "accuracy"]
   },
 
   "satelliteCNRs": {
