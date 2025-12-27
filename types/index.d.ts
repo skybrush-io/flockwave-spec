@@ -486,6 +486,7 @@ export type Unit = string;
  */
 export type LastUpdatedAt1 = number;
 export type LicenseID = string;
+export type LicenseVersion = number;
 export type NameOfTheLicenseHolder = string;
 export type ExpiryDate = string;
 export type FeatureType = string;
@@ -1079,7 +1080,7 @@ export interface Request_RTKSURVEY {
 export interface RTKSurveySettings {
   duration: SurveyDuration;
   accuracy: SurveyAccuracy;
-  messageSet: MessageSet;
+  messageSet?: MessageSet;
   position?: ECEFCoordinate;
   gnssTypes?: GNSSTypes;
   [k: string]: unknown;
@@ -1585,6 +1586,7 @@ export interface Response_LCNINF {
  */
 export interface License {
   id: LicenseID;
+  version?: LicenseVersion;
   licensee: NameOfTheLicenseHolder;
   expiryDate?: ExpiryDate;
   features?: AdditionalFeatures;
