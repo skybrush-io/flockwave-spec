@@ -36,3 +36,7 @@ cmd = "npm run build"
 [[before_commit]]
 name = "Update package.json and package-lock.json"
 cmd = "npm version --no-git-tag-version {new_version}"
+
+[[after_push]]
+name = "Build"
+cmd = "npm run build && uv build"
