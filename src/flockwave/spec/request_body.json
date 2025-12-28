@@ -170,6 +170,12 @@
     {
       "$ref": "request_UAV-LIST.json#"
     },
+	{
+      "$ref": "request_UAV-LOITER.json#"
+    },
+	{
+      "$ref": "request_UAV-MANUAL.json#"
+    },
     {
       "$ref": "request_UAV-MOTOR.json#"
     },
