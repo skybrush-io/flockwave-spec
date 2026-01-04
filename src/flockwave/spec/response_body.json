@@ -167,6 +167,12 @@
     {
       "$ref": "response_UAV-LIST.json#"
     },
+	{
+      "$ref": "response_UAV-LOITER.json#"
+    },
+	{
+      "$ref": "response_UAV-MANUAL.json#"
+    },
     {
       "$ref": "response_UAV-MOTOR.json#"
     },

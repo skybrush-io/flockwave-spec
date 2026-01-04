@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-LOITER"
+    },
+    "result": {
+      "$ref": "definitions.json#/boolMap"
+    },
+    "error": {
+      "$ref": "definitions.json#/errorMap"
+    },
+    "receipt": {
+      "$ref": "definitions.json#/receiptMap"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}
