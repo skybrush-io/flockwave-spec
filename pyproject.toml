@@ -1,6 +1,6 @@
 [project]
 name = "flockwave-spec"
-version = "2.5.0"
+version = "2.6.0"
 description = "JSON-Schema specification of the Flockwave protocol"
 authors = [{ name = "Tamas Nepusz", email = "tamas@collmot.com" }]
 license = "GPL-3.0-or-later"
