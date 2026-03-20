@@ -192,6 +192,9 @@ error states.
 
 |141 |PROXIMITY |Proximity sensor error.
 
+|142 |ESC |ESC error. Use this error code for ESC-related errors such as an unusually
+high error rate reported by the ESC (if this information is available).
+
 |188 |SIMERR |Simulated error. Use this error code to trigger a simulated RTH or
 loitering in the absence of any other error, for testing purposes.
 

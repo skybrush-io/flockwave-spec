@@ -51,6 +51,7 @@ _error_code_to_abbreviation = {
     139: "wind",
     140: "payload",
     141: "proximity",
+    142: "ESC",
     188: "simerr",
     189: "control",
     190: "sensor",
@@ -123,6 +124,7 @@ _error_code_to_description = {
     139: "Wind speed is too high",
     140: "Payload error",
     141: "Proximity sensor error",
+    142: "ESC error",
     188: "Simulated error",
     189: "Error in control algorithm",
     190: "Unspecified sensor failure",
@@ -199,6 +201,7 @@ class FlockwaveErrorCode(IntEnum):
     WIND_SPEED_ERROR = 139
     PAYLOAD_ERROR = 140
     PROXIMITY_ERROR = 141
+    ESC_ERROR = 142
     SIMULATED_ERROR = 188
     CONTROL_ALGORITHM_ERROR = 189
     SENSOR_FAILURE = 190
