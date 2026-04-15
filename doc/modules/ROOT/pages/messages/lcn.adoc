@@ -155,6 +155,10 @@ notation, with uppercase hexadecimal characters, although clients MAY interpret
 MAC addresses in other formats (e.g., dashed notation or lowercase hexadecimal
 characters).
 
+`hwid`:: restricts the usage of the license to machines with certain hardware IDs.
+The parameters object MUST contain a key named `ids` whose value is a list of hardware
+IDs.
+
 `drones`:: puts an upper limit on the number of drones that the server can
 handle simultaneously. The parameters object MUST contain a key named `maxCount`
 that contains the maximum number of drones that the server can handle.
