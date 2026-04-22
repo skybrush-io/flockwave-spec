@@ -266,7 +266,7 @@ its autopilot but the communication failed in a non-recoverable way.
 
 |207 |CRASH |Drone crashed.
 
-|253 |SIMCRIT |Simulated critical error. se this error code to trigger an
+|253 |SIMCRIT |Simulated critical error. Use this error code to trigger an
 emergency landing in the absence of any other critical error, for
 testing purposes.
 

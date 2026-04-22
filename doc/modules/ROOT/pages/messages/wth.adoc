@@ -5,7 +5,7 @@ about the current weather and also to provide short-term forecasts. The messages
 listed in this section are specific to weather stations and do not apply to
 other object types.
 
-== `WTH-AT` - Current weather at a given geograpical coordinate.
+== `WTH-AT` - Current weather at a given geographical coordinate.
 
 A client sends this request to the server to obtain information about the current
 weather at the given geographical coordinate. If there is no weather station at

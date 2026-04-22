@@ -274,7 +274,7 @@ include::example$response_UAV-INF.json[]
 [#uav-land]
 == `UAV-LAND` — Initiate unsupervised landing
 
-A client send this request to the server to initiate unsupervised
+A client sends this request to the server to initiate unsupervised
 landing on one or more UAVs. The server responds with two lists: the
 first list contains the IDs of the UAVs where an unsupervised landing
 attempt was _started_ (in the sense that the UAV has been notified that
@@ -368,7 +368,7 @@ to turn their motors on or off. Not all UAVs support this operation; UAVs that
 do not support turning on their motors without taking off should do nothing.
 
 Typically, it is dangerous to turn off the motors while the UAV is airborne,
-and the default behaviour in such cases is to deny the operation. When the
+and the default behavior in such cases is to deny the operation. When the
 operator wants to stop the motors of the UAV even if it is airborne (in other
 words, to initiate an emergency stop _without_ shutting down the software of
 the UAV), the command must be sent in "forced" mode.
@@ -460,7 +460,7 @@ include::example$response_UAV-PREFLT.json[]
 
 A client sends this request to the server to initiate the reboot of the
 entire UAV or some subsystem of it. Note that this is a potentially dangerous
-operation; this message only if the UAV is on the ground or if you are sure
+operation; use this message only if the UAV is on the ground or if you are sure
 that the rebooted subsystem does not affect the normal operation of the UAV
 during flight.
 
@@ -512,7 +512,7 @@ include::example$response_UAV-RST.json[]
 
 == `UAV-RTH` — Initiate return to home position
 
-A client send this request to the server to request some of the UAVs to
+A client sends this request to the server to request some of the UAVs to
 return to their home positions.
 
 The server responds with two lists: the first list contains the IDs of

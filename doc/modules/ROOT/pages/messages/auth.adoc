@@ -142,7 +142,7 @@ message.
 For successful authentication attempts, the server will return an object where
 the `result` key set to `true`, and also set the `user` key to the
 username and domain that it now considers authenticated. For failed
-authentication attempts, the server will return an objet where the `result`
+authentication attempts, the server will return an object where the `result`
 key is set to `false`. For multi-step authentication methods, the server
 may also send an additional challenge to the client by omitting the `result`
 key and sending a `data` key instead with the challenge.

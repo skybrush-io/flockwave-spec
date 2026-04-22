@@ -133,6 +133,6 @@ this:
 }
 ----
 
-For sake of clarity, the message envelope will be omitted in most
+For the sake of clarity, the message envelope will be omitted in most
 examples throughout the rest of the document, and only the body of the
 message will be shown.

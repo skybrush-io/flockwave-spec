@@ -51,7 +51,7 @@ However, when encoding an angle, it is first quantized in 1/10th of degrees
 and then encoded as a signed or unsigned integer in order to avoid floating
 point related inaccuracies and the accumulation of quantization errors
 (see discussion about xref:appendix/floating-point.adoc[floating-point
-inacccuracies]). Therefore, the typical range of angles is [0, 3600) or
+inaccuracies]). Therefore, the typical range of angles is [0, 3600) or
 [-1800, 1800), both of which are well versed to fit in a 16-bit integer.
 
 == Byte arrays
@@ -73,7 +73,7 @@ sides in the Celsius vs Fahrenheit debate. However, when encoding a temperature,
 it is first quantized in 1/10th of degrees kelvin and then encoded as an
 unsigned integer in order to avoid floating point related inaccuracies
 (see discussion about xref:appendix/floating-point.adoc[floating-point
-inacccuracies]).
+inaccuracies]).
 
 
 [#rtk-antenna-info]
@@ -849,13 +849,13 @@ pilot controls the velocities along the axes.
 `other`:: The UAV is in a control mode that cannot be covered by any of the modes
 outlined here.
 
-`pos`:: The UAV holds its altitude and position, using GPS for movements. THe
+`pos`:: The UAV holds its altitude and position, using GPS for movements. The
 pilot controls the roll and pitch angles when the sticks are not centered.
 
 `precland`:: The UAV is executing a precision landing maneuver, typically aided
 by an external beacon, sensor or other guidance method.
 
-`rth`:: The UAV is returning to its home position autonomously, optinally landing
+`rth`:: The UAV is returning to its home position autonomously, optionally landing
 when the home position is reached.
 
 `simple`:: The UAV is in a simplified control mode.
@@ -869,7 +869,7 @@ the altitude is not controlled.
 
 == `FirmwareUpdateTarget`
 
-This type represents an abstract component (sofrware or hardware) of an object
+This type represents an abstract component (software or hardware) of an object
 that can be targeted with a firmware update operation. Firmware update targets
 can be registered and unregistered in the server and each object can report
 the list of firmware targets that it supports. An object may have multiple
@@ -1399,7 +1399,7 @@ self-survey procedure.
 
 [cols="1,5"]
 !===
-! 0 ! unknwon
+! 0 ! unknown
 ! 1 ! supported
 ! 2 ! active
 ! 4 ! valid

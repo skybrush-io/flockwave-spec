@@ -34,7 +34,7 @@ address.
 * The server could also send Flockwave notifications to all UDP
 host-port combinations that it has received a message from in the last X
 seconds. The advantage is that there is no need to listen for a separate
-broadcast address and port on the client side, but then it is the
+broadcast address and port on the client side, but in that case it is the
 responsibility of the client to ensure that a keepalive message (e.g.,
 `SYS-PING`) is sent to the server frequently enough such that the
 connection is not broken even if some of the keepalive messages are

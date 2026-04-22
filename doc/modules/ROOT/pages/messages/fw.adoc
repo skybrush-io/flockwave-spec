@@ -73,7 +73,7 @@ interested in
 mapping firmware update target IDs to the corresponding objects.
 
 |`error` |no |object |Object mapping firmware update target IDs to reasons why the
-corresponding objectcould not have been retrieved.
+corresponding object could not have been retrieved.
 |===
 
 All the firmware update target IDs that were specified in the request MUST

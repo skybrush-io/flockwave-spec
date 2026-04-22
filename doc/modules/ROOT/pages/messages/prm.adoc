@@ -1,7 +1,7 @@
 = `PRM` — Retrieving and setting parameters
 
 [#prm-get]
-== `PRM-GET` — Retrieve the value a patameter from one or more target objects
+== `PRM-GET` — Retrieve the value a parameter from one or more target objects
 
 A client sends this request to the server to ask the server to retrieve the
 current value of a parameter from one or more target objects.
@@ -98,7 +98,7 @@ to their new values
 
 The response is a xref:async.adoc#multi-async-response[multi-object async response];
 each target ID is mapped to an object with a `success` key that is set to
-true if the all the parameters were set successfully and false otherwise.
+true if all the parameters were set successfully and false otherwise.
 Optionally, the object may contain a `failed` key listing the names of the
 parameters that were _not_ set successfully on the target object, if this
 information can be determined unambiguously.

@@ -103,9 +103,9 @@ This request has no fields.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`loaded` |yes |list of strings |List containng the identifiers of the extensions that are currently loaded and used by the server
+|`loaded` |yes |list of strings |List containing the identifiers of the extensions that are currently loaded and used by the server
 
-|`available` |yes |list of strings |List containng the identifiers of the extensions that are currently not loaded by the server but could be loaded upon request
+|`available` |yes |list of strings |List containing the identifiers of the extensions that are currently not loaded by the server but could be loaded upon request
 
 |===
 

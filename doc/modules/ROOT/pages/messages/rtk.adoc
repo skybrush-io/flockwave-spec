@@ -4,7 +4,7 @@ Flockwave servers may manage Real Time Kinematics (RTK) corrections;
 these corrections may be received from an RTK-capable GNSS based
 station, can be displayed on the user interface in a Flockwave client
 or may be broadcast to UAVs in the range of the Flockwave server for
-enahncing GNSS positioning accuracy.
+enhancing GNSS positioning accuracy.
 
 RTK based stations need to be configured before use with either a
 fixed known position or with initiating an auto survey to measure its
