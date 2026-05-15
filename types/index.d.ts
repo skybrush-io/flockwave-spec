@@ -551,10 +551,6 @@ export type SurveyAccuracy1 = number;
  */
 export type SurveyFlags = number;
 /**
- * Explains why RTK survey initiation failed
- */
-export type FailureReason1 = string;
-/**
  * The flight mode of the UAV
  */
 export type FlightMode = string;
@@ -1759,7 +1755,6 @@ export interface RTKSurveyStatus {
 export interface Response_RTKSURVEY {
   type: "RTK-SURVEY";
   settings: RTKSurveySettings;
-  reason?: FailureReason1;
 }
 export interface Response_SHOWCFG {
   type: "SHOW-CFG";
