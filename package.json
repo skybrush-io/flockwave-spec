@@ -17,7 +17,7 @@
     "./types/index.d.ts"
   ],
   "scripts": {
-    "build": "json2ts --cwd='./src/flockwave/spec' --input ./src/flockwave/spec/message.json --output ./types/index.d.ts",
+    "build": "node etc/scripts/json_schema_to_ts.mjs",
     "prepare": "npm run build"
   },
   "devDependencies": {

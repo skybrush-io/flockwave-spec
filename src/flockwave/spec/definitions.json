@@ -173,7 +173,8 @@
     "title": "Operation",
     "description": "Operation that can be performed on a channel",
     "type": "string",
-    "enum": ["read", "write"]
+    "enum": ["read", "write"],
+    "$id": "ChannelOperation"
   },
 
   "channelType": {
@@ -193,7 +194,8 @@
       "string",
       "time",
       "video"
-    ]
+    ],
+    "$id": "ChannelType"
   },
 
   "clockEpoch": {
@@ -374,7 +376,8 @@
       "connected",
       "disconnecting",
       "unknown"
-    ]
+    ],
+    "$id": "ConnectionStatus"
   },
 
   "deviceClass": {
@@ -405,7 +408,8 @@
       "speaker",
       "sprayer"
     ],
-    "default": "misc"
+    "default": "misc",
+    "$id": "DeviceClass"
   },
 
   "deviceId": {
@@ -454,7 +458,8 @@
     "title": "Type",
     "description": "Type of a device tree node",
     "type": "string",
-    "enum": ["root", "object", "device", "channel"]
+    "enum": ["root", "object", "device", "channel"],
+    "$id": "DeviceTreeNodeType"
   },
 
   "deviceTreePath": {
@@ -1147,7 +1152,8 @@
         "title": "Type",
         "description": "The type of the preset (built-in, created automatically or added by the user)",
         "type": "string",
-        "enum": ["builtin", "dynamic", "user"]
+        "enum": ["builtin", "dynamic", "user"],
+        "$id": "RTKPresetType"
       },
       "format": {
         "title": "Message format",

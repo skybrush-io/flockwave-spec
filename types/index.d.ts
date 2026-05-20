@@ -7,10 +7,6 @@
 
 export type HttpCollmotComSchemasFlockwave10MessageJson = StandardMessage | ErrorMessage;
 /**
- * Version number in major.minor.patch format; minor and patch versions are optional
- */
-export type Version = string;
-/**
  * Identifier of the message
  */
 export type MessageID = string;
@@ -32,25 +28,13 @@ export type HttpCollmotComSchemasFlockwave10NotificationBodyJson =
  */
 export type ReceiptID = string;
 /**
- * IDs of the receipts that the message refers to
- */
-export type ReceiptIDs = ReceiptID[];
-/**
  * Identifier of a single connection
  */
 export type ConnectionID = string;
 /**
- * IDs of the connections that the message refers to
- */
-export type ConnectionIDs = ConnectionID[];
-/**
  * Identifier of a single object
  */
 export type ObjectID = string;
-/**
- * IDs of the objects that the message refers to
- */
-export type ObjectIDs = ObjectID[];
 /**
  * Severity of the message
  */
@@ -126,113 +110,33 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_WTHINF
   | Request_WTHLIST;
 /**
- * Name of the authentication method to use
- */
-export type Method = string;
-/**
  * Session ID for multi-step authentication methods
  */
 export type SessionID = number;
-/**
- * Data to send to the authentication method
- */
-export type Data = string;
-/**
- * IDs of the beacons that the message refers to
- */
-export type BeaconIDs = ObjectID[];
 /**
  * Identifier of a single clock
  */
 export type ClockID = string;
 /**
- * IDs of the clocks that the message refers to
- */
-export type ClockIDs = ClockID[];
-/**
- * An absolute device path that uniquely identifies a UAV, a device on a UAV or a channel of a device on a UAV
- */
-export type DeviceTreePath = string;
-/**
- * Paths of the device tree entries that the message refers to
- */
-export type DeviceTreePaths = DeviceTreePath[];
-/**
- * Whether to remove all instances of a subscription that matches one of the paths (true) or only a single one (false)
- */
-export type RemoveAll = boolean;
-/**
- * Whether to also remove all subscriptions that are in the subtrees of the paths specified in the request.
- */
-export type IncludeSubtrees = boolean;
-/**
- * IDs of the docking stations that the message refers to
- */
-export type DockIDs = ObjectID[];
-/**
  * Identifier of a single extension
  */
 export type ExtensionID = string;
-/**
- * IDs of the extensions that the message refers to
- */
-export type ExtensionIDs = ExtensionID[];
 /**
  * Identifier of a single firmware update target
  */
 export type FirmwareUpdateTargetID = string;
 /**
- * IDs of the firmware update targets that a request refers to
- */
-export type FirmwareUpdateTargetIDs = FirmwareUpdateTargetID[];
-/**
  * Identifier of a single flight log
  */
 export type FlightLogID = string;
-/**
- * IDs of the UAVs that the message refers to
- */
-export type UAVIDs = ObjectID[];
-/**
- * The command to send
- */
-export type Command = string;
 /**
  * Positional arguments of the command
  */
 export type Arguments = unknown[];
 /**
- * Type of an object tracked by the server
- */
-export type ObjectType = string;
-/**
- * Types of objects that the user is interested in
- */
-export type ObjectTypes = ObjectType[];
-/**
- * The name of the parameter
- */
-export type Name = string;
-/**
- * The name of the parameter
- */
-export type Name1 = string;
-/**
  * Identifier of an RTK preset
  */
 export type RTKPresetID = string;
-/**
- * IDs of the RTK presets that the message refers to
- */
-export type RTKPresetIDs = RTKPresetID[];
-/**
- * Minimum duration of RTK survey
- */
-export type SurveyDuration = number;
-/**
- * Expected RTK survey position accuracy in meters
- */
-export type SurveyAccuracy = number;
 /**
  * RTK message set to use
  */
@@ -242,20 +146,7 @@ export type MessageSet = "msm4" | "msm7";
  *
  * @minItems 3
  */
-export type ECEFCoordinate = [X, Y, Z];
-/**
- * X coordinate in millimeters
- */
-export type X = number;
-/**
- * Y coordinate in millimeters
- */
-export type Y = number;
-/**
- * Z coordinate in millimeters
- */
-export type Z = number;
-export type GNSSTypes = ("gps" | "glonass" | "galileo" | "sbas" | "qzss" | "beidou" | "irnss")[];
+export type ECEFCoordinate = [number, number, number];
 /**
  * Scope of the show authorization
  */
@@ -290,34 +181,6 @@ export type AHL = number | null;
  * Altitude above ground level, in millimeters
  */
 export type AGL = number | null;
-/**
- * Index of the communication channel to use
- */
-export type Channel = number;
-/**
- * Stores whether the server is allowed to use a broadcast message
- */
-export type BroadcastAllowed = boolean;
-/**
- * Whether to broadcast the message to all UAVs, ignoring the explicit UAV IDs in the command
- */
-export type IgnoreIDs = boolean;
-/**
- * Whether the motors should be started or stopped
- */
-export type MotorStart = boolean;
-/**
- * Whether the command should be forced even if it is unsafe
- */
-export type Forced = boolean;
-/**
- * The component to reboot
- */
-export type Component = string;
-/**
- * IDs of the weather stations that the message refers to
- */
-export type WeatherStationIDs = ObjectID[];
 export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_ACKACK
   | Response_ACKNAK
@@ -388,53 +251,21 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_WTHINF
   | Response_WTHLIST;
 /**
- * Result of the authentication
- */
-export type Result = boolean;
-/**
- * Explains why the authentication attempt failed
- */
-export type FailureReason = string;
-/**
- * Name of the user
- */
-export type Username = string;
-/**
- * Data to send to the client that is to be used in the next step of multi-step authentication methods
- */
-export type Data1 = string;
-/**
- * Whether the beacon is currently active (operational). May be omitted for passive beacons or points of interest.
- */
-export type IsActive = boolean;
-/**
- * The heading of the beacon in the local tangent plane, in 1/10th of degrees, if known
- */
-export type Heading = number;
-/**
- * Timestamp that denotes when the status of the beacon was updated the last time
- */
-export type LastUpdatedAt = number;
-/**
- * The human-readable name of the beacon, shown on the UI
- */
-export type Name2 = string;
-/**
  * Purpose of the connection
  */
 export type Purpose = "debug" | "dock" | "dgps" | "gps" | "time" | "uavRadioLink" | "mocap" | "other";
 /**
  * Status of the connection
  */
-export type Status = "disconnected" | "connecting" | "connected" | "disconnecting" | "unknown";
+export type ConnectionStatus = "disconnected" | "connecting" | "connected" | "disconnecting" | "unknown";
 /**
  * Type of a device tree node
  */
-export type Type = "root" | "object" | "device" | "channel";
+export type DeviceTreeNodeType = "root" | "object" | "device" | "channel";
 /**
  * Type of a channel
  */
-export type Type1 =
+export type ChannelType =
   | "audio"
   | "boolean"
   | "bytes"
@@ -450,7 +281,7 @@ export type Type1 =
 /**
  * Class of a device
  */
-export type Class =
+export type DeviceClass =
   | "accelerometer"
   | "actuator"
   | "altimeter"
@@ -476,126 +307,39 @@ export type Class =
 /**
  * Operation that can be performed on a channel
  */
-export type Operation = "read" | "write";
-/**
- * Unit in which the value of a numeric channel is expressed
- */
-export type Unit = string;
-/**
- * Timestamp that denotes when the status of the docking station was updated the last time
- */
-export type LastUpdatedAt1 = number;
+export type ChannelOperation = "read" | "write";
 export type LicenseID = string;
-export type LicenseVersion = number;
-export type NameOfTheLicenseHolder = string;
-export type ExpiryDate = string;
-export type FeatureType = string;
-export type Description = string;
-export type AdditionalInfo = string;
-export type AdditionalFeatures = LicenseFeature[];
-export type RestrictionType = string;
-export type Description1 = string;
-export type AdditionalInfo1 = string;
-export type Restrictions = LicenseRestrictions[];
-/**
- * List of the metadata of flight logs stored on a UAV
- */
-export type FlightLogMetadataItems = FlightLogMetadata[];
-/**
- * A human-readable title of the preset
- */
-export type Title = string;
 /**
  * The type of the preset (built-in, created automatically or added by the user)
  */
-export type Type2 = "builtin" | "dynamic" | "user";
+export type RTKPresetType = "builtin" | "dynamic" | "user";
 /**
  * Format of the GPS messages arriving in this configuration
  */
 export type MessageFormat = "auto" | "rtcm2" | "rtcm3" | "ubx";
-/**
- * Identifier of an RTK source connection
- */
-export type RTKPresetSource = string;
-/**
- * List of source connections where this preset collects messages from
- */
-export type Sources = RTKPresetSource[];
 export type StationID = number;
-export type AntennaDescriptor = string;
-export type SerialNumber = string;
 /**
  * RTK message observation statistics
  *
  * @minItems 2
  */
-export type RTKMessageObservations = [Age, Size];
-/**
- * The age of the last observation in milliseconds
- */
-export type Age = number;
-/**
- * Size of the observation in bits per second
- */
-export type Size = number;
-/**
- * RTK satellite carrier-to-noise ratios in dB
- */
-export type RTKSatelliteCNRs = number;
-/**
- * RTK survey position accuracy in meters
- */
-export type SurveyAccuracy1 = number;
-/**
- * RTK survey status flags (0: unknown, 1: supported, 2: active, 4: valid)
- */
-export type SurveyFlags = number;
-/**
- * The flight mode of the UAV
- */
-export type FlightMode = string;
+export type RTKMessageObservations = [number, number];
 /**
  * Position in a local right-handed XYZ coordinate system
  *
  * @minItems 3
  */
-export type PositionXYZ = [XComponent, YComponent, ZComponent];
-/**
- * X component of the vector, in mm
- */
-export type XComponent = number;
-/**
- * Y component of the vector, in mm
- */
-export type YComponent = number;
-/**
- * Z component of the vector, in mm
- */
-export type ZComponent = number;
+export type PositionXYZ = [number, number, number];
 /**
  * Basic information about the GPS fix
  *
  * @minItems 1
  */
 export type GPSFix =
-  | [GPSFixType]
-  | [GPSFixType, NumberOfSatellites]
-  | [GPSFixType, NumberOfSatellites, HAcc]
-  | [GPSFixType, NumberOfSatellites, HAcc, VAcc];
-export type GPSFixType = number;
-export type NumberOfSatellites = number | null;
-/**
- * Horizontal accuracy, in millimeters
- */
-export type HAcc = number | null;
-/**
- * Vertical accuracy, in millimeters
- */
-export type VAcc = number | null;
-/**
- * The heading of the UAV in the local tangent plane, in 1/10th of degrees
- */
-export type Heading1 = number;
+  | [number]
+  | [number, number | null]
+  | [number, number | null, number | null]
+  | [number, number | null, number | null, number | null];
 /**
  * Attitude around the principal aircraft axes
  *
@@ -619,165 +363,33 @@ export type YawAngle = number;
  *
  * @minItems 3
  */
-export type VelocityNED = [NorthComponent, EastComponent, DownComponent];
-/**
- * North component of the vector, in mm/s
- */
-export type NorthComponent = number;
-/**
- * East component of the vector, in mm/s
- */
-export type EastComponent = number;
-/**
- * Down component of the vector, in mm/s
- */
-export type DownComponent = number;
+export type VelocityNED = [number, number, number];
 /**
  * Velocity in a local right-handed XYZ coordinate system
  *
  * @minItems 3
  */
-export type VelocityXYZ = [XComponent1, YComponent1, ZComponent1];
-/**
- * X component of the vector, in mm/s
- */
-export type XComponent1 = number;
-/**
- * Y component of the vector, in mm/s
- */
-export type YComponent1 = number;
-/**
- * Z component of the vector, in mm/s
- */
-export type ZComponent1 = number;
-/**
- * Timestamp that denotes when the status of the UAV was updated the last time
- */
-export type LastUpdatedAt2 = number;
+export type VelocityXYZ = [number, number, number];
 /**
  * Information about the on-board battery of the UAV, if applicable
  *
  * @minItems 1
  */
-export type BatteryInformation =
-  | [BatteryVoltage]
-  | [BatteryVoltage, StateOfCharge]
-  | [BatteryVoltage, StateOfCharge, Charging];
-/**
- * The voltage of the battery, in 1/10th of volts
- */
-export type BatteryVoltage = number;
-/**
- * Percentage indicator of the state of charge of the battery (100% = full, 0% = empty, -1 = unknown)
- */
-export type StateOfCharge = number;
-/**
- * Whether the battery is charging
- */
-export type Charging = boolean;
-/**
- * Color in RGB565 representation
- */
-export type Color = number;
-/**
- * Received signal strength indicator, for each of the channels the UAV is accessible on
- */
-export type RSSI = number[];
-/**
- * List of currently active error codes for a single UAV
- */
-export type ListOfErrors = number[];
-export type LabelOfThePreflightChecklistItem = string;
+export type BatteryInformation = [number] | [number, number] | [number, number, boolean];
 /**
  * Result of the preflight check or a single item in a preflight checklist
  */
 export type PreflightCheckResult = "off" | "pass" | "warning" | "running" | "softFailure" | "failure" | "error";
-export type DetailedMessageForThePreflightChecklistItem = string;
-export type PreflightCheckItems = ASingleItemInAPreflightChecklist[];
-/**
- * Preflight check summary message
- */
-export type PreflightCheckSummary = string;
-/**
- * Timestamp that denotes the time the weather information applies to
- */
-export type Timestamp = number;
-/**
- * Numeric weather condition code according to OpenWeatherMap conventions
- */
-export type WeatherConditionCode = number;
-/**
- * Time of sunrise; negative if the Sun does not rise on the given day
- */
-export type Sunrise = number;
-/**
- * Time of sunset; negative if the Sun does not set on the given day
- */
-export type Sunset = number;
-/**
- * Temperature, in kelvin
- */
-export type Temperature = number;
-/**
- * Temperature, in kelvin, adjusted for human perception of weather
- */
-export type FeelsLike = number;
-/**
- * Atmospheric pressure on the sea level, in Pa
- */
-export type Pressure = number;
-/**
- * Humidity, in %
- */
-export type Humidity = number;
-/**
- * Atmospheric temperature in 1/10th kelvin below which water droplets begin to condense and dew can form
- */
-export type DewPoint = number;
-/**
- * Cloudiness, in %
- */
-export type Cloudiness = number;
-/**
- * UV index, 1/100 units; e.g. 89 --> 0.89
- */
-export type UVIndex = number;
-export type PlanetaryKIndex = number;
 /**
  * Magnetic vector
  */
-export type MagneticVector = [] | [North] | [North, East] | [North, East, Down];
-/**
- * North component, in nanoteslas
- */
-export type North = number;
-/**
- * East component, in nanoteslas
- */
-export type East = number;
-/**
- * Down component, in nanoteslas
- */
-export type Down = number;
-/**
- * Average visibility, in metres
- */
-export type Visibility = number;
-/**
- * Meteorological wind direction, in 1/10th degrees clockwise from due North
- */
-export type WindDirection = number;
-/**
- * Wind speed, in mm/s
- */
-export type WindSpeed = number;
-/**
- * Wind gust, in mm/s
- */
-export type WindGust = number;
+export type MagneticVector = [] | [number] | [number, number] | [number, number, number];
 
 export interface StandardMessage {
-  "$fw.version": Version;
+  /**
+   * Version number in major.minor.patch format; minor and patch versions are optional
+   */
+  "$fw.version": string;
   id: MessageID;
   refs?: MessageID;
   body: HttpCollmotComSchemasFlockwave10MessageBodyJson;
@@ -809,17 +421,26 @@ export interface ProgressInformation {
 }
 export interface Notification_ASYNCTIMEOUT {
   type: "ASYNC-TIMEOUT";
-  ids: ReceiptIDs;
+  /**
+   * IDs of the receipts that the message refers to
+   */
+  ids: ReceiptID[];
   [k: string]: unknown;
 }
 export interface Notification_CONNDEL {
   type: "CONN-DEL";
-  ids: ConnectionIDs;
+  /**
+   * IDs of the connections that the message refers to
+   */
+  ids: ConnectionID[];
   [k: string]: unknown;
 }
 export interface Notification_OBJDEL {
   type: "OBJ-DEL";
-  ids: ObjectIDs;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Notification_SYSCLOSE {
@@ -847,12 +468,18 @@ export interface LogMessage {
 }
 export interface Request_ASYNCCANCEL {
   type: "ASYNC-CANCEL";
-  ids: ReceiptIDs;
+  /**
+   * IDs of the receipts that the message refers to
+   */
+  ids: ReceiptID[];
   [k: string]: unknown;
 }
 export interface Request_ASYNCRESUME {
   type: "ASYNC-RESUME";
-  ids: ReceiptIDs;
+  /**
+   * IDs of the receipts that the message refers to
+   */
+  ids: ReceiptID[];
   values?: {
     [k: string]: unknown;
   };
@@ -863,9 +490,15 @@ export interface Request_AUTHINF {
 }
 export interface Request_AUTHREQ {
   type: "AUTH-REQ";
-  method: Method;
+  /**
+   * Name of the authentication method to use
+   */
+  method: string;
   session?: SessionID;
-  data: Data;
+  /**
+   * Data to send to the authentication method
+   */
+  data: string;
   [k: string]: unknown;
 }
 export interface Request_AUTHWHOAMI {
@@ -873,17 +506,26 @@ export interface Request_AUTHWHOAMI {
 }
 export interface Request_BCNINF {
   type: "BCN-INF";
-  ids: BeaconIDs;
+  /**
+   * IDs of the beacons that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_BCNPROPS {
   type: "BCN-PROPS";
-  ids: BeaconIDs;
+  /**
+   * IDs of the beacons that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_CLKINF {
   type: "CLK-INF";
-  ids: ClockIDs;
+  /**
+   * IDs of the clocks that the message refers to
+   */
+  ids: ClockID[];
   [k: string]: unknown;
 }
 export interface Request_CLKLIST {
@@ -891,7 +533,10 @@ export interface Request_CLKLIST {
 }
 export interface Request_CONNINF {
   type: "CONN-INF";
-  ids: ConnectionIDs;
+  /**
+   * IDs of the connections that the message refers to
+   */
+  ids: ConnectionID[];
   [k: string]: unknown;
 }
 export interface Request_CONNLIST {
@@ -899,45 +544,75 @@ export interface Request_CONNLIST {
 }
 export interface Request_DEVINF {
   type: "DEV-INF";
-  paths: DeviceTreePaths;
+  /**
+   * Paths of the device tree entries that the message refers to
+   */
+  paths: string[];
   [k: string]: unknown;
 }
 export interface Request_DEVLIST {
   type: "DEV-LIST";
-  ids: ObjectIDs;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_DEVLISTSUB {
   type: "DEV-LISTSUB";
-  pathFilter: DeviceTreePaths;
+  /**
+   * Paths of the device tree entries that the message refers to
+   */
+  pathFilter: string[];
   [k: string]: unknown;
 }
 export interface Request_DEVSUB {
   type: "DEV-SUB";
-  paths: DeviceTreePaths;
+  /**
+   * Paths of the device tree entries that the message refers to
+   */
+  paths: string[];
   lazy?: boolean;
   [k: string]: unknown;
 }
 export interface Request_DEVUNSUB {
   type: "DEV-UNSUB";
-  paths: DeviceTreePaths;
-  removeAll?: RemoveAll;
-  includeSubtrees?: IncludeSubtrees;
+  /**
+   * Paths of the device tree entries that the message refers to
+   */
+  paths: string[];
+  /**
+   * Whether to remove all instances of a subscription that matches one of the paths (true) or only a single one (false)
+   */
+  removeAll?: boolean;
+  /**
+   * Whether to also remove all subscriptions that are in the subtrees of the paths specified in the request.
+   */
+  includeSubtrees?: boolean;
   [k: string]: unknown;
 }
 export interface Request_DOCKINF {
   type: "DOCK-INF";
-  ids: DockIDs;
+  /**
+   * IDs of the docking stations that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_EXTCFG {
   type: "EXT-CFG";
-  ids: ExtensionIDs;
+  /**
+   * IDs of the extensions that the message refers to
+   */
+  ids: ExtensionID[];
   [k: string]: unknown;
 }
 export interface Request_EXTINF {
   type: "EXT-INF";
-  ids: ExtensionIDs;
+  /**
+   * IDs of the extensions that the message refers to
+   */
+  ids: ExtensionID[];
   [k: string]: unknown;
 }
 export interface Request_EXTLIST {
@@ -945,12 +620,18 @@ export interface Request_EXTLIST {
 }
 export interface Request_EXTLOAD {
   type: "EXT-LOAD";
-  ids: ExtensionIDs;
+  /**
+   * IDs of the extensions that the message refers to
+   */
+  ids: ExtensionID[];
   [k: string]: unknown;
 }
 export interface Request_EXTRELOAD {
   type: "EXT-RELOAD";
-  ids: ExtensionIDs;
+  /**
+   * IDs of the extensions that the message refers to
+   */
+  ids: ExtensionID[];
   [k: string]: unknown;
 }
 export interface Request_EXTSETCFG {
@@ -964,27 +645,42 @@ export interface Request_EXTSETCFG {
 }
 export interface Request_EXTUNLOAD {
   type: "EXT-UNLOAD";
-  ids: ExtensionIDs;
+  /**
+   * IDs of the extensions that the message refers to
+   */
+  ids: ExtensionID[];
   [k: string]: unknown;
 }
 export interface Request_FWOBJECTLIST {
   type: "FW-OBJECT-LIST";
-  supports?: FirmwareUpdateTargetIDs;
+  /**
+   * IDs of the firmware update targets that a request refers to
+   */
+  supports?: FirmwareUpdateTargetID[];
   [k: string]: unknown;
 }
 export interface Request_FWTARGETINF {
   type: "FW-TARGET-INF";
-  ids: FirmwareUpdateTargetIDs;
+  /**
+   * IDs of the firmware update targets that a request refers to
+   */
+  ids: FirmwareUpdateTargetID[];
   [k: string]: unknown;
 }
 export interface Request_FWTARGETLIST {
   type: "FW-TARGET-LIST";
-  supportedBy?: ObjectIDs;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  supportedBy?: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_FWUPLOAD {
   type: "FW-UPLOAD";
-  ids: ObjectIDs;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  ids: ObjectID[];
   target: FirmwareUpdateTargetID;
   blob: string;
   [k: string]: unknown;
@@ -1001,13 +697,22 @@ export interface Request_LOGDATA {
 }
 export interface Request_LOGINF {
   type: "LOG-INF";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_OBJCMD {
   type: "OBJ-CMD";
-  ids: ObjectIDs;
-  command: Command;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  ids: ObjectID[];
+  /**
+   * The command to send
+   */
+  command: string;
   args?: Arguments;
   kwds?: KeywordArguments;
   [k: string]: unknown;
@@ -1020,23 +725,41 @@ export interface KeywordArguments {
 }
 export interface Request_OBJLIST {
   type: "OBJ-LIST";
-  filter?: ObjectTypes;
+  /**
+   * Types of objects that the user is interested in
+   */
+  filter?: string[];
 }
 export interface Request_PRMGET {
   type: "PRM-GET";
-  ids: ObjectIDs;
-  name: Name;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  ids: ObjectID[];
+  /**
+   * The name of the parameter
+   */
+  name: string;
   [k: string]: unknown;
 }
 export interface Request_PRMSET {
   type: "PRM-SET";
-  ids: ObjectIDs;
-  name: Name1;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  ids: ObjectID[];
+  /**
+   * The name of the parameter
+   */
+  name: string;
   [k: string]: unknown;
 }
 export interface Request_PRMSETMANY {
   type: "PRM-SET-MANY";
-  ids: ObjectIDs;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  ids: ObjectID[];
   parameters: ParameterMap;
   [k: string]: unknown;
 }
@@ -1048,7 +771,10 @@ export interface ParameterMap {
 }
 export interface Request_RTKINF {
   type: "RTK-INF";
-  ids: RTKPresetIDs;
+  /**
+   * IDs of the RTK presets that the message refers to
+   */
+  ids: RTKPresetID[];
   [k: string]: unknown;
 }
 export interface Request_RTKLIST {
@@ -1074,11 +800,17 @@ export interface Request_RTKSURVEY {
  * RTK survey settings
  */
 export interface RTKSurveySettings {
-  duration: SurveyDuration;
-  accuracy: SurveyAccuracy;
+  /**
+   * Minimum duration of RTK survey
+   */
+  duration: number;
+  /**
+   * Expected RTK survey position accuracy in meters
+   */
+  accuracy: number;
   messageSet?: MessageSet;
   position?: ECEFCoordinate;
-  gnssTypes?: GNSSTypes;
+  gnssTypes?: ("gps" | "glonass" | "galileo" | "sbas" | "qzss" | "beidou" | "irnss")[];
   [k: string]: unknown;
 }
 export interface Request_SHOWCFG {
@@ -1160,7 +892,10 @@ export interface Request_SYSVER {
 }
 export interface Request_UAVCALIB {
   type: "UAV-CALIB";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   component?: string;
   parameters?: {
     [k: string]: unknown;
@@ -1169,13 +904,19 @@ export interface Request_UAVCALIB {
 }
 export interface Request_UAVFLY {
   type: "UAV-FLY";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   target: GPSCoordinate;
   [k: string]: unknown;
 }
 export interface Request_UAVHALT {
   type: "UAV-HALT";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   transport?: TransportOptions;
   [k: string]: unknown;
 }
@@ -1183,24 +924,42 @@ export interface Request_UAVHALT {
  * Additional preferences about how the message should be delivered to UAVs
  */
 export interface TransportOptions {
-  channel?: Channel;
-  broadcast?: BroadcastAllowed;
-  ignoreIds?: IgnoreIDs;
+  /**
+   * Index of the communication channel to use
+   */
+  channel?: number;
+  /**
+   * Stores whether the server is allowed to use a broadcast message
+   */
+  broadcast?: boolean;
+  /**
+   * Whether to broadcast the message to all UAVs, ignoring the explicit UAV IDs in the command
+   */
+  ignoreIds?: boolean;
   [k: string]: unknown;
 }
 export interface Request_UAVHOVER {
   type: "UAV-HOVER";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_UAVINF {
   type: "UAV-INF";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_UAVLAND {
   type: "UAV-LAND";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   transport?: TransportOptions;
   [k: string]: unknown;
 }
@@ -1209,33 +968,57 @@ export interface Request_UAVLIST {
 }
 export interface Request_UAVMOTOR {
   type: "UAV-MOTOR";
-  ids: UAVIDs;
-  start: MotorStart;
-  force?: Forced;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
+  /**
+   * Whether the motors should be started or stopped
+   */
+  start: boolean;
+  /**
+   * Whether the command should be forced even if it is unsafe
+   */
+  force?: boolean;
   transport?: TransportOptions;
   [k: string]: unknown;
 }
 export interface Request_UAVPREFLT {
   type: "UAV-PREFLT";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_UAVRST {
   type: "UAV-RST";
-  ids: UAVIDs;
-  component?: Component;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
+  /**
+   * The component to reboot
+   */
+  component?: string;
   transport?: TransportOptions;
   [k: string]: unknown;
 }
 export interface Request_UAVRTH {
   type: "UAV-RTH";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   transport?: TransportOptions;
   [k: string]: unknown;
 }
 export interface Request_UAVSIGNAL {
   type: "UAV-SIGNAL";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   signals?: string[];
   duration?: number;
   transport?: TransportOptions;
@@ -1243,19 +1026,28 @@ export interface Request_UAVSIGNAL {
 }
 export interface Request_UAVSLEEP {
   type: "UAV-SLEEP";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   transport?: TransportOptions;
   [k: string]: unknown;
 }
 export interface Request_UAVTAKEOFF {
   type: "UAV-TAKEOFF";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   transport?: TransportOptions;
   [k: string]: unknown;
 }
 export interface Request_UAVTEST {
   type: "UAV-TEST";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   component?: string;
   parameters?: {
     [k: string]: unknown;
@@ -1264,12 +1056,18 @@ export interface Request_UAVTEST {
 }
 export interface Request_UAVVER {
   type: "UAV-VER";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_UAVWAKEUP {
   type: "UAV-WAKEUP";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   transport?: TransportOptions;
   [k: string]: unknown;
 }
@@ -1280,7 +1078,10 @@ export interface Request_WTHAT {
 }
 export interface Request_WTHINF {
   type: "WTH-INF";
-  ids: WeatherStationIDs;
+  /**
+   * IDs of the weather stations that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Request_WTHLIST {
@@ -1295,7 +1096,10 @@ export interface Response_ACKNAK {
 }
 export interface Response_ASYNCCANCEL {
   type: "ASYNC-CANCEL";
-  success?: ReceiptIDs;
+  /**
+   * IDs of the receipts that the message refers to
+   */
+  success?: ReceiptID[];
   error?: ErrorMap;
 }
 export interface ErrorMap {
@@ -1303,7 +1107,10 @@ export interface ErrorMap {
 }
 export interface Response_ASYNCRESUME {
   type: "ASYNC-RESUME";
-  success?: ReceiptIDs;
+  /**
+   * IDs of the receipts that the message refers to
+   */
+  success?: ReceiptID[];
   error?: ErrorMap;
 }
 export interface Response_AUTHINF {
@@ -1314,17 +1121,32 @@ export interface Response_AUTHINF {
 }
 export interface Response_AUTHRESP_SingleStep {
   type: "AUTH-RESP";
-  result: Result;
-  reason?: FailureReason;
-  user?: Username;
+  /**
+   * Result of the authentication
+   */
+  result: boolean;
+  /**
+   * Explains why the authentication attempt failed
+   */
+  reason?: string;
+  /**
+   * Name of the user
+   */
+  user?: string;
 }
 export interface Response_AUTHRESP_MultiStep {
   type: "AUTH-RESP";
-  data: Data1;
+  /**
+   * Data to send to the client that is to be used in the next step of multi-step authentication methods
+   */
+  data: string;
 }
 export interface Response_AUTHWHOAMI {
   type: "AUTH-WHOAMI";
-  user: Username;
+  /**
+   * Name of the user
+   */
+  user: string;
   [k: string]: unknown;
 }
 export interface Response_BCNINF {
@@ -1339,10 +1161,19 @@ export interface Response_BCNINF {
  */
 export interface BeaconStatusInfo {
   id: ObjectID;
-  active?: IsActive;
-  heading?: Heading;
+  /**
+   * Whether the beacon is currently active (operational). May be omitted for passive beacons or points of interest.
+   */
+  active?: boolean;
+  /**
+   * The heading of the beacon in the local tangent plane, in 1/10th of degrees, if known
+   */
+  heading?: number;
   position?: GPSCoordinate;
-  timestamp: LastUpdatedAt;
+  /**
+   * Timestamp that denotes when the status of the beacon was updated the last time
+   */
+  timestamp: number;
   [k: string]: unknown;
 }
 export interface Response_BCNPROPS {
@@ -1361,7 +1192,10 @@ export interface ReceiptMap {
  */
 export interface BeaconBasicProperties {
   id: ObjectID;
-  name: Name2;
+  /**
+   * The human-readable name of the beacon, shown on the UI
+   */
+  name: string;
   [k: string]: unknown;
 }
 export interface Response_CLKINF {
@@ -1385,7 +1219,10 @@ export interface ClockInfo {
 }
 export interface Response_CLKLIST {
   type: "CLK-LIST";
-  ids: ClockIDs;
+  /**
+   * IDs of the clocks that the message refers to
+   */
+  ids: ClockID[];
 }
 export interface Response_CONNINF {
   type: "CONN-INF";
@@ -1401,13 +1238,16 @@ export interface ConnectionInfo {
   id: ConnectionID;
   purpose: Purpose;
   description?: string;
-  status: Status;
+  status: ConnectionStatus;
   timestamp?: number;
   [k: string]: unknown;
 }
 export interface Response_CONNLIST {
   type: "CONN-LIST";
-  ids: ConnectionIDs;
+  /**
+   * IDs of the connections that the message refers to
+   */
+  ids: ConnectionID[];
   [k: string]: unknown;
 }
 export interface Response_DEVINF {
@@ -1428,27 +1268,39 @@ export interface Response_DEVLIST {
  * A single device tree node representing a UAV, a device or a channel
  */
 export interface DeviceTreeNode {
-  type: Type;
-  subType?: Type1;
-  class?: Class;
+  type: DeviceTreeNodeType;
+  subType?: ChannelType;
+  class?: DeviceClass;
   children?: {
     [k: string]: unknown;
   };
-  operations?: Operation[];
-  unit?: Unit;
+  operations?: ChannelOperation[];
+  /**
+   * Unit in which the value of a numeric channel is expressed
+   */
+  unit?: string;
 }
 export interface Response_DEVLISTSUB {
   type: "DEV-LISTSUB";
-  paths?: DeviceTreePaths;
+  /**
+   * Paths of the device tree entries that the message refers to
+   */
+  paths?: string[];
 }
 export interface Response_DEVSUB {
   type: "DEV-SUB";
-  success?: DeviceTreePaths;
+  /**
+   * Paths of the device tree entries that the message refers to
+   */
+  success?: string[];
   error?: ErrorMap;
 }
 export interface Response_DEVUNSUB {
   type: "DEV-UNSUB";
-  success?: DeviceTreePaths;
+  /**
+   * Paths of the device tree entries that the message refers to
+   */
+  success?: string[];
   error?: ErrorMap;
 }
 export interface Response_DOCKINF {
@@ -1464,7 +1316,10 @@ export interface Response_DOCKINF {
 export interface DockingStationStatusInfo {
   id: ObjectID;
   position?: GPSCoordinate;
-  timestamp: LastUpdatedAt1;
+  /**
+   * Timestamp that denotes when the status of the docking station was updated the last time
+   */
+  timestamp: number;
   [k: string]: unknown;
 }
 export interface Response_EXTCFG {
@@ -1495,8 +1350,14 @@ export interface ClockInfo1 {
 }
 export interface Response_EXTLIST {
   type: "EXT-LIST";
-  loaded: ExtensionIDs;
-  available: ExtensionIDs;
+  /**
+   * IDs of the extensions that the message refers to
+   */
+  loaded: ExtensionID[];
+  /**
+   * IDs of the extensions that the message refers to
+   */
+  available: ExtensionID[];
 }
 export interface Response_EXTLOAD {
   type: "EXT-LOAD";
@@ -1536,7 +1397,10 @@ export interface Response_EXTUNLOAD {
 }
 export interface Response_FWOBJECTLIST {
   type: "FW-OBJECT-LIST";
-  ids: ObjectIDs;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  ids: ObjectID[];
 }
 export interface Response_FWTARGETINF {
   type: "FW-TARGET-INF";
@@ -1555,7 +1419,10 @@ export interface FirmwareUpdateTarget {
 }
 export interface Response_FWTARGETLIST {
   type: "FW-TARGET-LIST";
-  ids: FirmwareUpdateTargetIDs;
+  /**
+   * IDs of the firmware update targets that a request refers to
+   */
+  ids: FirmwareUpdateTargetID[];
 }
 export interface Response_FWUPLOAD {
   type: "FW-UPLOAD";
@@ -1582,20 +1449,20 @@ export interface Response_LCNINF {
  */
 export interface License {
   id: LicenseID;
-  version?: LicenseVersion;
-  licensee: NameOfTheLicenseHolder;
-  expiryDate?: ExpiryDate;
-  features?: AdditionalFeatures;
-  restrictions?: Restrictions;
+  version?: number;
+  licensee: string;
+  expiryDate?: string;
+  features?: LicenseFeature[];
+  restrictions?: LicenseRestrictions[];
   [k: string]: unknown;
 }
 /**
  * An optional feature that is enabled by a license
  */
 export interface LicenseFeature {
-  type: FeatureType;
-  label?: Description;
-  secondaryLabel?: AdditionalInfo;
+  type: string;
+  label?: string;
+  secondaryLabel?: string;
   parameters?: {
     [k: string]: unknown;
   };
@@ -1605,9 +1472,9 @@ export interface LicenseFeature {
  * Restrictions imposed on the functionality of the server by a license
  */
 export interface LicenseRestrictions {
-  type: RestrictionType;
-  label?: Description1;
-  secondaryLabel?: AdditionalInfo1;
+  type: string;
+  label?: string;
+  secondaryLabel?: string;
   parameters?: {
     [k: string]: unknown;
   };
@@ -1637,7 +1504,10 @@ export interface FlightLog {
 export interface Response_LOGINF {
   type: "LOG-INF";
   result?: {
-    [k: string]: FlightLogMetadataItems;
+    /**
+     * List of the metadata of flight logs stored on a UAV
+     */
+    [k: string]: FlightLogMetadata[];
   };
   error?: ErrorMap;
   receipt?: ReceiptMap;
@@ -1660,7 +1530,10 @@ export interface Response_OBJCMD {
 }
 export interface Response_OBJLIST {
   type: "OBJ-LIST";
-  ids: ObjectIDs;
+  /**
+   * IDs of the objects that the message refers to
+   */
+  ids: ObjectID[];
 }
 export interface Response_PRMGET {
   type: "PRM-GET";
@@ -1702,15 +1575,24 @@ export interface Response_RTKINF {
  * Information about an RTK preset
  */
 export interface RTKConfigurationPreset {
-  title: Title;
-  type?: Type2;
+  /**
+   * A human-readable title of the preset
+   */
+  title: string;
+  type?: RTKPresetType;
   format: MessageFormat;
-  sources: Sources;
+  /**
+   * List of source connections where this preset collects messages from
+   */
+  sources: string[];
   [k: string]: unknown;
 }
 export interface Response_RTKLIST {
   type: "RTK-LIST";
-  ids: RTKPresetIDs;
+  /**
+   * IDs of the RTK presets that the message refers to
+   */
+  ids: RTKPresetID[];
 }
 export interface Response_RTKSOURCE {
   type: "RTK-SOURCE";
@@ -1729,7 +1611,10 @@ export interface Response_RTKSTAT {
     [k: string]: RTKMessageObservations;
   };
   cnr: {
-    [k: string]: RTKSatelliteCNRs;
+    /**
+     * RTK satellite carrier-to-noise ratios in dB
+     */
+    [k: string]: number;
   };
   survey: RTKSurveyStatus;
 }
@@ -1738,8 +1623,8 @@ export interface Response_RTKSTAT {
  */
 export interface RTKAntennaInfo {
   stationId?: StationID;
-  descriptor?: AntennaDescriptor;
-  serialNumber?: SerialNumber;
+  descriptor?: string;
+  serialNumber?: string;
   position?: GPSCoordinate;
   positionECEF?: ECEFCoordinate;
   [k: string]: unknown;
@@ -1748,8 +1633,14 @@ export interface RTKAntennaInfo {
  * RTK survey accuracy and flags
  */
 export interface RTKSurveyStatus {
-  accuracy: SurveyAccuracy1;
-  flags: SurveyFlags;
+  /**
+   * RTK survey position accuracy in meters
+   */
+  accuracy: number;
+  /**
+   * RTK survey status flags (0: unknown, 1: supported, 2: active, 4: valid)
+   */
+  flags: number;
   [k: string]: unknown;
 }
 export interface Response_RTKSURVEY {
@@ -1786,7 +1677,10 @@ export interface Response_SYSVER {
   type: "SYS-VER";
   name?: string;
   software: string;
-  version: Version;
+  /**
+   * Version number in major.minor.patch format; minor and patch versions are optional
+   */
+  version: string;
   revision?: string;
   [k: string]: unknown;
 }
@@ -1826,19 +1720,37 @@ export interface Response_UAVINF {
  */
 export interface UAVStatusInfo {
   id: ObjectID;
-  mode?: FlightMode;
+  /**
+   * The flight mode of the UAV
+   */
+  mode?: string;
   position?: GPSCoordinate;
   positionXYZ?: PositionXYZ;
   gps?: GPSFix;
-  heading?: Heading1;
+  /**
+   * The heading of the UAV in the local tangent plane, in 1/10th of degrees
+   */
+  heading?: number;
   attitude?: Attitude;
   velocity?: VelocityNED;
   velocityXYZ?: VelocityXYZ;
-  timestamp: LastUpdatedAt2;
+  /**
+   * Timestamp that denotes when the status of the UAV was updated the last time
+   */
+  timestamp: number;
   battery?: BatteryInformation;
-  light?: Color;
-  rssi?: RSSI;
-  errors?: ListOfErrors;
+  /**
+   * Color in RGB565 representation
+   */
+  light?: number;
+  /**
+   * Received signal strength indicator, for each of the channels the UAV is accessible on
+   */
+  rssi?: number[];
+  /**
+   * List of currently active error codes for a single UAV
+   */
+  errors?: number[];
   debug?: string;
   [k: string]: unknown;
 }
@@ -1850,7 +1762,10 @@ export interface Response_UAVLAND {
 }
 export interface Response_UAVLIST {
   type: "UAV-LIST";
-  ids: UAVIDs;
+  /**
+   * IDs of the UAVs that the message refers to
+   */
+  ids: ObjectID[];
   [k: string]: unknown;
 }
 export interface Response_UAVMOTOR {
@@ -1870,16 +1785,19 @@ export interface Response_UAVPREFLT {
  * Preflight check information of a single UAV
  */
 export interface UAVPreflightCheckInfo {
-  items: PreflightCheckItems;
-  message?: PreflightCheckSummary;
+  items: ASingleItemInAPreflightChecklist[];
+  /**
+   * Preflight check summary message
+   */
+  message?: string;
   result: PreflightCheckResult;
   [k: string]: unknown;
 }
 export interface ASingleItemInAPreflightChecklist {
   id: ObjectID;
-  label?: LabelOfThePreflightChecklistItem;
+  label?: string;
   result: PreflightCheckResult;
-  message?: DetailedMessageForThePreflightChecklistItem;
+  message?: string;
   [k: string]: unknown;
 }
 export interface Response_UAVRST {
@@ -1945,23 +1863,68 @@ export interface Response_WTHAT {
 export interface WeatherInfo {
   stationId?: ObjectID;
   position: GPSCoordinate;
-  timestamp: Timestamp;
-  code?: WeatherConditionCode;
-  sunrise?: Sunrise;
-  sunset?: Sunset;
-  temperature?: Temperature;
-  feelsLike?: FeelsLike;
-  pressure?: Pressure;
-  humidity?: Humidity;
-  dewPoint?: DewPoint;
-  clouds?: Cloudiness;
-  uvIndex?: UVIndex;
-  kpIndex?: PlanetaryKIndex;
+  /**
+   * Timestamp that denotes the time the weather information applies to
+   */
+  timestamp: number;
+  /**
+   * Numeric weather condition code according to OpenWeatherMap conventions
+   */
+  code?: number;
+  /**
+   * Time of sunrise; negative if the Sun does not rise on the given day
+   */
+  sunrise?: number;
+  /**
+   * Time of sunset; negative if the Sun does not set on the given day
+   */
+  sunset?: number;
+  /**
+   * Temperature, in kelvin
+   */
+  temperature?: number;
+  /**
+   * Temperature, in kelvin, adjusted for human perception of weather
+   */
+  feelsLike?: number;
+  /**
+   * Atmospheric pressure on the sea level, in Pa
+   */
+  pressure?: number;
+  /**
+   * Humidity, in %
+   */
+  humidity?: number;
+  /**
+   * Atmospheric temperature in 1/10th kelvin below which water droplets begin to condense and dew can form
+   */
+  dewPoint?: number;
+  /**
+   * Cloudiness, in %
+   */
+  clouds?: number;
+  /**
+   * UV index, 1/100 units; e.g. 89 --> 0.89
+   */
+  uvIndex?: number;
+  kpIndex?: number;
   magneticVector?: MagneticVector;
-  visibility?: Visibility;
-  windDirection?: WindDirection;
-  windSpeed?: WindSpeed;
-  windGust?: WindGust;
+  /**
+   * Average visibility, in metres
+   */
+  visibility?: number;
+  /**
+   * Meteorological wind direction, in 1/10th degrees clockwise from due North
+   */
+  windDirection?: number;
+  /**
+   * Wind speed, in mm/s
+   */
+  windSpeed?: number;
+  /**
+   * Wind gust, in mm/s
+   */
+  windGust?: number;
   [k: string]: unknown;
 }
 export interface Response_WTHINF {
@@ -1973,10 +1936,16 @@ export interface Response_WTHINF {
 }
 export interface Response_WTHLIST {
   type: "WTH-LIST";
-  ids: WeatherStationIDs;
+  /**
+   * IDs of the weather stations that the message refers to
+   */
+  ids: ObjectID[];
 }
 export interface ErrorMessage {
-  "$fw.version": Version;
+  /**
+   * Version number in major.minor.patch format; minor and patch versions are optional
+   */
+  "$fw.version": string;
   id: MessageID;
   refs?: MessageID;
   error: {
