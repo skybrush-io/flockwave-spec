@@ -43,21 +43,24 @@
         "description": "Roll angle, in 1/10th of degrees",
         "type": "integer",
         "minimum": -1800,
-        "exclusiveMaximum": 1800
+        "exclusiveMaximum": 1800,
+        "$id": "RollAngle"
       },
       {
         "title": "Pitch angle",
         "description": "Pitch angle, in 1/10th of degrees",
         "type": "integer",
         "minimum": -1800,
-        "exclusiveMaximum": 1800
+        "exclusiveMaximum": 1800,
+        "$id": "PitchAngle"
       },
       {
         "title": "Yaw angle",
         "description": "Yaw angle, in 1/10th of degrees",
         "type": "integer",
         "minimum": 0,
-        "exclusiveMaximum": 3600
+        "exclusiveMaximum": 3600,
+        "$id": "YawAngle"
       }
     ]
   },
@@ -737,29 +740,34 @@
         "description": "Latitude, in 1e-7 degrees",
         "type": "integer",
         "minimum": -900000000,
-        "maximum": 900000000
+        "maximum": 900000000,
+        "$id": "Latitude"
       },
       {
         "title": "Longitude",
         "description": "Longitude, in 1e-7 degrees",
         "type": "integer",
         "minimum": -1800000000,
-        "maximum": 1800000000
+        "maximum": 1800000000,
+        "$id": "Longitude"
       },
       {
         "title": "AMSL",
         "description": "Altitude above mean sea level, in millimeters",
-        "type": ["integer", "null"]
+        "type": ["integer", "null"],
+        "$id": "AMSL"
       },
       {
         "title": "AHL",
         "description": "Altitude above home level, in millimeters",
-        "type": ["integer", "null"]
+        "type": ["integer", "null"],
+        "$id": "AHL"
       },
       {
         "title": "AGL",
         "description": "Altitude above ground level, in millimeters",
-        "type": ["integer", "null"]
+        "type": ["integer", "null"],
+        "$id": "AGL"
       }
     ]
   },

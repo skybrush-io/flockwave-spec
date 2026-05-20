@@ -8,17 +8,6 @@ chdir(join(import.meta.dirname, "..", ".."));
 const SPEC_DIR = "./src/flockwave/spec";
 const OUTPUT_DIR = "./types";
 
-const MANDATORY_TITLES = [
-  "amsl",
-  "agl",
-  "ahl",
-  "latitude",
-  "longitude",
-  "roll angle",
-  "pitch angle",
-  "yaw angle",
-];
-
 const getSingleNonNullTypeFromSchema = (schema) => {
   const nonNullTypes = Array.isArray(schema.type)
     ? schema.type.filter((t) => t !== "null")
@@ -33,10 +22,9 @@ const shouldPreventSeparateType = (schema) => {
 
   const title = schema.title.toLowerCase();
 
-  // Always generate a separate type if the title matches one of the mandatory ones,
-  // or if the title ends with "ID" (case-insensitive) because it is likely to be a
-  // unique identifier
-  if (MANDATORY_TITLES.includes(title) || title.endsWith(" id")) {
+  // Always generate a separate type if the title ends with "ID" (case-insensitive)
+  // because it is likely to be a unique identifier
+  if (title.endsWith(" id")) {
     return false;
   }
 
