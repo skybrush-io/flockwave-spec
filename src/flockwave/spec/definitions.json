@@ -683,7 +683,7 @@
         "type": "number"
       },
       "kind": {
-        "type": "string"
+        "$ref": "#/flightLogKind"
       },
       "body": {
         "type": ["string", "object"]
@@ -697,6 +697,14 @@
     "description": "Identifier of a single flight log",
     "type": "string",
     "minLength": 1
+  },
+
+  "flightLogKind": {
+    "title": "Flight log kind",
+    "description": "Identifier of a flight log kind",
+    "type": "string",
+    "enum": ["text", "ardupilot", "ulog", "flockctrl", "unknown"],
+    "$id": "FlightLogKind"
   },
 
   "flightLogMetadata": {
@@ -714,7 +722,7 @@
         "type": "number"
       },
       "kind": {
-        "type": "string"
+        "$ref": "#/flightLogKind"
       }
     },
     "required": ["id", "kind"]

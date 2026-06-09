@@ -310,6 +310,10 @@ export type DeviceClass =
 export type ChannelOperation = "read" | "write";
 export type LicenseID = string;
 /**
+ * Identifier of a flight log kind
+ */
+export type FlightLogKind = "text" | "ardupilot" | "ulog" | "flockctrl" | "unknown";
+/**
  * The type of the preset (built-in, created automatically or added by the user)
  */
 export type RTKPresetType = "builtin" | "dynamic" | "user";
@@ -1493,7 +1497,7 @@ export interface FlightLog {
   id: FlightLogID;
   timestamp?: number;
   size?: number;
-  kind: string;
+  kind: FlightLogKind;
   body:
     | string
     | {
@@ -1519,7 +1523,7 @@ export interface FlightLogMetadata {
   id: FlightLogID;
   timestamp?: number;
   size?: number;
-  kind: string;
+  kind: FlightLogKind;
   [k: string]: unknown;
 }
 export interface Response_OBJCMD {
