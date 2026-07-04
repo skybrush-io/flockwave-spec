@@ -1330,6 +1330,32 @@
     "additionalProperties": { "type": "string" }
   },
 
+  "timeSyncSnapshot": {
+    "title": "Time sync snapshot",
+    "description": "Snapshot of the time synchronization state of the server clock",
+    "type": "object",
+    "properties": {
+      "state": {
+        "description": "Current estimate of whether the server clock is synchronized to the world clock",
+        "type": "string",
+        "enum": ["unknown", "sync", "unsync", "error"]
+      },
+      "offset": {
+        "description": "Offset between the server clock and the world clock, in seconds",
+        "type": ["number", "null"]
+      },
+      "source": {
+        "description": "Identifier of the time source used to determine the offset",
+        "type": ["string", "null"]
+      },
+      "jitter": {
+        "description": "Jitter of the time source used to determine the offset",
+        "type": ["number", "null"]
+      }
+    },
+    "required": ["state", "offset", "source", "jitter"]
+  },
+
   "transportOptions": {
     "title": "Transport options",
     "description": "Additional preferences about how the message should be delivered to UAVs",

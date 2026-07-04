@@ -22,6 +22,9 @@
     },
     {
       "$ref": "notification_SYS-MSG.json#"
+    },
+    {
+      "$ref": "notification_TIMESYNC-STATUS.json#"
     }
   ]
 }

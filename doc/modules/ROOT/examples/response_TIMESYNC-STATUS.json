@@ -1,0 +1,9 @@
+{
+  "type": "TIMESYNC-STATUS",
+  "status": {
+    "state": "sync",
+    "offset": 0.012,
+    "source": "ntp:time.google.com",
+    "jitter": 0.004
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "TIMESYNC-STATUS"
+    },
+    "status": {
+      "$ref": "definitions.json#/timeSyncSnapshot"
+    }
+  },
+  "required": ["type", "status"],
+  "additionalProperties": false
+}

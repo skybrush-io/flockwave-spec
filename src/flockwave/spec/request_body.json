@@ -150,6 +150,9 @@
       "$ref": "request_SYS-VER.json#"
     },
     {
+      "$ref": "request_TIMESYNC-STATUS.json#"
+    },
+    {
       "$ref": "request_UAV-CALIB.json#"
     },
     {

@@ -1,0 +1,9 @@
+{
+  "type": "TIMESYNC-STATUS",
+  "status": {
+    "state": "unsync",
+    "offset": -1.537,
+    "source": "gnss:primary",
+    "jitter": 0.081
+  }
+}

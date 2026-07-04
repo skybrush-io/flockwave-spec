@@ -1,0 +1,50 @@
+= `TIMESYNC` — Time synchronization related messages
+
+This message family allows clients to query whether the server clock is
+synchronized to the world clock, and to receive notifications when the server
+has updated information about that synchronization status.
+
+== `TIMESYNC-STATUS` — Retrieve or receive the time synchronization status of the server clock
+
+A client sends this request to the server to obtain the current time
+synchronization status of the server clock.
+
+A server may also send notifications of this type to connected clients to inform
+them about changes in the synchronization status of the server clock. Notifications
+MUST be sent for significant changes, i.e. when the synchronization state
+goes from synchronized to unsynchronized or back. Notifications MAY be sent for
+offset changes as well, but this is not mandatory.
+
+*Request fields*
+
+This request has no fields.
+
+*Response and notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`status` |yes |xref:types.adoc#time-sync-snapshot[`TimeSyncSnapshot`] |Snapshot of the
+current time synchronization status of the server clock.
+|===
+
+*Example request*
+
+[source,json]
+----
+include::example$request_TIMESYNC-STATUS.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_TIMESYNC-STATUS.json[]
+----
+
+*Example notification*
+
+[source,json]
+----
+include::example$notification_TIMESYNC-STATUS.json[]
+----

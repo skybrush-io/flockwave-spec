@@ -147,6 +147,9 @@
       "$ref": "response_SYS-VER.json#"
     },
     {
+      "$ref": "response_TIMESYNC-STATUS.json#"
+    },
+    {
       "$ref": "response_UAV-CALIB.json#"
     },
     {

@@ -1419,6 +1419,45 @@ self-survey procedure.
 ----
 
 
+[#time-sync-snapshot]
+== `TimeSyncSnapshot`
+
+A `TimeSyncSnapshot` object describes the current estimate of whether the
+server clock is synchronized to the world clock.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`state` |yes |string |Current time synchronization state. One of `unknown`
+(unknown state), `sync` (the server clock is synchronized to the world clock),
+`unsync` (the server clock has a significant offset compared to the world
+clock) or `error` (all time sources reported an error, so the synchronization
+state cannot be determined).
+
+|`offset` |yes |float or `null` |Offset between the server clock and the world
+clock, in seconds; `null` if not known.
+
+|`source` |yes |string or `null` |Identifier of the time source that was used to
+find the offset; `null` if not known.
+
+|`jitter` |yes |float or `null` |Jitter of the time source that was used to find
+the offset; `null` if not known.
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "state": "sync",
+    "offset": 0.012,
+    "source": "ntp:time.google.com",
+    "jitter": 0.004
+}
+----
+
 == `TransportOptions`
 
 Object describing how a particular message should be delivered to a target UAV

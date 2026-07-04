@@ -22,7 +22,8 @@ export type HttpCollmotComSchemasFlockwave10NotificationBodyJson =
   | Notification_CONNDEL
   | Notification_OBJDEL
   | Notification_SYSCLOSE
-  | Notification_SYSMSG;
+  | Notification_SYSMSG
+  | Notification_TIMESYNCSTATUS;
 /**
  * Identifier of the receipt
  */
@@ -89,6 +90,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_SYSPORTS
   | Request_SYSTIME
   | Request_SYSVER
+  | Request_TIMESYNCSTATUS
   | Request_UAVCALIB
   | Request_UAVFLY
   | Request_UAVHALT
@@ -230,6 +232,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_SYSPORTS
   | Response_SYSTIME
   | Response_SYSVER
+  | Response_TIMESYNCSTATUS
   | Response_UAVCALIB
   | Response_UAVFLY
   | Response_UAVHALT
@@ -464,6 +467,32 @@ export interface LogMessage {
   timestamp?: number;
   sender?: ObjectID;
   severity?: Severity;
+  [k: string]: unknown;
+}
+export interface Notification_TIMESYNCSTATUS {
+  type: "TIMESYNC-STATUS";
+  status: TimeSyncSnapshot;
+}
+/**
+ * Snapshot of the time synchronization state of the server clock
+ */
+export interface TimeSyncSnapshot {
+  /**
+   * Current estimate of whether the server clock is synchronized to the world clock
+   */
+  state: "unknown" | "sync" | "unsync" | "error";
+  /**
+   * Offset between the server clock and the world clock, in seconds
+   */
+  offset: number | null;
+  /**
+   * Identifier of the time source used to determine the offset
+   */
+  source: string | null;
+  /**
+   * Jitter of the time source used to determine the offset
+   */
+  jitter: number | null;
   [k: string]: unknown;
 }
 export interface Request_ASYNCCANCEL {
@@ -889,6 +918,9 @@ export interface Request_SYSTIME {
 }
 export interface Request_SYSVER {
   type: "SYS-VER";
+}
+export interface Request_TIMESYNCSTATUS {
+  type: "TIMESYNC-STATUS";
 }
 export interface Request_UAVCALIB {
   type: "UAV-CALIB";
@@ -1683,6 +1715,10 @@ export interface Response_SYSVER {
   version: string;
   revision?: string;
   [k: string]: unknown;
+}
+export interface Response_TIMESYNCSTATUS {
+  type: "TIMESYNC-STATUS";
+  status: TimeSyncSnapshot;
 }
 export interface Response_UAVCALIB {
   type: "UAV-CALIB";
