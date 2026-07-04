@@ -5,9 +5,10 @@ Requires the ``fsatjsonschema`` module. You can install this with the
 ``validation`` extra.
 """
 
-import fastjsonschema
+from collections.abc import Callable
+from typing import Any
 
-from typing import Any, Callable
+import fastjsonschema
 
 from flockwave.spec.schema import Schema
 

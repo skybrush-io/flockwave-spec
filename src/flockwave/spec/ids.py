@@ -4,8 +4,6 @@ protocol is valid.
 
 import re
 
-from typing import Tuple
-
 MAX_OBJECT_ID_LENGTH = MAX_UAV_ID_LENGTH = 64
 
 
@@ -63,7 +61,7 @@ def make_valid_object_id(identifier: str) -> str:
     return identifier.replace("/", "-")
 
 
-def parse_user(identifier: str) -> Tuple[str, str]:
+def parse_user(identifier: str) -> tuple[str, str]:
     """Given an identifier that contains a username-domain pair, returns
     the username and the domain part separately.
 

@@ -1,7 +1,8 @@
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from flockwave.spec.schema import Schema
-from flockwave.spec.validator import create_validator_for_schema, ValidationError
+from flockwave.spec.validator import ValidationError, create_validator_for_schema
 
 __all__ = ("create_schema_validator",)
 

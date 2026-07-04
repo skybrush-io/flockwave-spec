@@ -4,17 +4,17 @@ This script checks whether a given JSON file contains a valid Flockwave
 message.
 """
 
-import click
 import json
 import os
 import sys
-
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Optional, Sequence
+
+import click
 
 from flockwave.spec.schema import get_message_body_schema
 
-from .validator import create_validator_for_schema, Validator, ValidationError
+from .validator import ValidationError, Validator, create_validator_for_schema
 
 
 def check_validity(
@@ -52,7 +52,7 @@ def check_validity(
 
 @click.command()
 @click.argument("name", nargs=-1, type=click.Path(exists=True))
-def validate(name: Optional[Sequence[str]] = None) -> None:
+def validate(name: Sequence[str] | None = None) -> None:
     """Validates the JSON message stored in the file with the given NAME to see
     if it is a valid Flockwave message. When omitted, the script will validate
     all ``.json`` files found in ``doc/modules/ROOT/examples``.
@@ -81,18 +81,18 @@ def validate(name: Optional[Sequence[str]] = None) -> None:
             num_objs = check_validity(fn, validator)
         except ValidationError:
             fn = click.format_filename(fn)
-            click.echo("{0} is not a valid Flockwave message.".format(fn))
+            click.echo(f"{fn} is not a valid Flockwave message.")
             click.echo("")
             raise
 
         if not compact_output:
             fn = click.format_filename(fn)
             if num_objs == 1:
-                click.echo("{0} is a valid Flockwave message.".format(fn))
+                click.echo(f"{fn} is a valid Flockwave message.")
             elif num_objs > 1:
-                click.echo("{0} contains valid Flockwave messages.".format(fn))
+                click.echo(f"{fn} contains valid Flockwave messages.")
             else:
-                click.echo("{0} contains no objects at all.".format(fn))
+                click.echo(f"{fn} contains no objects at all.")
 
     if compact_output:
         click.echo("All tested messages were valid.")

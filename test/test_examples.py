@@ -1,17 +1,16 @@
 import json
 import sys
-
 from pathlib import Path
+
 from pytest import fixture
 
 from flockwave.spec.schema import (
-    get_response_body_schema,
-    get_request_body_schema,
     get_notification_body_schema,
+    get_request_body_schema,
+    get_response_body_schema,
 )
 
 from .fixtures import create_schema_validator
-
 
 this_file = sys.modules[__name__].__file__
 assert this_file is not None

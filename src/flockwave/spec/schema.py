@@ -1,12 +1,12 @@
 """Flockwave protocol JSON schema related functions."""
 
 import json
-
 from enum import Enum
 from importlib.resources import open_text
+from typing import Any
+
 from jsonpointer import JsonPointer, resolve_pointer
 from jsonref import replace_refs
-from typing import Any, Dict, Optional, Union
 
 from .memoize import memoized
 
@@ -26,12 +26,12 @@ SCHEMA_PACKAGE = "flockwave.spec"
 FLOCKWAVE_SPEC_PREFIX = "http://collmot.com/schemas/flockwave/1.0"
 
 
-Schema = Dict[str, Any]
+Schema = dict[str, Any]
 """Type alias for schema objects"""
 
 
 @memoized
-def _get_json_object_from_resource(resource_path: str) -> Dict[str, Any]:
+def _get_json_object_from_resource(resource_path: str) -> dict[str, Any]:
     """Loads and parses a JSON object from the given resource path.
 
     This function is memoized.
@@ -50,7 +50,7 @@ def _get_json_object_from_resource(resource_path: str) -> Dict[str, Any]:
 @memoized
 def _get_schema_from_resource(
     resource_path: str,
-    json_pointer: Optional[Union[str, JsonPointer]] = None,
+    json_pointer: str | JsonPointer | None = None,
 ) -> Schema:
     """Loads and parses a JSON schema from the given resource path.
 
@@ -100,7 +100,7 @@ def get_complex_object_schema(name: str) -> Schema:
     return _get_schema_from_resource("definitions.json", "/" + name)
 
 
-def get_enum_from_schema(name: str, class_name: Optional[str] = None) -> Enum:
+def get_enum_from_schema(name: str, class_name: str | None = None) -> Enum:
     """Returns a Python enum class from the schema of the given Flockwave
     complex object, assuming that it describes an enum of strings.
 

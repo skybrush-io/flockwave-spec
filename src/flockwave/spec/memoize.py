@@ -11,17 +11,13 @@ Sakkis, licensed under the MIT license. It has been modified as follows:
   dependency on the 'decorator' module.
 """
 
+from collections.abc import Callable, MutableMapping
 from functools import partial, wraps
 from inspect import Parameter, signature
 from pickle import dumps
 from typing import (
     Any,
-    Callable,
-    Dict,
-    MutableMapping,
-    Optional,
     TypeVar,
-    Union,
     cast,
     overload,
 )
@@ -39,9 +35,9 @@ Cache = MutableMapping[Arg, T]
 def memoized(
     func: Callable[[], T],
     is_method: bool = False,
-    allow_named: Optional[bool] = None,
+    allow_named: bool | None = None,
     hashable: bool = True,
-    cache: Optional[Cache[Any, T]] = None,
+    cache: Cache[Any, T] | None = None,
 ) -> Callable[[], T]: ...
 
 
@@ -49,9 +45,9 @@ def memoized(
 def memoized(
     func: Callable[..., T],
     is_method: bool = False,
-    allow_named: Optional[bool] = None,
+    allow_named: bool | None = None,
     hashable: bool = True,
-    cache: Optional[Cache[Any, T]] = None,
+    cache: Cache[Any, T] | None = None,
 ) -> Callable[..., T]: ...
 
 
@@ -59,19 +55,19 @@ def memoized(
 def memoized(
     func: None,
     is_method: bool = False,
-    allow_named: Optional[bool] = None,
+    allow_named: bool | None = None,
     hashable: bool = True,
-    cache: Optional[Cache[Any, T]] = None,
+    cache: Cache[Any, T] | None = None,
 ) -> Callable[[Callable[..., T]], Callable[..., T]]: ...
 
 
 def memoized(
-    func: Optional[Callable[..., T]] = None,
+    func: Callable[..., T] | None = None,
     is_method: bool = False,
-    allow_named: Optional[bool] = None,
+    allow_named: bool | None = None,
     hashable: bool = True,
-    cache: Optional[Cache[Any, T]] = None,
-) -> Union[Callable[..., T], Callable[[Callable[..., T]], Callable[..., T]]]:
+    cache: Cache[Any, T] | None = None,
+) -> Callable[..., T] | Callable[[Callable[..., T]], Callable[..., T]]:
     """A generic efficient memoized decorator.
 
     Creates a memoizing decorator that decorates a function as efficiently as
@@ -210,7 +206,7 @@ def _fast_one_arg_memoized(func: Callable[[Arg], T]) -> Callable[[Arg], T]:
             self[key] = ret = func(key)
             return ret
 
-    cache = cast(Dict[Arg, T], memodict())
+    cache = cast(dict[Arg, T], memodict())
     return cache.__getitem__
 
 

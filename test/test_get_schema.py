@@ -1,12 +1,13 @@
+from pytest import mark
+
 from flockwave.spec.schema import (
     get_complex_object_schema,
-    get_message_schema,
     get_message_body_schema,
+    get_message_schema,
+    get_notification_body_schema,
     get_request_body_schema,
     get_response_body_schema,
-    get_notification_body_schema,
 )
-from pytest import mark
 
 
 def assert_looks_like_a_schema(schema):
