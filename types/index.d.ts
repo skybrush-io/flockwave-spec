@@ -88,6 +88,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_SHOWSETCFG
   | Request_SHOWLIGHTS
   | Request_SHOWSETLIGHTS
+  | Request_SHOWSUSPEND
   | Request_SYSPING
   | Request_SYSPORTS
   | Request_SYSTIME
@@ -233,6 +234,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_SHOWCRTHPLAN
   | Response_SHOWCRTHSTART
   | Response_SHOWLIGHTS
+  | Response_SHOWSUSPEND
   | Response_SYSPORTS
   | Response_SYSTIME
   | Response_SYSVER
@@ -950,6 +952,9 @@ export interface DroneLightsConfiguration {
    */
   color?: number[];
   [k: string]: unknown;
+}
+export interface Request_SHOWSUSPEND {
+  type: "SHOW-SUSPEND";
 }
 export interface Request_SYSPING {
   type: "SYS-PING";
@@ -1775,15 +1780,15 @@ export interface Response_SHOWCRTHSTART {
  */
 export interface TimeAxisScheduleSegment {
   /**
-   * Type of the time segment
+   * Type of the time axis segment
    */
   type: "preparation" | "rth" | "show" | "slowdown" | "speedup";
   /**
-   * Start time of the segment in milliseconds from show start
+   * Start time of the segment in milliseconds since the Unix epoch
    */
   startMs: number;
   /**
-   * End time of the segment. Integer in milliseconds, 'auto' if not yet calculated, or 'inf' if the segment runs indefinitely
+   * End time of the segment in milliseconds since the Unix epoch, 'auto' if not yet calculated, or 'inf' if the segment runs indefinitely
    */
   endMs: number | ("auto" | "inf");
   /**
@@ -1798,6 +1803,13 @@ export interface Response_SHOWLIGHTS {
   type: "SHOW-LIGHTS";
   configuration: DroneLightsConfiguration;
   [k: string]: unknown;
+}
+export interface Response_SHOWSUSPEND {
+  type: "SHOW-SUSPEND";
+  /**
+   * Time axis schedule of the show after the suspension was issued
+   */
+  schedule: TimeAxisScheduleSegment[];
 }
 export interface Response_SYSPORTS {
   type: "SYS-PORTS";

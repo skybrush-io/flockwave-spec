@@ -235,3 +235,36 @@ include::example$request_SHOW-SETLIGHTS.json[]
 ----
 include::example$response_ACK-ACK.json[]
 ----
+
+
+== `SHOW-SUSPEND` - Suspend a drone show
+
+A client sends this request to the server to suspend a running drone show.
+The response contains the time axis schedule of the show after the
+suspension was issued.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`schedule` |yes |array of xref:types.adoc#time-axis-schedule-segment[`TimeAxisScheduleSegment`] |Time axis schedule of the show after the suspension was initiated
+|===
+
+*Example request*
+
+[source,json]
+----
+include::example$request_SHOW-SUSPEND.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_SHOW-SUSPEND.json[]
+----

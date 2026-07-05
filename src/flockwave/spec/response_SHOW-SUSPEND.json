@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-SUSPEND"
+    },
+    "schedule": {
+      "description": "Time axis schedule of the show after the suspension was issued",
+      "type": "array",
+      "items": {
+        "$ref": "definitions.json#/timeAxisScheduleSegment"
+      }
+    }
+  },
+  "required": ["type", "schedule"],
+  "additionalProperties": false
+}

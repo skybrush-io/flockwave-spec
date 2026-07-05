@@ -144,6 +144,9 @@
       "$ref": "request_SHOW-SETLIGHTS.json#"
     },
     {
+      "$ref": "request_SHOW-SUSPEND.json#"
+    },
+    {
       "$ref": "request_SYS-PING.json#"
     },
     {

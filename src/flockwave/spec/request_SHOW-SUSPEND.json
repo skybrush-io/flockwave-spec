@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-SUSPEND"
+    }
+  },
+  "required": ["type"],
+  "additionalProperties": false
+}
