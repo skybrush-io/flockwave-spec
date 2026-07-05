@@ -5,6 +5,5 @@
       "const": "SHOW-CRTH-START"
     }
   },
-  "required": ["type"],
-  "additionalProperties": false
+  "required": ["type"]
 }

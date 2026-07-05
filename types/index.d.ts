@@ -891,9 +891,11 @@ export interface Request_SHOWCRTHPLAN {
    * Start time for the last collective RTH plan, relative to show start, in seconds
    */
   last_time?: number | null;
+  [k: string]: unknown;
 }
 export interface Request_SHOWCRTHSTART {
   type: "SHOW-CRTH-START";
+  [k: string]: unknown;
 }
 export interface Request_SHOWSETCFG {
   type: "SHOW-SETCFG";
@@ -938,6 +940,7 @@ export interface Request_SHOWLIGHTS {
 }
 export interface Request_SHOWRESUME {
   type: "SHOW-RESUME";
+  [k: string]: unknown;
 }
 export interface Request_SHOWSETLIGHTS {
   type: "SHOW-SETLIGHTS";
@@ -960,6 +963,7 @@ export interface DroneLightsConfiguration {
 }
 export interface Request_SHOWSUSPEND {
   type: "SHOW-SUSPEND";
+  [k: string]: unknown;
 }
 export interface Request_SYSPING {
   type: "SYS-PING";
@@ -1776,7 +1780,7 @@ export interface CollectiveRTHPlanStatisticsEntry {
 export interface Response_SHOWCRTHSTART {
   type: "SHOW-CRTH-START";
   /**
-   * Time axis schedule of a show after a time-axis-modifying request was issued, consisting of a list of segments
+   * Time axis schedule of a show, consisting of a list of segments (typically from the future only)
    */
   schedule: TimeAxisScheduleSegment[];
 }
@@ -1812,14 +1816,14 @@ export interface Response_SHOWLIGHTS {
 export interface Response_SHOWRESUME {
   type: "SHOW-RESUME";
   /**
-   * Time axis schedule of a show after a time-axis-modifying request was issued, consisting of a list of segments
+   * Time axis schedule of a show, consisting of a list of segments (typically from the future only)
    */
   schedule: TimeAxisScheduleSegment[];
 }
 export interface Response_SHOWSUSPEND {
   type: "SHOW-SUSPEND";
   /**
-   * Time axis schedule of a show after a time-axis-modifying request was issued, consisting of a list of segments
+   * Time axis schedule of a show, consisting of a list of segments (typically from the future only)
    */
   schedule: TimeAxisScheduleSegment[];
 }

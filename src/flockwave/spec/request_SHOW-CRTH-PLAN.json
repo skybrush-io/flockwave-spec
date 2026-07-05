@@ -41,6 +41,5 @@
       "type": ["integer", "null"]
     }
   },
-  "required": ["type", "show"],
-  "additionalProperties": false
+  "required": ["type", "show"]
 }

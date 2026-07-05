@@ -5,6 +5,5 @@
       "const": "SHOW-SUSPEND"
     }
   },
-  "required": ["type"],
-  "additionalProperties": false
+  "required": ["type"]
 }

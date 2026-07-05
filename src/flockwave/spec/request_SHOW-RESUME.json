@@ -5,6 +5,5 @@
       "const": "SHOW-RESUME"
     }
   },
-  "required": ["type"],
-  "additionalProperties": false
+  "required": ["type"]
 }
