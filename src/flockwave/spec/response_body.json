@@ -138,6 +138,9 @@
       "$ref": "response_SHOW-CRTH-PLAN.json#"
     },
     {
+      "$ref": "response_SHOW-CRTH-START.json#"
+    },
+    {
       "$ref": "response_SHOW-LIGHTS.json#"
     },
     {

@@ -1458,6 +1458,37 @@ the offset; `null` if not known.
 }
 ----
 
+[#time-axis-schedule-segment]
+== `TimeAxisScheduleSegment`
+
+A single segment of the time axis schedule of a show.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`type` |yes |string |Type of the time axis segment. One of `preparation`, `rth`, `show`, `slowdown` or `speedup`.
+
+|`startMs` |yes |integer |Start of the segment in world time seconds, relative to the Unix epoch.
+
+|`endMs` |yes |integer, `"auto"` or `"inf"` |End of the segment in world time seconds, relative to the Unix epoch. `"auto"` means the end time is not yet calculated and will be determined by the receiver. `"inf"` means the segment runs indefinitely.
+
+|`params` |no |object |Additional parameters for the segment.
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "type": "rth",
+    "startMs": 28000,
+    "endMs": 42000,
+    "params": {}
+}
+----
+
 [#collective-rth-plan-stat-entry]
 == `CollectiveRthPlanStatEntry`
 

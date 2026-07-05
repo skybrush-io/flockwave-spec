@@ -98,6 +98,40 @@ include::example$response_SHOW-CRTH-PLAN.json[]
 ----
 
 
+== `SHOW-CRTH-START` - Start collective return-to-home for a drone show
+
+A client sends this request to the server to start a collective RTH
+(return-to-home) operation for a drone show. The response contains the
+time axis schedule of the show after the collective RTH request was
+issued.
+
+*Request fields*
+
+This request has no fields.
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`schedule` |yes |array of xref:types.adoc#time-axis-schedule-segment[`TimeAxisScheduleSegment`] |Time axis schedule of the show after the collective RTH operation was initiated
+|===
+
+*Example request*
+
+[source,json]
+----
+include::example$request_SHOW-CRTH-START.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_SHOW-CRTH-START.json[]
+----
+
+
 == `SHOW-LIGHTS` - Retrieve the current configuration of the behaviour of the LED lights on the show drones
 
 A client sends this request to the server to obtain information about

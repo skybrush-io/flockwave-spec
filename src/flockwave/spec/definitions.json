@@ -1377,6 +1377,35 @@
     "required": ["state", "offset", "source", "jitter"]
   },
 
+  "timeAxisScheduleSegment": {
+    "title": "Time axis schedule segment",
+    "description": "A single segment of the time axis schedule of a show",
+    "type": "object",
+    "properties": {
+      "type": {
+        "description": "Type of the time axis segment",
+        "type": "string",
+        "enum": ["preparation", "rth", "show", "slowdown", "speedup"]
+      },
+      "startMs": {
+        "description": "Start time of the segment in milliseconds since the Unix epoch",
+        "type": "integer"
+      },
+      "endMs": {
+        "description": "End time of the segment in milliseconds since the Unix epoch, 'auto' if not yet calculated, or 'inf' if the segment runs indefinitely",
+        "anyOf": [
+          { "type": "integer" },
+          { "type": "string", "enum": ["auto", "inf"] }
+        ]
+      },
+      "params": {
+        "description": "Additional parameters for the segment",
+        "type": "object"
+      }
+    },
+    "required": ["type", "startMs", "endMs"]
+  },
+
   "transportOptions": {
     "title": "Transport options",
     "description": "Additional preferences about how the message should be delivered to UAVs",

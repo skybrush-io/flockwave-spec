@@ -84,6 +84,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_RTKSURVEY
   | Request_SHOWCFG
   | Request_SHOWCRTHPLAN
+  | Request_SHOWCRTHSTART
   | Request_SHOWSETCFG
   | Request_SHOWLIGHTS
   | Request_SHOWSETLIGHTS
@@ -230,6 +231,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_RTKSURVEY
   | Response_SHOWCFG
   | Response_SHOWCRTHPLAN
+  | Response_SHOWCRTHSTART
   | Response_SHOWLIGHTS
   | Response_SYSPORTS
   | Response_SYSTIME
@@ -885,6 +887,9 @@ export interface Request_SHOWCRTHPLAN {
    * Start time for the last collective RTH plan, relative to show start, in seconds
    */
   last_time?: number | null;
+}
+export interface Request_SHOWCRTHSTART {
+  type: "SHOW-CRTH-START";
 }
 export interface Request_SHOWSETCFG {
   type: "SHOW-SETCFG";
@@ -1756,6 +1761,37 @@ export interface CollectiveRTHPlanStatisticsEntry {
    * Total show duration including collective RTH and landing, in seconds
    */
   showDuration: number;
+  [k: string]: unknown;
+}
+export interface Response_SHOWCRTHSTART {
+  type: "SHOW-CRTH-START";
+  /**
+   * Time axis schedule of the show after the collective RTH request was issued
+   */
+  schedule: TimeAxisScheduleSegment[];
+}
+/**
+ * A single segment of the time axis schedule of a show
+ */
+export interface TimeAxisScheduleSegment {
+  /**
+   * Type of the time segment
+   */
+  type: "preparation" | "rth" | "show" | "slowdown" | "speedup";
+  /**
+   * Start time of the segment in milliseconds from show start
+   */
+  startMs: number;
+  /**
+   * End time of the segment. Integer in milliseconds, 'auto' if not yet calculated, or 'inf' if the segment runs indefinitely
+   */
+  endMs: number | ("auto" | "inf");
+  /**
+   * Additional parameters for the segment
+   */
+  params?: {
+    [k: string]: unknown;
+  };
   [k: string]: unknown;
 }
 export interface Response_SHOWLIGHTS {

@@ -1,0 +1,23 @@
+{
+  "type": "SHOW-CRTH-START",
+  "schedule": [
+    {
+      "type": "preparation",
+      "startMs": 1783232746643,
+      "endMs": 1783232756643,
+      "params": {}
+    },
+    {
+      "type": "slowdown",
+      "startMs": 1783232756643,
+      "endMs": 1783232766643,
+      "params": {}
+    },
+    {
+      "type": "rth",
+      "startMs": 1783232766643,
+      "endMs": 1783232886643,
+      "params": {}
+    }
+  ]
+}

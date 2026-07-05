@@ -132,6 +132,9 @@
       "$ref": "request_SHOW-CRTH-PLAN.json#"
     },
     {
+      "$ref": "request_SHOW-CRTH-START.json#"
+    },
+    {
       "$ref": "request_SHOW-SETCFG.json#"
     },
     {
