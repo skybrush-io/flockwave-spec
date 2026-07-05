@@ -87,7 +87,7 @@ For each field, determine:
 - Required or optional
 - Description
 
-**Ask ambiguities one at a time** — never batch multiple questions in a single message. Wait for the user's answer before asking the next one.
+**Ask exactly one question per message** — never batch multiple questions, never confirm-and-ask in the same message. Wait for the user's answer before sending the next message. This includes not mixing a confirmation with a follow-up question.
 
 **After each answer, confirm the question is fully resolved** before proceeding. If the user provides context or clarification (e.g., pasting Python code) instead of a direct answer, summarize your understanding and ask for confirmation: *"So `showDuration` is the same as `show_duration` in your code — a float in seconds? Correct?"* Do not assume and move on.
 
@@ -226,7 +226,7 @@ For custom types in `types.adoc`:
 uv run pytest --cov=src --cov-report=html -vv -s -x
 ```
 
-(Always run `npm run build` — TypeScript types are generated for all messages.)
+Always run `npm run build` **last**, after all fixes and schema changes are finalized and tests pass. Do not run it before the final iteration — if you have to fix a bug and re-run tests, re-run `npm run build` again after the fix.
 
 ## Reference
 
