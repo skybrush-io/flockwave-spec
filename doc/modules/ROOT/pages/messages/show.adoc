@@ -54,21 +54,21 @@ manner where drones return on collision-free paths.
 |Name |Required? |Type |Description
 |`show` |yes |string |Base64-encoded `.skyc` show file to generate collective RTH plans for
 
-|`preferred_distance` |no |float |Preferred distance between drones during collective RTH, in meters
+|`preferred_distance` |no |float |Preferred distance between drones during collective RTH, in meters. If not specified, a default value of 5 meters will be used.
 
-|`min_distance` |no |float |Minimum distance between drones in collective RTH plans, in meters
+|`min_distance` |no |float |Minimum distance between drones in collective RTH plans, in meters. If not specified, a default value of 3 meters will be used.
 
-|`velocity_xy` |no |float |Maximum horizontal velocity of drones during collective RTH, in m/s
+|`velocity_xy` |no |float |Maximum horizontal velocity of drones during collective RTH, in m/s. If not specified, a default value of 4 m/s will be used.
 
-|`velocity_z` |no |float |Maximum vertical velocity of drones during collective RTH, in m/s
+|`velocity_z` |no |float |Maximum vertical velocity of drones during collective RTH, in m/s. If not specified, a default value of 2 m/s will be used.
 
-|`acceleration` |no |float |Maximum acceleration of drones during collective RTH, in m/s²
+|`acceleration` |no |float |Maximum acceleration of drones during collective RTH, in m/s². If not specified, a default value of 4 m/s² will be used.
 
-|`time_resolution` |no |integer |Time interval between timestamps of the generated collective RTH plans, in seconds
+|`time_resolution` |no |integer |Time interval between timestamps of the generated collective RTH plans, in seconds. If not specified, a default value of 1 second will be used.
 
-|`first_time` |no |integer |Timestamp of the first collective RTH plan relative to show start, in seconds
+|`first_time` |no |integer |Timestamp of the first collective RTH plan relative to show start, in seconds. If not specified, the start of the show will be used.
 
-|`last_time` |no |integer |Timestamp of the last collective RTH plan relative to show start, in seconds
+|`last_time` |no |integer |Timestamp of the last collective RTH plan relative to show start, in seconds. If not specified, show segment end time will be used. If there is no show segment, the end of the show will be used.
 |===
 
 *Response fields*
