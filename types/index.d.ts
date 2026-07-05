@@ -87,6 +87,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_SHOWCRTHSTART
   | Request_SHOWSETCFG
   | Request_SHOWLIGHTS
+  | Request_SHOWRESUME
   | Request_SHOWSETLIGHTS
   | Request_SHOWSUSPEND
   | Request_SYSPING
@@ -234,6 +235,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_SHOWCRTHPLAN
   | Response_SHOWCRTHSTART
   | Response_SHOWLIGHTS
+  | Response_SHOWRESUME
   | Response_SHOWSUSPEND
   | Response_SYSPORTS
   | Response_SYSTIME
@@ -933,6 +935,9 @@ export interface StartConditions {
 }
 export interface Request_SHOWLIGHTS {
   type: "SHOW-LIGHTS";
+}
+export interface Request_SHOWRESUME {
+  type: "SHOW-RESUME";
 }
 export interface Request_SHOWSETLIGHTS {
   type: "SHOW-SETLIGHTS";
@@ -1771,7 +1776,7 @@ export interface CollectiveRTHPlanStatisticsEntry {
 export interface Response_SHOWCRTHSTART {
   type: "SHOW-CRTH-START";
   /**
-   * Time axis schedule of the show after the collective RTH request was issued
+   * Time axis schedule of a show after a time-axis-modifying request was issued, consisting of a list of segments
    */
   schedule: TimeAxisScheduleSegment[];
 }
@@ -1804,10 +1809,17 @@ export interface Response_SHOWLIGHTS {
   configuration: DroneLightsConfiguration;
   [k: string]: unknown;
 }
+export interface Response_SHOWRESUME {
+  type: "SHOW-RESUME";
+  /**
+   * Time axis schedule of a show after a time-axis-modifying request was issued, consisting of a list of segments
+   */
+  schedule: TimeAxisScheduleSegment[];
+}
 export interface Response_SHOWSUSPEND {
   type: "SHOW-SUSPEND";
   /**
-   * Time axis schedule of the show after the suspension was issued
+   * Time axis schedule of a show after a time-axis-modifying request was issued, consisting of a list of segments
    */
   schedule: TimeAxisScheduleSegment[];
 }

@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "type": {
-      "const": "SHOW-CRTH-START"
+      "const": "SHOW-RESUME"
     },
     "schedule": {
       "$ref": "definitions.json#/timeAxisSchedule"

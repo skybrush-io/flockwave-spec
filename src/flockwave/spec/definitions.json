@@ -1406,6 +1406,15 @@
     "required": ["type", "startMs", "endMs"]
   },
 
+  "timeAxisSchedule": {
+    "title": "Time axis schedule",
+    "description": "Time axis schedule of a show, consisting of a list of segments (typically from the future only)",
+    "type": "array",
+    "items": {
+      "$ref": "#/timeAxisScheduleSegment"
+    }
+  },
+
   "transportOptions": {
     "title": "Transport options",
     "description": "Additional preferences about how the message should be delivered to UAVs",

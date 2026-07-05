@@ -141,6 +141,9 @@
       "$ref": "request_SHOW-LIGHTS.json#"
     },
     {
+      "$ref": "request_SHOW-RESUME.json#"
+    },
+    {
       "$ref": "request_SHOW-SETLIGHTS.json#"
     },
     {
