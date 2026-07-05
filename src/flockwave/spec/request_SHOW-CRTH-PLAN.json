@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-CRTH-PLAN"
+    },
+    "show": {
+      "description": "Base64-encoded SkyC show file to generate collective RTH plans for",
+      "type": "string"
+    },
+    "preferred_distance": {
+      "description": "Preferred distance between drones during collective RTH, in meters",
+      "type": ["number", "null"]
+    },
+    "min_distance": {
+      "description": "Minimum distance between drones in collective RTH plans, in meters",
+      "type": ["number", "null"]
+    },
+    "velocity_xy": {
+      "description": "Maximum horizontal velocity of drones during collective RTH, in m/s",
+      "type": ["number", "null"]
+    },
+    "velocity_z": {
+      "description": "Maximum vertical velocity of drones during collective RTH, in m/s",
+      "type": ["number", "null"]
+    },
+    "acceleration": {
+      "description": "Maximum acceleration of drones during collective RTH, in m/s²",
+      "type": ["number", "null"]
+    },
+    "time_resolution": {
+      "description": "Time resolution of the collective RTH plans, in seconds",
+      "type": ["integer", "null"]
+    },
+    "first_time": {
+      "description": "Start time for the first collective RTH plan, relative to show start, in seconds",
+      "type": ["integer", "null"]
+    },
+    "last_time": {
+      "description": "Start time for the last collective RTH plan, relative to show start, in seconds",
+      "type": ["integer", "null"]
+    }
+  },
+  "required": ["type", "show"],
+  "additionalProperties": false
+}

@@ -135,6 +135,9 @@
       "$ref": "response_SHOW-CFG.json#"
     },
     {
+      "$ref": "response_SHOW-CRTH-PLAN.json#"
+    },
+    {
       "$ref": "response_SHOW-LIGHTS.json#"
     },
     {

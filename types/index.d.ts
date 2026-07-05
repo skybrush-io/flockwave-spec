@@ -83,6 +83,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_RTKSTAT
   | Request_RTKSURVEY
   | Request_SHOWCFG
+  | Request_SHOWCRTHPLAN
   | Request_SHOWSETCFG
   | Request_SHOWLIGHTS
   | Request_SHOWSETLIGHTS
@@ -228,6 +229,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_RTKSTAT
   | Response_RTKSURVEY
   | Response_SHOWCFG
+  | Response_SHOWCRTHPLAN
   | Response_SHOWLIGHTS
   | Response_SYSPORTS
   | Response_SYSTIME
@@ -844,6 +846,45 @@ export interface RTKSurveySettings {
 }
 export interface Request_SHOWCFG {
   type: "SHOW-CFG";
+}
+export interface Request_SHOWCRTHPLAN {
+  type: "SHOW-CRTH-PLAN";
+  /**
+   * Base64-encoded SkyC show file to generate collective RTH plans for
+   */
+  show: string;
+  /**
+   * Preferred distance between drones during collective RTH, in meters
+   */
+  preferred_distance?: number | null;
+  /**
+   * Minimum distance between drones in collective RTH plans, in meters
+   */
+  min_distance?: number | null;
+  /**
+   * Maximum horizontal velocity of drones during collective RTH, in m/s
+   */
+  velocity_xy?: number | null;
+  /**
+   * Maximum vertical velocity of drones during collective RTH, in m/s
+   */
+  velocity_z?: number | null;
+  /**
+   * Maximum acceleration of drones during collective RTH, in m/s²
+   */
+  acceleration?: number | null;
+  /**
+   * Time resolution of the collective RTH plans, in seconds
+   */
+  time_resolution?: number | null;
+  /**
+   * Start time for the first collective RTH plan, relative to show start, in seconds
+   */
+  first_time?: number | null;
+  /**
+   * Start time for the last collective RTH plan, relative to show start, in seconds
+   */
+  last_time?: number | null;
 }
 export interface Request_SHOWSETCFG {
   type: "SHOW-SETCFG";
@@ -1682,6 +1723,39 @@ export interface Response_RTKSURVEY {
 export interface Response_SHOWCFG {
   type: "SHOW-CFG";
   configuration: DroneShowConfiguration;
+  [k: string]: unknown;
+}
+export interface Response_SHOWCRTHPLAN {
+  type: "SHOW-CRTH-PLAN";
+  /**
+   * Base64-encoded SkyC show file with collective RTH plans appended
+   */
+  show: string;
+  /**
+   * Total duration of the show including collective RTH and landing, in seconds
+   */
+  showDuration: number;
+  /**
+   * List of collective RTH plan statistics
+   */
+  stats: CollectiveRTHPlanStatisticsEntry[];
+}
+/**
+ * Statistics about a single collective RTH plan in a show
+ */
+export interface CollectiveRTHPlanStatisticsEntry {
+  /**
+   * Start time of the collective RTH plan relative to show start, in seconds
+   */
+  time: number;
+  /**
+   * Duration of the collective RTH operation without landing, in seconds
+   */
+  duration: number;
+  /**
+   * Total show duration including collective RTH and landing, in seconds
+   */
+  showDuration: number;
   [k: string]: unknown;
 }
 export interface Response_SHOWLIGHTS {

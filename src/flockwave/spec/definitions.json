@@ -261,6 +261,27 @@
     "required": ["id", "retrievedAt", "running", "ticks"]
   },
 
+  "collectiveRthPlanStatEntry": {
+    "title": "Collective RTH plan statistics entry",
+    "description": "Statistics about a single collective RTH plan in a show",
+    "type": "object",
+    "properties": {
+      "time": {
+        "description": "Start time of the collective RTH plan relative to show start, in seconds",
+        "type": "number"
+      },
+      "duration": {
+        "description": "Duration of the collective RTH operation without landing, in seconds",
+        "type": "number"
+      },
+      "showDuration": {
+        "description": "Total show duration including collective RTH and landing, in seconds",
+        "type": "number"
+      }
+    },
+    "required": ["time", "duration", "showDuration"]
+  },
+
   "colorRGB565": {
     "title": "Color",
     "description": "Color in RGB565 representation",

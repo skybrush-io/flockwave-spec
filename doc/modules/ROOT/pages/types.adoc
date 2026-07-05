@@ -1458,6 +1458,34 @@ the offset; `null` if not known.
 }
 ----
 
+[#collective-rth-plan-stat-entry]
+== `CollectiveRthPlanStatEntry`
+
+Statistics about a single collective RTH (return-to-home) plan in a show.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`time` |yes |float |Start time of the collective RTH plan relative to show start, in seconds
+
+|`duration` |yes |float |Duration of the collective RTH operation without landing, in seconds
+
+|`showDuration` |yes |float |Total show duration including collective RTH and landing, in seconds
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "time": 14,
+    "duration": 0,
+    "showDuration": 34
+}
+----
+
 == `TransportOptions`
 
 Object describing how a particular message should be delivered to a target UAV

@@ -38,6 +38,66 @@ include::example$request_SHOW-CFG.json[]
 include::example$response_SHOW-CFG.json[]
 ----
 
+
+== `SHOW-CRTH-PLAN` - Generate collective return-to-home plans for a drone show
+
+A client sends a `.skyc` show file to the server and requests the generation of
+collective RTH (return-to-home) plans for it. These plans are alternative
+endings of a show at different timestamps that can be triggered adaptively
+on-site, allowing the operator to cancel the show mid-flight in an organized
+manner where drones return on collision-free paths.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`show` |yes |string |Base64-encoded `.skyc` show file to generate collective RTH plans for
+
+|`preferred_distance` |no |float |Preferred distance between drones during collective RTH, in meters
+
+|`min_distance` |no |float |Minimum distance between drones in collective RTH plans, in meters
+
+|`velocity_xy` |no |float |Maximum horizontal velocity of drones during collective RTH, in m/s
+
+|`velocity_z` |no |float |Maximum vertical velocity of drones during collective RTH, in m/s
+
+|`acceleration` |no |float |Maximum acceleration of drones during collective RTH, in m/s²
+
+|`time_resolution` |no |integer |Time interval between timestamps of the generated collective RTH plans, in seconds
+
+|`first_time` |no |integer |Timestamp of the first collective RTH plan relative to show start, in seconds
+
+|`last_time` |no |integer |Timestamp of the last collective RTH plan relative to show start, in seconds
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`show` |yes |string |Base64-encoded `.skyc` show file with the collective RTH plans appended
+
+|`showDuration` |yes |float |Total duration of the show including collective RTH and landing, in seconds
+
+|`stats` |yes |array of xref:types.adoc#collective-rth-plan-stat-entry[`CollectiveRthPlanStatEntry`] |Statistics about each generated collective RTH plan
+|===
+
+*Example request*
+
+[source,json]
+----
+include::example$request_SHOW-CRTH-PLAN.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_SHOW-CRTH-PLAN.json[]
+----
+
+
 == `SHOW-LIGHTS` - Retrieve the current configuration of the behaviour of the LED lights on the show drones
 
 A client sends this request to the server to obtain information about
