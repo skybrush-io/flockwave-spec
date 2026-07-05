@@ -100,9 +100,9 @@ Pacing:
 
 ---
 
-### Step 7 — Describe what will be created
+### Step 7 — Describe what will be created (MANDATORY)
 
-Summarize the files that will be created/modified and ask for confirmation before writing.
+Summarize the files that will be created/modified and **ask for confirmation before writing any changes**. Do not skip this step under any circumstances. Wait for the user's explicit "yes" or "proceed" before creating or editing any files.
 
 ---
 
