@@ -624,7 +624,7 @@
     "type": "string"
   },
 
-  "errorCodeList": {
+  "errorList": {
     "title": "List of errors",
     "description": "List of currently active error codes for a single UAV",
     "type": "array",
@@ -1703,7 +1703,7 @@
         "$ref": "#/rssi"
       },
       "errors": {
-        "$ref": "#/errorCodeList"
+        "$ref": "#/errorList"
       },
       "debug": {
         "type": "string"
