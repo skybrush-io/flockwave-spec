@@ -657,7 +657,7 @@
   },
 
   "extensionInfo": {
-    "title": "Clock info",
+    "title": "Extension info",
     "description": "Information about an extension",
     "type": "object",
     "properties": {
