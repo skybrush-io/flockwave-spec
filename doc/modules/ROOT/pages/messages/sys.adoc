@@ -38,7 +38,7 @@ include::example$notification_SYS-CLOSE.json[]
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`items` |yes |array of xref:types.adoc#_logmessage[`LogMessage`] |The array of messages to send
+|`items` |yes |array of xref:types.adoc#_logmessage[`LogMessage`] |The array of messages to send (must contain at least one item)
 |===
 
 *Example notification*
