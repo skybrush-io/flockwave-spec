@@ -1046,15 +1046,15 @@ export interface Request_SHOWCRTHPLAN {
    */
   acceleration?: number | null;
   /**
-   * Time resolution of the collective RTH plans, in seconds
+   * Time interval between timestamps of the generated collective RTH plans, in seconds
    */
   time_resolution?: number | null;
   /**
-   * Start time for the first collective RTH plan, relative to show start, in seconds
+   * Timestamp of the first collective RTH plan relative to show start, in seconds
    */
   first_time?: number | null;
   /**
-   * Start time for the last collective RTH plan, relative to show start, in seconds
+   * Timestamp of the last collective RTH plan relative to show start, in seconds
    */
   last_time?: number | null;
   [k: string]: unknown;
@@ -1123,8 +1123,11 @@ export interface DroneLightsConfiguration {
   effect?: string;
   /**
    * Color of the light effect in RGB notations. Values in the array must be between 0 and 255, inclusive.
+   *
+   * @minItems 3
+   * @maxItems 3
    */
-  color?: number[];
+  color?: [number, number, number];
   [k: string]: unknown;
 }
 export interface Request_SHOWSUSPEND {
@@ -1140,6 +1143,9 @@ export interface Request_SYSPORTS {
 }
 export interface Request_SYSTIME {
   type: "SYS-TIME";
+  /**
+   * The number of milliseconds that the clock of the server should be forwarded by.
+   */
   adjustment?: number;
 }
 export interface Request_SYSVER {
@@ -1587,14 +1593,14 @@ export interface Response_EXTCFG {
 export interface Response_EXTINF {
   type: "EXT-INF";
   status?: {
-    [k: string]: ClockInfo1;
+    [k: string]: ExtensionInfo;
   };
   error?: ErrorMap;
 }
 /**
  * Information about an extension
  */
-export interface ClockInfo1 {
+export interface ExtensionInfo {
   id: ExtensionID;
   loaded: boolean;
   name: string;
@@ -1935,7 +1941,7 @@ export interface Response_SHOWCRTHPLAN {
    */
   showDuration: number;
   /**
-   * List of collective RTH plan statistics
+   * Statistics about each generated collective RTH plan
    */
   stats: CollectiveRTHPlanStatisticsEntry[];
 }
@@ -2020,17 +2026,29 @@ export interface ServicePortMap {
 }
 export interface Response_SYSTIME {
   type: "SYS-TIME";
+  /**
+   * The current UNIX timestamp on the server in milliseconds
+   */
   timestamp: number;
   [k: string]: unknown;
 }
 export interface Response_SYSVER {
   type: "SYS-VER";
+  /**
+   * The name of the server
+   */
   name?: string;
+  /**
+   * The name of the server implementation
+   */
   software: string;
   /**
    * Version number in major.minor.patch format; minor and patch versions are optional
    */
   version: string;
+  /**
+   * The revision number of the server, if known
+   */
   revision?: string;
   [k: string]: unknown;
 }
