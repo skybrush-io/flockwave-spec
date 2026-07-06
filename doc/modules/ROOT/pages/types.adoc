@@ -1903,6 +1903,8 @@ response fields; only the position and the timestamp are mandatory.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
+|stationId |no |string |Identifier of the weather station that provided the data
+
 |position |yes |<<_gpscoordinate,GPSCoordinate>> |GPS coordinate that the weather object refers to
 |timestamp |yes |<<_timestamps,timestamp>> |Time that the weather object refers to
 |code |no |integer |https://openweathermap.org/weather-conditions[OpenWeatherMap weather condition code]
