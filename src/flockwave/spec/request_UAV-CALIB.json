@@ -14,5 +14,5 @@
       "type": "object"
     }
   },
-  "required": ["type", "ids"]
+  "required": ["type", "ids", "component"]
 }
