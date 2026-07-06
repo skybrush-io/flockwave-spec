@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-CRTH-PLAN"
+    },
+    "show": {
+      "description": "Base64-encoded `.skyc` show file with collective RTH plans appended",
+      "type": "string"
+    },
+    "showDuration": {
+      "description": "Total duration of the show including collective RTH and landing, in seconds",
+      "type": "number"
+    },
+    "stats": {
+      "description": "List of collective RTH plan statistics",
+      "type": "array",
+      "items": {
+        "$ref": "definitions.json#/collectiveRthPlanStatEntry"
+      }
+    }
+  },
+  "required": ["type", "show", "showDuration", "stats"],
+  "additionalProperties": false
+}

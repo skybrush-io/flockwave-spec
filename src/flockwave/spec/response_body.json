@@ -132,10 +132,25 @@
       "$ref": "response_RTK-SURVEY.json#"
     },
     {
+      "$ref": "response_SHOW-ADAPT.json#"
+    },
+    {
       "$ref": "response_SHOW-CFG.json#"
     },
     {
+      "$ref": "response_SHOW-CRTH-PLAN.json#"
+    },
+    {
+      "$ref": "response_SHOW-CRTH-START.json#"
+    },
+    {
       "$ref": "response_SHOW-LIGHTS.json#"
+    },
+    {
+      "$ref": "response_SHOW-RESUME.json#"
+    },
+    {
+      "$ref": "response_SHOW-SUSPEND.json#"
     },
     {
       "$ref": "response_SYS-PORTS.json#"

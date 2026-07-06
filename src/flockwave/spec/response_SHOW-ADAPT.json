@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-ADAPT"
+    },
+    "show": {
+      "description": "Base64-encoded .skyc show file with adapted takeoff and RTH segments",
+      "type": "string"
+    },
+    "takeoffLengthChange": {
+      "description": "Change in the length of the takeoff segment compared to the original show file, in seconds",
+      "type": "number"
+    },
+    "rthLengthChange": {
+      "description": "Change in the length of the RTH segment compared to the original show file, in seconds",
+      "type": "number"
+    },
+    "reason": {
+      "description": "Explanation of why the show adaptation failed, if applicable",
+      "type": "string"
+    }
+  },
+  "required": ["type", "show", "takeoffLengthChange", "rthLengthChange"],
+  "additionalProperties": false
+}

@@ -126,7 +126,16 @@
       "$ref": "request_RTK-SURVEY.json#"
     },
     {
+      "$ref": "request_SHOW-ADAPT.json#"
+    },
+    {
       "$ref": "request_SHOW-CFG.json#"
+    },
+    {
+      "$ref": "request_SHOW-CRTH-PLAN.json#"
+    },
+    {
+      "$ref": "request_SHOW-CRTH-START.json#"
     },
     {
       "$ref": "request_SHOW-SETCFG.json#"
@@ -135,7 +144,13 @@
       "$ref": "request_SHOW-LIGHTS.json#"
     },
     {
+      "$ref": "request_SHOW-RESUME.json#"
+    },
+    {
       "$ref": "request_SHOW-SETLIGHTS.json#"
+    },
+    {
+      "$ref": "request_SHOW-SUSPEND.json#"
     },
     {
       "$ref": "request_SYS-PING.json#"

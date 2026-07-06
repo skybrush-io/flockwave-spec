@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-RESUME"
+    },
+    "schedule": {
+      "$ref": "definitions.json#/timeAxisSchedule"
+    }
+  },
+  "required": ["type", "schedule"],
+  "additionalProperties": false
+}

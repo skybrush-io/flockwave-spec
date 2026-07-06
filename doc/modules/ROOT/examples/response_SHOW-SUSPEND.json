@@ -1,0 +1,17 @@
+{
+  "type": "SHOW-SUSPEND",
+  "schedule": [
+    {
+      "type": "preparation",
+      "startMs": 1783232746643,
+      "endMs": 1783232756643,
+      "params": {}
+    },
+    {
+      "type": "slowdown",
+      "startMs": 1783232756643,
+      "endMs": 1783232761643,
+      "params": {}
+    }
+  ]
+}
