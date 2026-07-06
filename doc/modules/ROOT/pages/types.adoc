@@ -378,24 +378,23 @@ command that was relayed from a client to a UAV by the server.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|sent |yes |<<_timestamps,timestamp>> |time when the command
-request was sent to the UAV
+|`id` |yes |<<_receiptid,`ReceiptId`>> |Identifier of the command execution
 
-|acknowledged |no |<<_timestamps,timestamp>> |time when the UAV
-acknowledged the receipt of the request (explicitly or implicitly,
-i.e. by sending a status update or a response)
+|`created_at` |yes |<<_timestamps,timestamp>> |Timestamp when the command execution was created
 
-|updated |no |<<_timestamps,timestamp>> |time when the UAV updated
-the progress of the request (explicitly or implicitly, i.e. by sending
-the completed response)
+|`client_notified` |no |<<_timestamps,timestamp>> |Timestamp when the client was notified about the result
 
-|finished |no |<<_timestamps,timestamp>> |time when the final
-response was fully received by the server
+|`error` |no |string |Error message if the command execution failed
 
-|progress |no |float |the progress of the execution of the command,
-expressed as an integer value between 0 and 100 (inclusive)
+|`result` |no |any |Result of the command execution
 
-|status |no |string |optional status text message
+|`sent` |no |<<_timestamps,timestamp>> |Timestamp when the command was sent to the UAV
+
+|`finished` |no |<<_timestamps,timestamp>> |Timestamp when the command execution finished
+
+|`cancelled` |no |<<_timestamps,timestamp>> |Timestamp when the command execution was cancelled
+
+|`progress` |no |xref:#_progress[`Progress`] |Progress of the command execution
 |===
 
 *Example*
@@ -403,11 +402,13 @@ expressed as an integer value between 0 and 100 (inclusive)
 [source,json]
 ----
 {
+    "id": "abc123",
+    "created_at": 1459670842000,
     "sent": 1459670842000,
-    "acknowledged": 1459670842471,
-    "updated": 1459670842811,
-    "progress": 80,
-    "status": "Almost ready :)"
+    "finished": 1459670842811,
+    "progress": {
+        "percentage": 100
+    }
 }
 ----
 
