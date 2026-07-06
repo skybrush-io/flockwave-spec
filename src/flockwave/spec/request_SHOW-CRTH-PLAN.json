@@ -5,7 +5,7 @@
       "const": "SHOW-CRTH-PLAN"
     },
     "show": {
-      "description": "Base64-encoded SkyC show file to generate collective RTH plans for",
+      "description": "Base64-encoded `.skyc` show file to generate collective RTH plans for",
       "type": "string"
     },
     "preferred_distance": {

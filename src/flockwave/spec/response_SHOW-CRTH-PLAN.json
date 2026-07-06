@@ -5,7 +5,7 @@
       "const": "SHOW-CRTH-PLAN"
     },
     "show": {
-      "description": "Base64-encoded SkyC show file with collective RTH plans appended",
+      "description": "Base64-encoded `.skyc` show file with collective RTH plans appended",
       "type": "string"
     },
     "showDuration": {

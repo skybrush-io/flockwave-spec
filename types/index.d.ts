@@ -1022,7 +1022,7 @@ export interface Request_SHOWCFG {
 export interface Request_SHOWCRTHPLAN {
   type: "SHOW-CRTH-PLAN";
   /**
-   * Base64-encoded SkyC show file to generate collective RTH plans for
+   * Base64-encoded `.skyc` show file to generate collective RTH plans for
    */
   show: string;
   /**
@@ -1932,7 +1932,7 @@ export interface Response_SHOWCFG {
 export interface Response_SHOWCRTHPLAN {
   type: "SHOW-CRTH-PLAN";
   /**
-   * Base64-encoded SkyC show file with collective RTH plans appended
+   * Base64-encoded `.skyc` show file with collective RTH plans appended
    */
   show: string;
   /**
