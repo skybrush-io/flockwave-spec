@@ -1154,10 +1154,7 @@ export interface Request_UAVCALIB {
    * IDs of the UAVs that the message refers to
    */
   ids: ObjectID[];
-  component?: string;
-  parameters?: {
-    [k: string]: unknown;
-  };
+  component: string;
   [k: string]: unknown;
 }
 export interface Request_UAVFLY {
@@ -1202,6 +1199,7 @@ export interface Request_UAVHOVER {
    * IDs of the UAVs that the message refers to
    */
   ids: ObjectID[];
+  transport?: TransportOptions;
   [k: string]: unknown;
 }
 export interface Request_UAVINF {
@@ -1277,8 +1275,8 @@ export interface Request_UAVSIGNAL {
    * IDs of the UAVs that the message refers to
    */
   ids: ObjectID[];
-  signals?: string[];
-  duration?: number;
+  signals: string[];
+  duration: number;
   transport?: TransportOptions;
   [k: string]: unknown;
 }
@@ -1306,10 +1304,7 @@ export interface Request_UAVTEST {
    * IDs of the UAVs that the message refers to
    */
   ids: ObjectID[];
-  component?: string;
-  parameters?: {
-    [k: string]: unknown;
-  };
+  component: string;
   [k: string]: unknown;
 }
 export interface Request_UAVVER {
