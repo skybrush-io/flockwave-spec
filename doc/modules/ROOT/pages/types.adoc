@@ -696,7 +696,7 @@ for the LED lights on drones.
 (GCS is not controlling the LED lights on the drones) or `solid`
 (GCS is asking the drones to use a solid LED light).
 
-|color |no | list of integers |
+|color |no | array of 3 integers |
 Color of the light effect in RGB notations. Values in the array must be between 0 and 255, inclusive.
 |===
 

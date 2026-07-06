@@ -585,8 +585,12 @@
       "color": {
         "type": "array",
         "description": "Color of the light effect in RGB notations. Values in the array must be between 0 and 255, inclusive.",
+        "minItems": 3,
+        "maxItems": 3,
         "items": {
-          "type": "number"
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
         }
       }
     }
