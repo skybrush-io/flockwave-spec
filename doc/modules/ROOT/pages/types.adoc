@@ -1472,7 +1472,7 @@ show. Used by the `SHOW-ADAPT` command.
 |`min_distance` |no |float |Minimum distance to keep between drones during multi-layer takeoff and transition to the first formation, in meters. If not specified, the configured validation setting will be used.
 |`velocity_xy` |no |float |The horizontal speed to use towards the first formation, in m/s. Default is 5 m/s.
 |`velocity_z` |no |float |The vertical speed to use during takeoff and towards the first formation, in m/s. Default value is 1.5 m/s.
-|`altitude` |no |float |The takeoff height of the last (lowest) layer before any horizontal motion is planned, in meters. Default value is 10 m/s.
+|`altitude` |no |float |The takeoff height of the last (lowest) layer before any horizontal motion is planned, in meters. Default value is 10 m.
 |`replace` |no |boolean |Whether to replace the existing takeoff segment if the show segment is defined. Default: false
 |===
 
