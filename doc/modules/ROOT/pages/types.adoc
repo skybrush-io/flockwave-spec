@@ -924,8 +924,8 @@ Trailing nulls may be omitted.
 [cols="1,1,1,7",options="header",]
 |===
 |Index |Required? |Type |Description
-|0 |yes |integer |The latitude, in 10^-7^ degrees, in the range [-90 × 10^7^, 90 × 10^7^)
-|1 |yes |integer |The longitude, in 10^-7^ degrees, in the range [-180 × 10^7^,180 × 10^7^)
+|0 |yes |integer |The latitude, in 10^-7^ degrees, in the range [-90 × 10^7^, 90 × 10^7^]
+|1 |yes |integer |The longitude, in 10^-7^ degrees, in the range [-180 × 10^7^, 180 × 10^7^]
 |2 |no |integer |The altitude, in millimeters, above mean sea level
 |3 |no |integer |The altitude, in millimeters, above home level
 |4 |no |integer |The altitude, in millimeters, above ground level
