@@ -584,6 +584,8 @@ board).
 `radio`:: The device is a radio receiver or transmitter (e.g., an XBee
 radio).
 
+`rangefinder`:: The device is a rangefinder (e.g., a laser or sonic range finder).
+
 `rc`:: The device is an RC receiver.
 
 `rotor`:: The device is a rotor.
@@ -592,6 +594,8 @@ radio).
 more precisely into any of the other classes.
 
 `speaker`:: The device is a speaker.
+
+`sprayer`:: The device is a sprayer (e.g., a crop sprayer).
 
 == `DeviceTreeNode`
 
