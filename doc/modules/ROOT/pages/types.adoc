@@ -1132,9 +1132,9 @@ The object is stored as a list with three mandatory items.
 [cols="1,1,1,7",options="header",]
 |===
 |Index |Required? |Type |Description
-|0 |yes |number |The X component of the position vector, in mm
-|1 |yes |number |The Y component of the position vector, in mm
-|2 |yes |number |The Z component of the position vector, in mm
+|0 |yes |integer |The X component of the position vector, in mm
+|1 |yes |integer |The Y component of the position vector, in mm
+|2 |yes |integer |The Z component of the position vector, in mm
 |===
 
 *Example*
