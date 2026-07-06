@@ -1104,7 +1104,7 @@ The object is indexed by the message types sent by the RTK base.
 |===
 |Index |Required? |Type |Description
 |0 |yes |int |The age of the last observation, in integer milliseconds
-|1 |yes |int |The average bitrate of the message stream in the last 10 seconds, in bits per second
+|1 |yes |float |The average bitrate of the message stream in the last 10 seconds, in bits per second
 |===
 
 *Example*
