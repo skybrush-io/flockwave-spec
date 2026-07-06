@@ -126,6 +126,9 @@
       "$ref": "request_RTK-SURVEY.json#"
     },
     {
+      "$ref": "request_SHOW-ADAPT.json#"
+    },
+    {
       "$ref": "request_SHOW-CFG.json#"
     },
     {

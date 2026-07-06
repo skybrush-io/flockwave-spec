@@ -911,6 +911,70 @@
     "required": ["type"]
   },
 
+  "lightEffectConfiguration": {
+    "title": "Light effect configuration",
+    "description": "Configuration of the LED light effect on the show drones",
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "default" },
+          "brightness": {
+            "title": "Brightness",
+            "description": "Brightness in the [0, 1] interval",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": ["type"]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "off" }
+        },
+        "required": ["type"]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "original" }
+        },
+        "required": ["type"]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "solid" },
+          "color": {
+            "title": "Color",
+            "description": "The solid color to use, according to the CSS3 Color Module Level 3 specification (named strings, hex strings, and RGB tuples are accepted)",
+            "type": "string"
+          }
+        },
+        "required": ["type"]
+      },
+      {
+        "type": "object",
+        "properties": {
+          "type": { "const": "sparks" },
+          "color": {
+            "title": "Color",
+            "description": "The spark color, according to the CSS3 Color Module Level 3 specification (named strings, hex strings, and RGB tuples are accepted)",
+            "type": "string"
+          },
+          "off_duration": {
+            "title": "Off duration",
+            "description": "Duration of the off period between sparks, in seconds",
+            "type": "number"
+          }
+        },
+        "required": ["type"]
+      }
+    ]
+  },
+
   "logMessage": {
     "title": "Log message",
     "description": "A single log message sent from the server to the client",
@@ -1167,6 +1231,49 @@
     }
   },
 
+  "rthTransformationParameters": {
+    "title": "RTH transformation parameters",
+    "description": "Parameters for adapting the RTH (return-to-home) segment of the drone show",
+    "type": "object",
+    "properties": {
+      "method": {
+        "description": "The RTH method to use. Accepted values: 'plain' (brings the drones to the possibly layered floating grid of the end of their takeoff positions with a collectively optimal transition, _not_ preserving individual home positions. A final integrated land phase follows), 'smart' (brings the drones to their individual home positions, while avoiding drones being closer to each other than the minimum distance threshold thoughout the entire RTH and its final integrated land phase). Default: 'smart'",
+        "type": "string",
+        "enum": ["plain", "smart"]
+      },
+      "lights": {
+        "description": "Light effect configuration for the drones during RTH, or a brightness value in the [0, 1] interval to use with the default light configuration",
+        "anyOf": [
+          { "$ref": "#/lightEffectConfiguration" },
+          { "type": "number", "minimum": 0, "maximum": 1 }
+        ]
+      },
+      "min_distance": {
+        "description": "Minimum distance to keep between drones during RTH, in meters. If not specified, the configured validation setting will be used.",
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "velocity_xy": {
+        "description": "The horizontal RTH speed to use, in m/s. Default value is 5 m/s.",
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "velocity_z": {
+        "description": "The vertical RTH and land speed to use, in m/s. Default value is 2 m/s.",
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "altitude": {
+        "description": "The altitude of the smart RTH from where vertical land is called, in meters. If not specified, the minimum navigation altitude will be used as a default.",
+        "type": "number"
+      },
+      "replace": {
+        "description": "Whether to replace the existing RTH and land segment if the show segment is defined. Default: false",
+        "type": "boolean"
+      }
+    }
+  },
+
   "rtkConfigurationPreset": {
     "title": "RTK configuration preset",
     "description": "Information about an RTK preset",
@@ -1313,6 +1420,18 @@
     "enum": ["debug", "info", "warning", "error", "critical"]
   },
 
+  "shiftTransformationParameters": {
+    "title": "Shift transformation parameters",
+    "description": "Parameters for shifting the altitude of the show segment",
+    "type": "object",
+    "properties": {
+      "z": {
+        "description": "Vertical shift to apply to the show segment, in meters",
+        "type": "number"
+      }
+    }
+  },
+
   "startConditions": {
     "type": "object",
     "properties": {
@@ -1349,6 +1468,69 @@
   "stringMap": {
     "type": "object",
     "additionalProperties": { "type": "string" }
+  },
+
+  "takeoffTransformationParameters": {
+    "title": "Takeoff transformation parameters",
+    "description": "Parameters for adapting the takeoff segment of the drone show",
+    "type": "object",
+    "properties": {
+      "positions": {
+        "description": "Explicit takeoff positions to use, as [x, y, z] coordinates in meters relative to the show origin. If empty, original takeoff positions of drones will be used instead.",
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": { "type": "number" }
+            },
+            { "type": "null" }
+          ]
+        }
+      },
+      "duration": {
+        "description": "Optional overall duration of the transformation to set, in seconds",
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "method": {
+        "description": "The takeoff method to use. Accepted values: 'layered' (takeoff to a floating grid from original takeoff positions or explicit positions provided, then morph to the first formation of the show), 'organic' (takeoff with a reversed smart RTH procedure, that provides an organic look and also preserves mapping between takeoff and formation positions). If not specified, it will be inferred from other parameters.",
+        "type": "string",
+        "enum": ["layered", "organic"]
+      },
+      "lights": {
+        "description": "Light effect configuration for the drones during takeoff, or a brightness value in the [0, 1] interval to use with the default light configuration",
+        "anyOf": [
+          { "$ref": "#/lightEffectConfiguration" },
+          { "type": "number", "minimum": 0, "maximum": 1 }
+        ]
+      },
+      "min_distance": {
+        "description": "Minimum distance to keep between drones during multi-layer takeoff and transition to the first formation, in meters. If not specified, the configured validation setting will be used.",
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "velocity_xy": {
+        "description": "The horizontal speed to use towards the first formation, in m/s. Default is 5 m/s.",
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "velocity_z": {
+        "description": "The vertical speed to use during takeoff and towards the first formation, in m/s. Default value is 1.5 m/s.",
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "altitude": {
+        "description": "The takeoff height of the last (lowest) layer before any horizontal motion is planned, in meters. Default value is 10 m/s.",
+        "type": "number"
+      },
+      "replace": {
+        "description": "Whether to replace the existing takeoff segment if the show segment is defined. Default: false",
+        "type": "boolean"
+      }
+    }
   },
 
   "timeSyncSnapshot": {

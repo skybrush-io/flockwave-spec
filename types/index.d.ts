@@ -82,6 +82,7 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_RTKSOURCE
   | Request_RTKSTAT
   | Request_RTKSURVEY
+  | Request_SHOWADAPT
   | Request_SHOWCFG
   | Request_SHOWCRTHPLAN
   | Request_SHOWCRTHSTART
@@ -154,9 +155,45 @@ export type MessageSet = "msm4" | "msm7";
  */
 export type ECEFCoordinate = [number, number, number];
 /**
- * Scope of the show authorization
+ * Configuration of the LED light effect on the show drones
  */
-export type AuthorizationScope = "none" | "live" | "rehearsal" | "lights";
+export type LightEffectConfiguration =
+  | {
+      type: "default";
+      /**
+       * Brightness in the [0, 1] interval
+       */
+      brightness?: number;
+      [k: string]: unknown;
+    }
+  | {
+      type: "off";
+      [k: string]: unknown;
+    }
+  | {
+      type: "original";
+      [k: string]: unknown;
+    }
+  | {
+      type: "solid";
+      /**
+       * The solid color to use, according to the CSS3 Color Module Level 3 specification (named strings, hex strings, and RGB tuples are accepted)
+       */
+      color?: string;
+      [k: string]: unknown;
+    }
+  | {
+      type: "sparks";
+      /**
+       * The spark color, according to the CSS3 Color Module Level 3 specification (named strings, hex strings, and RGB tuples are accepted)
+       */
+      color?: string;
+      /**
+       * Duration of the off period between sparks, in seconds
+       */
+      off_duration?: number;
+      [k: string]: unknown;
+    };
 /**
  * GPS coordinate of an object
  *
@@ -187,6 +224,10 @@ export type AHL = number | null;
  * Altitude above ground level, in millimeters
  */
 export type AGL = number | null;
+/**
+ * Scope of the show authorization
+ */
+export type AuthorizationScope = "none" | "live" | "rehearsal" | "lights";
 export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_ACKACK
   | Response_ACKNAK
@@ -231,6 +272,7 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_RTKSOURCE
   | Response_RTKSTAT
   | Response_RTKSURVEY
+  | Response_SHOWADAPT
   | Response_SHOWCFG
   | Response_SHOWCRTHPLAN
   | Response_SHOWCRTHSTART
@@ -848,6 +890,130 @@ export interface RTKSurveySettings {
   messageSet?: MessageSet;
   position?: ECEFCoordinate;
   gnssTypes?: ("gps" | "glonass" | "galileo" | "sbas" | "qzss" | "beidou" | "irnss")[];
+  [k: string]: unknown;
+}
+export interface Request_SHOWADAPT {
+  type: "SHOW-ADAPT";
+  /**
+   * Base64-encoded .skyc show file to adapt
+   */
+  show: string;
+  /**
+   * List of transformations to apply to the show
+   */
+  transformations: (
+    | {
+        type: "takeoff";
+        parameters: TakeoffTransformationParameters;
+        [k: string]: unknown;
+      }
+    | {
+        type: "rth";
+        parameters: RTHTransformationParameters;
+        [k: string]: unknown;
+      }
+    | {
+        type: "shift";
+        parameters: ShiftTransformationParameters;
+        [k: string]: unknown;
+      }
+  )[];
+  environment: {
+    location: {
+      origin: GPSCoordinate;
+      /**
+       * Orientation of the show coordinate system relative to true north, in degrees
+       */
+      orientation: number;
+    };
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+/**
+ * Parameters for adapting the takeoff segment of the drone show
+ */
+export interface TakeoffTransformationParameters {
+  /**
+   * Explicit takeoff positions to use, as [x, y, z] coordinates in meters relative to the show origin. If empty, original takeoff positions of drones will be used instead.
+   */
+  positions?: ([number, number, number] | null)[];
+  /**
+   * Optional overall duration of the transformation to set, in seconds
+   */
+  duration?: number;
+  /**
+   * The takeoff method to use. Accepted values: 'layered' (takeoff to a floating grid from original takeoff positions or explicit positions provided, then morph to the first formation of the show), 'organic' (takeoff with a reversed smart RTH procedure, that provides an organic look and also preserves mapping between takeoff and formation positions). If not specified, it will be inferred from other parameters.
+   */
+  method?: "layered" | "organic";
+  /**
+   * Light effect configuration for the drones during takeoff, or a brightness value in the [0, 1] interval to use with the default light configuration
+   */
+  lights?: LightEffectConfiguration | number;
+  /**
+   * Minimum distance to keep between drones during multi-layer takeoff and transition to the first formation, in meters. If not specified, the configured validation setting will be used.
+   */
+  min_distance?: number;
+  /**
+   * The horizontal speed to use towards the first formation, in m/s. Default is 5 m/s.
+   */
+  velocity_xy?: number;
+  /**
+   * The vertical speed to use during takeoff and towards the first formation, in m/s. Default value is 1.5 m/s.
+   */
+  velocity_z?: number;
+  /**
+   * The takeoff height of the last (lowest) layer before any horizontal motion is planned, in meters. Default value is 10 m/s.
+   */
+  altitude?: number;
+  /**
+   * Whether to replace the existing takeoff segment if the show segment is defined. Default: false
+   */
+  replace?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Parameters for adapting the RTH (return-to-home) segment of the drone show
+ */
+export interface RTHTransformationParameters {
+  /**
+   * The RTH method to use. Accepted values: 'plain' (brings the drones to the possibly layered floating grid of the end of their takeoff positions with a collectively optimal transition, _not_ preserving individual home positions. A final integrated land phase follows), 'smart' (brings the drones to their individual home positions, while avoiding drones being closer to each other than the minimum distance threshold thoughout the entire RTH and its final integrated land phase). Default: 'smart'
+   */
+  method?: "plain" | "smart";
+  /**
+   * Light effect configuration for the drones during RTH, or a brightness value in the [0, 1] interval to use with the default light configuration
+   */
+  lights?: LightEffectConfiguration | number;
+  /**
+   * Minimum distance to keep between drones during RTH, in meters. If not specified, the configured validation setting will be used.
+   */
+  min_distance?: number;
+  /**
+   * The horizontal RTH speed to use, in m/s. Default value is 5 m/s.
+   */
+  velocity_xy?: number;
+  /**
+   * The vertical RTH and land speed to use, in m/s. Default value is 2 m/s.
+   */
+  velocity_z?: number;
+  /**
+   * The altitude of the smart RTH from where vertical land is called, in meters. If not specified, the minimum navigation altitude will be used as a default.
+   */
+  altitude?: number;
+  /**
+   * Whether to replace the existing RTH and land segment if the show segment is defined. Default: false
+   */
+  replace?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Parameters for shifting the altitude of the show segment
+ */
+export interface ShiftTransformationParameters {
+  /**
+   * Vertical shift to apply to the show segment, in meters
+   */
+  z?: number;
   [k: string]: unknown;
 }
 export interface Request_SHOWCFG {
@@ -1738,6 +1904,25 @@ export interface RTKSurveyStatus {
 export interface Response_RTKSURVEY {
   type: "RTK-SURVEY";
   settings: RTKSurveySettings;
+}
+export interface Response_SHOWADAPT {
+  type: "SHOW-ADAPT";
+  /**
+   * Base64-encoded .skyc show file with adapted takeoff and RTH segments
+   */
+  show: string;
+  /**
+   * Change in the length of the takeoff segment compared to the original show file, in seconds
+   */
+  takeoffLengthChange: number;
+  /**
+   * Change in the length of the RTH segment compared to the original show file, in seconds
+   */
+  rthLengthChange: number;
+  /**
+   * Explanation of why the show adaptation failed, if applicable
+   */
+  reason?: string;
 }
 export interface Response_SHOWCFG {
   type: "SHOW-CFG";

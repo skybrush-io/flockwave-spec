@@ -962,6 +962,69 @@ satellites that were used in the calculation.
 The third and fourth items of the list are optional and they may contain the
 horizontal and vertical accuracy, respectively, in millimeters.
 
+== `LightEffectConfiguration`
+
+Configuration of predefined LED light effects in shows. This type is used
+by the `SHOW-ADAPT` command's transformation parameters.
+
+*Fields*
+
+The actual set of fields depends on the `type` discriminator field:
+
+`default`:: The default lighting method with informative but not disturbing lights.
+`off`:: Lights turned off.
+`original`:: Keep the existing light configuration unchanged as much as possible.
+`solid`:: A solid, single-color light effect.
+`sparks`:: Colored sparks with random exponential distribution.
+
+--
+*Fields of the `default` type*
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`type` |yes |string |Must be `"default"`
+|`brightness` |no |float |Brightness of the light in the [0, 1] interval. Default brightness is 0.05.
+|===
+--
+*Fields of the `off` type*
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`type` |yes |string |Must be `"off"`
+|===
+--
+*Fields of the `original` type*
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`type` |yes |string |Must be `"original"`
+|===
+--
+*Fields of the `solid` type*
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`type` |yes |string |Must be `"solid"`
+|`color` |no |string |The solid color to use, according to the CSS3 Color Module Level 3 specification (named strings, hex strings, and RGB tuples are accepted). Default color is white.
+|===
+--
+*Fields of the `sparks` type*
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`type` |yes |string |Must be `"sparks"`
+|`color` |no |string |The color of the sparks, according to the CSS3 Color Module Level 3 specification (named strings, hex strings, and RGB tuples are accepted). Default color is white.
+|`off_duration` |no |float |Duration of the average off period between sparks, in seconds. Default is 3 seconds.
+|===
+--
+
+*Example*
+
+[source,json]
+----
+{ "type": "solid", "color": "white" }
+----
+
 == `LogMessage`
 
 This type represents a single log message that is sent from the server to the
@@ -1340,6 +1403,92 @@ Currently the following values are defined:
 `error`:: Error messages.
 
 `critical`:: Critical errors that require immediate attention.
+
+== `RthTransformationParameters`
+
+Parameters for adapting the ending (RTH) segment of the drone show.
+Used by the `SHOW-ADAPT` command.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`method` |no |string |The RTH method to use. Accepted values: `"plain"` (brings the drones to the possibly layered floating grid of the end of their takeoff positions with a collectively optimal transition, _not_ preserving individual home positions. A final integrated land phase follows), `"smart"` (brings the drones to their individual home positions, while avoiding drones being closer to each other than the minimum distance threshold thoughout the entire RTH and its final integrated land phase). Default: `"smart"`
+|`lights` |no |xref:#_lighteffectconfiguration[`LightEffectConfiguration`] or float |Light effect configuration for the drones during RTH, or a brightness value in the [0, 1] interval to use with the default light configuration
+|`min_distance` |no |float |Minimum distance to keep between drones during RTH, in meters. If not specified, the configured validation setting will be used.
+|`velocity_xy` |no |float |The horizontal RTH speed to use, in m/s. Default value is 5 m/s.
+|`velocity_z` |no |float |The vertical RTH and land speed to use, in m/s. Default value is 2 m/s.
+|`altitude` |no |float |The altitude of the smart RTH from where vertical land is called, in meters. If not specified, the minimum navigation altitude will be used as a default.
+|`replace` |no |boolean |Whether to replace the existing RTH and land segment if the show segment is defined. Default: false
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "method": "smart",
+    "velocity_xy": 5,
+    "velocity_z": 2,
+    "replace": true
+}
+----
+
+== `ShiftTransformationParameters`
+
+Parameters for shifting the altitude of the show segment. Used by the
+`SHOW-ADAPT` command.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`z` |no |float |Vertical shift to apply to the show segment, in meters
+|===
+
+*Example*
+
+[source,json]
+----
+{ "z": 2 }
+----
+
+== `TakeoffTransformationParameters`
+
+Parameters for adapting the beginning (takeoff) segment of the drone
+show. Used by the `SHOW-ADAPT` command.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`positions` |no |array of [x, y, z] or null |Explicit takeoff positions to use, as [x, y, z] coordinates in meters relative to the show origin. If empty, original takeoff positions of drones will be used instead.
+|`duration` |no |float |Optional overall duration of the transformation to set, in seconds
+|`method` |no |string |The takeoff method to use. Accepted values: `"layered"` (takeoff to a floating grid from original takeoff positions or explicit positions provided, then morph to the first formation of the show), `"organic"` (takeoff with a reversed smart RTH procedure, that provides an organic look and also preserves mapping between takeoff and formation positions). If not specified, it will be inferred from other parameters.
+|`lights` |no |xref:#_lighteffectconfiguration[`LightEffectConfiguration`] or float |Light effect configuration for the drones during takeoff, or a brightness value in the [0, 1] interval to use with the default light configuration
+|`min_distance` |no |float |Minimum distance to keep between drones during multi-layer takeoff and transition to the first formation, in meters. If not specified, the configured validation setting will be used.
+|`velocity_xy` |no |float |The horizontal speed to use towards the first formation, in m/s. Default is 5 m/s.
+|`velocity_z` |no |float |The vertical speed to use during takeoff and towards the first formation, in m/s. Default value is 1.5 m/s.
+|`altitude` |no |float |The takeoff height of the last (lowest) layer before any horizontal motion is planned, in meters. Default value is 10 m/s.
+|`replace` |no |boolean |Whether to replace the existing takeoff segment if the show segment is defined. Default: false
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "positions": [[5, 5, 5], [6, 5, 5], [7, 5, 5], [8, 5, 5]],
+    "method": "layered",
+    "velocity_xy": 5,
+    "velocity_z": 1.5,
+    "altitude": 10,
+    "replace": true
+}
+----
 
 == `StartConditions`
 

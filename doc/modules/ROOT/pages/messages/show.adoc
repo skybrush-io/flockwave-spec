@@ -3,6 +3,57 @@
 The messages in this section are used to get or set the configuration of
 both the drone show and the LED lights on the drones.
 
+== `SHOW-ADAPT` - Adapt the takeoff and RTH segments of a drone show or shift the net show vertically.
+
+A client sends this request to the server to adapt the beginning (takeoff) and
+ending (RTH) segments of a drone show, leaving the net show segment in the
+middle intact. The client may specify new takeoff positions, RTH parameters,
+and optionally a vertical shift for the show segment.
+
+The server response contains the adapted show file and the change in length
+of the takeoff and RTH segments in seconds.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`show` |yes |string |Base64-encoded `.skyc` show file to adapt
+
+|`transformations` |yes |array of objects with `type` (`"takeoff"`, `"rth"` or `"shift"`) and `parameters` (xref:types.adoc#_takeofftransformationparameters[`TakeoffTransformationParameters`], xref:types.adoc#_rthtransformationparameters[`RthTransformationParameters`] or xref:types.adoc#_shifttransformationparameters[`ShiftTransformationParameters`] accordingly) |List of transformations to apply to the show
+
+|`environment` |yes |object |A general object containing information about the environment of the show. It must contain a `location` object with the show geodetic origin (`origin`, xref:types.adoc#_gpscoordinate[`GPSCoordinate`]) and orientation (`orientation`, float, orientation of the show coordinate system relative to true north, in degrees).
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`show` |yes |string |Base64-encoded `.skyc` show file with adapted takeoff and RTH segments
+
+|`takeoffLengthChange` |yes |float |Change in the length of the takeoff segment compared to the original show file, in seconds
+
+|`rthLengthChange` |yes |float |Change in the length of the RTH segment compared to the original show file, in seconds
+
+|`reason` |no |string |Explanation of why the show adaptation failed, if applicable
+|===
+
+*Example request*
+
+[source,json]
+----
+include::example$request_SHOW-ADAPT.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_SHOW-ADAPT.json[]
+----
+
+
 == `SHOW-CFG` - Retrieve the current configuration of the drone show
 
 A client sends this request to the server to obtain information about

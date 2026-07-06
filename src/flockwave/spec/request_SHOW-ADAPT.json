@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "SHOW-ADAPT"
+    },
+    "show": {
+      "description": "Base64-encoded .skyc show file to adapt",
+      "type": "string"
+    },
+    "transformations": {
+      "description": "List of transformations to apply to the show",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": { "const": "takeoff" },
+              "parameters": { "$ref": "definitions.json#/takeoffTransformationParameters" }
+            },
+            "required": ["type", "parameters"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": { "const": "rth" },
+              "parameters": { "$ref": "definitions.json#/rthTransformationParameters" }
+            },
+            "required": ["type", "parameters"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": { "const": "shift" },
+              "parameters": { "$ref": "definitions.json#/shiftTransformationParameters" }
+            },
+            "required": ["type", "parameters"]
+          }
+        ]
+      }
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "$ref": "definitions.json#/gpsCoordinate"
+            },
+            "orientation": {
+              "description": "Orientation of the show coordinate system relative to true north, in degrees",
+              "type": "number"
+            }
+          },
+          "required": ["origin", "orientation"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["location"]
+    }
+  },
+  "required": ["type", "show", "transformations", "environment"]
+}
