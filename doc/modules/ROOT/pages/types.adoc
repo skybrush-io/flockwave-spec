@@ -1073,6 +1073,16 @@ nanoteslas.
 
 The object is stored as a list with three items.
 
+*Items*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Index |Required? |Type |Description
+|0 |yes |integer |North component, in nanoteslas
+|1 |yes |integer |East component, in nanoteslas
+|2 |yes |integer |Down component, in nanoteslas
+|===
+
 == `ObjectType`
 
 Enumeration type that describes the possible object types that the server
