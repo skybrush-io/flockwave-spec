@@ -14,12 +14,12 @@
       }
     },
     "duration": {
-      "type": "number",
+      "type": "integer",
       "minimum": 0
     },
     "transport": {
       "$ref": "definitions.json#/transportOptions"
     }
   },
-  "required": ["type", "ids"]
+  "required": ["type", "ids", "signals", "duration"]
 }
