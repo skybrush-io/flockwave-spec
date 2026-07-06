@@ -280,6 +280,8 @@ defined:
 
 `bytes`:: A channel that provides an array of raw bytes.
 
+`cartesian`:: A channel that provides a Cartesian (XYZ) coordinate.
+
 `color`:: A channel that provides a color in 8-bit RGB, RGBA or RGBW
 format. The color is typically expressed as an array of three or four
 bytes, each byte ranging from 0 to 255.
@@ -287,6 +289,8 @@ bytes, each byte ranging from 0 to 255.
 `duration`:: A channel that provides the duration of a time window,
 expressed as the number of seconds elapsed since the start of the time
 window. Fractional seconds are allowed.
+
+`gps`:: A channel that provides a GPS coordinate.
 
 `number`:: A channel that provides a single double-precision
 floating-point number.
