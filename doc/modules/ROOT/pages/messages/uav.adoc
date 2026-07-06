@@ -27,8 +27,6 @@ for the unsupported components.
 message
 
 |`component` |yes |string |The name of the UAV component to calibrate
-
-|`parameters` |no |object |Additional parameters of the calibration
 |===
 
 *Response fields*
@@ -749,8 +747,6 @@ testing a specific component will return failures for the unsupported components
 message
 
 |`component` |yes |string |The name of the UAV component to test
-
-|`parameters` |no |object |Additional parameters of the test
 |===
 
 *Response fields*
