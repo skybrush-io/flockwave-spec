@@ -150,7 +150,7 @@ once again.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|`timestamp` |yes |xref:types.adoc#_timestamp[timestamp] |The current UNIX timestamp on the server at the time when the message was received if no adjustment was performed, or the timestamp _after_ the adjustment if an adjustment was performed.
+|`timestamp` |yes |integer |The current UNIX timestamp on the server in milliseconds at the time when the message was received if no adjustment was performed, or the timestamp _after_ the adjustment if an adjustment was performed.
 |===
 
 *Example request*
