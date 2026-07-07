@@ -280,7 +280,7 @@ defined:
 
 `bytes`:: A channel that provides an array of raw bytes.
 
-`cartesian`:: A channel that provides a Cartesian (XYZ) coordinate.
+`cartesian`:: A channel that provides a Cartesian coordinate.
 
 `color`:: A channel that provides a color in 8-bit RGB, RGBA or RGBW
 format. The color is typically expressed as an array of three or four
