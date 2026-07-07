@@ -13,7 +13,7 @@
       "type": "number"
     },
     "stats": {
-      "description": "List of collective RTH plan statistics",
+      "description": "Statistics about each generated collective RTH plan",
       "type": "array",
       "items": {
         "$ref": "definitions.json#/collectiveRthPlanStatEntry"

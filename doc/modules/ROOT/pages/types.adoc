@@ -280,6 +280,8 @@ defined:
 
 `bytes`:: A channel that provides an array of raw bytes.
 
+`cartesian`:: A channel that provides a Cartesian coordinate.
+
 `color`:: A channel that provides a color in 8-bit RGB, RGBA or RGBW
 format. The color is typically expressed as an array of three or four
 bytes, each byte ranging from 0 to 255.
@@ -287,6 +289,8 @@ bytes, each byte ranging from 0 to 255.
 `duration`:: A channel that provides the duration of a time window,
 expressed as the number of seconds elapsed since the start of the time
 window. Fractional seconds are allowed.
+
+`gps`:: A channel that provides a GPS coordinate.
 
 `number`:: A channel that provides a single double-precision
 floating-point number.
@@ -378,24 +382,23 @@ command that was relayed from a client to a UAV by the server.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
-|sent |yes |<<_timestamps,timestamp>> |time when the command
-request was sent to the UAV
+|`id` |yes |<<_receiptid,`ReceiptId`>> |Identifier of the command execution
 
-|acknowledged |no |<<_timestamps,timestamp>> |time when the UAV
-acknowledged the receipt of the request (explicitly or implicitly,
-i.e. by sending a status update or a response)
+|`created_at` |yes |<<_timestamps,timestamp>> |Timestamp when the command execution object was created
 
-|updated |no |<<_timestamps,timestamp>> |time when the UAV updated
-the progress of the request (explicitly or implicitly, i.e. by sending
-the completed response)
+|`client_notified` |no |<<_timestamps,timestamp>> |Timestamp when the client was notified about the result
 
-|finished |no |<<_timestamps,timestamp>> |time when the final
-response was fully received by the server
+|`error` |no |string |Error message if the command execution failed
 
-|progress |no |float |the progress of the execution of the command,
-expressed as an integer value between 0 and 100 (inclusive)
+|`result` |no |any |Result of the command execution
 
-|status |no |string |optional status text message
+|`sent` |no |<<_timestamps,timestamp>> |Timestamp when the command was sent to the UAV
+
+|`finished` |no |<<_timestamps,timestamp>> |Timestamp when the command execution finished
+
+|`cancelled` |no |<<_timestamps,timestamp>> |Timestamp when the command execution was cancelled
+
+|`progress` |no |xref:#_progress[`Progress`] |Progress of the command execution
 |===
 
 *Example*
@@ -403,11 +406,13 @@ expressed as an integer value between 0 and 100 (inclusive)
 [source,json]
 ----
 {
+    "id": "abc123",
+    "created_at": 1459670842000,
     "sent": 1459670842000,
-    "acknowledged": 1459670842471,
-    "updated": 1459670842811,
-    "progress": 80,
-    "status": "Almost ready :)"
+    "finished": 1459670842811,
+    "progress": {
+        "percentage": 100
+    }
 }
 ----
 
@@ -583,6 +588,8 @@ board).
 `radio`:: The device is a radio receiver or transmitter (e.g., an XBee
 radio).
 
+`rangefinder`:: The device is a rangefinder (e.g., a laser or sonic range finder).
+
 `rc`:: The device is an RC receiver.
 
 `rotor`:: The device is a rotor.
@@ -591,6 +598,8 @@ radio).
 more precisely into any of the other classes.
 
 `speaker`:: The device is a speaker.
+
+`sprayer`:: The device is a sprayer (e.g., a crop sprayer).
 
 == `DeviceTreeNode`
 
@@ -695,7 +704,7 @@ for the LED lights on drones.
 (GCS is not controlling the LED lights on the drones) or `solid`
 (GCS is asking the drones to use a solid LED light).
 
-|color |no | list of integers |
+|color |no | array of 3 integers |
 Color of the light effect in RGB notations. Values in the array must be between 0 and 255, inclusive.
 |===
 
@@ -923,8 +932,8 @@ Trailing nulls may be omitted.
 [cols="1,1,1,7",options="header",]
 |===
 |Index |Required? |Type |Description
-|0 |yes |integer |The latitude, in 10^-7^ degrees, in the range [-90 × 10^7^, 90 × 10^7^)
-|1 |yes |integer |The longitude, in 10^-7^ degrees, in the range [-180 × 10^7^,180 × 10^7^)
+|0 |yes |integer |The latitude, in 10^-7^ degrees, in the range [-90 × 10^7^, 90 × 10^7^]
+|1 |yes |integer |The longitude, in 10^-7^ degrees, in the range [-180 × 10^7^, 180 × 10^7^)
 |2 |no |integer |The altitude, in millimeters, above mean sea level
 |3 |no |integer |The altitude, in millimeters, above home level
 |4 |no |integer |The altitude, in millimeters, above ground level
@@ -1064,6 +1073,16 @@ nanoteslas.
 
 The object is stored as a list with three items.
 
+*Items*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Index |Required? |Type |Description
+|0 |yes |integer |North component, in nanoteslas
+|1 |yes |integer |East component, in nanoteslas
+|2 |yes |integer |Down component, in nanoteslas
+|===
+
 == `ObjectType`
 
 Enumeration type that describes the possible object types that the server
@@ -1103,7 +1122,7 @@ The object is indexed by the message types sent by the RTK base.
 |===
 |Index |Required? |Type |Description
 |0 |yes |int |The age of the last observation, in integer milliseconds
-|1 |yes |int |The average bitrate of the message stream in the last 10 seconds, in bits per second
+|1 |yes |float |The average bitrate of the message stream in the last 10 seconds, in bits per second
 |===
 
 *Example*
@@ -1131,9 +1150,9 @@ The object is stored as a list with three mandatory items.
 [cols="1,1,1,7",options="header",]
 |===
 |Index |Required? |Type |Description
-|0 |yes |number |The X component of the position vector, in mm
-|1 |yes |number |The Y component of the position vector, in mm
-|2 |yes |number |The Z component of the position vector, in mm
+|0 |yes |integer |The X component of the position vector, in mm
+|1 |yes |integer |The Y component of the position vector, in mm
+|2 |yes |integer |The Z component of the position vector, in mm
 |===
 
 *Example*
@@ -1333,7 +1352,7 @@ RTK configuration presets may be of one of three types:
 |Name |Required? |Type |Description
 |title |yes |string |A human-readable title of the preset
 
-|type |no |string |Type of the RTK preset (built-in, dynamic, user)
+|type |no |string |Type of the RTK preset ("builtin", "dynamic", "user")
 
 |format |yes |string |Format of the GPS messages arriving in this configuration
 (supported formats: "rtcm2", "rtcm3", "ubx", and "auto" for auto detection)
@@ -1366,7 +1385,7 @@ self-survey procedure.
 |Name |Required? |Type |Description
 |duration |yes |float |The minimum duration of the survey to perform
 |accuracy |yes |float |The accuracy of the survey in meters
-|messageSet |yes |string | The message set to use / used ('msm4' or 'msm7')
+|messageSet |no |string | The message set to use / used ('msm4' or 'msm7')
 |position |no |<<_ecefcoordinate,ECEFCoordinate>> |The RTK base station antenna position in ECEF coordinates
 |gnssTypes |no |list of <<_gnsstype,GNSSType>> | The GNSS types to use
 (choose from "gps", "glonass", "galileo", "sbas", "qzss", "beidou", "irnss")
@@ -1894,6 +1913,7 @@ response fields; only the position and the timestamp are mandatory.
 [width="100%",cols="15%,10%,25%,50%",options="header",]
 |===
 |Name |Required? |Type |Description
+|stationId |no |string |Identifier of the weather station that provided the data
 |position |yes |<<_gpscoordinate,GPSCoordinate>> |GPS coordinate that the weather object refers to
 |timestamp |yes |<<_timestamps,timestamp>> |Time that the weather object refers to
 |code |no |integer |https://openweathermap.org/weather-conditions[OpenWeatherMap weather condition code]

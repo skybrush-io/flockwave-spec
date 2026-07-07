@@ -115,11 +115,11 @@ manner where drones return on collision-free paths.
 
 |`acceleration` |no |float |Maximum acceleration of drones during collective RTH, in m/s². If not specified, a default value of 4 m/s² will be used.
 
-|`time_resolution` |no |integer |Time interval between timestamps of the generated collective RTH plans, in seconds. If not specified, a default value of 1 second will be used.
+|`time_resolution` |no |integer |Time interval between start times of the generated collective RTH plans, in seconds. If not specified, a default value of 1 second will be used.
 
-|`first_time` |no |integer |Timestamp of the first collective RTH plan relative to show start, in seconds. If not specified, the start of the show will be used.
+|`first_time` |no |integer |Start time of the first collective RTH plan relative to show start, in seconds. If not specified, the start of the show will be used.
 
-|`last_time` |no |integer |Timestamp of the last collective RTH plan relative to show start, in seconds. If not specified, show segment end time will be used. If there is no show segment, the end of the show will be used.
+|`last_time` |no |integer |Start time of the last collective RTH plan relative to show start, in seconds. If not specified, show segment end time will be used. If there is no show segment, the end of the show will be used.
 |===
 
 *Response fields*

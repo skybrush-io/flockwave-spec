@@ -1,6 +1,5 @@
 {
   "type": "UAV-TEST",
   "ids": ["1", "17", "31", "spam"],
-  "component": "motor",
-  "parameters": {}
+  "component": "motor"
 }

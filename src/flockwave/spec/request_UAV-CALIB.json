@@ -9,10 +9,7 @@
     },
     "component": {
       "type": "string"
-    },
-    "parameters": {
-      "type": "object"
     }
   },
-  "required": ["type", "ids"]
+  "required": ["type", "ids", "component"]
 }

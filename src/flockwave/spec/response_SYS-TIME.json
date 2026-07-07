@@ -5,7 +5,8 @@
       "const": "SYS-TIME"
     },
     "timestamp": {
-      "type": "number"
+      "description": "The current UNIX timestamp on the server in milliseconds",
+      "type": "integer"
     }
   },
   "required": ["type", "timestamp"]

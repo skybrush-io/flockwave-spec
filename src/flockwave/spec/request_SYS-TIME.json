@@ -5,6 +5,7 @@
       "const": "SYS-TIME"
     },
     "adjustment": {
+      "description": "The number of milliseconds that the clock of the server should be forwarded by.",
       "type": "number"
     }
   },

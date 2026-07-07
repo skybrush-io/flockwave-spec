@@ -296,25 +296,41 @@
     "type": "object",
     "properties": {
       "id": {
-        "$ref": "#/receiptId"
+        "$ref": "#/receiptId",
+        "description": "Identifier of the command execution"
+      },
+      "created_at": {
+        "description": "Timestamp when the command execution was created",
+        "type": "number"
+      },
+      "client_notified": {
+        "description": "Timestamp when the client was notified about the result",
+        "type": "number"
+      },
+      "error": {
+        "description": "Error message if the command execution failed",
+        "$ref": "#/error"
+      },
+      "result": {
+        "description": "Result of the command execution"
       },
       "sent": {
-        "type": "number"
-      },
-      "acknowledged": {
-        "type": "number"
-      },
-      "updated": {
+        "description": "Timestamp when the command was sent to the UAV",
         "type": "number"
       },
       "finished": {
+        "description": "Timestamp when the command execution finished",
+        "type": "number"
+      },
+      "cancelled": {
+        "description": "Timestamp when the command execution was cancelled",
         "type": "number"
       },
       "progress": {
         "$ref": "#/progress"
       }
     },
-    "required": ["sent"],
+    "required": ["id", "created_at"],
     "additionalProperties": false
   },
 
@@ -569,8 +585,12 @@
       "color": {
         "type": "array",
         "description": "Color of the light effect in RGB notations. Values in the array must be between 0 and 255, inclusive.",
+        "minItems": 3,
+        "maxItems": 3,
         "items": {
-          "type": "number"
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
         }
       }
     }
@@ -604,7 +624,7 @@
     "type": "string"
   },
 
-  "errorCodeList": {
+  "errorList": {
     "title": "List of errors",
     "description": "List of currently active error codes for a single UAV",
     "type": "array",
@@ -637,7 +657,7 @@
   },
 
   "extensionInfo": {
-    "title": "Clock info",
+    "title": "Extension info",
     "description": "Information about an extension",
     "type": "object",
     "properties": {
@@ -769,7 +789,7 @@
         "description": "Longitude, in 1e-7 degrees",
         "type": "integer",
         "minimum": -1800000000,
-        "maximum": 1800000000,
+        "exclusiveMaximum": 1800000000,
         "$id": "Longitude"
       },
       {
@@ -1683,7 +1703,7 @@
         "$ref": "#/rssi"
       },
       "errors": {
-        "$ref": "#/errorCodeList"
+        "$ref": "#/errorList"
       },
       "debug": {
         "type": "string"
