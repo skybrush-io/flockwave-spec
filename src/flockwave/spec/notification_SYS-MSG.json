@@ -8,8 +8,7 @@
       "type": "array",
       "items": {
         "$ref": "definitions.json#/logMessage"
-      },
-      "minItems": 1
+      }
     }
   },
   "required": ["type", "items"]

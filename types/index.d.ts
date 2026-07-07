@@ -503,10 +503,7 @@ export interface Notification_SYSCLOSE {
 }
 export interface Notification_SYSMSG {
   type: "SYS-MSG";
-  /**
-   * @minItems 1
-   */
-  items: [LogMessage, ...LogMessage[]];
+  items: LogMessage[];
   [k: string]: unknown;
 }
 /**
