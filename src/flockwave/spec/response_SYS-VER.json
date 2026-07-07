@@ -15,7 +15,7 @@
     "version": {
       "$ref": "definitions.json#/versionNumber"
     },
-    "revision": {      
+    "revision": {
       "type": "string",
       "description": "The revision number of the server, if known"
     }
