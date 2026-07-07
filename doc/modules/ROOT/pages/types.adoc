@@ -1352,7 +1352,7 @@ RTK configuration presets may be of one of three types:
 |Name |Required? |Type |Description
 |title |yes |string |A human-readable title of the preset
 
-|type |no |string |Type of the RTK preset (builtin, dynamic, user)
+|type |no |string |Type of the RTK preset ("builtin", "dynamic", "user")
 
 |format |yes |string |Format of the GPS messages arriving in this configuration
 (supported formats: "rtcm2", "rtcm3", "ubx", and "auto" for auto detection)
