@@ -29,15 +29,15 @@
       "type": ["number", "null"]
     },
     "time_resolution": {
-      "description": "Time interval between timestamps of the generated collective RTH plans, in seconds",
+      "description": "Time interval between start times of the generated collective RTH plans, in seconds",
       "type": ["integer", "null"]
     },
     "first_time": {
-      "description": "Timestamp of the first collective RTH plan relative to show start, in seconds",
+      "description": "Start time of the first collective RTH plan relative to show start, in seconds",
       "type": ["integer", "null"]
     },
     "last_time": {
-      "description": "Timestamp of the last collective RTH plan relative to show start, in seconds",
+      "description": "Start time of the last collective RTH plan relative to show start, in seconds",
       "type": ["integer", "null"]
     }
   },

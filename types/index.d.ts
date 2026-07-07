@@ -1043,15 +1043,15 @@ export interface Request_SHOWCRTHPLAN {
    */
   acceleration?: number | null;
   /**
-   * Time interval between timestamps of the generated collective RTH plans, in seconds
+   * Time interval between start times of the generated collective RTH plans, in seconds
    */
   time_resolution?: number | null;
   /**
-   * Timestamp of the first collective RTH plan relative to show start, in seconds
+   * Start time of the first collective RTH plan relative to show start, in seconds
    */
   first_time?: number | null;
   /**
-   * Timestamp of the last collective RTH plan relative to show start, in seconds
+   * Start time of the last collective RTH plan relative to show start, in seconds
    */
   last_time?: number | null;
   [k: string]: unknown;
