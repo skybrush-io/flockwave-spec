@@ -384,7 +384,7 @@ command that was relayed from a client to a UAV by the server.
 |Name |Required? |Type |Description
 |`id` |yes |<<_receiptid,`ReceiptId`>> |Identifier of the command execution
 
-|`created_at` |yes |<<_timestamps,timestamp>> |Timestamp when the command execution was created
+|`created_at` |yes |<<_timestamps,timestamp>> |Timestamp when the command execution object was created
 
 |`client_notified` |no |<<_timestamps,timestamp>> |Timestamp when the client was notified about the result
 
