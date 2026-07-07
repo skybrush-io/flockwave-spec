@@ -789,7 +789,7 @@
         "description": "Longitude, in 1e-7 degrees",
         "type": "integer",
         "minimum": -1800000000,
-        "maximum": 1800000000,
+        "exclusiveMaximum": 1800000000,
         "$id": "Longitude"
       },
       {
