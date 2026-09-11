@@ -4,22 +4,16 @@
     "type": {
       "const": "SHOW-CRTH-PLAN"
     },
-    "show": {
-      "description": "Base64-encoded `.skyc` show file with collective RTH plans appended",
-      "type": "string"
+    "result": {
+      "$ref": "definitions.json#/collectiveRthPlanResult"
     },
-    "showDuration": {
-      "description": "Total duration of the show including collective RTH and landing, in seconds",
-      "type": "number"
+    "error": {
+      "$ref": "definitions.json#/error"
     },
-    "stats": {
-      "description": "Statistics about each generated collective RTH plan",
-      "type": "array",
-      "items": {
-        "$ref": "definitions.json#/collectiveRthPlanStatEntry"
-      }
+    "receipt": {
+      "$ref": "definitions.json#/receiptId"
     }
   },
-  "required": ["type", "show", "showDuration", "stats"],
+  "required": ["type"],
   "additionalProperties": false
 }

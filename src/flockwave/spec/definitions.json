@@ -261,6 +261,30 @@
     "required": ["id", "retrievedAt", "running", "ticks"]
   },
 
+  "collectiveRthPlanResult": {
+    "title": "Collective RTH plan result",
+    "description": "Result of generating collective RTH plans for a show",
+    "type": "object",
+    "properties": {
+      "show": {
+        "description": "Base64-encoded `.skyc` show file with the collective RTH plans appended",
+        "type": "string"
+      },
+      "showDuration": {
+        "description": "Total duration of the show including collective RTH and landing, in seconds",
+        "type": "number"
+      },
+      "stats": {
+        "description": "Statistics about each generated collective RTH plan",
+        "type": "array",
+        "items": {
+          "$ref": "#/collectiveRthPlanStatEntry"
+        }
+      }
+    },
+    "required": ["show", "showDuration", "stats"]
+  },
+
   "collectiveRthPlanStatEntry": {
     "title": "Collective RTH plan statistics entry",
     "description": "Statistics about a single collective RTH plan in a show",

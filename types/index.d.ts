@@ -1929,8 +1929,16 @@ export interface Response_SHOWCFG {
 }
 export interface Response_SHOWCRTHPLAN {
   type: "SHOW-CRTH-PLAN";
+  result?: CollectiveRTHPlanResult;
+  error?: string;
+  receipt?: ReceiptID;
+}
+/**
+ * Result of generating collective RTH plans for a show
+ */
+export interface CollectiveRTHPlanResult {
   /**
-   * Base64-encoded `.skyc` show file with collective RTH plans appended
+   * Base64-encoded `.skyc` show file with the collective RTH plans appended
    */
   show: string;
   /**
@@ -1941,6 +1949,7 @@ export interface Response_SHOWCRTHPLAN {
    * Statistics about each generated collective RTH plan
    */
   stats: CollectiveRTHPlanStatisticsEntry[];
+  [k: string]: unknown;
 }
 /**
  * Statistics about a single collective RTH plan in a show

@@ -98,6 +98,15 @@ endings of a show at different timestamps that can be triggered adaptively
 on-site, allowing the operator to cancel the show mid-flight in an organized
 manner where drones return on collision-free paths.
 
+Since the generation of collective RTH plans may take a significant amount of
+time, this operation is handled asynchronously: the server typically responds
+with a receipt identifier and delivers the result of the operation later in an
+xref:messages/async.adoc#async-resp[ASYNC-RESP] notification. The result is an
+object of type xref:types.adoc#collective-rth-plan-result[`CollectiveRthPlanResult`],
+containing the show file with the collective RTH plans appended, the total
+duration of the show including collective RTH and landing, and statistics about
+each generated collective RTH plan.
+
 *Request fields*
 
 [width="100%",cols="15%,10%,25%,50%",options="header",]
@@ -124,15 +133,15 @@ manner where drones return on collision-free paths.
 
 *Response fields*
 
-[width="100%",cols="15%,10%,25%,50%",options="header",]
-|===
-|Name |Required? |Type |Description
-|`show` |yes |string |Base64-encoded `.skyc` show file with the collective RTH plans appended
-
-|`showDuration` |yes |float |Total duration of the show including collective RTH and landing, in seconds
-
-|`stats` |yes |array of xref:types.adoc#collective-rth-plan-stat-entry[`CollectiveRthPlanStatEntry`] |Statistics about each generated collective RTH plan
-|===
+The response is a xref:async.adoc#async-response[asynchronous response]. If the
+server decided to execute the operation immediately and it succeeded, the
+`result` key contains an object of type xref:types.adoc#collective-rth-plan-result[`CollectiveRthPlanResult`]
+with the generated collective RTH plans. If the server decided to execute the
+operation immediately and it failed, the `error` key contains the reason of the
+failure. If the server started the operation asynchronously, the `receipt` key
+contains the receipt identifier that the client can use to retrieve the result
+of the operation later in an xref:messages/async.adoc#async-resp[ASYNC-RESP]
+notification.
 
 *Example request*
 

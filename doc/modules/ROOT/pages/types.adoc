@@ -1657,6 +1657,42 @@ A single segment of the time axis schedule of a show.
 }
 ----
 
+[#collective-rth-plan-result]
+== `CollectiveRthPlanResult`
+
+Result of generating collective RTH (return-to-home) plans for a show. Contains
+the show file with the generated plans appended, the total duration of the show
+including collective RTH and landing, and statistics about each generated plan.
+
+*Fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`show` |yes |string |Base64-encoded `.skyc` show file with the collective RTH plans appended
+
+|`showDuration` |yes |float |Total duration of the show including collective RTH and landing, in seconds
+
+|`stats` |yes |array of xref:types.adoc#collective-rth-plan-stat-entry[`CollectiveRthPlanStatEntry`] |Statistics about each generated collective RTH plan
+|===
+
+*Example*
+
+[source,json]
+----
+{
+    "show": "UEsDBBQAAAAIAMZekltVM2g5dAAAAB0BAAAJAAAAY3Vlcy5qc29u...",
+    "showDuration": 43.771,
+    "stats": [
+        {
+            "time": 14,
+            "duration": 0,
+            "showDuration": 34
+        }
+    ]
+}
+----
+
 [#collective-rth-plan-stat-entry]
 == `CollectiveRthPlanStatEntry`
 
