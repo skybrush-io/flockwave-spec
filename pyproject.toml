@@ -52,5 +52,5 @@ show_missing = true
 exclude_lines = ["@abstractmethod", "@overload", "pragma: no cover"]
 
 [build-system]
-requires = ["uv_build>=0.11,<0.12"]
+requires = ["uv_build>=0.12,<0.13"]
 build-backend = "uv_build"
