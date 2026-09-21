@@ -1949,6 +1949,10 @@ export interface CollectiveRTHPlanResult {
    * Statistics about each generated collective RTH plan
    */
   stats: CollectiveRTHPlanStatisticsEntry[];
+  /**
+   * Minimum (and arrival) altitude of all RTH plans with horizontal motion, in meters; `null` if there are no such RTH plans. May be omitted by older servers.
+   */
+  minRTHAltitude?: number | null;
   [k: string]: unknown;
 }
 /**

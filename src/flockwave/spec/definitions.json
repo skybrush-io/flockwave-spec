@@ -280,6 +280,10 @@
         "items": {
           "$ref": "#/collectiveRthPlanStatEntry"
         }
+      },
+      "minRTHAltitude": {
+        "description": "Minimum (and arrival) altitude of all RTH plans with horizontal motion, in meters; `null` if there are no such RTH plans. May be omitted by older servers.",
+        "type": ["number", "null"]
       }
     },
     "required": ["show", "showDuration", "stats"]
