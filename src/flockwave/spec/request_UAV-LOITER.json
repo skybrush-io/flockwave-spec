@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "UAV-LOITER"
+    },
+    "ids": {
+      "$ref": "definitions.json#/uavIdList"
+    }
+  },
+  "required": ["type", "ids"]
+}
