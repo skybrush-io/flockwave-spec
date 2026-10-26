@@ -1039,6 +1039,10 @@
       },
       "severity": {
         "$ref": "#/severity"
+      },
+      "code": {
+        "description": "Machine-readable code identifying the message; omitted if the message has no associated code",
+        "type": "string"
       }
     },
     "required": ["message"]

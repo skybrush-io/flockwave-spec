@@ -514,6 +514,10 @@ export interface LogMessage {
   timestamp?: number;
   sender?: ObjectID;
   severity?: Severity;
+  /**
+   * Machine-readable code identifying the message; omitted if the message has no associated code
+   */
+  code?: string;
   [k: string]: unknown;
 }
 export interface Notification_TIMESYNCSTATUS {

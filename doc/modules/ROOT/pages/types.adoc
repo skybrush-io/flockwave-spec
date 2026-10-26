@@ -1052,7 +1052,17 @@ the server manages.
 |`sender` |no |string |The ID of the object that sent the message if the server is relaying it; omitted if the server generated the message on its own
 |`message` |yes |string |The message to send to the client
 |`timestamp` |no |<<_timestamps,timestamp>> |Time when the message was generated or received by the server; may be omitted if not relevant
+|`code` |no |string |Machine-readable code identifying the message; omitted if the message has no associated code
 |===
+
+The code lets clients recognize a message without parsing `message`, which
+remains a complete, human-readable message on its own. Servers may also send
+codes that are not listed here.
+
+Currently the following codes are defined:
+
+`uavs.limit_reached`:: The server reached its limits on the number of UAVs it
+can manage.
 
 *Example*
 
