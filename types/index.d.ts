@@ -20,6 +20,7 @@ export type HttpCollmotComSchemasFlockwave10NotificationBodyJson =
   | Notification_ASYNCST
   | Notification_ASYNCTIMEOUT
   | Notification_CONNDEL
+  | Notification_EVTINF
   | Notification_OBJDEL
   | Notification_SYSCLOSE
   | Notification_SYSMSG
@@ -57,6 +58,8 @@ export type HttpCollmotComSchemasFlockwave10RequestBodyJson =
   | Request_DEVLISTSUB
   | Request_DEVSUB
   | Request_DEVUNSUB
+  | Request_EVTSUB
+  | Request_EVTUNSUB
   | Request_DOCKINF
   | Request_EXTCFG
   | Request_EXTINF
@@ -247,6 +250,8 @@ export type HttpCollmotComSchemasFlockwave10ResponseBodyJson =
   | Response_DEVLISTSUB
   | Response_DEVSUB
   | Response_DEVUNSUB
+  | Response_EVTSUB
+  | Response_EVTUNSUB
   | Response_DOCKINF
   | Response_EXTCFG
   | Response_EXTINF
@@ -488,6 +493,19 @@ export interface Notification_CONNDEL {
   ids: ConnectionID[];
   [k: string]: unknown;
 }
+export interface Notification_EVTINF {
+  type: "EVT-INF";
+  events: {
+    type: string;
+    body?: EventBody;
+  }[];
+}
+/**
+ * Optional body of the event; its structure depends on the event type.
+ */
+export interface EventBody {
+  [k: string]: unknown;
+}
 export interface Notification_OBJDEL {
   type: "OBJ-DEL";
   /**
@@ -669,6 +687,22 @@ export interface Request_DEVUNSUB {
    * Whether to also remove all subscriptions that are in the subtrees of the paths specified in the request.
    */
   includeSubtrees?: boolean;
+  [k: string]: unknown;
+}
+export interface Request_EVTSUB {
+  type: "EVT-SUB";
+  /**
+   * List of event types. Event types are arbitrary non-empty strings; it is advised to use the extension:type format.
+   */
+  types: string[];
+  [k: string]: unknown;
+}
+export interface Request_EVTUNSUB {
+  type: "EVT-UNSUB";
+  /**
+   * List of event types. Event types are arbitrary non-empty strings; it is advised to use the extension:type format.
+   */
+  types: string[];
   [k: string]: unknown;
 }
 export interface Request_DOCKINF {
@@ -1563,6 +1597,19 @@ export interface Response_DEVUNSUB {
   success?: string[];
   error?: ErrorMap;
 }
+export interface Response_EVTSUB {
+  type: "EVT-SUB";
+  result?: BoolMap;
+  error?: ErrorMap;
+}
+export interface BoolMap {
+  [k: string]: boolean;
+}
+export interface Response_EVTUNSUB {
+  type: "EVT-UNSUB";
+  result?: BoolMap;
+  error?: ErrorMap;
+}
 export interface Response_DOCKINF {
   type: "DOCK-INF";
   status?: {
@@ -1808,9 +1855,6 @@ export interface Response_PRMSET {
   result?: BoolMap;
   error?: ErrorMap;
   receipt?: ReceiptMap;
-}
-export interface BoolMap {
-  [k: string]: boolean;
 }
 export interface Response_PRMSETMANY {
   type: "PRM-SET-MANY";

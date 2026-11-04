@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.10"
 
 [[package]]
@@ -136,7 +136,7 @@ wheels = [
 
 [[package]]
 name = "flockwave-spec"
-version = "2.12.0"
+version = "2.13.0"
 source = { editable = "." }
 dependencies = [
     { name = "jsonpointer" },
