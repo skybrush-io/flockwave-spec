@@ -16,6 +16,13 @@ like objects or connections). These may include RTK presets from a
 remote NTRIP source or local base stations connected through e.g. a
 serial port.
 
+Clients that want to be notified about changes in the RTK-related state of the
+server can subscribe to the following events with xref:messages/evt.adoc[`EVT-SUB`]:
+`rtk:source` when the selected RTK source changes (see `RTK-SOURCE`),
+`rtk:survey` when the RTK survey settings change (see `RTK-SURVEY`) and
+`rtk:presets` when RTK presets are added, removed or modified (see `RTK-LIST`
+and `RTK-INF`).
+
 
 == `RTK-INF` — Retrieve status of an RTK preset
 

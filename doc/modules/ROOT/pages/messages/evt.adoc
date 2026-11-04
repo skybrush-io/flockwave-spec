@@ -30,6 +30,11 @@ dispatch them. For instance:
 |Event type |Merging policy |Meaning
 |`show:config` |latest wins |The configuration of the drone show changed; use `SHOW-CFG` to retrieve the new configuration
 |`show:lights` |latest wins |The configuration of the LED lights of the drones in the show changed; use `SHOW-LIGHTS` to retrieve the new configuration
+|`rtk:source` |latest wins |The selected RTK source changed; use `RTK-SOURCE` to retrieve the new source
+|`rtk:survey` |latest wins |The RTK survey settings changed; use `RTK-SURVEY` to retrieve the new settings
+|`rtk:presets` |latest wins |RTK presets were added, removed or modified; use `RTK-LIST` and `RTK-INF` to retrieve the presets
+|`ext_manager:status` |union of `ids` |Extensions were loaded or unloaded. The body contains an `ids` key listing the affected extensions; use `EXT-LIST` or `EXT-INF` to retrieve their state
+|`ext_manager:config` |union of `ids` |The configuration of extensions changed. The body contains an `ids` key listing the affected extensions; use `EXT-CFG` to retrieve their configuration
 |===
 
 == Delivery semantics
