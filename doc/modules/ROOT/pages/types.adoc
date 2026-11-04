@@ -1061,8 +1061,8 @@ codes that are not listed here.
 
 Currently the following codes are defined:
 
-`uavs.limit_reached`:: The server reached its limits on the number of UAVs it
-can manage.
+`objects.limit_reached`:: The server reached its limits on the number of objects
+it can manage.
 
 *Example*
 
