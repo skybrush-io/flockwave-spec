@@ -1,0 +1,178 @@
+= `EVT` — Subscribing to server-side events
+
+Messages in this group allow clients to subscribe to _events_ that occur on the
+server, and to receive notifications when these events occur. Events are
+typically used to inform interested clients that some piece of server-side state
+has changed (e.g., the configuration of a drone show was modified by another
+client), so the client can retrieve the new state at its own convenience using
+the appropriate request (e.g., `SHOW-CFG`). Clients that are not interested in
+the event simply do not subscribe to it and will not receive any notifications.
+
+== Event types
+
+Each event has a _type_. Event types are arbitrary non-empty strings, and the
+server MUST accept subscriptions to any non-empty string, even if it has never
+dispatched an event of that type (yet). This allows clients to subscribe to
+events of extensions that are not loaded yet.
+
+It is strongly advised to use the `extension:type` format for event types, where
+`extension` is the name of the server extension that dispatches the event and
+`type` identifies the event within the extension (e.g., `show:config`). This
+way, each extension gets its own namespace and event types of different
+extensions do not clash.
+
+The events dispatched by the server, their merging policies (see below) and
+their meanings are documented next to the extensions or message groups that
+dispatch them. For instance:
+
+[width="100%",cols="20%,20%,60%",options="header",]
+|===
+|Event type |Merging policy |Meaning
+|`show:config` |latest wins |The configuration of the drone show changed; use `SHOW-CFG` to retrieve the new configuration
+|`show:lights` |latest wins |The configuration of the LED lights of the drones in the show changed; use `SHOW-LIGHTS` to retrieve the new configuration
+|===
+
+== Delivery semantics
+
+Subscriptions are idempotent: subscribing to the same event type multiple times
+has the same effect as subscribing once, and a single `EVT-UNSUB` request
+removes the subscription. All subscriptions of a client are removed when the
+client disconnects.
+
+The server MAY coalesce events that occur in quick succession: it may wait a
+short amount of time after an event and deliver all events that occurred in the
+meanwhile in a single `EVT-INF` notification. Events of the same type that
+occurred within this window are merged according to the _merging policy_ of the
+event type. Unless the documentation of the event type says otherwise, the
+merging policy is "latest event wins", i.e. only the last event of each type
+within the window is delivered. Other event types may use different policies;
+for instance, they may deliver only the first event, or all events, within the
+window. Consequently, unless the event type specifies a merging policy that
+keeps all events, the body of an event (if any) SHOULD represent a _state_ and
+not a _delta_, because intermediate events may be dropped.
+
+Within a single `EVT-INF` notification, events of the same type appear in the
+order they occurred. Events of different types are ordered by the time of the
+last occurrence of their type within the window; clients SHOULD NOT rely on the
+relative order of events of different types.
+
+Events are not queued for clients that were not subscribed at the time the
+event occurred.
+
+Clients that want to keep a local copy of some server-side state up-to-date
+SHOULD subscribe to the corresponding event _first_ and retrieve the current
+state _afterwards_; doing it the other way round may cause the client to miss a
+change that happens between the two steps.
+
+The server also sends events to the client that triggered the change (e.g., the
+client that sent a `SHOW-SETCFG` request also receives a `show:config` event if
+it is subscribed to it).
+
+== `EVT-INF` — Notification about events that occurred on the server
+
+The server sends this notification to a client when one or more events occurred
+that the client is subscribed to. There is no request or response of this type.
+
+*Notification fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`events` |yes |list of objects |The list of events that occurred, in the order they
+occurred. Each object has a `type` key containing the event type and an optional
+`body` key containing the body of the event, whose structure depends on the
+event type.
+|===
+
+*Example notification*
+
+[source,json]
+----
+include::example$notification_EVT-INF.json[]
+----
+
+== `EVT-SUB` — Subscribe to events
+
+A client sends this request to the server to subscribe to one or more event
+types. The server subscribes the client to all valid event types (i.e. non-empty
+strings) in the request and reports errors for the invalid ones.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`types` |yes |list of strings |The list of event types to subscribe to
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`result` |no |object |Object whose keys are the event types that the client
+was successfully subscribed to; all values are `true`
+
+|`error` |no |object |Object mapping event types that the client could not be
+subscribed to to the corresponding error messages
+|===
+
+All the event types that were specified in the request MUST appear _either_ in
+the `result` map or in the `error` map.
+
+*Example request*
+
+[source,json]
+----
+include::example$request_EVT-SUB.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_EVT-SUB.json[]
+----
+
+== `EVT-UNSUB` — Unsubscribe from events
+
+A client sends this request to the server to unsubscribe from one or more event
+types. Unsubscribing from an event type that the client is not subscribed to is
+not an error.
+
+*Request fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`types` |yes |list of strings |The list of event types to unsubscribe from
+|===
+
+*Response fields*
+
+[width="100%",cols="15%,10%,25%,50%",options="header",]
+|===
+|Name |Required? |Type |Description
+|`result` |no |object |Object whose keys are the event types that the client
+was successfully unsubscribed from; all values are `true`
+
+|`error` |no |object |Object mapping event types that the client could not be
+unsubscribed from to the corresponding error messages
+|===
+
+All the event types that were specified in the request MUST appear _either_ in
+the `result` map or in the `error` map.
+
+*Example request*
+
+[source,json]
+----
+include::example$request_EVT-UNSUB.json[]
+----
+
+*Example response*
+
+[source,json]
+----
+include::example$response_EVT-UNSUB.json[]
+----

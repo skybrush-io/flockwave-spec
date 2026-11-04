@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EVT-UNSUB"
+    },
+    "types": {
+      "$ref": "definitions.json#/eventList"
+    }
+  },
+  "required": ["type", "types"]
+}

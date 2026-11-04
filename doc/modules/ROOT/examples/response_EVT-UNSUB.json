@@ -1,0 +1,6 @@
+{
+  "type": "EVT-UNSUB",
+  "result": {
+    "show:lights": true
+  }
+}

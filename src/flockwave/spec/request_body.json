@@ -51,6 +51,12 @@
       "$ref": "request_DEV-UNSUB.json#"
     },
     {
+      "$ref": "request_EVT-SUB.json#"
+    },
+    {
+      "$ref": "request_EVT-UNSUB.json#"
+    },
+    {
       "$ref": "request_DOCK-INF.json#"
     },
     {

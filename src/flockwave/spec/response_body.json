@@ -57,6 +57,12 @@
       "$ref": "response_DEV-UNSUB.json#"
     },
     {
+      "$ref": "response_EVT-SUB.json#"
+    },
+    {
+      "$ref": "response_EVT-UNSUB.json#"
+    },
+    {
       "$ref": "response_DOCK-INF.json#"
     },
     {

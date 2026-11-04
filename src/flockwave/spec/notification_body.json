@@ -15,6 +15,9 @@
       "$ref": "notification_CONN-DEL.json#"
     },
     {
+      "$ref": "notification_EVT-INF.json#"
+    },
+    {
       "$ref": "notification_OBJ-DEL.json#"
     },
     {

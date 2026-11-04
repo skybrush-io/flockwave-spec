@@ -666,6 +666,15 @@
     "additionalProperties": { "$ref": "#/error" }
   },
 
+  "eventList": {
+    "title": "Event types",
+    "description": "List of event types. Event types are arbitrary non-empty strings; it is advised to use the extension:type format.",
+    "type": "array",
+    "items": {
+      "type": "string"
+    }
+  },
+
   "extensionId": {
     "title": "Extension ID",
     "description": "Identifier of a single extension",

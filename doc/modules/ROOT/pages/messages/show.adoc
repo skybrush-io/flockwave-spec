@@ -63,6 +63,9 @@ The server response contains an object of type xref:types.adoc#_droneshowconfigu
 which for example can contain information about whether the show is authorized to start, the timestamp when the
 drone show should start, the identifier of the clock that the start time refers to and more.
 
+Clients that want to be notified when the configuration of the drone show changes
+can subscribe to the `show:config` event with xref:messages/evt.adoc[`EVT-SUB`].
+
 *Request fields*
 
 This request has no fields.
@@ -201,6 +204,9 @@ The server response contains an object of type xref:types.adoc#_dronelightsconfi
 which can contain information about the type and the color of the light effect used. The type of the light effect
 can either be `off` or `solid`. The former means that the GCS is not controlling the LED lights on the drones, while
 the latter means that the GCS is asking the show drones to use a solid LED light.
+
+Clients that want to be notified when the configuration of the LED lights changes
+can subscribe to the `show:lights` event with xref:messages/evt.adoc[`EVT-SUB`].
 
 *Request fields*
 

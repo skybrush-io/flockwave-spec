@@ -1,0 +1,8 @@
+{
+  "type": "EVT-SUB",
+  "types": [
+    "show:config",
+    "show:lights",
+    ""
+  ]
+}

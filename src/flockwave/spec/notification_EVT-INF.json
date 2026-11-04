@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "EVT-INF"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Event type"
+          },
+          "body": {
+            "title": "Event body",
+            "description": "Optional body of the event; its structure depends on the event type."
+          }
+        },
+        "required": ["type"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["type", "events"],
+  "additionalProperties": false
+}

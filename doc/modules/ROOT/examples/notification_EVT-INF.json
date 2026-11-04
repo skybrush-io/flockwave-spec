@@ -1,0 +1,14 @@
+{
+  "type": "EVT-INF",
+  "events": [
+    {
+      "type": "show:config"
+    },
+    {
+      "type": "myext:progress",
+      "body": {
+        "percentage": 42
+      }
+    }
+  ]
+}

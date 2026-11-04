@@ -1,0 +1,10 @@
+{
+  "type": "EVT-SUB",
+  "result": {
+    "show:config": true,
+    "show:lights": true
+  },
+  "error": {
+    "": "Event type must be a non-empty string"
+  }
+}

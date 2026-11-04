@@ -1,0 +1,6 @@
+{
+  "type": "EVT-UNSUB",
+  "types": [
+    "show:lights"
+  ]
+}
