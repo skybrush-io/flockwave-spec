@@ -119,16 +119,21 @@ the UAV is likely to stand idle on the ground; otherwise use code 201.
 to lower the stability and decrease the flight envelope of your UAV but it is still
 able to navigate in all directions safely; at more severe wind levels use code 139.
 
-|73  |DISARM   |Drone not armed yet. This warning is shown when the UAV is in a
+|73 |DISARM |Drone not armed yet. This warning is shown when the UAV is in a
 state that motor thrust is prevented by a hardware or software switch.
 
-|74  |REBOOT   |Drone requires a reboot. This warning is shown after the UAV
+|74 |REBOOT |Drone requires a reboot. This warning is shown after the UAV
 has performed an action (typically some low level calibration or parameter
 change) that requires a reboot and re-initialization.
 
-|75  |DRIFT   |Unexpected drift from desired position. This warning appears when
+|75 |DRIFT |Unexpected drift from desired position. This warning appears when
 the drone deviates from its desired trajectory more than what is allowed under
 normal operation conditions.
+
+|76 |VIBE |Vibration levels are high. This warning appears when the
+vibrations measured by the accelerometers of the UAV exceed a configured
+threshold. High vibrations degrade the position and altitude estimates. Check
+the propellers, the motors and the mounting of the flight controller.
 
 |127 |WARNING |Other, unspecified warning that does not present immediate danger
 to the normal operation of the UAV; for more severe unspecified error states

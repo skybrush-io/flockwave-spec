@@ -35,6 +35,7 @@ _error_code_to_abbreviation = {
     73: "disarm",
     74: "reboot",
     75: "drift",
+    76: "vibe",
     127: "warning",
     # Errors
     128: "comm t/o",
@@ -108,6 +109,7 @@ _error_code_to_description = {
     73: "Drone not armed yet",
     74: "Drone requires a reboot",
     75: "Unexpected drift from desired position",
+    76: "Vibration levels are high",
     127: "Unspecified warning",
     # Errors
     128: "Autopilot communication timeout",
@@ -184,6 +186,7 @@ class FlockwaveErrorCode(IntEnum):
     DISARMED = 73
     REBOOT_REQUIRED = 74
     DRIFT_FROM_DESIRED_POSITION = 75
+    VIBRATION_WARNING = 76
     UNSPECIFIED_WARNING = 127
 
     # Errors
