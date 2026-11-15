@@ -435,6 +435,12 @@ export type VelocityXYZ = [number, number, number];
  */
 export type BatteryInformation = [number] | [number, number] | [number, number, boolean];
 /**
+ * Horizontal wind speed and direction as estimated by the UAV
+ *
+ * @minItems 2
+ */
+export type WindEstimate = [number, number];
+/**
  * Result of the preflight check or a single item in a preflight checklist
  */
 export type PreflightCheckResult = "off" | "pass" | "warning" | "running" | "softFailure" | "failure" | "error";
@@ -2182,6 +2188,7 @@ export interface UAVStatusInfo {
    */
   errors?: number[];
   debug?: string;
+  wind?: WindEstimate;
   [k: string]: unknown;
 }
 export interface Response_UAVLAND {

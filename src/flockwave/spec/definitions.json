@@ -1748,6 +1748,9 @@
       },
       "debug": {
         "type": "string"
+      },
+      "wind": {
+        "$ref": "#/windEstimate"
       }
     },
     "required": ["id", "timestamp"]
@@ -1942,5 +1945,27 @@
       "$ref": "#/objectId"
     },
     "uniqueItems": true
+  },
+
+  "windEstimate": {
+    "title": "Wind estimate",
+    "description": "Horizontal wind speed and direction as estimated by the UAV",
+    "type": "array",
+    "minItems": 2,
+    "items": [
+      {
+        "title": "Wind speed",
+        "description": "Horizontal wind speed, in mm/s",
+        "type": "integer",
+        "minimum": 0
+      },
+      {
+        "title": "Wind direction",
+        "description": "Meteorological wind direction, in 1/10th degrees clockwise from due North",
+        "type": "integer",
+        "minimum": 0,
+        "exclusiveMaximum": 3600
+      }
+    ]
   }
 }

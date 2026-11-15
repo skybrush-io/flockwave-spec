@@ -16,7 +16,8 @@
       "errors": [17, 41],
       "light": 2016,
       "battery": [124],
-      "rssi": [80]
+      "rssi": [80],
+      "wind": [5400, 900]
     }
   },
   "error": {

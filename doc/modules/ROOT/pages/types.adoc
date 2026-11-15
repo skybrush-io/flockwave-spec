@@ -1861,6 +1861,9 @@ no errors.
 
 |debug |no |<<_byte_arrays,byte array>> |Debug information provided by
 the algorithm running on the UAV (if applicable).
+
+|wind |no |<<_windestimate,WindEstimate>> |The horizontal wind speed and
+direction as estimated by the UAV. When omitted, the UAV has no wind estimate.
 |===
 
 *Example*
@@ -1882,7 +1885,8 @@ the algorithm running on the UAV (if applicable).
     "light": 2016,
     "rssi": [80],
     "errors": [42],
-    "debug": "MEJBRENBRkU="
+    "debug": "MEJBRENBRkU=",
+    "wind": [5400, 900]
 }
 ----
 
@@ -2002,4 +2006,31 @@ response fields; only the position and the timestamp are mandatory.
     "windDirection": 3000,
     "magneticField": [21451, 1989, 43823]
 }
+----
+
+== `WindEstimate`
+
+This type represents the horizontal wind speed and direction as estimated by a
+UAV from its own flight data. The direction follows the meteorological
+convention of the `windDirection` field of <<_weather,Weather>>: it is the
+direction where the wind blows from. For instance, a 5.4 m/s wind blowing from
+the East is expressed by a wind speed of 5400 and a wind direction of 900.
+
+The object is stored as a list with two mandatory items.
+
+*Fields*
+
+[cols="1,1,1,7",options="header",]
+|===
+|Index |Required? |Type |Description
+|0 |yes |integer |The horizontal wind speed, in mm/s
+|1 |yes |<<_angles,angle>> |The meteorological wind direction, i.e. where the
+wind blows from, clockwise from due North
+|===
+
+*Example*
+
+[source,json]
+----
+[5400, 900]
 ----
